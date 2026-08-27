@@ -7,14 +7,18 @@ Code auf dem Tablet.
 Ein kleiner Snapseed-Begleiter fürs Tablet – installierbar als App (PWA),
 funktioniert offline, speichert deine Daten lokal auf dem Gerät.
 
-**Vier Bereiche:**
+**Fünf Bereiche:**
+- 📷 **Bild-Berater** – Motiv antippen (Wald/Grün &amp; Braun, Meer, Porträt,
+  Sonnenuntergang, Stadt, Nacht, Berge, Blumen, Food, Schnee) → konkrete
+  Bearbeitungsschritte, Farbtipp und passende Looks für genau dieses Bild.
 - 🧪 **Rezepte** – Schritt-für-Schritt-Anleitungen für beliebte Looks
-  (70er-Polaroid, Teal &amp; Orange, Moody, Clean &amp; Bright, Noir, Golden Hour,
-  Faded Film, Herbsttöne). Eigene Rezepte lassen sich ergänzen.
+  (Madeira/Wald, Teal &amp; Orange, Moody, Clean, Noir, Golden Hour, Meer,
+  Blaue Stunde, Street, Food, Schnee, Vintage u. a.). Eigene Rezepte möglich.
 - 🎨 **Farb-Helfer** – Hauptfarbe wählen → passende Grading-Farben
-  (Komplementär, Split, Analog, Triadisch) auf dem Farbrad, inkl. Grading-Tipp.
-- 📖 **Spickzettel** – was bewirkt welches Snapseed-Werkzeug (Ambiente,
-  Kurven, Struktur …), durchsuchbar.
+  (Komplementär, Split, Analog, Triadisch) auf dem Farbrad, inkl. konkreter
+  Snapseed-Umsetzung.
+- 📖 **Wissen** – was bewirkt welches Snapseed-Werkzeug und **wann** setzt man
+  es ein (Ambiente, Kurven, Struktur …), durchsuchbar.
 - 📌 **Meine Tipps** – Tipps von überall schnell notieren, mit Stichworten,
   wiederfindbar. Wird lokal gespeichert.
 

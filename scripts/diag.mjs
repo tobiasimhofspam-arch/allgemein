@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+import path from 'path'; import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const url = 'file://' + path.join(path.resolve(__dirname,'..'),'index.html');
+const b = await chromium.launch({ executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+const p = await b.newPage();
+const errs=[]; p.on('pageerror',e=>errs.push(e.message)); p.on('console',m=>{if(m.type()==='error')errs.push('C:'+m.text())});
+await p.goto(url); await p.waitForTimeout(400);
+console.log('errors:', errs.length?errs:'none');
+console.log('motifs:', await p.$$eval('.motif', e=>e.length).catch(e=>'ERR'));
+await b.close();

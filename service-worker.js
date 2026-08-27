@@ -1,7 +1,7 @@
 // Einfacher Offline-Cache für die Foto-Werkstatt.
 // Bei jeder Veröffentlichung die Versionsnummer erhöhen, damit Nutzer
 // automatisch die neue Version bekommen.
-const CACHE = 'foto-werkstatt-v1';
+const CACHE = 'foto-werkstatt-v2';
 const ASSETS = [
   './',
   './index.html',
