@@ -8,19 +8,20 @@ Ein kleiner Snapseed-Begleiter fürs Tablet – installierbar als App (PWA),
 funktioniert offline, speichert deine Daten lokal auf dem Gerät.
 
 **Fünf Bereiche:**
-- 📷 **Bild-Berater** – Motiv antippen (Wald/Grün &amp; Braun, Meer, Porträt,
-  Sonnenuntergang, Stadt, Nacht, Berge, Blumen, Food, Schnee) → konkrete
-  Bearbeitungsschritte, Farbtipp und passende Looks für genau dieses Bild.
-- 🧪 **Rezepte** – Schritt-für-Schritt-Anleitungen für beliebte Looks
-  (Madeira/Wald, Teal &amp; Orange, Moody, Clean, Noir, Golden Hour, Meer,
-  Blaue Stunde, Street, Food, Schnee, Vintage u. a.). Eigene Rezepte möglich.
-- 🎨 **Farb-Helfer** – Hauptfarbe wählen → passende Grading-Farben
-  (Komplementär, Split, Analog, Triadisch) auf dem Farbrad, inkl. konkreter
-  Snapseed-Umsetzung.
-- 📖 **Wissen** – was bewirkt welches Snapseed-Werkzeug und **wann** setzt man
-  es ein (Ambiente, Kurven, Struktur …), durchsuchbar.
-- 📌 **Meine Tipps** – Tipps von überall schnell notieren, mit Stichworten,
-  wiederfindbar. Wird lokal gespeichert.
+- 📷 **Bild-Berater** – Motiv antippen (Wald/Grün &amp; Braun, Meer, Regennacht,
+  Sonnenuntergang, Porträt, Berge, Stadt, Blumen, Food, Schnee) → kompletter
+  Ablauf in vier Phasen (Basis → Kurven → lokal → Finish) plus Color Grading
+  wahlweise auf Spannung oder Harmonie, mit konkreten Kurvengriffen.
+- 🧪 **Rezepte** – 17 Looks, jeder mit Kurvenarbeit, Begründung je Schritt und
+  Merksatz (70er-Kurven-Methode, Madeira/Wald, Teal &amp; Orange, Regennacht,
+  Golden Hour, Moody, Street, Noir, Faded u. a.). Eigene Rezepte möglich.
+- 🎨 **Farb-Helfer** – Farbrad mit zwei ziehbaren Punkten (Lichter/Schatten),
+  darunter Feinsteuerung über Farbwähler und Sättigungs-/Helligkeitsregler.
+  Zeigt die Beziehung der Töne, was jede Farbe ausdrückt, die Palette und die
+  konkrete Snapseed-Umsetzung.
+- 📖 **Wissen** – der komplette Spickzettel in 16 Gruppen, durchsuchbar.
+- 📌 **Eigenes** – eigene Rezepte (Überschrift, Schritte, Merksatz, Stichworte)
+  und schnelle Notizen. Wird lokal auf dem Gerät gespeichert.
 
 ### Auf dem Tablet als App installieren
 

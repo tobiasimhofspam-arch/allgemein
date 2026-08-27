@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Foto-Werkstatt</title>
-  <meta name="description" content="Dein Snapseed-Begleiter: Bild-Berater, Look-Rezepte, Farb-Helfer, Wissen und eigene Tipps." />
+  <meta name="description" content="Dein Snapseed-Begleiter: Bild-Berater, Kurven-Rezepte, Farb-Helfer, Wissen und eigene Rezepte." />
   <meta name="theme-color" content="#1c1c1e" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
@@ -13,16 +13,9 @@
   <meta name="apple-mobile-web-app-title" content="Foto-Werkstatt" />
   <style>
     :root {
-      --bg: #131315;
-      --bg-elev: #1c1c1e;
-      --bg-card: #232326;
-      --bg-card-2: #2a2a2e;
-      --line: #35353a;
-      --text: #f2f2f4;
-      --muted: #a0a0a8;
-      --accent: #ff9f45;
-      --accent-2: #ffd18a;
-      --green: #7bd88f;
+      --bg: #131315; --bg-elev: #1c1c1e; --bg-card: #232326; --bg-card-2: #2a2a2e;
+      --line: #35353a; --text: #f2f2f4; --muted: #a0a0a8;
+      --accent: #ff9f45; --accent-2: #ffd18a; --green: #7bd88f; --blue: #7ab8f5;
       --radius: 16px;
       --safe-b: env(safe-area-inset-bottom, 0px);
       --safe-t: env(safe-area-inset-top, 0px);
@@ -31,30 +24,22 @@
     html, body { margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
+      background: var(--bg); color: var(--text); line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       padding-bottom: calc(74px + var(--safe-b));
     }
     header {
       position: sticky; top: 0; z-index: 20;
       background: rgba(19,19,21,.82);
-      backdrop-filter: saturate(140%) blur(12px);
-      -webkit-backdrop-filter: saturate(140%) blur(12px);
+      backdrop-filter: saturate(140%) blur(12px); -webkit-backdrop-filter: saturate(140%) blur(12px);
       border-bottom: 1px solid var(--line);
       padding: calc(12px + var(--safe-t)) 18px 12px;
     }
-    header h1 {
-      margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -.01em;
-      display: flex; align-items: center; gap: 9px;
-    }
-    header .dot {
-      width: 22px; height: 22px; border-radius: 50%;
+    header h1 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -.01em;
+      display: flex; align-items: center; gap: 9px; }
+    header .dot { width: 22px; height: 22px; border-radius: 50%;
       background: conic-gradient(red, orange, yellow, lime, cyan, blue, magenta, red);
-      box-shadow: inset 0 0 0 4px var(--bg-elev);
-      flex: none;
-    }
+      box-shadow: inset 0 0 0 4px var(--bg-elev); flex: none; }
     header p { margin: 3px 0 0 31px; color: var(--muted); font-size: 12.5px; }
 
     main { padding: 16px 16px 8px; max-width: 720px; margin: 0 auto; }
@@ -65,23 +50,20 @@
     .lead { color: var(--muted); font-size: 13.5px; margin: 0 0 14px; }
     .lead b { color: var(--accent-2); font-weight: 650; }
 
-    .search {
-      width: 100%; padding: 12px 14px; border-radius: 12px;
+    .search { width: 100%; padding: 12px 14px; border-radius: 12px;
       border: 1px solid var(--line); background: var(--bg-elev); color: var(--text);
-      font-size: 16px; margin-bottom: 14px;
-    }
+      font-size: 16px; margin-bottom: 14px; }
     .search::placeholder { color: var(--muted); }
 
-    .row { display: flex; gap: 10px; align-items: center; }
-    .btn {
-      appearance: none; border: none; cursor: pointer; font-size: 15px; font-weight: 600;
-      padding: 11px 15px; border-radius: 12px; color: #201400; background: var(--accent);
-    }
+    .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .btn { appearance: none; border: none; cursor: pointer; font-size: 15px; font-weight: 600;
+      padding: 11px 15px; border-radius: 12px; color: #201400; background: var(--accent); }
     .btn.ghost { background: var(--bg-card); color: var(--text); border: 1px solid var(--line); }
     .btn.small { padding: 7px 11px; font-size: 13px; }
     .btn:active { transform: scale(.97); }
+    button:focus-visible, input:focus-visible, canvas:focus-visible {
+      outline: 2px solid var(--accent); outline-offset: 2px; }
 
-    /* Merksatz-Banner */
     .maxim { display: flex; gap: 10px; background: var(--bg-card); border: 1px solid var(--line);
       border-radius: 14px; padding: 12px 14px; margin-bottom: 16px; font-size: 13px; }
     .maxim .col { flex: 1; }
@@ -90,11 +72,9 @@
 
     /* Bild-Berater */
     .motif-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 18px; }
-    .motif {
-      background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
+    .motif { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
       padding: 13px 12px; text-align: left; cursor: pointer; color: var(--text);
-      display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600;
-    }
+      display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 600; }
     .motif .em { font-size: 22px; flex: none; }
     .motif:active { transform: scale(.98); }
     .motif.active { border-color: var(--accent); background: var(--bg-card-2); }
@@ -102,19 +82,33 @@
       border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 16px; }
     .advice h3 { margin: 0 0 4px; font-size: 17px; display: flex; align-items: center; gap: 9px; }
     .advice .sum { color: var(--muted); font-size: 13.5px; margin: 0 0 14px; }
-    .advice h5 { margin: 14px 0 8px; font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--accent-2); }
-    .sh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .sh { border-radius: 12px; padding: 10px 12px; font-size: 12.5px; border: 1px solid var(--line); background: var(--bg-card-2); }
-    .sh.tension { border-left: 3px solid var(--accent); }
-    .sh.harmony { border-left: 3px solid var(--green); }
-    .sh .lbl { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 3px; }
-    .sh.tension .lbl { color: var(--accent-2); }
-    .sh.harmony .lbl { color: var(--green); }
+    h5.sec { margin: 18px 0 8px; font-size: 12px; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--accent-2); display: flex; align-items: center; gap: 7px; }
+    h5.sec .n { background: var(--bg-card-2); border: 1px solid var(--line); border-radius: 6px;
+      padding: 1px 6px; font-size: 10.5px; color: var(--muted); letter-spacing: 0; }
+    h5.sec.key { color: var(--accent); }
 
-    .card {
-      background: var(--bg-card); border: 1px solid var(--line);
-      border-radius: var(--radius); margin-bottom: 12px; overflow: hidden;
-    }
+    .gradebox { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px;
+      background: var(--bg-card-2); margin-bottom: 10px; }
+    .gradebox.tension { border-left: 3px solid var(--accent); }
+    .gradebox.harmony { border-left: 3px solid var(--green); }
+    .gradebox .lbl { font-weight: 700; font-size: 11px; text-transform: uppercase;
+      letter-spacing: .04em; margin-bottom: 4px; }
+    .gradebox.tension .lbl { color: var(--accent-2); }
+    .gradebox.harmony .lbl { color: var(--green); }
+    .gradebox .txt { font-size: 13px; margin-bottom: 8px; }
+    .moves { display: flex; flex-direction: column; gap: 5px; }
+    .move { font-size: 12.5px; color: var(--text); display: flex; gap: 7px; align-items: baseline; }
+    .move .ch { font-weight: 700; min-width: 38px; }
+    .move .ch.rot { color: #ff8b7a; } .move .ch.gruen { color: var(--green); }
+    .move .ch.blau { color: var(--blue); }
+    .duo { display: flex; gap: 6px; margin-top: 8px; }
+    .duo .d { flex: 1; height: 26px; border-radius: 7px; border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center; font-size: 10px;
+      font-weight: 700; color: rgba(0,0,0,.55); }
+
+    .card { background: var(--bg-card); border: 1px solid var(--line);
+      border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; }
     .card-head { padding: 14px 16px; cursor: pointer; display: flex; align-items: center; gap: 12px; }
     .card-head .txt { flex: 1; min-width: 0; }
     .card-head h3 { margin: 0; font-size: 16px; font-weight: 650; }
@@ -125,22 +119,19 @@
     .card.open .card-body { display: block; }
     .desc { color: var(--muted); font-size: 13.5px; margin: 0 0 12px; }
     .merke { background: var(--bg-card-2); border-radius: 10px; padding: 10px 12px; font-size: 13px;
-      margin-top: 12px; border-left: 3px solid var(--accent-2); }
+      margin-top: 14px; border-left: 3px solid var(--accent-2); }
     .merke b { color: var(--accent-2); }
 
     ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; }
-    ol.steps li {
-      counter-increment: s; position: relative; padding: 10px 10px 10px 40px;
-      border-top: 1px solid var(--line); font-size: 14.5px;
-    }
-    .advice ol.steps li:first-child { border-top: none; }
-    ol.steps li:before {
-      content: counter(s); position: absolute; left: 8px; top: 10px;
+    ol.steps li { counter-increment: s; position: relative; padding: 10px 10px 10px 40px;
+      border-top: 1px solid var(--line); font-size: 14.5px; }
+    ol.steps li:first-child { border-top: none; }
+    ol.steps li:before { content: counter(s); position: absolute; left: 8px; top: 10px;
       width: 22px; height: 22px; border-radius: 50%; background: var(--bg-card-2);
       color: var(--accent-2); font-size: 12px; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-    }
+      display: flex; align-items: center; justify-content: center; }
     ol.steps li b { color: var(--accent-2); font-weight: 650; }
+    ol.steps li .why { display: block; color: var(--muted); font-size: 12.5px; margin-top: 3px; }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
     .tag { font-size: 11.5px; color: var(--muted); background: var(--bg-card-2);
       padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); }
@@ -152,33 +143,65 @@
     .card-foot { margin-top: 12px; display: flex; justify-content: flex-end; gap: 8px; }
     .del { background: transparent; border: 1px solid var(--line); color: #ff8080;
       border-radius: 10px; padding: 6px 12px; font-size: 13px; cursor: pointer; }
-
     .empty { text-align: center; color: var(--muted); padding: 40px 20px; font-size: 14px; }
 
     /* Farb-Helfer */
-    .picker-row { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
-    .picker-row label { font-size: 14px; color: var(--muted); }
-    input[type=color] {
-      width: 64px; height: 48px; border: 1px solid var(--line); border-radius: 12px;
-      background: var(--bg-elev); padding: 4px; cursor: pointer;
-    }
-    #wheelWrap { display: flex; justify-content: center; margin: 4px 0 20px; }
-    canvas#wheel { width: 260px; height: 260px; max-width: 78vw; max-height: 78vw; }
-    .harmony { margin-bottom: 18px; }
-    .harmony h4 { margin: 0 0 8px; font-size: 14px; }
-    .harmony .sub { color: var(--muted); font-size: 12.5px; font-weight: 400; margin-left: 6px; }
-    .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
-    .sw { flex: 1 1 64px; min-width: 64px; border-radius: 12px; overflow: hidden;
-      border: 1px solid var(--line); background: var(--bg-card); }
-    .sw .chip { height: 52px; }
-    .sw .hex { font-size: 11px; text-align: center; padding: 5px 2px; color: var(--muted);
-      font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+    #wheelWrap { display: flex; justify-content: center; margin: 2px 0 6px; }
+    canvas#wheel { width: 300px; height: 300px; max-width: 86vw; max-height: 86vw;
+      touch-action: none; cursor: grab; }
+    canvas#wheel:active { cursor: grabbing; }
+    .wheelhint { text-align: center; color: var(--muted); font-size: 12px; margin-bottom: 14px; }
+    .colcards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .colcard { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 12px; }
+    .colcard.hi { border-top: 3px solid var(--accent-2); }
+    .colcard.sh { border-top: 3px solid var(--blue); }
+    .colcard .role { font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .04em; color: var(--muted); margin-bottom: 8px; }
+    .colcard .prev { height: 44px; border-radius: 10px; border: 1px solid var(--line); margin-bottom: 8px; }
+    .colcard .hexrow { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .colcard input[type=color] { width: 44px; height: 34px; border: 1px solid var(--line);
+      border-radius: 9px; background: var(--bg-elev); padding: 3px; cursor: pointer; flex: none; }
+    .colcard .hex { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .sl { margin-bottom: 8px; }
+    .sl label { display: flex; justify-content: space-between; font-size: 11.5px;
+      color: var(--muted); margin-bottom: 3px; }
+    .sl input[type=range] { width: 100%; accent-color: var(--accent); }
+    .quickrow { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px; }
+    .qbtn { font-size: 12.5px; font-weight: 600; background: var(--bg-card); color: var(--text);
+      border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+    .qbtn:active { transform: scale(.97); }
+    .relbox { border: 1px solid var(--line); border-radius: 14px; padding: 14px;
+      background: var(--bg-card); margin-bottom: 14px; }
+    .relbox .top { display: flex; align-items: baseline; justify-content: space-between;
+      gap: 10px; margin-bottom: 6px; }
+    .relbox h4 { margin: 0; font-size: 15px; }
+    .relbox .deg { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .relbox .kindbadge { display: inline-block; font-size: 10.5px; font-weight: 700;
+      border-radius: 6px; padding: 2px 7px; margin-left: 8px; }
+    .kindbadge.spannung { background: rgba(255,159,69,.18); color: var(--accent-2); }
+    .kindbadge.harmonie { background: rgba(123,216,143,.18); color: var(--green); }
+    .relbox p { margin: 0; font-size: 13.5px; color: var(--text); }
+    .relbox .wk { margin-top: 8px; font-size: 12.5px; color: var(--muted); }
+    .strip { height: 46px; border-radius: 12px; border: 1px solid var(--line);
+      margin: 10px 0 6px; }
+    .striplbl { display: flex; justify-content: space-between; font-size: 11px;
+      color: var(--muted); margin-bottom: 12px; }
+    .meaning { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 13px 14px; margin-bottom: 10px; }
+    .meaning .hd { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
+    .meaning .sw { width: 26px; height: 26px; border-radius: 8px; border: 1px solid var(--line); flex: none; }
+    .meaning .hd h4 { margin: 0; font-size: 15px; }
+    .meaning .hd .role { font-size: 11px; color: var(--muted); margin-left: auto; }
+    .meaning .ln { font-size: 13px; margin-bottom: 6px; }
+    .meaning .ln b { color: var(--accent-2); }
     .tipbox { background: var(--bg-card); border: 1px solid var(--line);
       border-left: 3px solid var(--accent); border-radius: 12px; padding: 12px 14px;
-      font-size: 13.5px; color: var(--text); margin-bottom: 12px; }
+      font-size: 13.5px; margin-bottom: 12px; }
     .tipbox.green { border-left-color: var(--green); }
     .tipbox b { color: var(--accent-2); }
     .tipbox.green b { color: var(--green); }
+    .info { color: var(--muted); font-size: 12.5px; margin: 4px 2px 16px; }
 
     /* Wissen */
     .witem { padding: 10px 0; border-top: 1px solid var(--line); font-size: 14px; }
@@ -187,53 +210,42 @@
     .card-head .cnt { font-size: 11.5px; color: var(--muted); background: var(--bg-card-2);
       border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; flex: none; }
 
-    /* Meine Tipps */
-    .note-form textarea {
-      width: 100%; min-height: 76px; resize: vertical; padding: 12px 14px; font-size: 15px;
-      border-radius: 12px; border: 1px solid var(--line); background: var(--bg-elev); color: var(--text);
-      font-family: inherit; margin-bottom: 8px;
-    }
-    .note-form input.tagin {
-      width: 100%; padding: 10px 14px; font-size: 15px; border-radius: 12px;
-      border: 1px solid var(--line); background: var(--bg-elev); color: var(--text); margin-bottom: 8px;
-    }
+    /* Meine Rezepte / Tipps */
+    .note-form textarea { width: 100%; min-height: 76px; resize: vertical; padding: 12px 14px;
+      font-size: 15px; border-radius: 12px; border: 1px solid var(--line);
+      background: var(--bg-elev); color: var(--text); font-family: inherit; margin-bottom: 8px; }
+    .note-form input.tagin { width: 100%; padding: 10px 14px; font-size: 15px; border-radius: 12px;
+      border: 1px solid var(--line); background: var(--bg-elev); color: var(--text); margin-bottom: 8px; }
     .note { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
       padding: 13px 15px; margin-bottom: 10px; }
     .note p { margin: 0 0 8px; font-size: 14.5px; white-space: pre-wrap; }
     .note .meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
     .note .when { font-size: 11.5px; color: var(--muted); }
 
-    .info { color: var(--muted); font-size: 12.5px; margin: 4px 2px 16px; }
-
-    /* Bottom nav */
-    nav {
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+    nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
       display: flex; background: rgba(24,24,26,.92);
       backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      border-top: 1px solid var(--line);
-      padding-bottom: var(--safe-b);
-    }
-    nav button {
-      flex: 1; background: none; border: none; color: var(--muted); cursor: pointer;
+      border-top: 1px solid var(--line); padding-bottom: var(--safe-b); }
+    nav button { flex: 1; background: none; border: none; color: var(--muted); cursor: pointer;
       padding: 9px 2px 8px; font-size: 10px; display: flex; flex-direction: column;
-      align-items: center; gap: 3px; font-weight: 600;
-    }
+      align-items: center; gap: 3px; font-weight: 600; }
     nav button .ic { font-size: 21px; line-height: 1; }
     nav button.active { color: var(--accent); }
 
     dialog { border: none; background: transparent; padding: 0; }
     dialog::backdrop { background: rgba(0,0,0,.6); backdrop-filter: blur(2px); }
     .sheet { background: var(--bg-elev); border: 1px solid var(--line); border-radius: 18px;
-      padding: 18px; width: min(92vw, 460px); }
-    .sheet h3 { margin: 0 0 14px; }
-    .sheet input, .sheet textarea {
-      width: 100%; padding: 11px 13px; font-size: 15px; border-radius: 11px;
-      border: 1px solid var(--line); background: var(--bg-card); color: var(--text);
-      font-family: inherit; margin-bottom: 10px;
-    }
+      padding: 18px; width: min(92vw, 460px); max-height: 86vh; overflow-y: auto; }
+    .sheet h3 { margin: 0 0 4px; }
+    .sheet .hint { color: var(--muted); font-size: 12.5px; margin: 0 0 14px; }
+    .sheet label.fl { display: block; font-size: 11.5px; color: var(--muted); margin-bottom: 4px; }
+    .sheet input, .sheet textarea { width: 100%; padding: 11px 13px; font-size: 15px;
+      border-radius: 11px; border: 1px solid var(--line); background: var(--bg-card);
+      color: var(--text); font-family: inherit; margin-bottom: 10px; }
     .sheet .step-in { display: flex; gap: 8px; }
     .sheet .step-in input:first-child { flex: 0 0 40%; }
     .sheet .sheet-foot { display: flex; justify-content: space-between; gap: 8px; margin-top: 6px; }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
   </style>
 </head>
 <body>
@@ -243,9 +255,8 @@
   </header>
 
   <main>
-    <!-- BILD-BERATER -->
     <section id="tab-berater" class="tab-panel active">
-      <p class="lead">Was für ein Bild hast du? Tippe das Motiv an – du bekommst die <b>passende Bearbeitung</b> mit Schritten, Farb-Grading und Looks.</p>
+      <p class="lead">Welches Bild hast du? Motiv antippen – du bekommst den kompletten Ablauf: <b>Basis → Kurven → lokal → Finish</b>, plus das Color Grading mit konkreten Kurvengriffen.</p>
       <div class="maxim">
         <div class="col"><span class="k">Gegenfarbe rein</span> = Spannung</div>
         <div class="col harm"><span class="k">Gleiche Farbe rein</span> = Harmonie</div>
@@ -254,44 +265,61 @@
       <div id="adviceBox"></div>
     </section>
 
-    <!-- REZEPTE -->
     <section id="tab-rezepte" class="tab-panel">
-      <input class="search" id="searchRez" placeholder="Look suchen … (z. B. Polaroid, Teal)" />
+      <input class="search" id="searchRez" placeholder="Look suchen … (z. B. 70er, Teal, Wald)" />
       <div class="row" style="margin-bottom:14px">
         <button class="btn" id="addRezBtn">+ Eigenes Rezept</button>
       </div>
       <div id="rezList"></div>
     </section>
 
-    <!-- FARB-HELFER -->
     <section id="tab-farbe" class="tab-panel">
-      <p class="lead">Wähle die <b>Hauptfarbe</b> deines Bildes. Die App zeigt harmonische Farben fürs Grading – und wie du sie in Snapseed umsetzt.</p>
-      <div class="picker-row">
-        <label for="baseColor">Hauptfarbe:</label>
-        <input type="color" id="baseColor" value="#c86432" />
-        <span id="baseHex" style="color:var(--muted);font-size:13px"></span>
+      <p class="lead">Zieh die zwei Punkte über das Rad: <b>oben die Lichter-Farbe</b>, <b>unten die Schatten-Farbe</b>. Darunter stellst du jeden Ton exakt ein – und erfährst, was er bewirkt.</p>
+      <div id="wheelWrap"><canvas id="wheel" width="600" height="600" tabindex="0" aria-label="Farbrad mit zwei ziehbaren Punkten"></canvas></div>
+      <p class="wheelhint">Ziehen: Winkel = Farbton · nach außen = kräftiger</p>
+      <div class="colcards">
+        <div class="colcard hi">
+          <div class="role">☀️ Lichter</div>
+          <div class="prev" id="prevHi"></div>
+          <div class="hexrow"><input type="color" id="pickHi" /><span class="hex" id="hexHi"></span></div>
+          <div class="sl"><label>Sättigung <span id="satHiV"></span></label><input type="range" id="satHi" min="0" max="100" /></div>
+          <div class="sl"><label>Helligkeit <span id="ligHiV"></span></label><input type="range" id="ligHi" min="10" max="90" /></div>
+        </div>
+        <div class="colcard sh">
+          <div class="role">🌑 Schatten</div>
+          <div class="prev" id="prevSh"></div>
+          <div class="hexrow"><input type="color" id="pickSh" /><span class="hex" id="hexSh"></span></div>
+          <div class="sl"><label>Sättigung <span id="satShV"></span></label><input type="range" id="satSh" min="0" max="100" /></div>
+          <div class="sl"><label>Helligkeit <span id="ligShV"></span></label><input type="range" id="ligSh" min="10" max="90" /></div>
+        </div>
       </div>
-      <div id="wheelWrap"><canvas id="wheel" width="520" height="520"></canvas></div>
-      <div id="harmonies"></div>
-      <div class="tipbox" id="gradeTip"></div>
-      <div class="tipbox green" id="howTip"></div>
-      <p class="info">Faustregel: Gegenfarbe rein = Spannung, gleiche Farbe rein = Harmonie. Fürs Grading einen Ton in die <b>Lichter</b>, den Gegenton in die <b>Schatten</b> – das ist „Teal &amp; Orange“.</p>
+      <div class="quickrow" id="quickRow"></div>
+      <div id="relBox"></div>
+      <h5 class="sec">Deine Palette</h5>
+      <div class="strip" id="paletteStrip"></div>
+      <div class="striplbl"><span>Schatten</span><span>Mitteltöne (neutral)</span><span>Lichter</span></div>
+      <div class="tipbox" id="paletteWhat"></div>
+      <h5 class="sec">Was diese Farben ausdrücken</h5>
+      <div id="meanings"></div>
+      <h5 class="sec key">So setzt du die Palette in Snapseed um</h5>
+      <div id="recipeOut"></div>
     </section>
 
-    <!-- WISSEN / SPICKZETTEL -->
     <section id="tab-spick" class="tab-panel">
       <p class="lead">Dein Spickzettel: <b>was</b> jedes Werkzeug macht und <b>wann</b> du es einsetzt. Tippe eine Gruppe an zum Aufklappen.</p>
       <input class="search" id="searchSpick" placeholder="Suchen … (z. B. Kurven, Struktur, Split)" />
       <div id="spickList"></div>
     </section>
 
-    <!-- MEINE TIPPS -->
     <section id="tab-tipps" class="tab-panel">
-      <p class="lead">Guten Tipp gesehen (Facebook &amp; Co.)? Schnell festhalten, mit Stichwort – dann findest du ihn wieder.</p>
+      <p class="lead">Hier sammelst du Eigenes: ein <b>komplettes Rezept</b> mit Überschrift und Schritten – oder schnell einen Tipp, den du irgendwo gesehen hast.</p>
+      <div class="row" style="margin-bottom:16px">
+        <button class="btn" id="addRezBtn2">+ Eigenes Rezept anlegen</button>
+      </div>
       <div class="note-form">
-        <textarea id="noteText" placeholder="Tipp notieren … (z. B. 'Für Herbstlaub Sättigung leicht runter, Wärme +5')"></textarea>
+        <textarea id="noteText" placeholder="Kurzer Tipp … (z. B. 'Für Herbstlaub Sättigung leicht runter, Wärme +5')"></textarea>
         <input class="tagin" id="noteTags" placeholder="Stichworte, mit Komma getrennt (z. B. Herbst, Porträt)" />
-        <button class="btn" id="addNoteBtn">Tipp speichern</button>
+        <button class="btn ghost" id="addNoteBtn">Tipp speichern</button>
       </div>
       <input class="search" id="searchNote" placeholder="In meinen Tipps suchen …" style="margin-top:16px" />
       <div id="noteList"></div>
@@ -303,17 +331,24 @@
     <button data-tab="rezepte"><span class="ic">🧪</span>Rezepte</button>
     <button data-tab="farbe"><span class="ic">🎨</span>Farben</button>
     <button data-tab="spick"><span class="ic">📖</span>Wissen</button>
-    <button data-tab="tipps"><span class="ic">📌</span>Tipps</button>
+    <button data-tab="tipps"><span class="ic">📌</span>Eigenes</button>
   </nav>
 
-  <!-- Dialog: eigenes Rezept -->
   <dialog id="rezDialog">
     <form method="dialog" class="sheet" id="rezForm">
       <h3>Eigenes Rezept</h3>
-      <input id="rezName" placeholder="Name des Looks" required />
-      <input id="rezMood" placeholder="Kurze Beschreibung / Stimmung" />
+      <p class="hint">Überschrift, Stimmung und beliebig viele Schritte – wie bei den fertigen Looks.</p>
+      <label class="fl" for="rezName">Name des Looks</label>
+      <input id="rezName" placeholder="z. B. Madeira Abendlicht" required />
+      <label class="fl" for="rezMood">Stimmung / Kurzbeschreibung</label>
+      <input id="rezMood" placeholder="z. B. Warm, weich, leicht verblasst" />
+      <label class="fl">Schritte (Werkzeug + Einstellung)</label>
       <div id="rezSteps"></div>
-      <button type="button" class="btn ghost small" id="addStepBtn" style="margin-bottom:10px">+ Schritt</button>
+      <button type="button" class="btn ghost small" id="addStepBtn" style="margin-bottom:12px">+ Schritt</button>
+      <label class="fl" for="rezMerke">Merksatz (optional)</label>
+      <input id="rezMerke" placeholder="z. B. Gelbstich + milchige Schwarztöne + Korn" />
+      <label class="fl" for="rezTags">Stichworte (Komma)</label>
+      <input id="rezTags" placeholder="z. B. Warm, Vintage" />
       <div class="sheet-foot">
         <button value="cancel" class="btn ghost">Abbrechen</button>
         <button value="save" class="btn" id="saveRez">Speichern</button>
@@ -323,333 +358,586 @@
 
   <script>
   //=========================================================================
-  //  REZEPTE – bewährte Snapseed-Looks (Werte sind Startpunkte!)
+  //  REZEPTE – jeder Look mit Kurven-Arbeit und Begruendung (w = warum).
+  //  Werte sind Startpunkte, Kurven immer flach und subtil halten.
   //=========================================================================
   const DEFAULT_RECIPES = [
     {
+      id: "r-polaroid", name: "70er-Look (Kurven-Methode)",
+      mood: "Warmer Gelbstich + verblasste, milchige Schwarztöne + Korn",
+      desc: "Der 70er-Look im Kern: Gelb + faded + Korn. Kein Vintage-Knopf – nur Regler, die du kennst, clever kombiniert.",
+      merke: "70er-Look = warmer Gelbstich (Blau-Kurve runter) + verblasste, milchige Schwarztöne (RGB-Fußpunkt hoch) + gedämpfte Farben + Korn.",
+      tags: ["Vintage", "70er", "Faded", "Warm"],
+      steps: [
+        { t: "Feinabstimmung", s: "Wärme +25, Kontrast −12, Sättigung −10",
+          w: "Wärme oben hält Haut und Warmtöne lebendig – nur das Knallige verschwindet." },
+        { t: "Kurven · Blau · ganze Kurve ↓", s: "Beide Endpunkte der Blau-Kurve leicht nach unten",
+          w: "Nimmt Blau raus und schiebt das ganze Bild ins Gelbliche – dein leichtes Gelb." },
+        { t: "Kurven · RGB · Fußpunkt links ↑", s: "Untere linke Ecke der RGB-Kurve hochziehen",
+          w: "Der Signatur-Griff: reines Schwarz wird Grau → milchiger, matter Faded-Look. Optional oben rechts leicht runter = doppelt verblasst." },
+        { t: "Kurven · Rot · Mitte ↑ (optional)", s: "Ein Hauch mehr Rot/Orange in den Mitteltönen",
+          w: "Gibt den warmen Kodak-Hautton, den man mit den Siebzigern verbindet." },
+        { t: "Grobkörniger Film", s: "Dezenten Stil wählen, Stärke/Helligkeit zurücknehmen",
+          w: "So bleibt hauptsächlich das Korn übrig – der analoge Charakter." }
+      ]
+    },
+    {
       id: "r-wald", name: "Wald &amp; Grüntöne (Madeira-Look)",
-      mood: "Sattes, natürliches Grün – Wald, Blätter, üppige Natur",
-      desc: "Bringt Grün- und Brauntöne zum Leuchten, ohne künstlich zu wirken.",
+      mood: "Sattes, tiefes Grün mit erdigen Brauntönen",
+      desc: "Grün und Braun sind schon eine Familie. Statt die Sättigung hochzudrehen, arbeitest du über die Kurve und trennst die beiden per Selektiv.",
+      merke: "Grün lebt in den Mitteltönen. Grün-Kanal Mitte leicht ↑, Blau-Kanal Schatten ↑ – dann wirkt der Wald tief statt knallig.",
       tags: ["Natur", "Grün", "Landschaft"],
       steps: [
-        { t: "Weißabgleich", s: "Temperatur leicht wärmer für erdige Brauntöne, Farbton minimal Richtung Grün" },
-        { t: "Optimieren", s: "Ambiente +25, Kontrast +10, Sättigung +5, Glanzlichter −15, Tiefen +10" },
-        { t: "Selektiv", s: "Auf ein Grün tippen → Sättigung +, Helligkeit leicht +; auf Braun → Struktur +" },
-        { t: "Details", s: "Struktur +20 für Blätter, Rinde und Textur" },
-        { t: "Tonaler Kontrast", s: "Mitteltöne +15 – gibt dem Wald Tiefe" }
+        { t: "Weißabgleich", s: "Temperatur minimal wärmer, Farbton leicht Richtung Grün",
+          w: "Lässt Braun erdig wirken und verhindert den kalten Blaustich unter Blätterdächern." },
+        { t: "Feinabstimmung", s: "Ambiente +25, Glanzlichter −15, Tiefen +10, Sättigung +5",
+          w: "Ambiente holt die lokale Tiefe raus, ohne dass Grün giftig wird." },
+        { t: "Kurven · RGB · flache S-Kurve", s: "Schatten leicht ↓, Lichter leicht ↑, Mitte unangetastet",
+          w: "Gibt Struktur ins Blätterdach, ohne die Mitteltöne (= das Grün) zu verbiegen." },
+        { t: "Kurven · Grün · Mitteltöne ↑", s: "Einen Punkt in der Mitte des Grün-Kanals minimal anheben",
+          w: "Genau hier sitzt das Laub. Wirkt viel edler als globale Sättigung." },
+        { t: "Kurven · Blau · Schatten ↑", s: "Linkes Ende des Blau-Kanals leicht hoch",
+          w: "Kühle Tiefen unter den Bäumen – dadurch tritt das warme Braun hervor." },
+        { t: "Selektiv", s: "Auf Braun/Rinde tippen → Struktur +; auf ein Grün → Sättigung leicht +",
+          w: "Trennt die beiden Farbfamilien voneinander, statt alles gleich zu behandeln." },
+        { t: "Details", s: "Struktur +20, Schärfe +10 zum Schluss",
+          w: "Blattadern und Rindenstruktur – bei Wald darf Struktur kräftig sein." }
       ]
     },
     {
       id: "r-meer", name: "Meer &amp; Küste (Türkis-Boost)",
-      mood: "Frisches Türkis, heller Sand, klarer Himmel",
-      desc: "Betont das Blau-Türkis des Wassers und hält Sand/Haut natürlich.",
+      mood: "Frisches Türkis, warmer Sand, klare Lichter",
+      desc: "Wasser lebt in den unteren Mitteltönen. Wer nur die Sättigung hochdreht, bekommt Neon-Blau – über die Kurve wird es glaubwürdig.",
+      merke: "Untere Mitteltöne = Wasser. Blau-Kanal Schatten ↑ und Lichter ↓ ergibt Warm/Kühl-Teilung: kühles Wasser, warmer Sand.",
       tags: ["Meer", "Sommer", "Blau"],
       steps: [
-        { t: "Optimieren", s: "Helligkeit +8, Glanzlichter −20, Tiefen +12, Sättigung +6" },
-        { t: "Weißabgleich", s: "Leicht kühler für frisches Wasser" },
-        { t: "Selektiv", s: "Aufs Wasser tippen → Sättigung + und Helligkeit leicht +" },
-        { t: "Kurven", s: "Sanfte S-Kurve für Kontrast; Blau-Kanal in Lichtern minimal anheben" },
-        { t: "Details", s: "Struktur +10 (Wellen), Schärfe +8" }
+        { t: "Feinabstimmung", s: "Glanzlichter −20, Tiefen +12, Helligkeit +8",
+          w: "Rettet den ausgebrannten Himmel und öffnet die dunklen Wasserpartien." },
+        { t: "Kurven · RGB · untere Mitteltöne ↓", s: "Punkt bei etwa einem Viertel der Kurve leicht senken",
+          w: "Das Wasser bekommt Tiefe, Gischt und Schaum heben sich davon ab." },
+        { t: "Kurven · RGB · Lichter ↑", s: "Rechtes Drittel sanft anheben",
+          w: "Brillanz im Sand und in der Gischt, ohne das ganze Bild aufzuhellen." },
+        { t: "Kurven · Blau · Schatten ↑", s: "Linkes Ende des Blau-Kanals hoch",
+          w: "Bringt Türkis genau dorthin, wo das Wasser dunkel ist." },
+        { t: "Kurven · Blau · Lichter ↓", s: "Rechtes Ende leicht senken",
+          w: "Gelbliche Lichter = warmer Sand und Haut. Das ist die Warm/Kühl-Teilung." },
+        { t: "Selektiv", s: "Aufs Wasser tippen → Sättigung + und Helligkeit leicht +",
+          w: "Nur zum Feinschliff, nachdem die Kurve die Grundstimmung gesetzt hat." },
+        { t: "Details", s: "Struktur +10, Schärfe +8",
+          w: "Wellenkanten – sparsam, sonst wird die Wasseroberfläche unruhig." }
+      ]
+    },
+    {
+      id: "r-regennacht", name: "Regennacht &amp; Spiegelungen",
+      mood: "Nasser Asphalt, Pfützen, Neon – tiefe Nacht mit Leuchten",
+      desc: "Der Schlüssel sind die unteren Mitteltöne: Genau dort liegen nasse Straße und Pfützen. Der Nachthimmel bleibt dunkel, die Spiegelungen kommen hoch.",
+      merke: "Nasser Asphalt lebt in den unteren Mitteltönen. Einen Punkt bei rund einem Viertel der RGB-Kurve setzen und anheben – Schwarzpunkt dabei unten lassen.",
+      tags: ["Nacht", "Regen", "Neon", "Stadt"],
+      steps: [
+        { t: "Feinabstimmung", s: "Glanzlichter −30, Kontrast +10, Sättigung −5",
+          w: "Laternen und Neonschilder brennen sonst zu reinem Weiß aus." },
+        { t: "Kurven · RGB · untere Mitteltöne ↑", s: "Punkt bei ca. einem Viertel setzen und anheben – der wichtigste Griff",
+          w: "Hier liegen nasser Asphalt und Pfützen. Sie kommen hervor, ohne dass der Nachthimmel mit aufhellt." },
+        { t: "Kurven · RGB · Fußpunkt unten lassen", s: "Linke Ecke NICHT anheben",
+          w: "Nacht braucht echtes Schwarz. Sonst wird das Bild milchig statt nächtlich." },
+        { t: "Kurven · RGB · Lichter ↓", s: "Rechtes Ende leicht senken",
+          w: "Zähmt die Lichtquellen und hält Zeichnung in den Reflexen." },
+        { t: "Kurven · Blau · Schatten ↑", s: "Linkes Ende des Blau-Kanals hoch",
+          w: "Kühle, nächtliche Tiefen – der klassische Nachtblau-Ton." },
+        { t: "Kurven · Rot · Lichter ↑", s: "Rechtes Ende des Rot-Kanals leicht hoch",
+          w: "Neon und Laternen bleiben warm/magenta. Zusammen mit Schritt 5 ergibt das den Cyan/Magenta-Split." },
+        { t: "Tonaler Kontrast", s: "Mitteltöne +20, Lichter niedrig halten",
+          w: "Betont die Textur der nassen Oberfläche – Regen wird sichtbar." },
+        { t: "Details", s: "Struktur nur +8, Schärfe +10",
+          w: "Bei hohen ISO-Werten verstärkt Struktur sonst das Rauschen." }
       ]
     },
     {
       id: "r-teal-orange", name: "Teal &amp; Orange (Kino-Look)",
-      mood: "Warme Haut/Lichter, kühle blaugrüne Schatten – der Hollywood-Klassiker",
-      desc: "Warme Hauttöne gegen kühle Schatten wirken filmisch und lassen Motive hervortreten.",
+      mood: "Warme Haut und Lichter, kühle blaugrüne Schatten",
+      desc: "Der Hollywood-Klassiker ist reine Kurvenarbeit: ein Kanal, zwei Punkte, gegenläufig gezogen.",
+      merke: "Blau-Kanal: Schatten ↑, Lichter ↓ – und die Mitte neutral lassen. Das allein ist Teal &amp; Orange.",
       tags: ["Kino", "Porträt", "Kontrast"],
       steps: [
-        { t: "Weißabgleich", s: "Temperatur leicht wärmer für die Haut" },
-        { t: "Optimieren", s: "Kontrast +10, Sättigung −5, Glanzlichter −10, Tiefen +10" },
-        { t: "Kurven · Blau", s: "Schatten leicht anheben (kühle Tiefen), Lichter leicht senken (warme Lichter)" },
-        { t: "Selektiv", s: "Auf Hintergrund/Schatten tippen, Sättigung Richtung Türkis feinjustieren" },
-        { t: "Tonaler Kontrast", s: "Mitteltöne +15 für Plastizität" }
+        { t: "Feinabstimmung", s: "Kontrast +10, Sättigung −5, Glanzlichter −10, Tiefen +10",
+          w: "Etwas Sättigung runter, damit das Grading danach nicht übersteuert." },
+        { t: "Kurven · Blau · Schatten ↑", s: "Linkes Ende anheben",
+          w: "Blau in den Tiefen ergibt das Teal (Blaugrün) in den dunklen Partien." },
+        { t: "Kurven · Blau · Lichter ↓", s: "Rechtes Ende senken",
+          w: "Weniger Blau im Hellen heißt automatisch mehr Gelb/Orange – die warme Haut." },
+        { t: "Kurven · Blau · Mitte fixieren", s: "Einen Punkt genau in der Mitte setzen und nicht bewegen",
+          w: "Schützt die Hauttöne. Ohne diesen Punkt kippt das ganze Gesicht mit." },
+        { t: "Kurven · Rot · Lichter ↑ (optional)", s: "Rechtes Ende des Rot-Kanals minimal hoch",
+          w: "Verstärkt den warmen Hautton, wenn das Orange noch zu blass wirkt." },
+        { t: "Tonaler Kontrast", s: "Mitteltöne +15",
+          w: "Plastizität – das Gesicht bekommt Volumen." }
       ]
     },
     {
       id: "r-golden", name: "Golden Hour Boost",
-      mood: "Goldenes Abendlicht verstärken – warm &amp; leuchtend",
-      desc: "Betont warmes Licht und weiche Übergänge zur goldenen Stunde.",
+      mood: "Goldenes Abendlicht, warm und leuchtend",
+      desc: "Die goldene Stunde ist bereits warm – die Kunst ist, sie zu verstärken, ohne dass alles zu Orangebrei wird.",
+      merke: "Wärme in die Lichter, ein kühler Rest in den Schatten. Ohne den kühlen Gegenpol wirkt Gold flach.",
       tags: ["Sonnenuntergang", "Warm", "Landschaft"],
       steps: [
-        { t: "Weißabgleich", s: "Temperatur deutlich wärmer, Farbton minimal Richtung Magenta" },
-        { t: "Optimieren", s: "Ambiente +20, Glanzlichter −15, Tiefen +10, Sättigung +8" },
-        { t: "Selektiv", s: "Auf den Himmel tippen: Helligkeit/Sättigung gezielt anheben" },
-        { t: "Glanz", s: "Glamour Glow dezent (~20 %) für weiches Leuchten" }
-      ]
-    },
-    {
-      id: "r-moody", name: "Moody / Dunkel &amp; Dramatisch",
-      mood: "Stimmungsvoll, dunkel, satt – Landschaft &amp; Regenwetter",
-      desc: "Dunklere Belichtung mit satten Farben und Struktur für dramatische Stimmung.",
-      tags: ["Landschaft", "Dramatisch", "Dunkel"],
-      steps: [
-        { t: "Optimieren", s: "Helligkeit −15, Kontrast +20, Ambiente +30, Sättigung −5, Glanzlichter −25" },
-        { t: "Details", s: "Struktur +25, Schärfe +10" },
-        { t: "Drama", s: "Preset dezent, Stärke ~25 %, Sättigung niedrig" },
-        { t: "Weißabgleich", s: "Temperatur etwas kühler" },
-        { t: "Vignette", s: "Kräftiger nach innen (−35)" }
-      ]
-    },
-    {
-      id: "r-clean", name: "Clean &amp; Bright (luftig hell)",
-      mood: "Hell, frisch, luftig – der klare Instagram-Look",
-      desc: "Helle, saubere Bilder mit sanftem Kontrast und leicht reduzierten Lichtern.",
-      tags: ["Hell", "Clean", "Alltag"],
-      steps: [
-        { t: "Optimieren", s: "Helligkeit +12, Glanzlichter −20, Tiefen +20, Kontrast +8, Sättigung +5" },
-        { t: "Weißabgleich", s: "Auf neutral achten – Farbstich entfernen" },
-        { t: "Kurven", s: "Sanfte S-Kurve, Schwarzpunkt minimal anheben für weichen Look" },
-        { t: "Details", s: "Struktur +8 (dezent), Schärfe +10" }
-      ]
-    },
-    {
-      id: "r-highkey", name: "High-Key Porträt (weich &amp; hell)",
-      mood: "Helle, weiche Porträts mit strahlender Haut",
-      desc: "Sanftes, helles Licht mit zurückgenommener Struktur – schmeichelt der Haut.",
-      tags: ["Porträt", "Hell", "Weich"],
-      steps: [
-        { t: "Optimieren", s: "Helligkeit +10, Glanzlichter −15, Tiefen +15, Kontrast +5" },
-        { t: "Porträt", s: "Face Spotlight dezent: Gesichtslicht, Haut glätten, Augen aufhellen" },
-        { t: "Selektiv", s: "Auf die Haut tippen → Struktur leicht − (glatter)" },
-        { t: "Details", s: "Struktur global 0 bis +5 halten – nicht übertreiben" },
-        { t: "Glanz", s: "Glamour Glow ~15 % für weiches Leuchten" }
-      ]
-    },
-    {
-      id: "r-blaue-stunde", name: "Blaue Stunde &amp; Nacht",
-      mood: "Tiefes Blau der Dämmerung, leuchtende Lichter",
-      desc: "Verstärkt die blaue Stimmung nach Sonnenuntergang und rettet helle Lichtquellen.",
-      tags: ["Nacht", "Blau", "Stadt"],
-      steps: [
-        { t: "Optimieren", s: "Glanzlichter −25 (Lampen zähmen), Tiefen +15, Ambiente +20, Kontrast +10" },
-        { t: "Weißabgleich", s: "Temperatur kühler für tiefes Blau; Lichter dürfen warm bleiben" },
-        { t: "Selektiv", s: "Auf Lampen/Fenster tippen → Helligkeit dort etwas senken" },
-        { t: "Details", s: "Schärfe +10; Struktur nur dezent (Rauschen!)" }
+        { t: "Weißabgleich", s: "Temperatur deutlich wärmer, Farbton minimal Richtung Magenta",
+          w: "Magenta verhindert, dass warmes Licht ins Grünliche kippt." },
+        { t: "Feinabstimmung", s: "Ambiente +20, Glanzlichter −15, Tiefen +10",
+          w: "Hält Zeichnung in der Sonne und öffnet die Vordergründe." },
+        { t: "Kurven · Blau · Lichter ↓", s: "Rechtes Ende des Blau-Kanals senken",
+          w: "Der eigentliche Gold-Griff: weniger Blau im Hellen = goldene Sonne." },
+        { t: "Kurven · Blau · Schatten ↑ (dezent)", s: "Linkes Ende leicht anheben",
+          w: "Ein Hauch kühler Schatten gibt Tiefe und verhindert den Orangebrei." },
+        { t: "Selektiv", s: "Auf den Himmel tippen → Sättigung/Helligkeit gezielt +",
+          w: "Der Himmel darf kräftiger sein als der Rest." },
+        { t: "Glanz (Glamour Glow)", s: "Dezent bei etwa 20 %",
+          w: "Weiches Leuchten in den Lichtern – typisch für Gegenlicht." }
       ]
     },
     {
       id: "r-berge", name: "Berge &amp; weite Landschaft",
-      mood: "Klare Fernsicht, kräftiger Himmel, viel Tiefe",
-      desc: "Holt Details in Fels und Himmel heraus und schafft räumliche Tiefe.",
+      mood: "Klare Fernsicht, kräftiger Himmel, räumliche Tiefe",
+      desc: "Tiefe entsteht durch Warm/Kühl: warmer Vordergrund, kühle Ferne. Die Kurve macht die Arbeit.",
+      merke: "Ferne kühlen, Vordergrund wärmen – das erzeugt räumliche Tiefe stärker als jede Schärfung.",
       tags: ["Landschaft", "Berge", "Weite"],
       steps: [
-        { t: "Optimieren", s: "Ambiente +30, Kontrast +12, Glanzlichter −20, Tiefen +15" },
-        { t: "Details", s: "Struktur +20, Schärfe +12" },
-        { t: "Selektiv", s: "Auf den Himmel tippen → Sättigung/Kontrast +, Helligkeit −" },
-        { t: "Tonaler Kontrast", s: "Lichter/Mitteltöne anheben für Fernsicht" },
-        { t: "Vignette", s: "Leicht (−15), lenkt den Blick in die Weite" }
+        { t: "Feinabstimmung", s: "Ambiente +30, Glanzlichter −20, Tiefen +15, Kontrast +12",
+          w: "Ambiente ist bei Landschaft der stärkste einzelne Regler." },
+        { t: "Kurven · RGB · S-Kurve", s: "Schatten ↓, Lichter ↑, flach halten",
+          w: "Gibt dem Fels Kontrast, ohne Details in Schnee oder Schatten zu verlieren." },
+        { t: "Kurven · Blau · Schatten ↑", s: "Linkes Ende hoch",
+          w: "Kühle Tiefen lassen die Ferne zurücktreten – Luftperspektive." },
+        { t: "Kurven · Rot · Lichter ↑", s: "Rechtes Ende leicht hoch",
+          w: "Warmer Vordergrund. Der Kontrast warm/kühl erzeugt die Raumtiefe." },
+        { t: "Selektiv", s: "Auf den Himmel tippen → Sättigung/Kontrast +, Helligkeit −",
+          w: "Der Himmel verträgt mehr als der Boden." },
+        { t: "Details", s: "Struktur +20, Schärfe +12",
+          w: "Fels und Gestein sind die klassischen Struktur-Motive." }
       ]
     },
     {
-      id: "r-street", name: "Street / Urban",
+      id: "r-moody", name: "Moody / Dunkel &amp; Dramatisch",
+      mood: "Stimmungsvoll, dunkel, satt – Regenwetter und schwere Wolken",
+      desc: "Dunkel heißt nicht einfach Helligkeit runter, sondern Lichter zurücknehmen und die Mitteltöne absenken.",
+      merke: "Drama entsteht durch abgesenkte Mitteltöne bei erhaltener Zeichnung in den Tiefen – nicht durch weniger Helligkeit.",
+      tags: ["Landschaft", "Dramatisch", "Dunkel"],
+      steps: [
+        { t: "Feinabstimmung", s: "Glanzlichter −25, Ambiente +30, Sättigung −5, Kontrast +15",
+          w: "Ambiente hoch und Sättigung leicht runter ist die Moody-Grundformel." },
+        { t: "Kurven · RGB · Mitteltöne ↓", s: "Punkt in der Mitte nach unten ziehen",
+          w: "Der Kern des Looks: Das Bild wird schwer, ohne dass die Tiefen zulaufen." },
+        { t: "Kurven · RGB · Schatten leicht ↑", s: "Linkes Ende ein kleines Stück hoch",
+          w: "Erhält Zeichnung im Dunkeln – sonst wird es matschig statt dramatisch." },
+        { t: "Kurven · Blau · Schatten ↑", s: "Kühle, bleierne Tiefen",
+          w: "Gibt der Szene den Regenwetter-Ton." },
+        { t: "Drama-Filter", s: "Stärke ~25 %, Sättigung im Filter niedrig",
+          w: "Nur als Würze obendrauf, nicht als Grundlage." },
+        { t: "Vignette", s: "Deutlich nach innen (−35)",
+          w: "Verstärkt die geschlossene, schwere Stimmung." }
+      ]
+    },
+    {
+      id: "r-street", name: "Street / Urban (Tag)",
       mood: "Kühl, kontrastreich, großstädtisch",
-      desc: "Nüchterner, moderner Look für Architektur und Straßenszenen.",
+      desc: "Beton lebt vom Mitteltonkontrast. Farbe wird reduziert, damit Formen und Linien wirken.",
+      merke: "Sättigung runter, Mitteltonkontrast hoch, Schwarzpunkt leicht angehoben – das ist der moderne Street-Ton.",
       tags: ["Stadt", "Street", "Kühl"],
       steps: [
-        { t: "Optimieren", s: "Kontrast +18, Sättigung −10, Ambiente +15, Glanzlichter −15" },
-        { t: "Weißabgleich", s: "Leicht kühl für den urbanen Ton" },
-        { t: "Tonaler Kontrast", s: "Mitteltöne +20 – betont Beton, Metall, Kanten" },
-        { t: "Details", s: "Struktur +18, Schärfe +10" },
-        { t: "Kurven", s: "Leichte S-Kurve, Schwarzpunkt minimal anheben (matt-modern)" }
+        { t: "Feinabstimmung", s: "Kontrast +18, Sättigung −10, Ambiente +15, Glanzlichter −15",
+          w: "Reduzierte Farbe lässt Architektur grafisch wirken." },
+        { t: "Kurven · RGB · Fußpunkt leicht ↑", s: "Linke Ecke ein Stück hoch",
+          w: "Matter, moderner Look – die Tiefen laufen nicht zu Schwarz zu." },
+        { t: "Kurven · Blau · ganze Kurve leicht ↑", s: "Beide Enden minimal anheben",
+          w: "Ein durchgehend kühler Grundton, wie ihn Street-Presets nutzen." },
+        { t: "Tonaler Kontrast", s: "Mitteltöne +20",
+          w: "Beton, Metall und Kanten – hier entsteht der urbane Biss." },
+        { t: "Details", s: "Struktur +18, Schärfe +10",
+          w: "Architektur verträgt viel Struktur." }
+      ]
+    },
+    {
+      id: "r-portrait-warm", name: "Porträt warm &amp; weich",
+      mood: "Schmeichelnde Haut, klare Augen, ruhiger Hintergrund",
+      desc: "Bei Porträts gilt: Mitteltöne schützen. Alles Grading passiert in Schatten und Lichtern.",
+      merke: "Mittelpunkt der Farbkurve fixieren – das schützt die Hauttöne. Struktur bleibt niedrig.",
+      tags: ["Porträt", "Warm", "Weich"],
+      steps: [
+        { t: "Feinabstimmung", s: "Glanzlichter −15, Tiefen +15, Kontrast +5, Struktur 0 bis +5",
+          w: "Wenig Struktur ist bei Haut die wichtigste Regel." },
+        { t: "Kurven · Blau · Mitte fixieren", s: "Punkt in der Kurvenmitte setzen, nicht verschieben",
+          w: "Ohne diesen Punkt kippt der Hautton beim Grading sofort." },
+        { t: "Kurven · Blau · Lichter ↓ (sanft)", s: "Rechtes Ende ein kleines Stück senken",
+          w: "Warme Lichter auf der Haut – dezent, sonst wird sie orange." },
+        { t: "Kurven · Blau · Schatten ↑ (sanft)", s: "Linkes Ende leicht anheben",
+          w: "Kühler Hintergrund, die Person tritt hervor. Teal &amp; Orange, aber sanft." },
+        { t: "Porträt (Face Spotlight)", s: "Gesichtslicht leicht, Haut glätten niedrig, Augen aufhellen",
+          w: "Immer zurückhaltend – sonst wirkt es plastikartig." },
+        { t: "Selektiv", s: "Auf die Augen tippen → Helligkeit leicht +",
+          w: "Der Blick zieht sofort mehr Aufmerksamkeit." }
+      ]
+    },
+    {
+      id: "r-highkey", name: "High-Key (hell &amp; luftig)",
+      mood: "Helle, saubere Bilder mit viel Luft",
+      desc: "Hell heißt nicht überbelichtet: Tiefen öffnen, Lichter halten, Schwarzpunkt leicht anheben.",
+      merke: "Tiefen hoch, Lichter runter, Schwarzpunkt leicht angehoben – so entsteht Luftigkeit ohne Ausbrennen.",
+      tags: ["Hell", "Clean", "Alltag"],
+      steps: [
+        { t: "Feinabstimmung", s: "Helligkeit +12, Glanzlichter −20, Tiefen +20, Sättigung +5",
+          w: "Der Kontrastumfang wird bewusst zusammengeschoben." },
+        { t: "Weißabgleich", s: "Auf neutral achten, Farbstich entfernen",
+          w: "Bei hellen Bildern fällt jeder Stich sofort auf." },
+        { t: "Kurven · RGB · Fußpunkt ↑", s: "Linke Ecke leicht anheben",
+          w: "Weiche, offene Schatten statt harter Schwarztöne." },
+        { t: "Kurven · RGB · Lichter halten", s: "Rechtes Ende auf Position lassen oder minimal senken",
+          w: "Verhindert, dass Weiß zu einer flächigen weißen Wand wird." },
+        { t: "Details", s: "Struktur +8, Schärfe +10",
+          w: "Dezent – High-Key lebt von Weichheit." }
+      ]
+    },
+    {
+      id: "r-blaue-stunde", name: "Blaue Stunde",
+      mood: "Tiefes Dämmerungsblau mit warmen Lichtpunkten",
+      desc: "Die blaue Stunde ist die natürliche Warm/Kühl-Teilung: kühler Himmel, warme Fenster.",
+      merke: "Blau in die Schatten, die Lichter warm lassen – nicht global kühlen, sonst stirbt der Kontrast.",
+      tags: ["Nacht", "Blau", "Stadt"],
+      steps: [
+        { t: "Feinabstimmung", s: "Glanzlichter −25, Tiefen +15, Ambiente +20",
+          w: "Zähmt die Lampen und öffnet die dunklen Fassaden." },
+        { t: "Kurven · Blau · Schatten ↑", s: "Linkes Ende deutlich anheben",
+          w: "Das tiefe Dämmerungsblau entsteht genau hier." },
+        { t: "Kurven · Blau · Lichter ↓", s: "Rechtes Ende senken",
+          w: "Fenster und Laternen bleiben warm – der Reiz des Motivs." },
+        { t: "Selektiv", s: "Auf Lampen tippen → Helligkeit leicht −",
+          w: "Nimmt den Lichtquellen die Härte." },
+        { t: "Details", s: "Schärfe +10, Struktur nur dezent",
+          w: "Rauschen bei wenig Licht nicht zusätzlich betonen." }
       ]
     },
     {
       id: "r-herbst", name: "Herbsttöne (Autumn)",
-      mood: "Warme Rot-, Orange- und Goldtöne betonen",
-      desc: "Verstärkt herbstliche Farben, ohne unnatürlich zu wirken.",
+      mood: "Warme Rot-, Orange- und Goldtöne",
+      desc: "Der Trick ist nicht, Rot zu verstärken, sondern Grün zurückzunehmen – dann strahlt das Laub von selbst.",
+      merke: "Grün entsättigen lässt Rot und Orange leuchten. Weniger ist hier tatsächlich mehr.",
       tags: ["Herbst", "Natur", "Warm"],
       steps: [
-        { t: "Weißabgleich", s: "Temperatur wärmer für goldene Stimmung" },
-        { t: "Optimieren", s: "Ambiente +20, Sättigung +5, Kontrast +10" },
-        { t: "Selektiv", s: "Auf grüne Blätter tippen und Sättigung senken – lässt Rot/Orange strahlen" },
-        { t: "Details", s: "Struktur +15 für Blattadern &amp; Textur" }
-      ]
-    },
-    {
-      id: "r-food", name: "Food (appetitlich)",
-      mood: "Frisch, hell, satte natürliche Farben",
-      desc: "Lässt Speisen frisch und appetitlich wirken – hell, sauber, mit Struktur.",
-      tags: ["Food", "Hell", "Frisch"],
-      steps: [
-        { t: "Optimieren", s: "Helligkeit +10, Glanzlichter −15, Sättigung +8, Ambiente +15" },
-        { t: "Weißabgleich", s: "Neutral bis minimal warm – kein Grün-/Blaustich auf dem Teller" },
-        { t: "Selektiv", s: "Auf das Hauptgericht tippen → Struktur + und Sättigung + gezielt dort" },
-        { t: "Details", s: "Struktur +15, Schärfe +12 (Textur von Speisen)" },
-        { t: "Vignette", s: "Leicht (−15), lenkt den Blick auf den Teller" }
+        { t: "Weißabgleich", s: "Temperatur wärmer",
+          w: "Legt die goldene Grundstimmung." },
+        { t: "Feinabstimmung", s: "Ambiente +20, Kontrast +10, Sättigung +5",
+          w: "Ambiente bringt die Blattstruktur mit." },
+        { t: "Selektiv", s: "Auf grüne Blätter tippen → Sättigung dort deutlich −",
+          w: "Der eigentliche Herbst-Griff: Grün zurücknehmen, dann dominiert Rot/Orange." },
+        { t: "Kurven · Blau · Lichter ↓", s: "Rechtes Ende senken",
+          w: "Goldenes Licht in den hellen Partien." },
+        { t: "Details", s: "Struktur +15",
+          w: "Blattadern und raue Rinde." }
       ]
     },
     {
       id: "r-schnee", name: "Schnee &amp; Winter",
-      mood: "Sauberes Weiß, kühle klare Stimmung",
-      desc: "Verhindert grauen/blaustichigen Schnee und hält alles frisch und hell.",
+      mood: "Sauberes Weiß, klare kühle Stimmung",
+      desc: "Schnee wird von der Kamera grau gemessen. Er muss aktiv aufgehellt und der Weißpunkt gesetzt werden.",
+      merke: "Schnee ist nicht grau: Helligkeit hoch und den Weißpunkt in der Kurve sauber setzen.",
       tags: ["Winter", "Schnee", "Kühl"],
       steps: [
-        { t: "Optimieren", s: "Helligkeit +12 (Schnee wird sonst grau), Glanzlichter −10, Kontrast +8" },
-        { t: "Weißabgleich", s: "Blaustich korrigieren – Temperatur minimal wärmer bis neutral" },
-        { t: "Kurven", s: "Weißpunkt sauber setzen, damit Schnee wirklich weiß ist" },
-        { t: "Selektiv", s: "Auf Schatten im Schnee tippen → Helligkeit leicht +" }
+        { t: "Feinabstimmung", s: "Helligkeit +12, Glanzlichter −10, Kontrast +8",
+          w: "Korrigiert die systematische Unterbelichtung bei Schnee." },
+        { t: "Weißabgleich", s: "Blaustich raus, Temperatur neutral bis minimal warm",
+          w: "Schneeschatten sind von Natur aus blau – das wird schnell zu viel." },
+        { t: "Kurven · RGB · Weißpunkt setzen", s: "Rechtes Ende so weit nach links/oben, bis Weiß wirklich weiß ist",
+          w: "Ohne diesen Schritt bleibt Schnee immer leicht grau." },
+        { t: "Kurven · Blau · Schatten ↑ (dezent)", s: "Nur ein kleines Stück",
+          w: "Ein Hauch kühler Schatten wirkt winterlich – zu viel wirkt kalt und leblos." },
+        { t: "Selektiv", s: "Auf Schatten im Schnee → Helligkeit leicht +",
+          w: "Holt Zeichnung in die Vertiefungen." }
       ]
     },
     {
-      id: "r-polaroid", name: "70er-Look (Kurven-Methode)",
-      mood: "Warmer Gelbstich + verblasste, milchige Schwarztöne + Korn",
-      desc: "Der 70er-Look im Kern: Gelb + faded + Korn. Kein „Vintage-Knopf“ – nur Regler, die du kennst, clever kombiniert.",
-      merke: "70er-Look = warmer Gelbstich (Blau-Kurve runter) + verblasste, milchige Schwarztöne (RGB-Fußpunkt hoch) + gedämpfte Farben + Korn.",
-      tags: ["Vintage", "70er", "Faded", "Warm"],
+      id: "r-food", name: "Food (appetitlich)",
+      mood: "Frisch, hell, natürliche satte Farben",
+      desc: "Bei Essen entscheidet der Weißabgleich über den Appetit. Grünstich ist der größte Feind.",
+      merke: "Kein Grün- oder Blaustich auf dem Teller. Lieber minimal warm als neutral kalt.",
+      tags: ["Food", "Hell", "Frisch"],
       steps: [
-        { t: "Feinabstimmung", s: "Wärme +25 (gelb-warmer Grundton), Kontrast −12 (weich), Sättigung −10 (gedämpft). Weil die Wärme oben ist, bleiben Haut/Warmtöne lebendig – nur das Knallige geht." },
-        { t: "Kurven · Blau · ganze Kurve ↓", s: "Beide Endpunkte der Blau-Kurve leicht nach unten. Nimmt Blau raus, schiebt das Bild ins Gelbliche – dein „leicht gelb“." },
-        { t: "Kurven · RGB · Fußpunkt links ↑", s: "Der Signatur-Griff: untere linke Ecke der RGB-Kurve hochziehen. Reines Schwarz wird Grau → milchiger, matter Faded-Look. Optional oben rechts leicht runter (Lichter nicht mehr reinweiß) = doppelt verblasst." },
-        { t: "Kurven · Rot · Mitte ↑ (optional)", s: "Ein Hauch mehr Rot/Orange in den Mitteltönen → warmer Kodak-Hautton." },
-        { t: "Grobkörniger Film", s: "Öffnen, dezenten Stil wählen, Stärke/Helligkeit des Filters zurücknehmen, sodass v. a. das Korn übrig bleibt – analoger, körniger Charakter." }
+        { t: "Weißabgleich", s: "Neutral bis minimal warm, Farbton Richtung Magenta prüfen",
+          w: "Kunstlicht in Lokalen erzeugt fast immer einen Grünstich." },
+        { t: "Feinabstimmung", s: "Helligkeit +10, Glanzlichter −15, Sättigung +8, Ambiente +15",
+          w: "Helle Bilder wirken frischer und sauberer." },
+        { t: "Kurven · RGB · Lichter ↑", s: "Rechtes Drittel anheben",
+          w: "Glanzpunkte auf Soßen und Gläsern – das macht Appetit." },
+        { t: "Selektiv", s: "Aufs Gericht tippen → Struktur + und Sättigung +",
+          w: "Nur das Essen, nicht der Tisch." },
+        { t: "Vignette", s: "Leicht (−15)",
+          w: "Führt den Blick auf den Teller." }
       ]
     },
     {
       id: "r-faded", name: "Matter Film-Look (Faded)",
-      mood: "Entsättigt, weich, verblasst – ruhige, moderne Ästhetik",
-      desc: "Reduzierter Kontrast mit gehobenem Schwarzpunkt für einen sanften Filmeindruck.",
+      mood: "Entsättigt, weich, verblasst",
+      desc: "Der ruhige moderne Filmton: Kontrast raus, beide Kurvenenden nach innen.",
+      merke: "Umgekehrtes S: Schwarz heller, Weiß dunkler. Das ist der ganze Faded-Look.",
       tags: ["Film", "Matt", "Soft"],
       steps: [
-        { t: "Optimieren", s: "Kontrast −20, Sättigung −12, Ambiente +10" },
-        { t: "Kurven · RGB", s: "Beide Enden nach innen (matt): Schwarz heller, Weiß etwas dunkler – umgekehrtes S" },
-        { t: "Weißabgleich", s: "Ganz leicht kühl für den modernen Ton" },
-        { t: "Grobkörniger Film", s: "Feines Korn ~15" }
+        { t: "Feinabstimmung", s: "Kontrast −20, Sättigung −12, Ambiente +10",
+          w: "Die Grundlage: gedämpfte Farben, aber erhaltene Tiefe." },
+        { t: "Kurven · RGB · beide Enden nach innen", s: "Links hoch, rechts runter (umgekehrtes S)",
+          w: "Der Signatur-Griff des Faded-Looks." },
+        { t: "Kurven · Blau · Schatten ↑ (leicht)", s: "Ein kühler Hauch in den Tiefen",
+          w: "Macht das Matte modern statt bloß flau." },
+        { t: "Grobkörniger Film", s: "Feines Korn ~15",
+          w: "Verhindert, dass die weichen Flächen digital wirken." }
       ]
     },
     {
       id: "r-noir", name: "Schwarzweiß dramatisch (Noir)",
       mood: "Kontrastreich, körnig, zeitlos",
-      desc: "Kräftiges Schwarzweiß mit tiefem Schwarz und feinem Korn. Lohnt sich bei starken Tonwertkontrasten und wenn Form/Textur die Hauptrolle spielen.",
+      desc: "Ohne Farbe trägt allein der Tonwert. Deshalb verträgt Schwarzweiß deutlich mehr Kontrast.",
+      merke: "Lohnt sich bei starken Tonwertkontrasten, wenn Form, Linie und Textur die Hauptrolle spielen.",
       tags: ["Schwarzweiß", "Kontrast", "Street"],
       steps: [
-        { t: "Schwarz-Weiß", s: "Voreinstellung als Startpunkt (z. B. Kontrast); Rot/Orange-Filter steuert, wie hell die Haut wird" },
-        { t: "Optimieren", s: "Kontrast +20 (S/W verträgt mehr Kontrast als Farbe)" },
-        { t: "Kurven · RGB", s: "Kräftige S-Kurve für tiefe Schwarztöne und helle Lichter" },
-        { t: "Details", s: "Struktur +20 für mehr Textur" },
-        { t: "Körnung", s: "Grobkörniger Film ~30 – im S/W ein bewusstes Stilmittel" }
+        { t: "Schwarz-Weiß", s: "Voreinstellung als Startpunkt, dann Farbfilter testen",
+          w: "Der Rot/Orange-Filter steuert, wie hell die Haut wird; Blau macht es dunstig." },
+        { t: "Feinabstimmung", s: "Kontrast +20",
+          w: "Ein Farbbild würde das nicht vertragen, ein S/W-Bild schon." },
+        { t: "Kurven · RGB · kräftige S-Kurve", s: "Schatten deutlich ↓, Lichter deutlich ↑",
+          w: "Tiefes Schwarz und strahlendes Weiß – das Noir-Fundament." },
+        { t: "Details", s: "Struktur +20",
+          w: "Textur ist im S/W das, was sonst die Farbe leistet." },
+        { t: "Grobkörniger Film", s: "Korn ~30",
+          w: "Im Schwarzweiß ein bewusstes Stilmittel, kein Fehler." }
       ]
     }
   ];
-
   //=========================================================================
-  //  BILD-BERATER – Motiv wählen, passende Bearbeitung + Grading
-  //  (Spannung/Harmonie-Prinzip aus dem Spickzettel).
+  //  BILD-BERATER – Ablauf in vier Phasen, Schwerpunkt Kurven.
+  //  tension/harmony tragen Farbtoene (hi = Lichter, sh = Schatten),
+  //  aus denen die konkreten Kurvengriffe berechnet werden.
   //=========================================================================
   const ADVISOR = [
     {
       id: "m-wald", em: "🌲", name: "Wald, Grün &amp; Braun",
-      sum: "Viel Grün und erdige Brauntöne (z. B. Madeira). Ziel: satte, aber natürliche Farben und Tiefe.",
-      steps: [
-        { t: "Grün trennen", s: "Selektiv auf ein Grün → Sättigung + und Helligkeit leicht +" },
-        { t: "Braun betonen", s: "Selektiv auf Braun/Erde → Struktur + für Rinde &amp; Boden" },
-        { t: "Tiefe", s: "Optimieren: Ambiente +25, Glanzlichter −15, Tiefen +10" },
-        { t: "Wärme", s: "Weißabgleich minimal wärmer – lässt Braun erdig wirken" }
+      sum: "Viel Grün und erdige Brauntöne (z. B. Madeira). Das Laub sitzt in den Mitteltönen – dort passiert die eigentliche Arbeit.",
+      basis: [
+        { t: "Weißabgleich", s: "Temperatur minimal wärmer, Farbton leicht Richtung Grün", w: "Nimmt den kalten Stich unter Blätterdächern." },
+        { t: "Feinabstimmung", s: "Ambiente +25, Glanzlichter −15, Tiefen +10", w: "Tiefe ins Dickicht, ohne dass Grün giftig wird." }
       ],
-      tension: "Wärme/Magenta in die Lichter, Grün im Schatten belassen.",
-      harmony: "Grün behalten, leicht Richtung Gelb-Grün wärmen.",
+      kurven: [
+        { t: "RGB · flache S-Kurve", s: "Schatten leicht ↓, Lichter leicht ↑, Mitte unangetastet", w: "Kontrast im Blätterdach, ohne das Grün in den Mitteltönen zu verbiegen." },
+        { t: "Grün · Mitteltöne ↑", s: "Punkt in der Mitte des Grün-Kanals minimal anheben", w: "Genau hier lebt das Laub – wirkt viel edler als globale Sättigung." },
+        { t: "Blau · Schatten ↑", s: "Linkes Ende des Blau-Kanals hoch", w: "Kühle Tiefen zwischen den Stämmen lassen das warme Braun hervortreten." }
+      ],
+      lokal: [
+        { t: "Selektiv · Braun", s: "Auf Rinde/Erde tippen → Struktur +", w: "Trennt Holz und Boden vom Blattwerk." },
+        { t: "Selektiv · Grün", s: "Auf ein Blatt tippen → Sättigung leicht +", w: "Feinschliff, nachdem die Kurve die Grundstimmung gesetzt hat." }
+      ],
+      finish: [
+        { t: "Details", s: "Struktur +20, Schärfe +10", w: "Blattadern und Rinde – Wald verträgt viel Struktur." }
+      ],
+      tension: { hi: 25, sh: 130, txt: "Wärme/Magenta in die Lichter, Grün im Schatten belassen." },
+      harmony: { hi: 80, sh: 120, txt: "Grün behalten und leicht Richtung Gelb-Grün wärmen." },
       looks: ["r-wald", "r-moody", "r-herbst"]
     },
     {
       id: "m-meer", em: "🌊", name: "Meer &amp; Küste",
-      sum: "Wasser, Strand, Himmel. Ziel: frisches Türkis-Blau, ohne dass Sand oder Haut kippen.",
-      steps: [
-        { t: "Wasser", s: "Selektiv aufs Wasser → Sättigung + und Helligkeit leicht +" },
-        { t: "Himmel", s: "Glanzlichter −20, damit der Himmel nicht ausbrennt" },
-        { t: "Frische", s: "Weißabgleich leicht kühler" }
+      sum: "Wasser lebt in den unteren Mitteltönen. Wer nur die Sättigung hochdreht, bekommt Neon-Blau – über die Kurve wird es glaubwürdig.",
+      basis: [
+        { t: "Feinabstimmung", s: "Glanzlichter −20, Tiefen +12, Helligkeit +8", w: "Rettet den Himmel und öffnet die dunklen Wasserpartien." }
       ],
-      tension: "Warme Lichter reingeben (warm/kühl-Kontrast).",
-      harmony: "Blau/Cyan verstärken und leicht entsättigen.",
-      looks: ["r-meer", "r-clean", "r-teal-orange"]
+      kurven: [
+        { t: "RGB · untere Mitteltöne ↓", s: "Punkt bei etwa einem Viertel leicht senken", w: "Das Wasser bekommt Tiefe, Gischt und Schaum heben sich ab. Genau hier sitzt die Wasseroberfläche." },
+        { t: "RGB · Lichter ↑", s: "Rechtes Drittel sanft anheben", w: "Brillanz in Sand und Gischt, ohne das ganze Bild aufzuhellen." },
+        { t: "Blau · Schatten ↑", s: "Linkes Ende hoch", w: "Türkis genau dort, wo das Wasser dunkel ist." },
+        { t: "Blau · Lichter ↓", s: "Rechtes Ende leicht senken", w: "Gelbliche Lichter = warmer Sand. Das ist die Warm/Kühl-Teilung." }
+      ],
+      lokal: [
+        { t: "Selektiv · Wasser", s: "Sättigung + und Helligkeit leicht +", w: "Nur Feinschliff nach der Kurvenarbeit." }
+      ],
+      finish: [
+        { t: "Details", s: "Struktur +10, Schärfe +8", w: "Wellenkanten – sparsam, sonst wird die Oberfläche unruhig." }
+      ],
+      tension: { hi: 35, sh: 195, txt: "Warme Lichter gegen türkise Tiefen – der Küsten-Klassiker." },
+      harmony: { hi: 190, sh: 215, txt: "Alles in der Blau-Familie: Lichter Türkis, Schatten Blau." },
+      looks: ["r-meer", "r-highkey", "r-teal-orange"]
+    },
+    {
+      id: "m-regennacht", em: "🌧️", name: "Regennacht &amp; Spiegelungen",
+      sum: "Nasser Asphalt, Pfützen, Neon. Der Schlüssel sind die unteren Mitteltöne – genau dort liegen die Spiegelungen.",
+      basis: [
+        { t: "Feinabstimmung", s: "Glanzlichter −30, Kontrast +10, Sättigung −5", w: "Laternen und Neonschilder brennen sonst zu reinem Weiß aus." }
+      ],
+      kurven: [
+        { t: "RGB · untere Mitteltöne ↑", s: "Punkt bei ca. einem Viertel setzen und anheben", w: "Der wichtigste Griff: nasser Asphalt und Pfützen kommen hervor, ohne dass der Nachthimmel mit aufhellt." },
+        { t: "RGB · Fußpunkt unten lassen", s: "Linke Ecke NICHT anheben", w: "Nacht braucht echtes Schwarz – sonst wird das Bild milchig statt nächtlich." },
+        { t: "RGB · Lichter ↓", s: "Rechtes Ende leicht senken", w: "Hält Zeichnung in den Lichtreflexen auf der Straße." },
+        { t: "Blau · Schatten ↑", s: "Linkes Ende hoch", w: "Kühle nächtliche Tiefen." },
+        { t: "Rot · Lichter ↑", s: "Rechtes Ende leicht hoch", w: "Neon bleibt warm/magenta – zusammen ergibt das den Cyan/Magenta-Split." }
+      ],
+      lokal: [
+        { t: "Selektiv · Pfütze", s: "Auf die Spiegelung tippen → Struktur + und Kontrast +", w: "Macht die Reflexion knackig und lesbar." },
+        { t: "Tonaler Kontrast", s: "Mitteltöne +20, Lichter niedrig", w: "Betont die Textur der nassen Oberfläche – der Regen wird sichtbar." }
+      ],
+      finish: [
+        { t: "Details", s: "Struktur nur +8, Schärfe +10", w: "Bei hohen ISO-Werten verstärkt Struktur sonst das Rauschen." }
+      ],
+      tension: { hi: 310, sh: 200, txt: "Cyan/Magenta-Split: kühle Schatten, magenta Lichter." },
+      harmony: { hi: 200, sh: 225, txt: "Eine Neonfarbe dominieren lassen, den Rest entsättigen." },
+      looks: ["r-regennacht", "r-blaue-stunde", "r-street"]
     },
     {
       id: "m-sonnenuntergang", em: "🌅", name: "Sonnenuntergang / Wüste / Fels",
-      sum: "Goldenes/rotes Licht, warme Erdtöne. Ziel: warmes Leuchten verstärken, Verläufe erhalten.",
-      steps: [
-        { t: "Wärme", s: "Weißabgleich deutlich wärmer" },
-        { t: "Himmel", s: "Selektiv auf den Himmel → Sättigung/Helligkeit gezielt +" },
-        { t: "Balance", s: "Tiefen +10, damit Vordergründe nicht absaufen" }
+      sum: "Goldenes Licht und warme Erdtöne. Die Kunst: verstärken, ohne dass alles zu Orangebrei wird.",
+      basis: [
+        { t: "Weißabgleich", s: "Temperatur deutlich wärmer, Farbton minimal Richtung Magenta", w: "Magenta verhindert, dass warmes Licht ins Grünliche kippt." },
+        { t: "Feinabstimmung", s: "Ambiente +20, Glanzlichter −15, Tiefen +10", w: "Hält Zeichnung in der Sonne und öffnet die Vordergründe." }
       ],
-      tension: "Teal &amp; Orange – kühle Schatten gegen warme Lichter.",
-      harmony: "Ganz in Wärme/Bernstein baden.",
-      looks: ["r-golden", "r-teal-orange"]
+      kurven: [
+        { t: "Blau · Lichter ↓", s: "Rechtes Ende des Blau-Kanals senken", w: "Der eigentliche Gold-Griff: weniger Blau im Hellen ergibt goldene Sonne." },
+        { t: "Blau · Schatten ↑ (dezent)", s: "Linkes Ende leicht anheben", w: "Ein Hauch kühler Schatten gibt Tiefe und verhindert den Orangebrei." },
+        { t: "RGB · Mitteltöne halten", s: "Punkt in der Mitte setzen", w: "Schützt Fels und Haut vor dem Mitkippen." }
+      ],
+      lokal: [
+        { t: "Selektiv · Himmel", s: "Sättigung und Helligkeit gezielt +", w: "Der Himmel darf kräftiger sein als der Rest." }
+      ],
+      finish: [
+        { t: "Glanz (Glamour Glow)", s: "Dezent bei ~20 %", w: "Weiches Leuchten – typisch für Gegenlicht." }
+      ],
+      tension: { hi: 30, sh: 195, txt: "Teal &amp; Orange: kühle Schatten gegen warme Lichter." },
+      harmony: { hi: 35, sh: 20, txt: "Ganz in Wärme und Bernstein baden – eine Farbfamilie." },
+      looks: ["r-golden", "r-teal-orange", "r-polaroid"]
     },
     {
       id: "m-portrait", em: "👤", name: "Porträt / Mensch",
-      sum: "Person im Fokus. Ziel: schmeichelnde Haut, klare Augen, ruhiger Hintergrund.",
-      steps: [
-        { t: "Haut", s: "Porträt (Face Spotlight) dezent; Struktur global niedrig halten" },
-        { t: "Trennen", s: "Teal &amp; Orange: Haut warm, Hintergrund kühler → Person tritt hervor" },
-        { t: "Augen", s: "Selektiv auf die Augen → Helligkeit leicht +" }
+      sum: "Bei Menschen gilt eine Regel über allem: Mitteltöne schützen. Alles Grading passiert in Schatten und Lichtern.",
+      basis: [
+        { t: "Feinabstimmung", s: "Glanzlichter −15, Tiefen +15, Kontrast +5, Struktur 0 bis +5", w: "Wenig Struktur ist bei Haut die wichtigste Regel." }
       ],
-      tension: "Teal &amp; Orange – aber sanft, Hauttöne schützen.",
-      harmony: "Warme, weiche Töne durchgehend; Mitteltöne neutral.",
-      looks: ["r-teal-orange", "r-highkey", "r-clean"]
+      kurven: [
+        { t: "Blau · Mitte fixieren", s: "Punkt in der Kurvenmitte setzen und nicht bewegen", w: "Ohne diesen Punkt kippt der Hautton beim Grading sofort mit." },
+        { t: "Blau · Lichter ↓ (sanft)", s: "Rechtes Ende ein kleines Stück senken", w: "Warme Lichter auf der Haut – dezent, sonst wird sie orange." },
+        { t: "Blau · Schatten ↑ (sanft)", s: "Linkes Ende leicht anheben", w: "Kühler Hintergrund, die Person tritt hervor. Teal &amp; Orange, aber sanft." },
+        { t: "RGB · Fußpunkt leicht ↑", s: "Linke Ecke ein Stück hoch", w: "Weiche, offene Schatten – schmeichelt dem Gesicht." }
+      ],
+      lokal: [
+        { t: "Porträt (Face Spotlight)", s: "Gesichtslicht leicht, Haut glätten niedrig, Augen aufhellen", w: "Immer zurückhaltend, sonst wirkt es plastikartig." },
+        { t: "Selektiv · Augen", s: "Helligkeit leicht +", w: "Der Blick zieht sofort mehr Aufmerksamkeit." }
+      ],
+      finish: [
+        { t: "Glanz", s: "Glamour Glow ~15 %", w: "Weiches Leuchten in den Lichtern." }
+      ],
+      tension: { hi: 30, sh: 190, txt: "Teal &amp; Orange – aber sanft, Hauttöne schützen." },
+      harmony: { hi: 35, sh: 25, txt: "Warme, weiche Töne durchgehend, Mitteltöne neutral." },
+      looks: ["r-portrait-warm", "r-teal-orange", "r-highkey"]
     },
     {
       id: "m-berge", em: "🏔️", name: "Berge &amp; Weite",
-      sum: "Weite Landschaft, Fernsicht. Ziel: Tiefe, klare Details, kräftiger Himmel.",
-      steps: [
-        { t: "Details", s: "Ambiente +30, Struktur +20 für Fels &amp; Fernsicht" },
-        { t: "Himmel", s: "Selektiv auf den Himmel → Sättigung/Kontrast +, Helligkeit −" },
-        { t: "Blick lenken", s: "Leichte Vignette (−15)" }
+      sum: "Räumliche Tiefe entsteht durch Warm/Kühl: warmer Vordergrund, kühle Ferne. Die Kurve macht das, nicht die Schärfe.",
+      basis: [
+        { t: "Feinabstimmung", s: "Ambiente +30, Glanzlichter −20, Tiefen +15, Kontrast +12", w: "Ambiente ist bei Landschaft der stärkste einzelne Regler." }
       ],
-      tension: "Warme Vordergründe gegen kühlen, bläulichen Fern-Himmel.",
-      harmony: "Kühle, ruhige Palette; Ferne leicht entsättigen.",
-      looks: ["r-berge", "r-moody", "r-clean"]
+      kurven: [
+        { t: "RGB · S-Kurve", s: "Schatten ↓, Lichter ↑, flach halten", w: "Kontrast im Fels, ohne Details in Schnee oder Schatten zu verlieren." },
+        { t: "Blau · Schatten ↑", s: "Linkes Ende hoch", w: "Kühle Tiefen lassen die Ferne zurücktreten – Luftperspektive." },
+        { t: "Rot · Lichter ↑", s: "Rechtes Ende leicht hoch", w: "Warmer Vordergrund. Der Warm/Kühl-Kontrast erzeugt die Raumtiefe." }
+      ],
+      lokal: [
+        { t: "Selektiv · Himmel", s: "Sättigung/Kontrast +, Helligkeit −", w: "Der Himmel verträgt mehr als der Boden." }
+      ],
+      finish: [
+        { t: "Details", s: "Struktur +20, Schärfe +12", w: "Fels und Gestein sind die klassischen Struktur-Motive." },
+        { t: "Vignette", s: "Leicht (−15)", w: "Lenkt den Blick in die Weite." }
+      ],
+      tension: { hi: 40, sh: 210, txt: "Warme Vordergründe gegen kühlen, bläulichen Fern-Himmel." },
+      harmony: { hi: 200, sh: 225, txt: "Kühle ruhige Palette, die Ferne leicht entsättigen." },
+      looks: ["r-berge", "r-moody", "r-highkey"]
     },
     {
-      id: "m-stadt", em: "🏙️", name: "Stadt, Street, Nacht &amp; Neon",
-      sum: "Architektur, Straßen, Neon. Ziel: kühler, klarer, kontrastreicher Look.",
-      steps: [
-        { t: "Kanten", s: "Tonaler Kontrast Mitteltöne +20, Struktur +18" },
-        { t: "Ton", s: "Weißabgleich leicht kühl, Sättigung −10" },
-        { t: "Modern", s: "Kurven · RGB: Schwarzpunkt minimal anheben (matt)" }
+      id: "m-stadt", em: "🏙️", name: "Stadt &amp; Street (Tag)",
+      sum: "Beton lebt vom Mitteltonkontrast. Farbe wird reduziert, damit Formen und Linien wirken.",
+      basis: [
+        { t: "Feinabstimmung", s: "Kontrast +18, Sättigung −10, Ambiente +15, Glanzlichter −15", w: "Reduzierte Farbe lässt Architektur grafisch wirken." }
       ],
-      tension: "Cyan/Magenta-Split: kühle Schatten, magenta Lichter.",
-      harmony: "Eine Neonfarbe dominieren lassen, den Rest entsättigen.",
-      looks: ["r-street", "r-noir", "r-moody"]
+      kurven: [
+        { t: "RGB · Fußpunkt leicht ↑", s: "Linke Ecke ein Stück hoch", w: "Matter, moderner Look – die Tiefen laufen nicht zu." },
+        { t: "RGB · Mitteltöne ↓ (leicht)", s: "Mitte minimal senken", w: "Gibt Beton und Metall Gewicht." },
+        { t: "Blau · ganze Kurve leicht ↑", s: "Beide Enden minimal anheben", w: "Ein durchgehend kühler Grundton, wie ihn Street-Presets nutzen." }
+      ],
+      lokal: [
+        { t: "Tonaler Kontrast", s: "Mitteltöne +20", w: "Hier entsteht der urbane Biss." }
+      ],
+      finish: [
+        { t: "Details", s: "Struktur +18, Schärfe +10", w: "Architektur verträgt viel Struktur." }
+      ],
+      tension: { hi: 35, sh: 200, txt: "Ein warmer Farbtupfer gegen kühlen Grundton zieht den Blick." },
+      harmony: { hi: 210, sh: 225, txt: "Durchgehend kühl und entsättigt – nüchtern und modern." },
+      looks: ["r-street", "r-noir", "r-faded"]
     },
     {
       id: "m-blumen", em: "🌸", name: "Blumen &amp; Makro",
-      sum: "Nahaufnahmen, Details. Ziel: kräftige, klare Farben und feine Struktur ohne Überschärfung.",
-      steps: [
-        { t: "Farbe", s: "Selektiv auf die Blüte → Sättigung + gezielt dort" },
-        { t: "Freistellen", s: "Hintergrund per Selektiv leicht entsättigen/abdunkeln" },
-        { t: "Detail", s: "Struktur +12, Schärfe +10 – dezent halten" }
+      sum: "Die Blüte gegen ihren Hintergrund freistellen – farblich, nicht durch Schärfe.",
+      basis: [
+        { t: "Feinabstimmung", s: "Glanzlichter −15, Ambiente +15, Kontrast +8", w: "Zarte Blütenblätter brennen schnell aus." }
       ],
-      tension: "Blütenfarbe gegen ihre Gegenfarbe (z. B. Rot ↔ Grün) setzen.",
-      harmony: "Töne einer Farbfamilie halten, Hintergrund entsättigen.",
-      looks: ["r-clean", "r-herbst"]
+      kurven: [
+        { t: "RGB · Lichter ↓ (leicht)", s: "Rechtes Ende ein Stück senken", w: "Rettet Zeichnung in hellen Blütenblättern." },
+        { t: "Grün · Mitteltöne ↓", s: "Mitte des Grün-Kanals leicht senken", w: "Nimmt dem Blattgrün Kraft, sodass die Blüte dominiert." },
+        { t: "RGB · Mitteltöne halten", s: "Punkt in der Mitte setzen", w: "Die Blütenfarbe soll unverfälscht bleiben." }
+      ],
+      lokal: [
+        { t: "Selektiv · Blüte", s: "Sättigung + und Helligkeit leicht +", w: "Nur die Blüte, nicht das Umfeld." },
+        { t: "Selektiv · Hintergrund", s: "Sättigung − und Helligkeit −", w: "Das eigentliche Freistellen passiert hier." }
+      ],
+      finish: [
+        { t: "Details", s: "Struktur +12, Schärfe +10", w: "Dezent – Blüten wirken sonst hart." }
+      ],
+      tension: { hi: 45, sh: 270, txt: "Blüte warm halten, Hintergrund Richtung Violett/Blau kühlen." },
+      harmony: { hi: 60, sh: 120, txt: "In einer Farbfamilie bleiben, Hintergrund entsättigen." },
+      looks: ["r-highkey", "r-herbst", "r-wald"]
     },
     {
       id: "m-food", em: "🍽️", name: "Food &amp; Teller",
-      sum: "Essen, Getränke. Ziel: frisch, appetitlich, sauber – kein Farbstich.",
-      steps: [
-        { t: "Frisch", s: "Helligkeit +10, Sättigung +8, Ambiente +15" },
-        { t: "Sauber", s: "Weißabgleich neutral – Grün/Blau vom Teller nehmen" },
-        { t: "Fokus", s: "Selektiv aufs Gericht → Struktur +, leichte Vignette" }
+      sum: "Der Weißabgleich entscheidet über den Appetit. Grünstich ist der größte Feind.",
+      basis: [
+        { t: "Weißabgleich", s: "Neutral bis minimal warm, Farbton Richtung Magenta prüfen", w: "Kunstlicht in Lokalen erzeugt fast immer einen Grünstich." },
+        { t: "Feinabstimmung", s: "Helligkeit +10, Glanzlichter −15, Sättigung +8, Ambiente +15", w: "Helle Bilder wirken frischer und sauberer." }
       ],
-      tension: "Warmer Teller gegen kühlen/neutralen Untergrund.",
-      harmony: "Warme, natürliche Töne durchziehen – appetitlich.",
-      looks: ["r-food", "r-clean"]
+      kurven: [
+        { t: "RGB · Lichter ↑", s: "Rechtes Drittel anheben", w: "Glanzpunkte auf Soßen und Gläsern – das macht Appetit." },
+        { t: "RGB · Fußpunkt leicht ↑", s: "Linke Ecke ein kleines Stück hoch", w: "Weiche Schatten auf dem Tisch statt harter schwarzer Löcher." },
+        { t: "Grün · Mitteltöne ↓ (falls Stich)", s: "Mitte des Grün-Kanals minimal senken", w: "Der zuverlässigste Weg, einen Grünstich loszuwerden." }
+      ],
+      lokal: [
+        { t: "Selektiv · Gericht", s: "Struktur + und Sättigung +", w: "Nur das Essen, nicht der Tisch." }
+      ],
+      finish: [
+        { t: "Vignette", s: "Leicht (−15)", w: "Führt den Blick auf den Teller." }
+      ],
+      tension: { hi: 35, sh: 200, txt: "Warmer Teller gegen kühlen/neutralen Untergrund." },
+      harmony: { hi: 40, sh: 25, txt: "Warme, natürliche Töne durchziehen – appetitlich." },
+      looks: ["r-food", "r-highkey"]
     },
     {
       id: "m-schnee", em: "❄️", name: "Schnee &amp; kühle Szenen",
-      sum: "Schnee, Winterlicht. Ziel: sauberes Weiß statt grau/blau, frische Stimmung.",
-      steps: [
-        { t: "Aufhellen", s: "Helligkeit +12 – Schnee wird sonst grau" },
-        { t: "Entstichen", s: "Weißabgleich: Blaustich raus, Temperatur neutral bis minimal warm" },
-        { t: "Weiß setzen", s: "Kurven · RGB: Weißpunkt sauber setzen" }
+      sum: "Die Kamera misst Schnee grau. Er muss aktiv aufgehellt und der Weißpunkt gesetzt werden.",
+      basis: [
+        { t: "Feinabstimmung", s: "Helligkeit +12, Glanzlichter −10, Kontrast +8", w: "Korrigiert die systematische Unterbelichtung bei Schnee." },
+        { t: "Weißabgleich", s: "Blaustich raus, neutral bis minimal warm", w: "Schneeschatten sind von Natur aus blau – schnell zu viel." }
       ],
-      tension: "Ein paar warme Lichter reingeben.",
-      harmony: "Blau/Cyan verstärken und entsättigen.",
-      looks: ["r-schnee", "r-clean"]
+      kurven: [
+        { t: "RGB · Weißpunkt setzen", s: "Rechtes Ende so weit anheben, bis Weiß wirklich weiß ist", w: "Ohne diesen Schritt bleibt Schnee immer leicht grau." },
+        { t: "RGB · Schatten halten", s: "Linkes Ende auf Position lassen", w: "Sonst verliert der Schnee sein Volumen." },
+        { t: "Blau · Schatten ↑ (dezent)", s: "Nur ein kleines Stück", w: "Ein Hauch kühler Schatten wirkt winterlich – zu viel wirkt leblos." }
+      ],
+      lokal: [
+        { t: "Selektiv · Schneeschatten", s: "Helligkeit leicht +", w: "Holt Zeichnung in die Vertiefungen." }
+      ],
+      finish: [
+        { t: "Details", s: "Struktur +10, Schärfe +8", w: "Kanten von Verwehungen und Spuren." }
+      ],
+      tension: { hi: 35, sh: 210, txt: "Ein paar warme Lichter gegen die kühle Fläche setzen." },
+      harmony: { hi: 195, sh: 220, txt: "Blau/Cyan verstärken und entsättigen – klare Winterruhe." },
+      looks: ["r-schnee", "r-highkey", "r-faded"]
     }
   ];
-
-  //=========================================================================
-  //  WISSEN / SPICKZETTEL – aus deinem handschriftlichen Zettel
-  //=========================================================================
   const WISSEN = [
     { group: "Feinabstimmung", em: "🎚️", items: [
       { t: "Helligkeit", d: "Grundhelligkeit – wirkt auf alles, am stärksten auf die Mitteltöne." },
@@ -746,9 +1034,62 @@
       { t: "Urban / Street / Nacht / Neon", d: "Spannung → Cyan/Magenta-Split (kühle Schatten, magenta Lichter). Harmonie → eine Neonfarbe dominieren lassen, Rest entsättigen." }
     ]}
   ];
+  //=========================================================================
+  //  FARBWIRKUNG – 12 Sektoren zu je 30 Grad
+  //=========================================================================
+  const HUE_INFO = [
+    { n: "Rot", feel: "Energie, Leidenschaft, Dringlichkeit, Hitze",
+      hi: "In den Lichtern: dramatischer Sonnenuntergang, Feuer, Hitze. Sehr laut – meist reicht ein Hauch.",
+      sh: "In den Schatten: erdig und warm, fast sepia. Gut für Wüste, Fels und Vintage.",
+      dir: "Richtung Orange wird es freundlicher und hautnah, Richtung Magenta künstlicher und moderner." },
+    { n: "Orange", feel: "Wärme, Nostalgie, Geborgenheit, Haut",
+      hi: "Der Klassiker für Lichter: goldene Stunde, Sonnenlicht, lebendige Haut.",
+      sh: "In den Schatten: gemütlich und retro – nimmt der Nacht die Kälte.",
+      dir: "Richtung Gelb wird es sonniger und vintage, Richtung Rot dramatischer und erdiger." },
+    { n: "Gelb", feel: "Licht, Optimismus, Sommer, Analogfilm",
+      hi: "In den Lichtern: strahlende Sonne, heller Sand, gutes Wetter.",
+      sh: "In den Schatten: der 70er-Griff. Milchig-gelbe Tiefen wirken sofort nach altem Film.",
+      dir: "Richtung Orange wird es satter und wärmer, Richtung Grün frischer, aber schnell kränklich." },
+    { n: "Limette", feel: "Frische, Frühling, junges Grün",
+      hi: "In den Lichtern: frisches Laub im Gegenlicht, sehr lebendig.",
+      sh: "In den Schatten: heikel – wirkt schnell wie ein Farbstich statt wie eine Absicht.",
+      dir: "Richtung Gelb wird es sonniger, Richtung Grün natürlicher und ruhiger." },
+    { n: "Grün", feel: "Natur, Ruhe, Wachstum, Ausgeglichenheit",
+      hi: "In den Lichtern: selten – lässt Haut kränklich wirken. Bei reiner Natur aber stimmig.",
+      sh: "In den Schatten: sehr filmisch. Grüne Tiefen sind ein bekannter Kinolook.",
+      dir: "Richtung Limette wird es frischer und jünger, Richtung Türkis kühler und technischer." },
+    { n: "Smaragd", feel: "Tiefe, Wald, edle Ruhe",
+      hi: "In den Lichtern: ungewöhnlich, wirkt kühl und leicht surreal.",
+      sh: "In den Schatten: dichter Wald, moosige Tiefe – sehr edel bei Naturmotiven.",
+      dir: "Richtung Grün wird es natürlicher, Richtung Türkis maritimer." },
+    { n: "Türkis", feel: "Klarheit, Wasser, Frische, Distanz",
+      hi: "In den Lichtern: kühles Tageslicht, klare Luft, klinisch-sauber.",
+      sh: "In den Schatten: die Teal-Hälfte von Teal &amp; Orange. Der meistgenutzte Schattenton überhaupt.",
+      dir: "Richtung Grün wird es natürlicher, Richtung Blau nächtlicher und ruhiger." },
+    { n: "Azur", feel: "Weite, Himmel, Klarheit",
+      hi: "In den Lichtern: heller Himmel, Winterlicht, viel Luft.",
+      sh: "In den Schatten: sauberes Schattenblau – wirkt natürlich, weil echte Schatten so aussehen.",
+      dir: "Richtung Türkis wird es maritimer, Richtung Blau schwerer und melancholischer." },
+    { n: "Blau", feel: "Ruhe, Melancholie, Nacht, Ernst",
+      hi: "In den Lichtern: kalt und ungewöhnlich – gut für Winter und Mondlicht.",
+      sh: "In den Schatten: der Nacht- und Regenton. Sehr verlässlich, sehr stimmungsvoll.",
+      dir: "Richtung Azur wird es freundlicher, Richtung Violett geheimnisvoller." },
+    { n: "Violett", feel: "Mystik, Dämmerung, Traum, Romantik",
+      hi: "In den Lichtern: Dämmerungshimmel, weiche romantische Stimmung.",
+      sh: "In den Schatten: edel und filmisch – die Alternative zu Blau, wenn es wärmer wirken soll.",
+      dir: "Richtung Blau wird es kühler und ruhiger, Richtung Magenta greller und moderner." },
+    { n: "Magenta", feel: "Neon, Künstlichkeit, Achtziger, Pop",
+      hi: "In den Lichtern: Neonschilder, Sonnenuntergangshimmel, sehr plakativ.",
+      sh: "In den Schatten: künstlich und urban – der Cyberpunk-Ton.",
+      dir: "Richtung Violett wird es weicher und träumerischer, Richtung Rosa süßlicher." },
+    { n: "Rosé", feel: "Zartheit, Nostalgie, Haut, Sanftheit",
+      hi: "In den Lichtern: zarte, schmeichelnde Lichter – sehr beliebt bei Porträts.",
+      sh: "In den Schatten: sanfter Vintage-Ton, nimmt Härte aus dem Bild.",
+      dir: "Richtung Magenta wird es kräftiger und moderner, Richtung Rot wärmer und satter." }
+  ];
 
   //=========================================================================
-  //  Speicher-Helfer (localStorage)
+  //  Helfer
   //=========================================================================
   const LS = {
     get(key, fallback) {
@@ -759,11 +1100,66 @@
   };
   function esc(s) { return (s || '').replace(/[&<>"']/g, c =>
     ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
-  function rich(s) { return (s || ''); }        // Daten enthalten bewusst gesetzte Entities
+  function rich(s) { return (s || ''); }
   function plain(s) { return (s || '').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>'); }
+  const norm = h => ((h % 360) + 360) % 360;
+
+  function hslToRgb01(h, s, l) {
+    s /= 100; l /= 100; h = norm(h);
+    const c = (1 - Math.abs(2*l - 1)) * s, x = c * (1 - Math.abs((h/60) % 2 - 1)), m = l - c/2;
+    let r, g, b;
+    if (h < 60) { r=c; g=x; b=0; } else if (h < 120) { r=x; g=c; b=0; }
+    else if (h < 180) { r=0; g=c; b=x; } else if (h < 240) { r=0; g=x; b=c; }
+    else if (h < 300) { r=x; g=0; b=c; } else { r=c; g=0; b=x; }
+    return [r+m, g+m, b+m];
+  }
+  function hslToHex(h, s, l) {
+    const [r,g,b] = hslToRgb01(h, s, l);
+    const to = v => Math.round(Math.min(1, Math.max(0, v)) * 255).toString(16).padStart(2, '0');
+    return '#' + to(r) + to(g) + to(b);
+  }
+  function hexToHsl(hex) {
+    let r = parseInt(hex.slice(1,3),16)/255, g = parseInt(hex.slice(3,5),16)/255, b = parseInt(hex.slice(5,7),16)/255;
+    const max = Math.max(r,g,b), min = Math.min(r,g,b); let h, s, l = (max+min)/2;
+    if (max === min) { h = 0; s = 0; }
+    else {
+      const d = max - min;
+      s = l > 0.5 ? d/(2-max-min) : d/(max+min);
+      if (max === r) h = (g-b)/d + (g < b ? 6 : 0);
+      else if (max === g) h = (b-r)/d + 2;
+      else h = (r-g)/d + 4;
+      h *= 60;
+    }
+    return { h, s: s*100, l: l*100 };
+  }
+  function hueInfo(h) { return HUE_INFO[Math.round(norm(h) / 30) % 12]; }
+  function hueName(h) { return hueInfo(h).n; }
+
+  // Welche RGB-Kanaele muss die Kurve bewegen, um diesen Farbton zu erzeugen?
+  function channelMoves(h) {
+    const [r, g, b] = hslToRgb01(h, 100, 50);
+    const mean = (r + g + b) / 3;
+    return [{ c: 'Rot', k: 'rot', v: r - mean },
+            { c: 'Grün', k: 'gruen', v: g - mean },
+            { c: 'Blau', k: 'blau', v: b - mean }]
+      .filter(d => Math.abs(d.v) > 0.10)
+      .sort((a, b2) => Math.abs(b2.v) - Math.abs(a.v))
+      .map(d => ({
+        ch: d.c, klass: d.k, dir: d.v > 0 ? '↑' : '↓',
+        strength: Math.abs(d.v) > 0.33 ? 'deutlich' : (Math.abs(d.v) > 0.18 ? 'spürbar' : 'minimal')
+      }));
+  }
+  function movesHtml(h, zone) {
+    const zoneWord = zone === 'sh' ? 'linkes Ende (Schatten)' : 'rechtes Ende (Lichter)';
+    const mv = channelMoves(h);
+    if (!mv.length) return '<div class="move"><span>Neutral – hier ist keine Farbkorrektur nötig.</span></div>';
+    return mv.map(m =>
+      `<div class="move"><span class="ch ${m.klass}">${m.ch}</span><span>${zoneWord} ${m.dir} <span style="color:var(--muted)">(${m.strength})</span></span></div>`
+    ).join('');
+  }
 
   //=========================================================================
-  //  Tab-Wechsel
+  //  Tabs
   //=========================================================================
   const navBtns = document.querySelectorAll('nav button');
   function goTab(tab) {
@@ -780,7 +1176,23 @@
   const motifGrid = document.getElementById('motifGrid');
   const adviceBox = document.getElementById('adviceBox');
   function recipeName(id) { const r = DEFAULT_RECIPES.find(x => x.id === id); return r ? r.name : id; }
-
+  function stepList(arr) {
+    return `<ol class="steps">${arr.map(s =>
+      `<li><b>${rich(s.t)}:</b> ${rich(s.s)}${s.w ? `<span class="why">${rich(s.w)}</span>` : ''}</li>`).join('')}</ol>`;
+  }
+  function gradeBox(kind, g) {
+    const label = kind === 'tension' ? 'Spannung' : 'Harmonie';
+    return `<div class="gradebox ${kind}">
+      <div class="lbl">${label}</div>
+      <div class="txt">${rich(g.txt)}</div>
+      <div class="moves">${movesHtml(g.sh, 'sh')}${movesHtml(g.hi, 'hi')}
+        <div class="move"><span class="ch">Mitte</span><span>Punkt in der Kurvenmitte setzen und nicht bewegen <span style="color:var(--muted)">(schützt Hauttöne)</span></span></div>
+      </div>
+      <div class="duo">
+        <div class="d" style="background:${hslToHex(g.sh, 55, 32)};color:#fff">Schatten ${hueName(g.sh)}</div>
+        <div class="d" style="background:${hslToHex(g.hi, 65, 62)}">Lichter ${hueName(g.hi)}</div>
+      </div></div>`;
+  }
   function renderMotifs() {
     motifGrid.innerHTML = ADVISOR.map(m =>
       `<button class="motif" data-id="${m.id}"><span class="em">${m.em}</span><span>${rich(m.name)}</span></button>`).join('');
@@ -796,16 +1208,15 @@
       <div class="advice">
         <h3><span>${m.em}</span> ${rich(m.name)}</h3>
         <p class="sum">${rich(m.sum)}</p>
-        <h5>So gehst du vor</h5>
-        <ol class="steps">${m.steps.map(s => `<li><b>${rich(s.t)}:</b> ${rich(s.s)}</li>`).join('')}</ol>
-        <h5>Color Grading</h5>
-        <div class="sh-grid">
-          <div class="sh tension"><div class="lbl">Spannung</div>${rich(m.tension)}</div>
-          <div class="sh harmony"><div class="lbl">Harmonie</div>${rich(m.harmony)}</div>
-        </div>
-        <h5>Passende Looks (antippen)</h5>
-        <div class="look-chips">${m.looks.map(id =>
-          `<button class="look-chip" data-look="${id}">${rich(recipeName(id))}</button>`).join('')}</div>
+        <h5 class="sec"><span class="n">1</span> Basis</h5>${stepList(m.basis)}
+        <h5 class="sec key"><span class="n">2</span> Kurven – der Kern</h5>${stepList(m.kurven)}
+        <h5 class="sec"><span class="n">3</span> Lokal verfeinern</h5>${stepList(m.lokal)}
+        <h5 class="sec"><span class="n">4</span> Finish</h5>${stepList(m.finish)}
+        <h5 class="sec">Color Grading – zwei Wege</h5>
+        ${gradeBox('tension', m.tension)}${gradeBox('harmony', m.harmony)}
+        <h5 class="sec">Passende Looks (antippen)</h5>
+        <div class="look-chips">${m.looks.map(x =>
+          `<button class="look-chip" data-look="${x}">${rich(recipeName(x))}</button>`).join('')}</div>
       </div>`;
     adviceBox.querySelectorAll('[data-look]').forEach(b =>
       b.addEventListener('click', () => openRecipe(b.dataset.look)));
@@ -828,14 +1239,12 @@
   const searchRez = document.getElementById('searchRez');
   function getUserRecipes() { return LS.get('fw_recipes', []); }
   function allRecipes() { return [...getUserRecipes(), ...DEFAULT_RECIPES]; }
-
   function renderRecipes() {
     const q = searchRez.value.trim().toLowerCase();
     const items = allRecipes().filter(r => {
       if (!q) return true;
-      const hay = plain(r.name + ' ' + (r.mood||'') + ' ' + (r.tags||[]).join(' ') +
-        ' ' + r.steps.map(s => s.t + ' ' + s.s).join(' ')).toLowerCase();
-      return hay.includes(q);
+      return plain(r.name + ' ' + (r.mood||'') + ' ' + (r.tags||[]).join(' ') + ' ' +
+        r.steps.map(s => s.t + ' ' + s.s + ' ' + (s.w||'')).join(' ')).toLowerCase().includes(q);
     });
     if (!items.length) { rezList.innerHTML = '<div class="empty">Kein Look gefunden.</div>'; return; }
     rezList.innerHTML = items.map(r => `
@@ -849,15 +1258,12 @@
         </div>
         <div class="card-body">
           ${r.desc ? `<p class="desc">${rich(r.desc)}</p>` : ''}
-          <ol class="steps">
-            ${r.steps.map(s => `<li><b>${rich(s.t)}:</b> ${rich(s.s)}</li>`).join('')}
-          </ol>
+          ${stepList(r.steps)}
           ${r.merke ? `<div class="merke"><b>Merke:</b> ${rich(r.merke)}</div>` : ''}
-          ${(r.tags&&r.tags.length) ? `<div class="tags">${r.tags.map(t=>`<span class="tag">${rich(t)}</span>`).join('')}</div>` : ''}
+          ${(r.tags && r.tags.length) ? `<div class="tags">${r.tags.map(t => `<span class="tag">${rich(t)}</span>`).join('')}</div>` : ''}
           ${r.custom ? `<div class="card-foot"><button class="del" data-del="${esc(r.id)}">Löschen</button></div>` : ''}
         </div>
       </div>`).join('');
-
     rezList.querySelectorAll('.card-head').forEach(h =>
       h.addEventListener('click', () => h.parentElement.classList.toggle('open')));
     rezList.querySelectorAll('[data-del]').forEach(b =>
@@ -869,22 +1275,22 @@
   }
   searchRez.addEventListener('input', renderRecipes);
 
-  //--- eigenes Rezept ---
   const rezDialog = document.getElementById('rezDialog');
   const rezSteps = document.getElementById('rezSteps');
   function addStepInput() {
     const div = document.createElement('div');
     div.className = 'step-in';
-    div.innerHTML = '<input placeholder="Werkzeug"><input placeholder="Einstellung">';
+    div.innerHTML = '<input placeholder="Werkzeug (z. B. Kurven · Blau)"><input placeholder="Einstellung">';
     rezSteps.appendChild(div);
   }
-  document.getElementById('addRezBtn').addEventListener('click', () => {
-    document.getElementById('rezName').value = '';
-    document.getElementById('rezMood').value = '';
+  function openRezDialog() {
+    ['rezName','rezMood','rezMerke','rezTags'].forEach(id => document.getElementById(id).value = '');
     rezSteps.innerHTML = '';
-    addStepInput(); addStepInput();
+    addStepInput(); addStepInput(); addStepInput();
     rezDialog.showModal();
-  });
+  }
+  document.getElementById('addRezBtn').addEventListener('click', openRezDialog);
+  document.getElementById('addRezBtn2').addEventListener('click', openRezDialog);
   document.getElementById('addStepBtn').addEventListener('click', addStepInput);
   document.getElementById('rezForm').addEventListener('submit', e => {
     if (e.submitter && e.submitter.value === 'save') {
@@ -894,24 +1300,23 @@
         const ins = r.querySelectorAll('input');
         return { t: ins[0].value.trim(), s: ins[1].value.trim() };
       }).filter(s => s.t || s.s);
-      const rec = {
-        id: 'u-' + Date.now(), custom: true,
-        name, mood: document.getElementById('rezMood').value.trim(),
-        desc: '', tags: [], steps: steps.length ? steps : [{ t:'Notiz', s:'—' }]
-      };
-      LS.set('fw_recipes', [rec, ...getUserRecipes()]);
+      LS.set('fw_recipes', [{
+        id: 'u-' + Date.now(), custom: true, name,
+        mood: document.getElementById('rezMood').value.trim(),
+        merke: document.getElementById('rezMerke').value.trim(),
+        tags: document.getElementById('rezTags').value.split(',').map(t => t.trim()).filter(Boolean),
+        desc: '', steps: steps.length ? steps : [{ t: 'Notiz', s: '—' }]
+      }, ...getUserRecipes()]);
       renderRecipes();
+      goTab('rezepte');
     }
   });
 
   //=========================================================================
-  //  WISSEN – gruppiert &amp; aufklappbar
+  //  WISSEN
   //=========================================================================
   const spickList = document.getElementById('spickList');
   const searchSpick = document.getElementById('searchSpick');
-  function itemHtml(it) {
-    return `<div class="witem">${it.t ? `<b>${rich(it.t)}:</b> ` : ''}${rich(it.d)}</div>`;
-  }
   function renderSpick() {
     const q = searchSpick.value.trim().toLowerCase();
     let html = '';
@@ -921,15 +1326,14 @@
         : g.items;
       if (!items.length) return;
       const open = q ? true : gi === 0;
-      html += `
-        <div class="card ${open ? 'open' : ''}">
+      html += `<div class="card ${open ? 'open' : ''}">
           <div class="card-head">
             <span style="font-size:20px">${g.em}</span>
             <div class="txt"><h3>${rich(g.group)}</h3></div>
-            <span class="cnt">${items.length}</span>
-            <span class="chev">▶</span>
+            <span class="cnt">${items.length}</span><span class="chev">▶</span>
           </div>
-          <div class="card-body" style="padding-top:0">${items.map(itemHtml).join('')}</div>
+          <div class="card-body" style="padding-top:0">${items.map(it =>
+            `<div class="witem">${it.t ? `<b>${rich(it.t)}:</b> ` : ''}${rich(it.d)}</div>`).join('')}</div>
         </div>`;
     });
     spickList.innerHTML = html || '<div class="empty">Nichts gefunden.</div>';
@@ -937,114 +1341,164 @@
       h.addEventListener('click', () => h.parentElement.classList.toggle('open')));
   }
   searchSpick.addEventListener('input', renderSpick);
+  //=========================================================================
+  //  FARB-HELFER – zwei ziehbare Punkte auf dem Rad + Feinsteuerung
+  //=========================================================================
+  const HI = { h: 32, s: 70, l: 58 };   // Lichter-Farbe
+  const SH = { h: 198, s: 55, l: 34 };  // Schatten-Farbe
 
-  //=========================================================================
-  //  FARB-HELFER
-  //=========================================================================
-  const baseColor = document.getElementById('baseColor');
-  const baseHex = document.getElementById('baseHex');
-  const harmonies = document.getElementById('harmonies');
-  const gradeTip = document.getElementById('gradeTip');
-  const howTip = document.getElementById('howTip');
   const wheel = document.getElementById('wheel');
   const wctx = wheel.getContext('2d');
+  const SIZE = wheel.width, CX = SIZE/2, CY = SIZE/2;
+  const R_OUT = SIZE/2 - 12, R_IN = R_OUT * 0.42;
 
-  function hexToHsl(hex) {
-    let r = parseInt(hex.slice(1,3),16)/255, g = parseInt(hex.slice(3,5),16)/255, b = parseInt(hex.slice(5,7),16)/255;
-    const max = Math.max(r,g,b), min = Math.min(r,g,b); let h,s,l = (max+min)/2;
-    if (max === min) { h = s = 0; }
-    else {
-      const d = max - min;
-      s = l > 0.5 ? d/(2-max-min) : d/(max+min);
-      switch (max) {
-        case r: h = (g-b)/d + (g<b?6:0); break;
-        case g: h = (b-r)/d + 2; break;
-        default: h = (r-g)/d + 4;
-      }
-      h *= 60;
-    }
-    return { h, s: s*100, l: l*100 };
-  }
-  function hslToHex(h,s,l) {
-    s/=100; l/=100; h=((h%360)+360)%360;
-    const c=(1-Math.abs(2*l-1))*s, x=c*(1-Math.abs((h/60)%2-1)), m=l-c/2;
-    let r,g,b;
-    if (h<60){r=c;g=x;b=0;} else if (h<120){r=x;g=c;b=0;} else if (h<180){r=0;g=c;b=x;}
-    else if (h<240){r=0;g=x;b=c;} else if (h<300){r=x;g=0;b=c;} else {r=c;g=0;b=x;}
-    const to=v=>Math.round((v+m)*255).toString(16).padStart(2,'0');
-    return '#'+to(r)+to(g)+to(b);
-  }
-  function hueName(h) {
-    h = ((h%360)+360)%360;
-    if (h < 15 || h >= 345) return 'Rot';
-    if (h < 45) return 'Orange';
-    if (h < 70) return 'Gelb';
-    if (h < 160) return 'Grün';
-    if (h < 200) return 'Türkis';
-    if (h < 255) return 'Blau';
-    if (h < 290) return 'Violett';
-    return 'Magenta';
-  }
-  function snapseedFor(h) {
-    const name = hueName(h);
-    const map = {
-      'Blau':   'Kurven → <b>Blau-Kanal</b>: Schatten leicht anheben (kühle Tiefen).',
-      'Türkis': 'Kurven → <b>Blau-Kanal</b> Schatten +, <b>Grün-Kanal</b> Schatten leicht + (türkise Tiefen). Oder Weißabgleich kühler.',
-      'Grün':   'Kurven → <b>Grün-Kanal</b> Schatten leicht +, oder Weißabgleich-Farbton Richtung Grün.',
-      'Gelb':   'Kurven → <b>Blau-Kanal</b> Schatten senken (= mehr Gelb), oder Weißabgleich wärmer.',
-      'Orange': 'Weißabgleich <b>wärmer</b>, oder Kurven → Rot-Kanal Schatten leicht +.',
-      'Rot':    'Kurven → <b>Rot-Kanal</b> Schatten leicht +, Weißabgleich minimal wärmer.',
-      'Violett':'Kurven → <b>Blau-Kanal</b> Schatten +, <b>Rot-Kanal</b> Schatten leicht + (violette Tiefen).',
-      'Magenta':'Weißabgleich-Farbton Richtung <b>Magenta</b>, oder Kurven Rot+Blau Schatten leicht +.'
-    };
-    return map[name] || map['Blau'];
+  const satRadius = s => R_IN + (R_OUT - R_IN) * (Math.max(0, Math.min(100, s)) / 100);
+  function markerXY(c) {
+    const a = (c.h - 90) * Math.PI / 180, r = satRadius(c.s);
+    return { x: CX + Math.cos(a) * r, y: CY + Math.sin(a) * r };
   }
 
-  function drawWheel(baseH) {
-    const size = wheel.width, cx = size/2, cy = size/2, R = size/2 - 8, inner = R*0.45;
-    wctx.clearRect(0,0,size,size);
-    for (let a=0; a<360; a++) {
-      const start = (a-90-0.6)*Math.PI/180, end = (a-90+0.6)*Math.PI/180;
+  function drawWheel() {
+    wctx.clearRect(0, 0, SIZE, SIZE);
+    for (let a = 0; a < 360; a++) {
+      const st = (a - 90 - 0.7) * Math.PI/180, en = (a - 90 + 0.7) * Math.PI/180;
+      const grad = wctx.createRadialGradient(CX, CY, R_IN, CX, CY, R_OUT);
+      grad.addColorStop(0, `hsl(${a},25%,55%)`);
+      grad.addColorStop(1, `hsl(${a},95%,55%)`);
       wctx.beginPath();
-      wctx.arc(cx,cy,R,start,end); wctx.arc(cx,cy,inner,end,start,true);
-      wctx.closePath();
-      wctx.fillStyle = `hsl(${a},85%,55%)`; wctx.fill();
+      wctx.arc(CX, CY, R_OUT, st, en); wctx.arc(CX, CY, R_IN, en, st, true);
+      wctx.closePath(); wctx.fillStyle = grad; wctx.fill();
     }
-    const r=(R+inner)/2;
-    const a1 = (baseH-90)*Math.PI/180, a2 = (baseH+90)*Math.PI/180;
-    wctx.beginPath();
-    wctx.moveTo(cx+Math.cos(a1)*r, cy+Math.sin(a1)*r);
-    wctx.lineTo(cx+Math.cos(a2)*r, cy+Math.sin(a2)*r);
-    wctx.strokeStyle = 'rgba(255,255,255,.35)'; wctx.lineWidth = 3; wctx.stroke();
-    [ { h: baseH, big: true }, { h: baseH+180 } ].forEach(mk => {
-      const ang = (mk.h-90)*Math.PI/180;
-      const x = cx + Math.cos(ang)*r, y = cy + Math.sin(ang)*r;
-      wctx.beginPath(); wctx.arc(x,y, mk.big?26:20, 0, 2*Math.PI);
-      wctx.fillStyle = hslToHex(mk.h, 85, 55); wctx.fill();
-      wctx.lineWidth = 6; wctx.strokeStyle = '#fff'; wctx.stroke();
+    const p1 = markerXY(HI), p2 = markerXY(SH);
+    wctx.beginPath(); wctx.moveTo(p1.x, p1.y); wctx.lineTo(p2.x, p2.y);
+    wctx.strokeStyle = 'rgba(255,255,255,.4)'; wctx.lineWidth = 4; wctx.stroke();
+    [[HI, 'L', p1], [SH, 'S', p2]].forEach(([c, lbl, p]) => {
+      wctx.beginPath(); wctx.arc(p.x, p.y, 34, 0, 2*Math.PI);
+      wctx.fillStyle = hslToHex(c.h, c.s, c.l); wctx.fill();
+      wctx.lineWidth = 7; wctx.strokeStyle = '#fff'; wctx.stroke();
+      wctx.fillStyle = c.l > 55 ? 'rgba(0,0,0,.7)' : 'rgba(255,255,255,.95)';
+      wctx.font = 'bold 30px -apple-system, system-ui, sans-serif';
+      wctx.textAlign = 'center'; wctx.textBaseline = 'middle';
+      wctx.fillText(lbl, p.x, p.y + 1);
     });
   }
 
-  function swGroup(title, sub, colors) {
-    return `<div class="harmony"><h4>${title}<span class="sub">${sub}</span></h4>
-      <div class="swatches">${colors.map(c=>`
-        <div class="sw"><div class="chip" style="background:${c}"></div><div class="hex">${c.toUpperCase()}</div></div>`).join('')}</div></div>`;
+  let dragging = null;
+  function evtPos(ev) {
+    const r = wheel.getBoundingClientRect();
+    return { x: (ev.clientX - r.left) * (SIZE / r.width),
+             y: (ev.clientY - r.top) * (SIZE / r.height) };
   }
-  function updateColor() {
-    const hex = baseColor.value;
-    baseHex.textContent = hex.toUpperCase();
-    const { h, s, l } = hexToHsl(hex);
-    drawWheel(h);
-    const comp = hslToHex(h+180, s, l);
-    harmonies.innerHTML =
-      swGroup('Basis + Komplementär', 'kräftiger Kontrast (Spannung)', [hex, comp]) +
-      swGroup('Split-Komplementär', 'harmonischer als reines Komplement', [hex, hslToHex(h+150,s,l), hslToHex(h+210,s,l)]) +
-      swGroup('Analog', 'ruhig, natürlich (Harmonie)', [hslToHex(h-30,s,l), hex, hslToHex(h+30,s,l)]) +
-      swGroup('Triadisch', 'lebendig &amp; ausgewogen', [hex, hslToHex(h+120,s,l), hslToHex(h+240,s,l)]);
-    gradeTip.innerHTML = `Deine Hauptfarbe ist <b>${hueName(h)}</b> (${hex.toUpperCase()}). Der Gegenpol fürs Grading ist <b>${hueName(h+180)}</b> (${comp.toUpperCase()}).`;
-    howTip.innerHTML = `<b>So in Snapseed:</b> Hauptfarbe in Motiv/Lichter lassen, Schatten Richtung ${hueName(h+180)} schieben – ${snapseedFor(h+180)}`;
+  function applyPos(c, p) {
+    const dx = p.x - CX, dy = p.y - CY;
+    c.h = norm(Math.atan2(dy, dx) * 180 / Math.PI + 90);
+    const dist = Math.hypot(dx, dy);
+    c.s = Math.round(Math.max(0, Math.min(100, (dist - R_IN) / (R_OUT - R_IN) * 100)));
+    renderColor();
   }
-  baseColor.addEventListener('input', updateColor);
+  wheel.addEventListener('pointerdown', ev => {
+    const p = evtPos(ev), a = markerXY(HI), b = markerXY(SH);
+    dragging = Math.hypot(p.x-a.x, p.y-a.y) <= Math.hypot(p.x-b.x, p.y-b.y) ? HI : SH;
+    wheel.setPointerCapture(ev.pointerId);
+    applyPos(dragging, p); ev.preventDefault();
+  });
+  wheel.addEventListener('pointermove', ev => {
+    if (!dragging) return;
+    applyPos(dragging, evtPos(ev)); ev.preventDefault();
+  });
+  ['pointerup','pointercancel'].forEach(t =>
+    wheel.addEventListener(t, () => { dragging = null; }));
+
+  // Beziehung der beiden Toene zueinander
+  function relation(d) {
+    if (d < 15) return { name: 'Monochrom (derselbe Ton)', kind: 'harmonie',
+      txt: 'Praktisch derselbe Farbton in Schatten und Lichtern. Maximale Ruhe – der Look lebt dann von Helligkeit und Kontrast statt von Farbe.' };
+    if (d < 45) return { name: 'Analog (benachbart)', kind: 'harmonie',
+      txt: 'Benachbarte Töne, eine Farbfamilie. Alles wirkt aus einem Guss: ruhig, natürlich, wenig Reibung. Der sichere Weg, wenn das Motiv selbst schon stark ist.' };
+    if (d < 80) return { name: 'Weit analog', kind: 'harmonie',
+      txt: 'Deutlich getrennt, aber noch verwandt. Ruhig mit etwas Bewegung – gut, wenn Analog dir zu brav ist.' };
+    if (d < 115) return { name: 'Triadisch-nah', kind: 'spannung',
+      txt: 'Weit auseinander, aber nicht gegenüber. Lebendig und ungewöhnlich – braucht eine klar dominante Farbe, sonst wird es unruhig.' };
+    if (d < 150) return { name: 'Split-Komplementär', kind: 'spannung',
+      txt: 'Fast gegenüber, aber nicht exakt. Du bekommst fast die volle Spannung, es wirkt aber weniger plakativ als das reine Komplement.' };
+    return { name: 'Komplementär', kind: 'spannung',
+      txt: 'Die beiden Töne liegen sich gegenüber. Das Auge vergleicht sie direkt – dadurch wirkt jede Farbe kräftiger und leuchtender, als sie gemessen ist. Maximale Trennung von Motiv und Hintergrund.' };
+  }
+  const isWarm = h => (norm(h) < 75 || norm(h) >= 315);
+  const isCool = h => (norm(h) >= 150 && norm(h) < 285);
+
+  const el = id => document.getElementById(id);
+  function renderColor() {
+    drawWheel();
+    const hiHex = hslToHex(HI.h, HI.s, HI.l), shHex = hslToHex(SH.h, SH.s, SH.l);
+    el('prevHi').style.background = hiHex; el('prevSh').style.background = shHex;
+    el('hexHi').textContent = hiHex.toUpperCase(); el('hexSh').textContent = shHex.toUpperCase();
+    el('pickHi').value = hiHex; el('pickSh').value = shHex;
+    el('satHi').value = Math.round(HI.s); el('ligHi').value = Math.round(HI.l);
+    el('satSh').value = Math.round(SH.s); el('ligSh').value = Math.round(SH.l);
+    el('satHiV').textContent = Math.round(HI.s) + ' %'; el('ligHiV').textContent = Math.round(HI.l) + ' %';
+    el('satShV').textContent = Math.round(SH.s) + ' %'; el('ligShV').textContent = Math.round(SH.l) + ' %';
+
+    let d = Math.abs(norm(HI.h) - norm(SH.h)); if (d > 180) d = 360 - d;
+    const rel = relation(d);
+    const hiN = hueName(HI.h), shN = hueName(SH.h);
+    let wk = '';
+    if (isWarm(HI.h) && isCool(SH.h)) wk = '✓ Warm/Kühl-Teilung: warme Lichter, kühle Schatten – der emotionale Grundpfeiler und die verlässlichste Kombination.';
+    else if (isCool(HI.h) && isWarm(SH.h)) wk = '↔ Umgekehrte Teilung: kühle Lichter, warme Schatten. Ungewöhnlich, wirkt nächtlich oder künstlich – bewusst einsetzbar.';
+    else if (isWarm(HI.h) && isWarm(SH.h)) wk = '🔥 Durchgehend warm. Sehr stimmig, aber ohne Gegenpol schnell flach – dann über Kontrast Tiefe schaffen.';
+    else if (isCool(HI.h) && isCool(SH.h)) wk = '❄️ Durchgehend kühl. Ruhig und modern, wirkt aber leicht distanziert.';
+    el('relBox').innerHTML = `<div class="relbox">
+      <div class="top"><h4>${shN} → ${hiN}<span class="kindbadge ${rel.kind}">${rel.kind === 'spannung' ? 'Spannung' : 'Harmonie'}</span></h4>
+      <span class="deg">${Math.round(d)}° · ${rel.name}</span></div>
+      <p>${rel.txt}</p>${wk ? `<div class="wk">${wk}</div>` : ''}</div>`;
+
+    const midHex = hslToHex((HI.h + SH.h) / 2, 6, 50);
+    el('paletteStrip').style.background = `linear-gradient(90deg, ${shHex} 0%, ${midHex} 50%, ${hiHex} 100%)`;
+    el('paletteWhat').innerHTML = `<b>Was bringt mir eine Palette?</b> Eine Palette ist kein Filter, sondern eine Entscheidung: welche Farbe im Dunklen liegt und welche im Hellen. Die Presets, die du auf Social Media siehst, sind fast immer genau das – plus etwas Kontrast und Korn. Deine hier lautet: <b>${shN}</b> in den Schatten, neutrale Mitte, <b>${hiN}</b> in den Lichtern. Wenn du diese zwei Farben kennst, kannst du jedes Preset selbst nachbauen.`;
+
+    const iHi = hueInfo(HI.h), iSh = hueInfo(SH.h);
+    el('meanings').innerHTML = `
+      <div class="meaning">
+        <div class="hd"><span class="sw" style="background:${hiHex}"></span><h4>${iHi.n}</h4><span class="role">☀️ Lichter</span></div>
+        <div class="ln"><b>Wirkung:</b> ${rich(iHi.feel)}</div>
+        <div class="ln"><b>Hier als Lichterfarbe:</b> ${rich(iHi.hi)}</div>
+        <div class="ln"><b>Wenn du weiterdrehst:</b> ${rich(iHi.dir)}</div>
+      </div>
+      <div class="meaning">
+        <div class="hd"><span class="sw" style="background:${shHex}"></span><h4>${iSh.n}</h4><span class="role">🌑 Schatten</span></div>
+        <div class="ln"><b>Wirkung:</b> ${rich(iSh.feel)}</div>
+        <div class="ln"><b>Hier als Schattenfarbe:</b> ${rich(iSh.sh)}</div>
+        <div class="ln"><b>Wenn du weiterdrehst:</b> ${rich(iSh.dir)}</div>
+      </div>`;
+
+    el('recipeOut').innerHTML = `<ol class="steps">
+      <li><b>Feinabstimmung:</b> Sättigung −5 bis −10<span class="why">Etwas Farbe rausnehmen, damit das Grading danach nicht übersteuert.</span></li>
+      <li><b>Kurven · Farbkanal öffnen:</b> zwei Punkte setzen – links (Schatten) und rechts (Lichter)<span class="why">Gegenläufig ziehen, das ist das Split-Toning-Prinzip.</span></li>
+      <li><b>Schatten Richtung ${shN}:</b><span class="why">${channelMoves(SH.h).map(m => `${m.ch}-Kanal linkes Ende ${m.dir} (${m.strength})`).join(' · ') || 'neutral lassen'}</span></li>
+      <li><b>Lichter Richtung ${hiN}:</b><span class="why">${channelMoves(HI.h).map(m => `${m.ch}-Kanal rechtes Ende ${m.dir} (${m.strength})`).join(' · ') || 'neutral lassen'}</span></li>
+      <li><b>Mitte neutral halten:</b> Punkt in der Kurvenmitte setzen und nicht bewegen<span class="why">Schützt die Hauttöne – ohne diesen Punkt kippt das ganze Gesicht mit.</span></li>
+      <li><b>Kontrolle:</b> Kurven flach und subtil halten<span class="why">Grading soll man spüren, nicht sehen. Im Zweifel die halbe Stärke.</span></li>
+    </ol>`;
+  }
+
+  el('pickHi').addEventListener('input', e => { Object.assign(HI, hexToHsl(e.target.value)); renderColor(); });
+  el('pickSh').addEventListener('input', e => { Object.assign(SH, hexToHsl(e.target.value)); renderColor(); });
+  el('satHi').addEventListener('input', e => { HI.s = +e.target.value; renderColor(); });
+  el('ligHi').addEventListener('input', e => { HI.l = +e.target.value; renderColor(); });
+  el('satSh').addEventListener('input', e => { SH.s = +e.target.value; renderColor(); });
+  el('ligSh').addEventListener('input', e => { SH.l = +e.target.value; renderColor(); });
+
+  const QUICKS = [
+    { n: 'Teal &amp; Orange', f: () => { Object.assign(HI, {h:32,s:70,l:58}); Object.assign(SH, {h:195,s:55,l:32}); } },
+    { n: 'Komplementär', f: () => { SH.h = norm(HI.h + 180); } },
+    { n: 'Split-Komplementär', f: () => { SH.h = norm(HI.h + 150); } },
+    { n: 'Analog', f: () => { SH.h = norm(HI.h + 30); } },
+    { n: 'Monochrom', f: () => { SH.h = HI.h; } },
+    { n: '70er (Gelb/Faded)', f: () => { Object.assign(HI, {h:48,s:62,l:64}); Object.assign(SH, {h:45,s:28,l:40}); } }
+  ];
+  el('quickRow').innerHTML = QUICKS.map((q, i) => `<button class="qbtn" data-q="${i}">${q.n}</button>`).join('');
+  el('quickRow').querySelectorAll('[data-q]').forEach(b =>
+    b.addEventListener('click', () => { QUICKS[+b.dataset.q].f(); renderColor(); }));
 
   //=========================================================================
   //  MEINE TIPPS
@@ -1057,17 +1511,14 @@
     const items = getNotes().filter(n => !q ||
       (n.text + ' ' + (n.tags||[]).join(' ')).toLowerCase().includes(q));
     if (!items.length) {
-      noteList.innerHTML = '<div class="empty">Noch keine Tipps gespeichert. 📌</div>';
-      return;
+      noteList.innerHTML = '<div class="empty">Noch keine Tipps gespeichert. 📌</div>'; return;
     }
     noteList.innerHTML = items.map(n => `
       <div class="note">
         <p>${esc(n.text)}</p>
-        <div class="tags" style="margin:0 0 8px">${(n.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
-        <div class="meta">
-          <span class="when">${esc(n.when||'')}</span>
-          <button class="del" data-del="${n.id}">Löschen</button>
-        </div>
+        <div class="tags" style="margin:0 0 8px">${(n.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
+        <div class="meta"><span class="when">${esc(n.when||'')}</span>
+        <button class="del" data-del="${n.id}">Löschen</button></div>
       </div>`).join('');
     noteList.querySelectorAll('[data-del]').forEach(b =>
       b.addEventListener('click', () => {
@@ -1078,11 +1529,11 @@
   document.getElementById('addNoteBtn').addEventListener('click', () => {
     const text = document.getElementById('noteText').value.trim();
     if (!text) return;
-    const tags = document.getElementById('noteTags').value.split(',')
-      .map(t => t.trim()).filter(Boolean);
-    const note = { id: Date.now(), text, tags,
-      when: new Date().toLocaleDateString('de-DE', { day:'2-digit', month:'short', year:'numeric' }) };
-    LS.set('fw_notes', [note, ...getNotes()]);
+    LS.set('fw_notes', [{
+      id: Date.now(), text,
+      tags: document.getElementById('noteTags').value.split(',').map(t => t.trim()).filter(Boolean),
+      when: new Date().toLocaleDateString('de-DE', { day:'2-digit', month:'short', year:'numeric' })
+    }, ...getNotes()]);
     document.getElementById('noteText').value = '';
     document.getElementById('noteTags').value = '';
     renderNotes();
@@ -1096,7 +1547,7 @@
   renderRecipes();
   renderSpick();
   renderNotes();
-  updateColor();
+  renderColor();
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
