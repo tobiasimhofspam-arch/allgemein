@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Foto-Werkstatt</title>
+  <meta name="description" content="Dein Snapseed-Begleiter: Look-Rezepte, Farb-Helfer, Spickzettel und deine eigenen Tipps." />
+  <meta name="theme-color" content="#1c1c1e" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Foto-Werkstatt" />
+  <style>
+    :root {
+      --bg: #131315;
+      --bg-elev: #1c1c1e;
+      --bg-card: #232326;
+      --bg-card-2: #2a2a2e;
+      --line: #35353a;
+      --text: #f2f2f4;
+      --muted: #a0a0a8;
+      --accent: #ff9f45;
+      --accent-2: #ffd18a;
+      --radius: 16px;
+      --safe-b: env(safe-area-inset-bottom, 0px);
+      --safe-t: env(safe-area-inset-top, 0px);
+    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: calc(72px + var(--safe-b));
+    }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(19,19,21,.82);
+      backdrop-filter: saturate(140%) blur(12px);
+      -webkit-backdrop-filter: saturate(140%) blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: calc(12px + var(--safe-t)) 18px 12px;
+    }
+    header h1 {
+      margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -.01em;
+      display: flex; align-items: center; gap: 9px;
+    }
+    header .dot {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: conic-gradient(red, orange, yellow, lime, cyan, blue, magenta, red);
+      box-shadow: inset 0 0 0 4px var(--bg-elev);
+      flex: none;
+    }
+    header p { margin: 3px 0 0 31px; color: var(--muted); font-size: 12.5px; }
+
+    main { padding: 16px 16px 8px; max-width: 720px; margin: 0 auto; }
+    .tab-panel { display: none; animation: fade .2s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fade { from { opacity: 0; transform: translateY(4px);} to {opacity:1; transform:none;} }
+
+    .search {
+      width: 100%; padding: 12px 14px; border-radius: 12px;
+      border: 1px solid var(--line); background: var(--bg-elev); color: var(--text);
+      font-size: 16px; margin-bottom: 14px;
+    }
+    .search::placeholder { color: var(--muted); }
+
+    .row { display: flex; gap: 10px; align-items: center; }
+    .btn {
+      appearance: none; border: none; cursor: pointer; font-size: 15px; font-weight: 600;
+      padding: 11px 15px; border-radius: 12px; color: #201400; background: var(--accent);
+    }
+    .btn.ghost { background: var(--bg-card); color: var(--text); border: 1px solid var(--line); }
+    .btn.small { padding: 7px 11px; font-size: 13px; }
+    .btn:active { transform: scale(.97); }
+
+    .card {
+      background: var(--bg-card); border: 1px solid var(--line);
+      border-radius: var(--radius); margin-bottom: 12px; overflow: hidden;
+    }
+    .card-head { padding: 14px 16px; cursor: pointer; display: flex; align-items: center; gap: 12px; }
+    .card-head .txt { flex: 1; min-width: 0; }
+    .card-head h3 { margin: 0; font-size: 16px; font-weight: 650; }
+    .card-head .mood { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); }
+    .chev { color: var(--muted); transition: transform .2s; flex: none; }
+    .card.open .chev { transform: rotate(90deg); }
+    .card-body { display: none; padding: 0 16px 16px; }
+    .card.open .card-body { display: block; }
+    .desc { color: var(--muted); font-size: 13.5px; margin: 0 0 12px; }
+
+    ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+    ol.steps li {
+      counter-increment: s; position: relative; padding: 10px 10px 10px 40px;
+      border-top: 1px solid var(--line); font-size: 14.5px;
+    }
+    ol.steps li:before {
+      content: counter(s); position: absolute; left: 8px; top: 10px;
+      width: 22px; height: 22px; border-radius: 50%; background: var(--bg-card-2);
+      color: var(--accent-2); font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    ol.steps li b { color: var(--accent-2); font-weight: 650; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .tag { font-size: 11.5px; color: var(--muted); background: var(--bg-card-2);
+      padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); }
+    .card-foot { margin-top: 12px; display: flex; justify-content: flex-end; gap: 8px; }
+    .del { background: transparent; border: 1px solid var(--line); color: #ff8080;
+      border-radius: 10px; padding: 6px 12px; font-size: 13px; cursor: pointer; }
+
+    .empty { text-align: center; color: var(--muted); padding: 40px 20px; font-size: 14px; }
+
+    /* Farb-Helfer */
+    .picker-row { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+    .picker-row label { font-size: 14px; color: var(--muted); }
+    input[type=color] {
+      width: 64px; height: 48px; border: 1px solid var(--line); border-radius: 12px;
+      background: var(--bg-elev); padding: 4px; cursor: pointer;
+    }
+    #wheelWrap { display: flex; justify-content: center; margin: 4px 0 20px; }
+    canvas#wheel { width: 260px; height: 260px; max-width: 78vw; max-height: 78vw; }
+    .harmony { margin-bottom: 18px; }
+    .harmony h4 { margin: 0 0 8px; font-size: 14px; }
+    .harmony .sub { color: var(--muted); font-size: 12.5px; font-weight: 400; margin-left: 6px; }
+    .swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+    .sw { flex: 1 1 64px; min-width: 64px; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--line); background: var(--bg-card); }
+    .sw .chip { height: 52px; }
+    .sw .hex { font-size: 11px; text-align: center; padding: 5px 2px; color: var(--muted);
+      font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+    .tipbox { background: var(--bg-card); border: 1px solid var(--line);
+      border-left: 3px solid var(--accent); border-radius: 12px; padding: 12px 14px;
+      font-size: 13.5px; color: var(--text); margin-bottom: 12px; }
+    .tipbox b { color: var(--accent-2); }
+
+    /* Meine Tipps */
+    .note-form textarea {
+      width: 100%; min-height: 76px; resize: vertical; padding: 12px 14px; font-size: 15px;
+      border-radius: 12px; border: 1px solid var(--line); background: var(--bg-elev); color: var(--text);
+      font-family: inherit; margin-bottom: 8px;
+    }
+    .note-form input.tagin {
+      width: 100%; padding: 10px 14px; font-size: 15px; border-radius: 12px;
+      border: 1px solid var(--line); background: var(--bg-elev); color: var(--text); margin-bottom: 8px;
+    }
+    .note { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
+      padding: 13px 15px; margin-bottom: 10px; }
+    .note p { margin: 0 0 8px; font-size: 14.5px; white-space: pre-wrap; }
+    .note .meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .note .when { font-size: 11.5px; color: var(--muted); }
+
+    .info { color: var(--muted); font-size: 12.5px; margin: 4px 2px 16px; }
+
+    /* Bottom nav */
+    nav {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+      display: flex; background: rgba(24,24,26,.92);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid var(--line);
+      padding-bottom: var(--safe-b);
+    }
+    nav button {
+      flex: 1; background: none; border: none; color: var(--muted); cursor: pointer;
+      padding: 9px 4px 8px; font-size: 10.5px; display: flex; flex-direction: column;
+      align-items: center; gap: 3px; font-weight: 600;
+    }
+    nav button .ic { font-size: 21px; line-height: 1; }
+    nav button.active { color: var(--accent); }
+
+    dialog { border: none; background: transparent; padding: 0; }
+    dialog::backdrop { background: rgba(0,0,0,.6); backdrop-filter: blur(2px); }
+    .sheet { background: var(--bg-elev); border: 1px solid var(--line); border-radius: 18px;
+      padding: 18px; width: min(92vw, 460px); }
+    .sheet h3 { margin: 0 0 14px; }
+    .sheet input, .sheet textarea {
+      width: 100%; padding: 11px 13px; font-size: 15px; border-radius: 11px;
+      border: 1px solid var(--line); background: var(--bg-card); color: var(--text);
+      font-family: inherit; margin-bottom: 10px;
+    }
+    .sheet .step-in { display: flex; gap: 8px; }
+    .sheet .step-in input:first-child { flex: 0 0 40%; }
+    .sheet .sheet-foot { display: flex; justify-content: space-between; gap: 8px; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><span class="dot"></span> Foto-Werkstatt</h1>
+    <p>Dein Snapseed-Begleiter für Looks, Farben &amp; Tipps</p>
+  </header>
+
+  <main>
+    <!-- REZEPTE -->
+    <section id="tab-rezepte" class="tab-panel active">
+      <input class="search" id="searchRez" placeholder="Look suchen … (z. B. Polaroid, Teal)" />
+      <div class="row" style="margin-bottom:14px">
+        <button class="btn" id="addRezBtn">+ Eigenes Rezept</button>
+      </div>
+      <div id="rezList"></div>
+    </section>
+
+    <!-- FARB-HELFER -->
+    <section id="tab-farbe" class="tab-panel">
+      <div class="picker-row">
+        <label for="baseColor">Hauptfarbe deines Bildes:</label>
+        <input type="color" id="baseColor" value="#c86432" />
+        <span id="baseHex" style="color:var(--muted);font-size:13px"></span>
+      </div>
+      <div id="wheelWrap"><canvas id="wheel" width="520" height="520"></canvas></div>
+      <div id="harmonies"></div>
+      <div class="tipbox" id="gradeTip"></div>
+      <p class="info">Farbenlehre-Faustregel fürs Color Grading: Lege einen Farbton in die <b>Lichter</b> und den ergänzenden (gegenüberliegenden) Ton in die <b>Schatten</b>. Genau darauf beruht der beliebte „Teal &amp; Orange"-Look.</p>
+    </section>
+
+    <!-- SPICKZETTEL -->
+    <section id="tab-spick" class="tab-panel">
+      <input class="search" id="searchSpick" placeholder="Werkzeug suchen … (z. B. Ambiente, Kurven)" />
+      <div id="spickList"></div>
+    </section>
+
+    <!-- MEINE TIPPS -->
+    <section id="tab-tipps" class="tab-panel">
+      <div class="note-form">
+        <textarea id="noteText" placeholder="Tipp notieren … (z. B. 'Für Herbstlaub Sättigung leicht runter, Wärme +5')"></textarea>
+        <input class="tagin" id="noteTags" placeholder="Stichworte, mit Komma getrennt (z. B. Herbst, Porträt)" />
+        <button class="btn" id="addNoteBtn">Tipp speichern</button>
+      </div>
+      <input class="search" id="searchNote" placeholder="In meinen Tipps suchen …" style="margin-top:16px" />
+      <div id="noteList"></div>
+    </section>
+  </main>
+
+  <nav>
+    <button data-tab="rezepte" class="active"><span class="ic">🧪</span>Rezepte</button>
+    <button data-tab="farbe"><span class="ic">🎨</span>Farb-Helfer</button>
+    <button data-tab="spick"><span class="ic">📖</span>Spickzettel</button>
+    <button data-tab="tipps"><span class="ic">📌</span>Meine Tipps</button>
+  </nav>
+
+  <!-- Dialog: eigenes Rezept -->
+  <dialog id="rezDialog">
+    <form method="dialog" class="sheet" id="rezForm">
+      <h3>Eigenes Rezept</h3>
+      <input id="rezName" placeholder="Name des Looks" required />
+      <input id="rezMood" placeholder="Kurze Beschreibung / Stimmung" />
+      <div id="rezSteps"></div>
+      <button type="button" class="btn ghost small" id="addStepBtn" style="margin-bottom:10px">+ Schritt</button>
+      <div class="sheet-foot">
+        <button value="cancel" class="btn ghost">Abbrechen</button>
+        <button value="save" class="btn" id="saveRez">Speichern</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script>
+  //=========================================================================
+  //  Standard-Rezepte (bewährte Snapseed-Looks – Werte sind Startpunkte!)
+  //  Werkzeugnamen entsprechen der deutschen Snapseed-Oberfläche.
+  //=========================================================================
+  const DEFAULT_RECIPES = [
+    {
+      id: "r-polaroid", name: "70er Polaroid / Vintage",
+      mood: "Warm, matt, verblasst – nostalgischer Sofortbild-Look",
+      desc: "Weiche, warme Farben mit angehobenem Schwarzpunkt (matter Look) und Korn.",
+      tags: ["Vintage", "Warm", "Matt", "Film"],
+      steps: [
+        { t: "Optimieren", s: "Ambiente +25, Kontrast −15, Sättigung −10, Wärme +15" },
+        { t: "Kurven", s: "Schwarzpunkt anheben – linkes Kurvenende nach oben ziehen (matte Tiefen)" },
+        { t: "Weißabgleich", s: "Temperatur leicht wärmer, Farbton minimal Richtung Magenta" },
+        { t: "Vintage", s: "Ein passendes Preset wählen, Stärke ~50 %" },
+        { t: "Körnung", s: "Grobkörniger Film: Körnung ~20, Stil weich" },
+        { t: "Vignette", s: "Außen leicht abdunkeln (−20)" }
+      ]
+    },
+    {
+      id: "r-teal-orange", name: "Teal & Orange (Kino-Look)",
+      mood: "Warme Haut/Lichter, kühle blaugrüne Schatten – der Hollywood-Klassiker",
+      desc: "Der Kontrast zwischen warmen Hauttönen und kühlen Schatten wirkt filmisch und lässt Motive hervortreten.",
+      tags: ["Kino", "Porträt", "Kontrast"],
+      steps: [
+        { t: "Weißabgleich", s: "Temperatur leicht wärmer für die Haut" },
+        { t: "Optimieren", s: "Kontrast +10, Sättigung −5, Glanzlichter −10, Tiefen +10" },
+        { t: "Kurven", s: "Blau-Kanal: Schatten leicht anheben (kühle Tiefen), Lichter leicht senken" },
+        { t: "Selektiv", s: "Auf Hintergrund/Schatten tippen, Sättigung dort Richtung Türkis feinjustieren" },
+        { t: "Tonaler Kontrast", s: "Mitteltöne +15 für mehr Plastizität" }
+      ]
+    },
+    {
+      id: "r-moody", name: "Moody / Dunkel & Dramatisch",
+      mood: "Stimmungsvoll, dunkel, satt – ideal für Landschaft & Regenwetter",
+      desc: "Dunklere Belichtung mit satten Farben und Struktur für dramatische Stimmung.",
+      tags: ["Landschaft", "Dramatisch", "Dunkel"],
+      steps: [
+        { t: "Optimieren", s: "Helligkeit −15, Kontrast +20, Ambiente +30, Sättigung −5, Glanzlichter −25" },
+        { t: "Details", s: "Struktur +25, Schärfe +10" },
+        { t: "Drama", s: "Preset dezent, Stärke ~25 %, Sättigung niedrig" },
+        { t: "Weißabgleich", s: "Temperatur etwas kühler" },
+        { t: "Vignette", s: "Kräftiger nach innen (−35)" }
+      ]
+    },
+    {
+      id: "r-clean", name: "Clean & Bright (luftig hell)",
+      mood: "Hell, frisch, luftig – der klare Instagram-Look",
+      desc: "Helle, saubere Bilder mit sanftem Kontrast und leicht reduzierten Lichtern.",
+      tags: ["Hell", "Clean", "Alltag"],
+      steps: [
+        { t: "Optimieren", s: "Helligkeit +12, Glanzlichter −20, Tiefen +20, Kontrast +8, Sättigung +5" },
+        { t: "Weißabgleich", s: "Auf neutral achten – Farbstich entfernen" },
+        { t: "Kurven", s: "Sanfte S-Kurve, Schwarzpunkt minimal anheben für weichen Look" },
+        { t: "Details", s: "Struktur +8 (dezent), Schärfe +10" }
+      ]
+    },
+    {
+      id: "r-noir", name: "Schwarzweiß dramatisch (Noir)",
+      mood: "Kontrastreich, körnig, zeitlos",
+      desc: "Kräftiges Schwarzweiß mit tiefem Schwarz und feinem Korn.",
+      tags: ["Schwarzweiß", "Kontrast", "Klassisch"],
+      steps: [
+        { t: "Schwarz-Weiß", s: "Filter wählen (z. B. Kontrast) – Rot/Orange-Regler für Hauttöne testen" },
+        { t: "Optimieren", s: "Kontrast +20, Helligkeit fein justieren" },
+        { t: "Kurven", s: "Kräftige S-Kurve für tiefe Schwarztöne und helle Lichter" },
+        { t: "Details", s: "Struktur +20 für mehr Textur" },
+        { t: "Körnung", s: "Grobkörniger Film: Korn ~30 für analoges Gefühl" }
+      ]
+    },
+    {
+      id: "r-golden", name: "Golden Hour Boost",
+      mood: "Goldenes Abendlicht verstärken – warm & leuchtend",
+      desc: "Betont warmes Licht und weiche Übergänge zur goldenen Stunde.",
+      tags: ["Sonnenuntergang", "Warm", "Landschaft"],
+      steps: [
+        { t: "Weißabgleich", s: "Temperatur deutlich wärmer (+), Farbton minimal Richtung Magenta" },
+        { t: "Optimieren", s: "Ambiente +20, Glanzlichter −15, Tiefen +10, Sättigung +8" },
+        { t: "Selektiv", s: "Auf den Himmel tippen: Helligkeit/Sättigung dort gezielt anheben" },
+        { t: "Glanz", s: "Glamour Glow dezent (~20 %) für weiches Leuchten" }
+      ]
+    },
+    {
+      id: "r-faded", name: "Matter Film-Look (Faded)",
+      mood: "Entsättigt, weich, verblasst – ruhige, moderne Ästhetik",
+      desc: "Reduzierter Kontrast mit gehobenem Schwarzpunkt für einen sanften Filmeindruck.",
+      tags: ["Film", "Matt", "Soft"],
+      steps: [
+        { t: "Optimieren", s: "Kontrast −20, Sättigung −12, Ambiente +10" },
+        { t: "Kurven", s: "Beide Enden nach innen ziehen (matt): Schwarz heller, Weiß etwas dunkler" },
+        { t: "Weißabgleich", s: "Ganz leicht kühl für den modernen Ton" },
+        { t: "Körnung", s: "Feines Korn ~15" }
+      ]
+    },
+    {
+      id: "r-herbst", name: "Herbsttöne (Autumn)",
+      mood: "Warme Rot-, Orange- und Goldtöne betonen",
+      desc: "Verstärkt herbstliche Farben, ohne unnatürlich zu wirken.",
+      tags: ["Herbst", "Natur", "Warm"],
+      steps: [
+        { t: "Weißabgleich", s: "Temperatur wärmer für goldene Stimmung" },
+        { t: "Optimieren", s: "Ambiente +20, Sättigung +5, Kontrast +10" },
+        { t: "Selektiv", s: "Auf grüne Blätter tippen und Sättigung dort leicht senken – lässt Rot/Orange strahlen" },
+        { t: "Details", s: "Struktur +15 für Blattadern & Textur" }
+      ]
+    }
+  ];
+
+  //=========================================================================
+  //  Spickzettel – was bewirkt welches Werkzeug?
+  //=========================================================================
+  const GLOSSARY = [
+    { name: "Helligkeit", what: "Hellt das gesamte Bild auf oder dunkelt es ab.", tip: "Grobe Belichtungskorrektur. Für gezieltere Wirkung lieber Glanzlichter/Tiefen nutzen." },
+    { name: "Kontrast", what: "Vergrößert den Unterschied zwischen hellen und dunklen Bereichen.", tip: "Mehr Kontrast = mehr „Wumms“, aber Details in Lichtern/Schatten können verloren gehen." },
+    { name: "Sättigung", what: "Verstärkt oder reduziert die Intensität ALLER Farben gleichmäßig.", tip: "Sparsam einsetzen – Haut wird schnell orange. Für Feintuning lieber Selektiv." },
+    { name: "Ambiente", what: "Snapseed-Spezialität: hebt lokale Details & Farben an, ähnlich sanftem HDR.", tip: "Der „Geheimtipp“-Regler. Gibt Tiefe, ohne hart zu wirken. +20 bis +30 ist oft ideal." },
+    { name: "Glanzlichter", what: "Steuert nur die hellsten Bildbereiche.", tip: "Runterziehen rettet ausgebrannten Himmel und überstrahlte Stellen." },
+    { name: "Tiefen", what: "Steuert nur die dunkelsten Bildbereiche (Schatten).", tip: "Anheben holt Details aus dunklen Ecken zurück, ohne das ganze Bild aufzuhellen." },
+    { name: "Wärme", what: "Verschiebt die Farbstimmung zwischen kühl (blau) und warm (orange).", tip: "Warm für gemütlich/sonnig, kühl für ruhig/neutral. Teil des Weißabgleichs." },
+    { name: "Struktur", what: "Betont feine Details und Oberflächen (Mikrokontrast).", tip: "Toll für Landschaft/Architektur. Bei Porträts vorsichtig – betont Hautunreinheiten." },
+    { name: "Schärfe", what: "Erhöht die Kantenschärfe.", tip: "Nur in kleinen Dosen. Zu viel erzeugt hässliche Ränder und Rauschen." },
+    { name: "Kurven", what: "Feinste Kontrolle über Helligkeit pro Tonwertbereich und pro Farbkanal.", tip: "S-Kurve = mehr Kontrast. Schwarzpunkt anheben = matter Film-Look. Farbkanäle = Color Grading." },
+    { name: "Weißabgleich", what: "Korrigiert oder gestaltet die Gesamtfarbstimmung (Temperatur + Farbton).", tip: "Erst hier Farbstiche neutralisieren, danach erst kreativ einfärben." },
+    { name: "Selektiv", what: "Setzt Punkte und ändert Helligkeit/Kontrast/Sättigung/Struktur nur lokal.", tip: "Perfekt, um einzelne Bereiche (Himmel, Gesicht, Blätter) getrennt zu behandeln." },
+    { name: "Vignette", what: "Dunkelt (oder hellt) die Bildränder ab.", tip: "Lenkt den Blick zur Mitte. Dezent einsetzen, sonst wirkt es künstlich." },
+    { name: "Tonaler Kontrast", what: "Regelt Kontrast getrennt für Tiefen, Mitteltöne und Lichter.", tip: "Mitteltöne anheben gibt Plastizität, ohne Schatten/Lichter zu zerstören." },
+    { name: "Drama", what: "Stilfilter für kräftige, texturbetonte, oft düstere Wirkung.", tip: "Stärke niedrig halten; Sättigung im Filter separat regeln." },
+    { name: "Glanz (Glamour Glow)", what: "Weiches Leuchten/Bloom über das Bild.", tip: "Dezent für romantische, träumerische Porträts und Golden-Hour-Bilder." },
+    { name: "Körnung", what: "Fügt Filmkorn hinzu (Grobkörniger Film).", tip: "Gibt digitalen Bildern analogen Charakter. 15–30 wirkt meist natürlich." }
+  ];
+
+  //=========================================================================
+  //  Speicher-Helfer (localStorage)
+  //=========================================================================
+  const LS = {
+    get(key, fallback) {
+      try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }
+      catch (e) { return fallback; }
+    },
+    set(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
+  };
+
+  //=========================================================================
+  //  Tab-Wechsel
+  //=========================================================================
+  const navBtns = document.querySelectorAll('nav button');
+  navBtns.forEach(b => b.addEventListener('click', () => {
+    const tab = b.dataset.tab;
+    navBtns.forEach(x => x.classList.toggle('active', x === b));
+    document.querySelectorAll('.tab-panel').forEach(p =>
+      p.classList.toggle('active', p.id === 'tab-' + tab));
+    window.scrollTo({ top: 0 });
+  }));
+
+  //=========================================================================
+  //  REZEPTE rendern
+  //=========================================================================
+  const rezList = document.getElementById('rezList');
+  const searchRez = document.getElementById('searchRez');
+
+  function getUserRecipes() { return LS.get('fw_recipes', []); }
+  function allRecipes() { return [...getUserRecipes(), ...DEFAULT_RECIPES]; }
+
+  function esc(s) { return (s || '').replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+
+  function renderRecipes() {
+    const q = searchRez.value.trim().toLowerCase();
+    const items = allRecipes().filter(r => {
+      if (!q) return true;
+      const hay = (r.name + ' ' + (r.mood||'') + ' ' + (r.tags||[]).join(' ') +
+        ' ' + r.steps.map(s => s.t + ' ' + s.s).join(' ')).toLowerCase();
+      return hay.includes(q);
+    });
+    if (!items.length) { rezList.innerHTML = '<div class="empty">Kein Look gefunden.</div>'; return; }
+    rezList.innerHTML = items.map(r => `
+      <div class="card" data-id="${esc(r.id)}">
+        <div class="card-head">
+          <div class="txt">
+            <h3>${esc(r.name)}${r.custom ? ' <span class="tag">eigenes</span>' : ''}</h3>
+            <p class="mood">${esc(r.mood||'')}</p>
+          </div>
+          <span class="chev">▶</span>
+        </div>
+        <div class="card-body">
+          ${r.desc ? `<p class="desc">${esc(r.desc)}</p>` : ''}
+          <ol class="steps">
+            ${r.steps.map(s => `<li><b>${esc(s.t)}:</b> ${esc(s.s)}</li>`).join('')}
+          </ol>
+          ${(r.tags&&r.tags.length) ? `<div class="tags">${r.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
+          ${r.custom ? `<div class="card-foot"><button class="del" data-del="${esc(r.id)}">Löschen</button></div>` : ''}
+        </div>
+      </div>`).join('');
+
+    rezList.querySelectorAll('.card-head').forEach(h =>
+      h.addEventListener('click', () => h.parentElement.classList.toggle('open')));
+    rezList.querySelectorAll('[data-del]').forEach(b =>
+      b.addEventListener('click', e => {
+        e.stopPropagation();
+        const id = b.dataset.del;
+        LS.set('fw_recipes', getUserRecipes().filter(x => x.id !== id));
+        renderRecipes();
+      }));
+  }
+  searchRez.addEventListener('input', renderRecipes);
+
+  //--- eigenes Rezept anlegen ---
+  const rezDialog = document.getElementById('rezDialog');
+  const rezSteps = document.getElementById('rezSteps');
+  function addStepInput(t='', s='') {
+    const div = document.createElement('div');
+    div.className = 'step-in';
+    div.innerHTML = `<input placeholder="Werkzeug" value="${esc(t)}"><input placeholder="Einstellung" value="${esc(s)}">`;
+    rezSteps.appendChild(div);
+  }
+  document.getElementById('addRezBtn').addEventListener('click', () => {
+    document.getElementById('rezName').value = '';
+    document.getElementById('rezMood').value = '';
+    rezSteps.innerHTML = '';
+    addStepInput(); addStepInput();
+    rezDialog.showModal();
+  });
+  document.getElementById('addStepBtn').addEventListener('click', () => addStepInput());
+  document.getElementById('rezForm').addEventListener('submit', e => {
+    if (e.submitter && e.submitter.value === 'save') {
+      const name = document.getElementById('rezName').value.trim();
+      if (!name) return;
+      const steps = [...rezSteps.querySelectorAll('.step-in')].map(r => {
+        const ins = r.querySelectorAll('input');
+        return { t: ins[0].value.trim(), s: ins[1].value.trim() };
+      }).filter(s => s.t || s.s);
+      const rec = {
+        id: 'u-' + Date.now(), custom: true,
+        name, mood: document.getElementById('rezMood').value.trim(),
+        desc: '', tags: [], steps: steps.length ? steps : [{ t:'Notiz', s:'—' }]
+      };
+      LS.set('fw_recipes', [rec, ...getUserRecipes()]);
+      renderRecipes();
+    }
+  });
+
+  //=========================================================================
+  //  SPICKZETTEL
+  //=========================================================================
+  const spickList = document.getElementById('spickList');
+  const searchSpick = document.getElementById('searchSpick');
+  function renderSpick() {
+    const q = searchSpick.value.trim().toLowerCase();
+    const items = GLOSSARY.filter(g => !q ||
+      (g.name + ' ' + g.what + ' ' + g.tip).toLowerCase().includes(q));
+    if (!items.length) { spickList.innerHTML = '<div class="empty">Nichts gefunden.</div>'; return; }
+    spickList.innerHTML = items.map(g => `
+      <div class="card open">
+        <div class="card-head" style="cursor:default">
+          <div class="txt"><h3>${esc(g.name)}</h3><p class="mood">${esc(g.what)}</p></div>
+        </div>
+        <div class="card-body" style="display:block;padding-top:0">
+          <div class="tipbox">💡 ${esc(g.tip)}</div>
+        </div>
+      </div>`).join('');
+  }
+  searchSpick.addEventListener('input', renderSpick);
+
+  //=========================================================================
+  //  FARB-HELFER
+  //=========================================================================
+  const baseColor = document.getElementById('baseColor');
+  const baseHex = document.getElementById('baseHex');
+  const harmonies = document.getElementById('harmonies');
+  const gradeTip = document.getElementById('gradeTip');
+  const wheel = document.getElementById('wheel');
+  const wctx = wheel.getContext('2d');
+
+  function hexToHsl(hex) {
+    let r = parseInt(hex.slice(1,3),16)/255, g = parseInt(hex.slice(3,5),16)/255, b = parseInt(hex.slice(5,7),16)/255;
+    const max = Math.max(r,g,b), min = Math.min(r,g,b); let h,s,l = (max+min)/2;
+    if (max === min) { h = s = 0; }
+    else {
+      const d = max - min;
+      s = l > 0.5 ? d/(2-max-min) : d/(max+min);
+      switch (max) {
+        case r: h = (g-b)/d + (g<b?6:0); break;
+        case g: h = (b-r)/d + 2; break;
+        default: h = (r-g)/d + 4;
+      }
+      h *= 60;
+    }
+    return { h, s: s*100, l: l*100 };
+  }
+  function hslToHex(h,s,l) {
+    s/=100; l/=100; h=((h%360)+360)%360;
+    const c=(1-Math.abs(2*l-1))*s, x=c*(1-Math.abs((h/60)%2-1)), m=l-c/2;
+    let r,g,b;
+    if (h<60){r=c;g=x;b=0;} else if (h<120){r=x;g=c;b=0;} else if (h<180){r=0;g=c;b=x;}
+    else if (h<240){r=0;g=x;b=c;} else if (h<300){r=x;g=0;b=c;} else {r=c;g=0;b=x;}
+    const to=v=>Math.round((v+m)*255).toString(16).padStart(2,'0');
+    return '#'+to(r)+to(g)+to(b);
+  }
+
+  function drawWheel(baseH) {
+    const size = wheel.width, cx = size/2, cy = size/2, R = size/2 - 8, inner = R*0.45;
+    wctx.clearRect(0,0,size,size);
+    for (let a=0; a<360; a++) {
+      const start = (a-90-0.6)*Math.PI/180, end = (a-90+0.6)*Math.PI/180;
+      wctx.beginPath();
+      wctx.arc(cx,cy,R,start,end); wctx.arc(cx,cy,inner,end,start,true);
+      wctx.closePath();
+      wctx.fillStyle = `hsl(${a},85%,55%)`; wctx.fill();
+    }
+    // Marker zeichnen
+    const marks = [
+      { h: baseH, label: 'Basis', big: true },
+      { h: baseH+180, label: 'Komplement' }
+    ];
+    marks.forEach(mk => {
+      const ang = (mk.h-90)*Math.PI/180, r = (R+inner)/2;
+      const x = cx + Math.cos(ang)*r, y = cy + Math.sin(ang)*r;
+      wctx.beginPath(); wctx.arc(x,y, mk.big?26:20, 0, 2*Math.PI);
+      wctx.fillStyle = hslToHex(mk.h, 85, 55);
+      wctx.fill();
+      wctx.lineWidth = 6; wctx.strokeStyle = '#fff'; wctx.stroke();
+    });
+    // Verbindungslinie
+    const a1 = (baseH-90)*Math.PI/180, a2 = (baseH+180-90)*Math.PI/180, r=(R+inner)/2;
+    wctx.beginPath();
+    wctx.moveTo(cx+Math.cos(a1)*r, cy+Math.sin(a1)*r);
+    wctx.lineTo(cx+Math.cos(a2)*r, cy+Math.sin(a2)*r);
+    wctx.strokeStyle = 'rgba(255,255,255,.35)'; wctx.lineWidth = 3; wctx.stroke();
+  }
+
+  function swGroup(title, sub, colors) {
+    return `<div class="harmony"><h4>${title}<span class="sub">${sub}</span></h4>
+      <div class="swatches">${colors.map(c=>`
+        <div class="sw"><div class="chip" style="background:${c}"></div><div class="hex">${c.toUpperCase()}</div></div>`).join('')}</div></div>`;
+  }
+
+  function updateColor() {
+    const hex = baseColor.value;
+    baseHex.textContent = hex.toUpperCase();
+    const { h, s, l } = hexToHsl(hex);
+    drawWheel(h);
+    const comp = hslToHex(h+180, s, l);
+    const html =
+      swGroup('Basis + Komplementär', 'kräftiger Kontrast', [hex, comp]) +
+      swGroup('Split-Komplementär', 'harmonischer als reines Komplement', [hex, hslToHex(h+150,s,l), hslToHex(h+210,s,l)]) +
+      swGroup('Analog', 'ruhig, natürlich – Töne nebeneinander', [hslToHex(h-30,s,l), hex, hslToHex(h+30,s,l)]) +
+      swGroup('Triadisch', 'lebendig & ausgewogen', [hex, hslToHex(h+120,s,l), hslToHex(h+240,s,l)]);
+    harmonies.innerHTML = html;
+    gradeTip.innerHTML = `Für ein stimmiges Grading: Behalte <b>${hex.toUpperCase()}</b> in deinem Hauptmotiv/den Lichtern und schiebe die Schatten sanft Richtung <b>${comp.toUpperCase()}</b> (Komplementärfarbe). In Snapseed geht das über <b>Kurven</b> (einzelne Farbkanäle) oder <b>Weißabgleich</b> + <b>Selektiv</b>.`;
+  }
+  baseColor.addEventListener('input', updateColor);
+
+  //=========================================================================
+  //  MEINE TIPPS
+  //=========================================================================
+  const noteList = document.getElementById('noteList');
+  const searchNote = document.getElementById('searchNote');
+  function getNotes() { return LS.get('fw_notes', []); }
+  function renderNotes() {
+    const q = searchNote.value.trim().toLowerCase();
+    const items = getNotes().filter(n => !q ||
+      (n.text + ' ' + (n.tags||[]).join(' ')).toLowerCase().includes(q));
+    if (!items.length) {
+      noteList.innerHTML = '<div class="empty">Noch keine Tipps gespeichert.<br>Sieh einen guten Tipp bei Facebook &amp; Co.? Tipp ihn oben schnell ein. 📌</div>';
+      return;
+    }
+    noteList.innerHTML = items.map(n => `
+      <div class="note">
+        <p>${esc(n.text)}</p>
+        <div class="tags" style="margin:0 0 8px">${(n.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
+        <div class="meta">
+          <span class="when">${esc(n.when||'')}</span>
+          <button class="del" data-del="${n.id}">Löschen</button>
+        </div>
+      </div>`).join('');
+    noteList.querySelectorAll('[data-del]').forEach(b =>
+      b.addEventListener('click', () => {
+        LS.set('fw_notes', getNotes().filter(x => x.id != b.dataset.del));
+        renderNotes();
+      }));
+  }
+  document.getElementById('addNoteBtn').addEventListener('click', () => {
+    const text = document.getElementById('noteText').value.trim();
+    if (!text) return;
+    const tags = document.getElementById('noteTags').value.split(',')
+      .map(t => t.trim()).filter(Boolean);
+    const note = {
+      id: Date.now(), text, tags,
+      when: new Date().toLocaleDateString('de-DE', { day:'2-digit', month:'short', year:'numeric' })
+    };
+    LS.set('fw_notes', [note, ...getNotes()]);
+    document.getElementById('noteText').value = '';
+    document.getElementById('noteTags').value = '';
+    renderNotes();
+  });
+  searchNote.addEventListener('input', renderNotes);
+
+  //=========================================================================
+  //  Start
+  //=========================================================================
+  renderRecipes();
+  renderSpick();
+  renderNotes();
+  updateColor();
+
+  // Service Worker für Offline-Nutzung (scheitert still, wo nicht erlaubt)
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js').catch(() => {});
+    });
+  }
+  </script>
+</body>
+</html>

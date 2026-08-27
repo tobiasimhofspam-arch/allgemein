@@ -1,0 +1,5 @@
+# Node / Test-Werkzeuge (nur lokal, gehoeren nicht in die App)
+node_modules/
+package.json
+package-lock.json
+scripts/shot-*.png
