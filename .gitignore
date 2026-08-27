@@ -3,3 +3,5 @@ node_modules/
 package.json
 package-lock.json
 scripts/shot-*.png
+scripts/smoke.mjs
+scripts/diag.mjs
