@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Foto-Werkstatt</title>
-  <meta name="description" content="Dein Snapseed-Begleiter: Bild-Berater, Kurven-Rezepte, Farb-Helfer, Wissen und eigene Rezepte." />
+  <meta name="description" content="Bildbearbeitung verstehen: Bild-Berater, Kurven-Rezepte, Farb-Helfer und Wissen – für jedes Bearbeitungsprogramm." />
   <meta name="theme-color" content="#1c1c1e" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
@@ -221,6 +221,15 @@
       border-radius: 9px; padding: 7px 10px; }
     .gegen .g b { font-weight: 700; }
     .effect { display: block; font-size: 12.5px; margin-top: 4px; color: var(--accent-2); }
+    .witem { display: flex; gap: 8px; align-items: flex-start; }
+    .witem .wtxt { flex: 1; min-width: 0; }
+    .xdel { background: none; border: none; color: var(--muted); cursor: pointer;
+      font-size: 15px; line-height: 1; padding: 2px 4px; border-radius: 6px; flex: none; }
+    .xdel:hover, .xdel:active { color: #ff8080; }
+    .grpdel { margin-top: 10px; background: none; border: 1px solid var(--line); color: #ff8080;
+      border-radius: 10px; padding: 6px 12px; font-size: 12.5px; cursor: pointer; }
+    .own { font-size: 10.5px; color: var(--green); background: rgba(123,216,143,.14);
+      border-radius: 5px; padding: 1px 6px; margin-left: 6px; font-weight: 700; }
     .seg { display: flex; gap: 6px; background: var(--bg-card); border: 1px solid var(--line);
       border-radius: 12px; padding: 4px; margin-bottom: 14px; }
     .segbtn { flex: 1; background: none; border: none; color: var(--muted); cursor: pointer;
@@ -283,7 +292,7 @@
 <body>
   <header>
     <h1><span class="dot"></span> Foto-Werkstatt</h1>
-    <p>Dein Snapseed-Begleiter für Looks, Farben &amp; Wissen</p>
+    <p>Bildbearbeitung verstehen – Looks, Farben &amp; Wissen</p>
   </header>
 
   <main>
@@ -343,7 +352,7 @@
       <p class="info">Dieselben zwei Farben ergeben je nach Grading eine ganz andere Geschichte.
       Tippe eine Richtung an – und übernimm sie mit einem Tipp aufs Rad, wenn sie dir gefällt.</p>
       <div id="richtungen"></div>
-      <h5 class="sec key" id="umsetzTitle">So setzt du die Palette in Snapseed um</h5>
+      <h5 class="sec key" id="umsetzTitle">So setzt du die Palette um</h5>
       <div id="gegenBox"></div>
       <div id="zoneBox"></div>
       <div id="recipeOut"></div>
@@ -351,24 +360,22 @@
 
     <section id="tab-spick" class="tab-panel">
       <p class="lead">Dein Spickzettel: <b>was</b> jedes Werkzeug macht und <b>wann</b> du es einsetzt. Tippe eine Gruppe an zum Aufklappen.</p>
+      <div class="hintbox">Die <b>Werkzeugnamen</b> unterscheiden sich je nach Programm.
+      Ambiente heißt anderswo Dunst oder Klarheit, Feinabstimmung heißt Grundeinstellungen oder Licht,
+      Selektiv heißt Maske oder Korrekturpinsel. Das Prinzip dahinter ist überall gleich.</div>
+      <div class="row" style="margin-bottom:14px">
+        <button class="btn" id="addWisBtn">+ Eigener Eintrag</button>
+      </div>
       <input class="search" id="searchSpick" placeholder="Suchen … (z. B. Kurven, Struktur, Split)" />
       <div id="spickList"></div>
+      <h5 class="sec">Vorlagen verwalten</h5>
+      <p class="info" id="vorlagenInfo"></p>
+      <div class="row" style="margin-bottom:24px">
+        <button class="btn ghost small" id="hideAllBtn">Alle Vorlagen ausblenden</button>
+        <button class="btn ghost small" id="restoreBtn">Vorlagen wiederherstellen</button>
+      </div>
     </section>
 
-    <section id="tab-tipps" class="tab-panel">
-      <p class="lead">Hier sammelst du Eigenes: ein <b>komplettes Rezept</b> mit Überschrift und Schritten – oder schnell einen Tipp, den du irgendwo gesehen hast.</p>
-      <div class="row" style="margin-bottom:16px">
-        <button class="btn" id="addRezBtn2">+ Bild-Rezept</button>
-        <button class="btn ghost" id="addVidBtn">+ Video-Rezept</button>
-      </div>
-      <div class="note-form">
-        <textarea id="noteText" placeholder="Kurzer Tipp … (z. B. 'Für Herbstlaub Sättigung leicht runter, Wärme +5')"></textarea>
-        <input class="tagin" id="noteTags" placeholder="Stichworte, mit Komma getrennt (z. B. Herbst, Porträt)" />
-        <button class="btn ghost" id="addNoteBtn">Tipp speichern</button>
-      </div>
-      <input class="search" id="searchNote" placeholder="In meinen Tipps suchen …" style="margin-top:16px" />
-      <div id="noteList"></div>
-    </section>
   </main>
 
   <nav>
@@ -376,8 +383,25 @@
     <button data-tab="rezepte"><span class="ic">🧪</span>Rezepte</button>
     <button data-tab="farbe"><span class="ic">🎨</span>Farben</button>
     <button data-tab="spick"><span class="ic">📖</span>Wissen</button>
-    <button data-tab="tipps"><span class="ic">📌</span>Eigenes</button>
   </nav>
+
+  <dialog id="wisDialog">
+    <form method="dialog" class="sheet" id="wisForm">
+      <h3>Eigener Wissens-Eintrag</h3>
+      <p class="hint">Dein eigenes Wissen – erscheint in der gewählten Gruppe.</p>
+      <label class="fl" for="wisGroup">Gruppe</label>
+      <input id="wisGroup" list="wisGroups" placeholder="z. B. Kurven oder Meine Notizen" required />
+      <datalist id="wisGroups"></datalist>
+      <label class="fl" for="wisTitle">Titel (optional)</label>
+      <input id="wisTitle" placeholder="z. B. Struktur bei Porträts" />
+      <label class="fl" for="wisText">Text</label>
+      <textarea id="wisText" placeholder="Was du dir merken willst …" required></textarea>
+      <div class="sheet-foot">
+        <button type="button" id="cancelWis" class="btn ghost">Abbrechen</button>
+        <button value="save" class="btn" id="saveWis">Speichern</button>
+      </div>
+    </form>
+  </dialog>
 
   <dialog id="rezDialog">
     <form method="dialog" class="sheet" id="rezForm">
@@ -1321,7 +1345,7 @@
     </svg><p class="zonecap">${cap || 'Wo du die Kurve anfasst, entscheidet, welcher Bildbereich sich ändert.'}</p>`;
   }
 
-  // Kurven-Schritte nach Kanal gruppieren – so arbeitet man in Snapseed wirklich
+  // Kurven-Schritte nach Kanal gruppieren – so arbeitet man tatsaechlich
   const CH_LABEL = { 'RGB': 'RGB – Licht &amp; Kontrast', 'Rot': 'Rot-Kanal',
                      'Grün': 'Grün-Kanal', 'Blau': 'Blau-Kanal' };
   const CH_CLASS = { 'RGB': 'rgb', 'Rot': 'rot', 'Grün': 'gruen', 'Blau': 'blau' };
@@ -1418,11 +1442,27 @@
   //=========================================================================
   const rezList = document.getElementById('rezList');
   const searchRez = document.getElementById('searchRez');
+  function getHidden() {
+    const h = LS.get('fw_hidden', {});
+    return { rez: h.rez || [], vid: h.vid || [], wg: h.wg || [], wi: h.wi || [] };
+  }
+  function hide(kind, key) {
+    const h = getHidden(); if (!h[kind].includes(key)) h[kind].push(key);
+    LS.set('fw_hidden', h);
+  }
+  const wiKey = (grp, it) => plain(grp) + '||' + plain(it.t || it.d).slice(0, 30);
+  function allGroupNames() {
+    const names = WISSEN.map(g => plain(g.group));
+    getWisOwn().forEach(w => { if (!names.includes(w.group)) names.push(w.group); });
+    return names;
+  }
   let REZ_KIND = 'bild';
   function getUserRecipes() { return LS.get('fw_recipes', []); }
   function allRecipes() {
+    const h = getHidden(), k = REZ_KIND === 'video' ? 'vid' : 'rez';
     const own = getUserRecipes().filter(r => (r.kind || 'bild') === REZ_KIND);
-    return [...own, ...(REZ_KIND === 'video' ? DEFAULT_VIDEO : DEFAULT_RECIPES)];
+    const def = (REZ_KIND === 'video' ? DEFAULT_VIDEO : DEFAULT_RECIPES).filter(r => !h[k].includes(r.id));
+    return [...own, ...def];
   }
   function renderRecipes() {
     const q = searchRez.value.trim().toLowerCase();
@@ -1431,7 +1471,7 @@
       return plain(r.name + ' ' + (r.mood||'') + ' ' + (r.tags||[]).join(' ') + ' ' +
         r.steps.map(s => s.t + ' ' + s.s + ' ' + (s.w||'')).join(' ')).toLowerCase().includes(q);
     });
-    if (!items.length) { rezList.innerHTML = `<div class="empty">${REZ_KIND === 'video' ? 'Kein Video-Rezept gefunden.' : 'Kein Look gefunden.'}</div>`; return; }
+    if (!items.length) { rezList.innerHTML = `<div class="empty">${searchRez.value.trim() ? 'Nichts gefunden.' : 'Noch nichts hier. Leg mit dem Knopf oben dein erstes eigenes Rezept an.'}</div>`; return; }
     rezList.innerHTML = items.map(r => `
       <div class="card" data-id="${esc(r.id)}">
         <div class="card-head">
@@ -1447,7 +1487,7 @@
           ${stepList(r.steps)}
           ${r.merke ? `<div class="merke"><b>Merke:</b> ${rich(r.merke)}</div>` : ''}
           ${(r.tags && r.tags.length) ? `<div class="tags">${r.tags.map(t => `<span class="tag">${rich(t)}</span>`).join('')}</div>` : ''}
-          ${r.custom ? `<div class="card-foot"><button class="del" data-del="${esc(r.id)}">Löschen</button></div>` : ''}
+          <div class="card-foot"><button class="del" data-del="${esc(r.id)}">Löschen</button></div>
         </div>
       </div>`).join('');
     rezList.querySelectorAll('.card-head').forEach(h =>
@@ -1455,8 +1495,13 @@
     rezList.querySelectorAll('[data-del]').forEach(b =>
       b.addEventListener('click', e => {
         e.stopPropagation();
-        LS.set('fw_recipes', getUserRecipes().filter(x => x.id !== b.dataset.del));
-        renderRecipes();
+        const id = b.dataset.del;
+        const eigen = id.startsWith('u-');
+        if (!confirm(eigen ? 'Dieses eigene Rezept endgültig löschen?'
+          : 'Diese Vorlage ausblenden? Du kannst sie unter Wissen → Vorlagen verwalten wiederherstellen.')) return;
+        if (eigen) LS.set('fw_recipes', getUserRecipes().filter(x => x.id !== id));
+        else hide(REZ_KIND === 'video' ? 'vid' : 'rez', id);
+        renderRecipes(); updateVorlagenInfo();
       }));
   }
   searchRez.addEventListener('input', renderRecipes);
@@ -1500,8 +1545,6 @@
     rezDialog.showModal();
   }
   document.getElementById('addRezBtn').addEventListener('click', () => openRezDialog());
-  document.getElementById('addRezBtn2').addEventListener('click', () => openRezDialog('bild'));
-  document.getElementById('addVidBtn').addEventListener('click', () => openRezDialog('video'));
   document.getElementById('cancelRez').addEventListener('click', () => rezDialog.close('cancel'));
   document.getElementById('addStepBtn').addEventListener('click', addStepInput);
   document.getElementById('rezForm').addEventListener('submit', e => {
@@ -1535,28 +1578,75 @@
   //=========================================================================
   const spickList = document.getElementById('spickList');
   const searchSpick = document.getElementById('searchSpick');
+  function buildGroups() {
+    const h = getHidden(), own = getWisOwn(), out = [];
+    WISSEN.forEach(g => {
+      const name = plain(g.group);
+      if (h.wg.includes(name)) return;
+      const items = g.items
+        .filter(it => !h.wi.includes(wiKey(g.group, it)))
+        .map(it => ({ ...it, key: wiKey(g.group, it), eigen: false }));
+      const mine = own.filter(w => w.group === name)
+        .map(w => ({ t: w.t, d: w.d, key: w.id, eigen: true }));
+      if (items.length + mine.length) out.push({ group: g.group, em: g.em, items: [...items, ...mine] });
+    });
+    // Eigene Gruppen, die es in den Vorlagen nicht gibt
+    const known = WISSEN.map(g => plain(g.group));
+    const extra = [...new Set(own.map(w => w.group).filter(n => !known.includes(n)))];
+    extra.forEach(name => out.push({
+      group: name, em: '✍️',
+      items: own.filter(w => w.group === name).map(w => ({ t: w.t, d: w.d, key: w.id, eigen: true }))
+    }));
+    return out;
+  }
+
   function renderSpick() {
     const q = searchSpick.value.trim().toLowerCase();
     let html = '';
-    WISSEN.forEach((g, gi) => {
+    buildGroups().forEach(g => {
       const items = q
-        ? g.items.filter(it => plain((it.t||'') + ' ' + it.d + ' ' + g.group).toLowerCase().includes(q))
+        ? g.items.filter(it => plain((it.t || '') + ' ' + it.d + ' ' + g.group).toLowerCase().includes(q))
         : g.items;
       if (!items.length) return;
-      const open = !!q;
-      html += `<div class="card ${open ? 'open' : ''}">
+      html += `<div class="card ${q ? 'open' : ''}" data-grp="${esc(plain(g.group))}">
           <div class="card-head">
             <span style="font-size:20px">${g.em}</span>
             <div class="txt"><h3>${rich(g.group)}</h3></div>
             <span class="cnt">${items.length}</span><span class="chev">▶</span>
           </div>
-          <div class="card-body" style="padding-top:0">${items.map(it =>
-            `<div class="witem">${it.t ? `<b>${rich(it.t)}:</b> ` : ''}${rich(it.d)}</div>`).join('')}</div>
+          <div class="card-body" style="padding-top:0">
+            ${items.map(it => `<div class="witem">
+              <div class="wtxt">${it.t ? `<b>${rich(it.t)}:</b> ` : ''}${it.eigen ? esc(it.d) : rich(it.d)}${it.eigen ? '<span class="own">eigen</span>' : ''}</div>
+              <button class="xdel" data-wi="${esc(it.key)}" data-eigen="${it.eigen ? 1 : 0}" title="Eintrag löschen">✕</button>
+            </div>`).join('')}
+            <button class="grpdel" data-wg="${esc(plain(g.group))}">Ganze Gruppe löschen</button>
+          </div>
         </div>`;
     });
-    spickList.innerHTML = html || '<div class="empty">Nichts gefunden.</div>';
+    spickList.innerHTML = html || `<div class="empty">${q ? 'Nichts gefunden.' : 'Kein Wissen hinterlegt. Leg mit dem Knopf oben deinen ersten eigenen Eintrag an.'}</div>`;
+
     spickList.querySelectorAll('.card-head').forEach(h =>
       h.addEventListener('click', () => h.parentElement.classList.toggle('open')));
+    spickList.querySelectorAll('[data-wi]').forEach(btn =>
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const eigen = btn.dataset.eigen === '1';
+        if (!confirm(eigen ? 'Diesen eigenen Eintrag endgültig löschen?'
+          : 'Diesen Vorlagen-Eintrag ausblenden? Wiederherstellbar über Vorlagen verwalten.')) return;
+        if (eigen) LS.set('fw_wissen', getWisOwn().filter(w => w.id !== btn.dataset.wi));
+        else hide('wi', btn.dataset.wi);
+        renderSpick();
+      }));
+    spickList.querySelectorAll('[data-wg]').forEach(btn =>
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const name = btn.dataset.wg;
+        if (!confirm(`Die Gruppe "${name}" komplett löschen? Eigene Einträge darin werden entfernt, Vorlagen nur ausgeblendet.`)) return;
+        LS.set('fw_wissen', getWisOwn().filter(w => w.group !== name));
+        if (WISSEN.some(g => plain(g.group) === name)) hide('wg', name);
+        renderSpick();
+      }));
+    updateVorlagenInfo();
   }
   searchSpick.addEventListener('input', renderSpick);
   //=========================================================================
@@ -1772,8 +1862,8 @@
       <br><br><b>Und was bringt dir das?</b> Die Presets, die du auf Social Media siehst, sind zum
       größten Teil genau diese eine Entscheidung – plus etwas Kontrast und Korn. Ein Preset kann dein
       Foto nicht kennen; es färbt einfach Schatten und Lichter ein. Wenn du also bei einem Bild
-      erkennst, dass die Schatten blau und die Lichter orange sind, kannst du das in Snapseed in zwei
-      Minuten selbst nachbauen – ohne Kauf und ohne Zusatz-App.`;
+      erkennst, dass die Schatten blau und die Lichter orange sind, kannst du das in deinem
+      Bearbeitungsprogramm in zwei Minuten selbst nachbauen – ohne Kauf und ohne Zusatz-App.`;
 
     const iHi = hueInfo(HI.h), iSh = hueInfo(SH.h);
     el('meanings').innerHTML = `
@@ -1791,7 +1881,7 @@
       </div>`;
 
     renderDirections();
-    el('umsetzTitle').textContent = `So setzt du ${shN} → ${hiN} in Snapseed um`;
+    el('umsetzTitle').textContent = `So setzt du ${shN} → ${hiN} um`;
     const shChs = channelMoves(SH.h), hiChs = channelMoves(HI.h);
     const haupt = shChs.find(a => hiChs.some(b2 => b2.ch === a.ch && b2.dir !== a.dir));
     const hauptSatz = haupt
@@ -1842,52 +1932,78 @@
     b.addEventListener('click', () => { QUICKS[+b.dataset.q].f(); renderColor(); }));
 
   //=========================================================================
-  //  MEINE TIPPS
+  //  EIGENES WISSEN + VORLAGEN-VERWALTUNG
   //=========================================================================
-  const noteList = document.getElementById('noteList');
-  const searchNote = document.getElementById('searchNote');
-  function getNotes() { return LS.get('fw_notes', []); }
-  function renderNotes() {
-    const q = searchNote.value.trim().toLowerCase();
-    const items = getNotes().filter(n => !q ||
-      (n.text + ' ' + (n.tags||[]).join(' ')).toLowerCase().includes(q));
-    if (!items.length) {
-      noteList.innerHTML = '<div class="empty">Noch keine Tipps gespeichert. 📌</div>'; return;
-    }
-    noteList.innerHTML = items.map(n => `
-      <div class="note">
-        <p>${esc(n.text)}</p>
-        <div class="tags" style="margin:0 0 8px">${(n.tags||[]).map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>
-        <div class="meta"><span class="when">${esc(n.when||'')}</span>
-        <button class="del" data-del="${n.id}">Löschen</button></div>
-      </div>`).join('');
-    noteList.querySelectorAll('[data-del]').forEach(b =>
-      b.addEventListener('click', () => {
-        LS.set('fw_notes', getNotes().filter(x => x.id != b.dataset.del));
-        renderNotes();
-      }));
-  }
-  document.getElementById('addNoteBtn').addEventListener('click', () => {
-    const text = document.getElementById('noteText').value.trim();
-    if (!text) return;
-    LS.set('fw_notes', [{
-      id: Date.now(), text,
-      tags: document.getElementById('noteTags').value.split(',').map(t => t.trim()).filter(Boolean),
-      when: new Date().toLocaleDateString('de-DE', { day:'2-digit', month:'short', year:'numeric' })
-    }, ...getNotes()]);
-    document.getElementById('noteText').value = '';
-    document.getElementById('noteTags').value = '';
-    renderNotes();
+  function getWisOwn() { return LS.get('fw_wissen', []); }
+
+  const wisDialog = document.getElementById('wisDialog');
+  document.getElementById('addWisBtn').addEventListener('click', () => {
+    document.getElementById('wisGroup').value = '';
+    document.getElementById('wisTitle').value = '';
+    document.getElementById('wisText').value = '';
+    document.getElementById('wisGroups').innerHTML =
+      allGroupNames().map(g => `<option value="${esc(g)}"></option>`).join('');
+    wisDialog.showModal();
   });
-  searchNote.addEventListener('input', renderNotes);
+  document.getElementById('cancelWis').addEventListener('click', () => wisDialog.close('cancel'));
+  document.getElementById('wisForm').addEventListener('submit', e => {
+    if (e.submitter && e.submitter.value === 'save') {
+      const g = document.getElementById('wisGroup').value.trim();
+      const d = document.getElementById('wisText').value.trim();
+      if (!g || !d) return;
+      LS.set('fw_wissen', [...getWisOwn(), {
+        id: 'w-' + Date.now(), group: g,
+        t: document.getElementById('wisTitle').value.trim(), d
+      }]);
+      searchSpick.value = '';
+      renderSpick();
+    }
+  });
+
+  function updateVorlagenInfo() {
+    const h = getHidden();
+    const weg = h.rez.length + h.vid.length + h.wg.length + h.wi.length;
+    const eigen = getUserRecipes().length + getWisOwn().length;
+    el('vorlagenInfo').textContent = weg === 0
+      ? `Alle Vorlagen sind sichtbar. Du hast ${eigen} eigene Einträge.`
+      : `${weg} Vorlagen ausgeblendet · ${eigen} eigene Einträge. Ausgeblendetes lässt sich jederzeit wiederherstellen.`;
+  }
+  document.getElementById('hideAllBtn').addEventListener('click', () => {
+    if (!confirm('Alle mitgelieferten Vorlagen ausblenden? Deine eigenen Einträge bleiben erhalten, und du kannst die Vorlagen jederzeit wiederherstellen.')) return;
+    LS.set('fw_hidden', {
+      rez: DEFAULT_RECIPES.map(r => r.id),
+      vid: DEFAULT_VIDEO.map(r => r.id),
+      wg: WISSEN.map(g => plain(g.group)),
+      wi: []
+    });
+    renderRecipes(); renderSpick();
+  });
+  document.getElementById('restoreBtn').addEventListener('click', () => {
+    if (!confirm('Alle ausgeblendeten Vorlagen wieder anzeigen?')) return;
+    LS.set('fw_hidden', { rez: [], vid: [], wg: [], wi: [] });
+    renderRecipes(); renderSpick();
+  });
 
   //=========================================================================
   //  Start
   //=========================================================================
+  // Frühere Schnellnotizen einmalig in das eigene Wissen uebernehmen
+  (function migrateNotes() {
+    if (LS.get('fw_notes_migrated', false)) return;
+    const alt = LS.get('fw_notes', []);
+    if (alt.length) {
+      LS.set('fw_wissen', [...LS.get('fw_wissen', []), ...alt.map(n => ({
+        id: 'w-' + n.id, group: 'Meine Notizen',
+        t: (n.tags && n.tags.length) ? n.tags.join(', ') : '', d: n.text
+      }))]);
+    }
+    LS.set('fw_notes_migrated', true);
+  })();
+
   renderMotifs();
   renderRecipes();
   renderSpick();
-  renderNotes();
+  updateVorlagenInfo();
   renderColor();
 
   if ('serviceWorker' in navigator) {

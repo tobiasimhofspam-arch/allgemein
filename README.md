@@ -4,10 +4,10 @@ Code auf dem Tablet.
 
 ## 📷 Foto-Werkstatt (PWA)
 
-Ein kleiner Snapseed-Begleiter fürs Tablet – installierbar als App (PWA),
+Ein Lern- und Nachschlagewerkzeug für Bildbearbeitung fürs Tablet – installierbar als App (PWA),
 funktioniert offline, speichert deine Daten lokal auf dem Gerät.
 
-**Fünf Bereiche:**
+**Vier Bereiche:**
 - 📷 **Bild-Berater** – Motiv antippen (Wald/Grün &amp; Braun, Meer, Regennacht,
   Sonnenuntergang, Porträt, Berge, Stadt, Blumen, Food, Schnee) → kompletter
   Ablauf in vier Phasen (Basis → Kurven → lokal → Finish) plus Color Grading
@@ -19,11 +19,18 @@ funktioniert offline, speichert deine Daten lokal auf dem Gerät.
 - 🎨 **Farb-Helfer** – Farbrad mit zwei ziehbaren Punkten (Lichter/Schatten),
   darunter Feinsteuerung über Farbwähler und Sättigungs-/Helligkeitsregler.
   Zeigt die Beziehung der Töne, was jede Farbe ausdrückt, die Palette und die
-  konkrete Snapseed-Umsetzung – dazu sechs **Richtungen** (saftig, märchenhaft,
+  konkrete Umsetzung – dazu sechs **Richtungen** (saftig, märchenhaft,
   mystisch, nostalgisch, Kino, modern), die man aufs Rad übernehmen kann.
-- 📖 **Wissen** – der komplette Spickzettel in 16 Gruppen, durchsuchbar.
-- 📌 **Eigenes** – eigene Rezepte (Überschrift, Schritte, Merksatz, Stichworte)
-  und schnelle Notizen. Wird lokal auf dem Gerät gespeichert.
+- 📖 **Wissen** – Spickzettel in 16 Gruppen, durchsuchbar; eigene Einträge und
+  Gruppen lassen sich ergänzen.
+
+**Alles ist löschbar.** Jedes mitgelieferte Rezept und jeder Wissens-Eintrag lässt
+sich ausblenden, damit man die App komplett mit eigenem Wissen füllen kann.
+Unter *Wissen → Vorlagen verwalten* geht das auch auf einen Schlag – und ist
+jederzeit wiederherstellbar. Eigene Inhalte werden lokal auf dem Gerät gespeichert.
+
+Die Werkzeugnamen orientieren sich an gängigen Foto-Apps; das Prinzip dahinter
+gilt in jedem Bearbeitungsprogramm.
 
 ### Auf dem Tablet als App installieren
 
