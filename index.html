@@ -230,6 +230,13 @@
       border-radius: 10px; padding: 6px 12px; font-size: 12.5px; cursor: pointer; }
     .own { font-size: 10.5px; color: var(--green); background: rgba(123,216,143,.14);
       border-radius: 5px; padding: 1px 6px; margin-left: 6px; font-weight: 700; }
+    #installBar { display: flex; align-items: center; gap: 12px;
+      background: var(--bg-card); border-bottom: 1px solid var(--line);
+      padding: 12px 16px; }
+    #installBar[hidden] { display: none; }
+    #installBar .ib-txt { flex: 1; min-width: 0; font-size: 13px; }
+    #installBar .ib-txt b { display: block; color: var(--accent-2); }
+    #installBar .ib-txt span { color: var(--muted); font-size: 12px; }
     .seg { display: flex; gap: 6px; background: var(--bg-card); border: 1px solid var(--line);
       border-radius: 12px; padding: 4px; margin-bottom: 14px; }
     .segbtn { flex: 1; background: none; border: none; color: var(--muted); cursor: pointer;
@@ -294,6 +301,12 @@
     <h1><span class="dot"></span> ColorGrade</h1>
     <p>Bildbearbeitung verstehen – Looks, Farben &amp; Wissen</p>
   </header>
+
+  <div id="installBar" hidden>
+    <div class="ib-txt"><b>ColorGrade als App installieren</b><span>Eigenes Icon, Vollbild ohne Adressleiste, offline nutzbar.</span></div>
+    <button class="btn small" id="installBtn">Installieren</button>
+    <button class="xdel" id="installClose" title="Ausblenden">✕</button>
+  </div>
 
   <main>
     <section id="tab-berater" class="tab-panel active">
@@ -2005,6 +2018,27 @@
   renderSpick();
   updateVorlagenInfo();
   renderColor();
+
+  // Installations-Angebot von Chrome/Edge/Samsung Internet abfangen
+  let deferredPrompt = null;
+  const installBar = document.getElementById('installBar');
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (!LS.get('fw_install_dismissed', false)) installBar.hidden = false;
+  });
+  document.getElementById('installBtn').addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBar.hidden = true;
+  });
+  document.getElementById('installClose').addEventListener('click', () => {
+    installBar.hidden = true;
+    LS.set('fw_install_dismissed', true);
+  });
+  window.addEventListener('appinstalled', () => { installBar.hidden = true; });
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
