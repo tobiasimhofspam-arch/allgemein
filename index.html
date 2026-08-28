@@ -528,7 +528,7 @@
           w: "Kühle, nächtliche Tiefen – der klassische Nachtblau-Ton." },
         { t: "Kurven · Rot · Lichter ↑", s: "Rechtes Ende des Rot-Kanals leicht hoch",
           w: "Neon und Laternen bleiben warm/magenta. Zusammen mit Schritt 5 ergibt das den Cyan/Magenta-Split." },
-        { t: "Tonaler Kontrast", s: "Mitteltöne +20, Lichter niedrig halten",
+        { t: "Farbkontrast (Tonaler Kontrast)", s: "Mitteltöne +20, Lichter niedrig halten",
           w: "Betont die Textur der nassen Oberfläche – Regen wird sichtbar." },
         { t: "Details", s: "Struktur nur +8, Schärfe +10",
           w: "Bei hohen ISO-Werten verstärkt Struktur sonst das Rauschen." }
@@ -551,7 +551,7 @@
           w: "Schützt die Hauttöne. Ohne diesen Punkt kippt das ganze Gesicht mit." },
         { t: "Kurven · Rot · Lichter ↑ (optional)", s: "Rechtes Ende des Rot-Kanals minimal hoch",
           w: "Verstärkt den warmen Hautton, wenn das Orange noch zu blass wirkt." },
-        { t: "Tonaler Kontrast", s: "Mitteltöne +15",
+        { t: "Farbkontrast (Tonaler Kontrast)", s: "Mitteltöne +15",
           w: "Plastizität – das Gesicht bekommt Volumen." }
       ]
     },
@@ -631,7 +631,7 @@
           w: "Matter, moderner Look – die Tiefen laufen nicht zu Schwarz zu." },
         { t: "Kurven · Blau · ganze Kurve leicht ↑", s: "Beide Enden minimal anheben",
           w: "Ein durchgehend kühler Grundton, wie ihn Street-Presets nutzen." },
-        { t: "Tonaler Kontrast", s: "Mitteltöne +20",
+        { t: "Farbkontrast (Tonaler Kontrast)", s: "Mitteltöne +20",
           w: "Beton, Metall und Kanten – hier entsteht der urbane Biss." },
         { t: "Details", s: "Struktur +18, Schärfe +10",
           w: "Architektur verträgt viel Struktur." }
@@ -923,7 +923,7 @@
       ],
       lokal: [
         { t: "Selektiv · Pfütze", s: "Auf die Spiegelung tippen → Struktur + und Kontrast +", w: "Macht die Reflexion knackig und lesbar." },
-        { t: "Tonaler Kontrast", s: "Mitteltöne +20, Lichter niedrig", w: "Betont die Textur der nassen Oberfläche – der Regen wird sichtbar." }
+        { t: "Farbkontrast (Tonaler Kontrast)", s: "Mitteltöne +20, Lichter niedrig", w: "Betont die Textur der nassen Oberfläche – der Regen wird sichtbar." }
       ],
       finish: [
         { t: "Details", s: "Struktur nur +8, Schärfe +10", w: "Bei hohen ISO-Werten verstärkt Struktur sonst das Rauschen." }
@@ -1011,7 +1011,7 @@
         { t: "Blau · ganze Kurve leicht ↑", s: "Beide Enden minimal anheben", w: "Ein durchgehend kühler Grundton, wie ihn Street-Presets nutzen." }
       ],
       lokal: [
-        { t: "Tonaler Kontrast", s: "Mitteltöne +20", w: "Hier entsteht der urbane Biss." }
+        { t: "Farbkontrast (Tonaler Kontrast)", s: "Mitteltöne +20", w: "Hier entsteht der urbane Biss." }
       ],
       finish: [
         { t: "Details", s: "Struktur +18, Schärfe +10", w: "Architektur verträgt viel Struktur." }
@@ -1103,9 +1103,9 @@
     { group: "Details", em: "🪨", items: [
       { t: "Struktur", d: "Verstärkt den mittleren Kontrast / die Übergänge in Flächen → Textur &amp; Oberfläche. ↑ für Fels, Gestein, Mauer, Rinde … ↓ für Haut, Nebel, Wasserflächen …" },
       { t: "Schärfe", d: "Verstärkt nur die feinen Kanten. Immer als Letztes und sparsam." },
-      { t: "Tonaler Kontrast", d: "Ein eigenes Werkzeug, nicht Teil der Feinabstimmung. Es hat getrennte Regler für hohe Töne, Mitteltöne und tiefe Töne – oft dazu einen Schutz für Glanzlichter und Schatten." },
-      { t: "Achtung: Kontrast, nicht Helligkeit", d: "Mitteltöne +20 im tonalen Kontrast macht die Mitteltöne NICHT heller, sondern kontrastreicher und texturierter. Wer die Mitteltöne aufhellen will, braucht die Kurve (Punkt setzen und anheben) oder die Luminanz der Mittelton-Zone im Farbrad-Werkzeug." },
-      { t: "Wann welches Werkzeug?", d: "Struktur wirkt auf das ganze Bild. Tonaler Kontrast wirkt getrennt nach Helligkeitsbereich – deshalb feiner steuerbar, etwa nur auf nassem Asphalt statt auch im Nachthimmel." }
+      { t: "Farbkontrast / Tonaler Kontrast", d: "Ein eigenes Werkzeug, nicht Teil der Feinabstimmung – deshalb sucht man es dort vergeblich. Je nach App und Version heißt es Farbkontrast, Tonaler Kontrast oder Tonwertkontrast. Es hat getrennte Regler für hohe Töne, Mitteltöne und tiefe Töne, oft dazu einen Schutz für Glanzlichter und Schatten." },
+      { t: "Achtung: Kontrast, nicht Helligkeit", d: "Mitteltöne +20 im Farbkontrast macht die Mitteltöne NICHT heller, sondern kontrastreicher und texturierter. Wer die Mitteltöne aufhellen will, braucht die Kurve (Punkt setzen und anheben) oder die Luminanz der Mittelton-Zone im Farbrad-Werkzeug." },
+      { t: "Wann welches Werkzeug?", d: "Struktur wirkt auf das ganze Bild. Der Farbkontrast wirkt getrennt nach Helligkeitsbereich – deshalb feiner steuerbar, etwa nur auf nassem Asphalt statt auch im Nachthimmel." }
     ]},
     { group: "Kurven (RGB &amp; Farbkanäle)", em: "📈", items: [
       { d: "Waagerechte Achse = der Ton, den das Bild hat (links dunkel, rechts hell). Senkrechte Achse = der Ton, den er werden soll." },
@@ -1842,14 +1842,14 @@
       calc: () => ({ hi: { h: HI.h, s: Math.max(50, HI.s) }, sh: { h: norm(HI.h + 180), s: 50, l: 30 } }),
       extra: ['Ein einziger Farbkanal genügt: links hoch, rechts runter – gegenläufig.',
               'Kurven · Mitte fixieren, sonst kippen Haut und Hauptmotiv mit.',
-              'Tonaler Kontrast · Mitteltöne +15 für Plastizität.'] },
+              'Farbkontrast · Mitteltöne +15 für Plastizität.'] },
     { id: 'modern', em: '🧊', n: 'Klar &amp; modern',
       goal: 'Entsättigt und kühl. Formen, Linien und Licht übernehmen die Hauptrolle.',
       when: 'Für Architektur, Street und alles, was nüchtern und aufgeräumt wirken soll.',
       calc: () => ({ hi: { h: 202, s: 22, l: 62 }, sh: { h: 216, s: 32, l: 30 } }),
       extra: ['Feinabstimmung: Sättigung −15, Kontrast +15.',
               'Kurven · RGB · Fußpunkt leicht ↑ für den matten, modernen Ton.',
-              'Tonaler Kontrast · Mitteltöne +20 – hier entsteht der Biss.'] }
+              'Farbkontrast · Mitteltöne +20 – hier entsteht der Biss.'] }
   ];
 
   let OPEN_DIR = null;
