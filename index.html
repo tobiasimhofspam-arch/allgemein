@@ -1102,7 +1102,10 @@
     ]},
     { group: "Details", em: "🪨", items: [
       { t: "Struktur", d: "Verstärkt den mittleren Kontrast / die Übergänge in Flächen → Textur &amp; Oberfläche. ↑ für Fels, Gestein, Mauer, Rinde … ↓ für Haut, Nebel, Wasserflächen …" },
-      { t: "Schärfe", d: "Verstärkt nur die feinen Kanten. Immer als Letztes und sparsam." }
+      { t: "Schärfe", d: "Verstärkt nur die feinen Kanten. Immer als Letztes und sparsam." },
+      { t: "Tonaler Kontrast", d: "Ein eigenes Werkzeug, nicht Teil der Feinabstimmung. Es hat getrennte Regler für hohe Töne, Mitteltöne und tiefe Töne – oft dazu einen Schutz für Glanzlichter und Schatten." },
+      { t: "Achtung: Kontrast, nicht Helligkeit", d: "Mitteltöne +20 im tonalen Kontrast macht die Mitteltöne NICHT heller, sondern kontrastreicher und texturierter. Wer die Mitteltöne aufhellen will, braucht die Kurve (Punkt setzen und anheben) oder die Luminanz der Mittelton-Zone im Farbrad-Werkzeug." },
+      { t: "Wann welches Werkzeug?", d: "Struktur wirkt auf das ganze Bild. Tonaler Kontrast wirkt getrennt nach Helligkeitsbereich – deshalb feiner steuerbar, etwa nur auf nassem Asphalt statt auch im Nachthimmel." }
     ]},
     { group: "Kurven (RGB &amp; Farbkanäle)", em: "📈", items: [
       { d: "Waagerechte Achse = der Ton, den das Bild hat (links dunkel, rechts hell). Senkrechte Achse = der Ton, den er werden soll." },
@@ -1181,6 +1184,18 @@
       { t: "Blau / Wasser / Himmel / Schnee", d: "Spannung → warme Lichter rein. Harmonie → Blau/Cyan verstärken, entsättigen." },
       { t: "Porträt", d: "Teal &amp; Orange, aber sanft." },
       { t: "Urban / Street / Nacht / Neon", d: "Spannung → Cyan/Magenta-Split (kühle Schatten, magenta Lichter). Harmonie → eine Neonfarbe dominieren lassen, Rest entsättigen." }
+    ]},
+    { group: "Farbräder · Color Grading", em: "🎡", items: [
+      { d: "Manche Programme haben ein eigenes Farbrad-Werkzeug (oft Color Grading genannt). Das ist sauberes Split Toning: Es färbt Schatten, Mitteltöne und Lichter getrennt ein – dasselbe Prinzip wie die Kurven-Methode, nur präziser." },
+      { t: "Zonen (Global · Schatten · Mitteltöne · Lichter)", d: "Bestimmt, welchen Helligkeitsbereich du einfärbst. Global wirkt auf alles und ergibt einen durchgehenden Farbstich, die anderen drei wirken gezielt. Das ist die aufgeräumte Version der einzelnen Kurvenpunkte." },
+      { t: "Farbton (Hue)", d: "Welche Farbe in die Zone kommt. Ersetzt die Kanalwahl der Kurve: statt Blau-Kanal für Blau wählst du den Ton frei am Rad. Vorteil: Mischtöne wie Teal oder Petrol direkt, ohne sie aus zwei Kanälen zu mischen." },
+      { t: "Sättigung", d: "Wie kräftig die Farbe in der Zone liegt. Farbton sagt welche Farbe, Sättigung sagt wie viel davon. Dezent halten, sonst wird aus dem Grading ein Farbstich." },
+      { t: "Luminanz", d: "Wie hell oder dunkel die Zone ist. Der Bonus gegenüber den Kurven: Du kannst die Schatten nicht nur einfärben, sondern gleichzeitig anheben oder absenken – Split Toning und Tonwertkorrektur in einem Schritt." },
+      { t: "Bereich (Range)", d: "Wie weit eine Zone reicht, also ab welcher Helligkeit ein Ton als Schatten oder als Licht zählt. Eng eingestellt bleiben die Mitteltöne – und damit die Haut – automatisch sauber." },
+      { t: "Weichheit (Smoothness)", d: "Wie sanft der Übergang zwischen den Zonen verläuft. Hoch heißt fließend, niedrig heißt harte Trennung. Zusammen mit dem Bereich ersetzt das den fixierten Mittelpunkt aus der Kurven-Methode." },
+      { t: "Merke", d: "Die Kurven sind zum Verstehen – dort siehst du die Tonachse und das Gegenfarben-Prinzip. Das Farbrad-Werkzeug ist zum sauberen Arbeiten. Was du als Blau-Kurve, Schatten hoch gelernt hast, machst du hier über die Schatten-Zone, nur mit exakter Kontrolle über Bereich und Übergang." },
+      { t: "Umrechnung aus den Rezepten", d: "Blau-Kanal Schatten ↑ wird zu: Zone Schatten, Farbton Blau, Sättigung dezent. Blau-Kanal Lichter ↓ wird zu: Zone Lichter, Farbton Gelb. RGB-Fußpunkt ↑ wird zu: Zone Schatten, Luminanz +." },
+      { t: "Mitteltöne neutral halten", d: "Gilt weiterhin. Im Farbrad geht das über einen engen Bereich für Schatten und Lichter statt über einen fixierten Kurvenpunkt." }
     ]},
     { group: "Video · Bildrate wählen", em: "🎬", items: [
       { t: "Grundsatz", d: "Die Bildrate verändert nicht die Auflösung – 25 und 60 fps sind beide Full HD. Sie verändert nur, wie Bewegung aussieht." },

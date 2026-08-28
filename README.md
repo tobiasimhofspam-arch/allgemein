@@ -21,7 +21,7 @@ funktioniert offline, speichert deine Daten lokal auf dem Gerät.
   Zeigt die Beziehung der Töne, was jede Farbe ausdrückt, die Palette und die
   konkrete Umsetzung – dazu sechs **Richtungen** (saftig, märchenhaft,
   mystisch, nostalgisch, Kino, modern), die man aufs Rad übernehmen kann.
-- 📖 **Wissen** – Spickzettel in 18 Gruppen, durchsuchbar; darunter zwei
+- 📖 **Wissen** – Spickzettel in 19 Gruppen, durchsuchbar; darunter zwei
   Video-Gruppen (Bildrate wählen · Kamera-Grundeinstellungen). Eigene Einträge
   und Gruppen lassen sich ergänzen.
 
