@@ -258,6 +258,91 @@
     .card-head .cnt { font-size: 11.5px; color: var(--muted); background: var(--bg-card-2);
       border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; flex: none; }
 
+    /* Lernbereich (geführte Lektionen) */
+    .lk-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 8px; }
+    .lk-item { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+      padding: 13px 14px; background: var(--bg-card); border: 1px solid var(--line);
+      border-radius: 14px; cursor: pointer; color: var(--text); font-family: inherit; }
+    .lk-item:active { transform: scale(.995); }
+    .lk-item.current { border-color: var(--accent);
+      background: linear-gradient(180deg, rgba(255,159,69,.08), transparent); }
+    .lk-num { width: 26px; height: 26px; flex: none; border-radius: 50%; display: grid;
+      place-items: center; font-size: 12px; font-weight: 700; background: var(--bg-card-2);
+      color: var(--muted); border: 1px solid var(--line); }
+    .lk-item.done .lk-num { background: var(--green); color: #0c2413; border-color: transparent; }
+    .lk-item.current .lk-num { background: var(--accent); color: #201400; border-color: transparent; }
+    .lk-em { font-size: 19px; flex: none; }
+    .lk-txt { flex: 1; min-width: 0; }
+    .lk-txt b { display: block; font-size: 14.5px; font-weight: 650; }
+    .lk-txt span { display: block; font-size: 12px; color: var(--muted);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .lk-tag { font-size: 10px; color: var(--muted); flex: none; }
+    .lk-item.current .lk-tag { color: var(--accent-2); }
+
+    .lk-back { background: none; border: 1px solid var(--line); color: var(--muted);
+      border-radius: 999px; padding: 7px 14px; font-size: 13px; font-weight: 600;
+      cursor: pointer; margin-bottom: 14px; }
+    .lk-eyebrow { font-size: 11px; letter-spacing: .09em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin: 0 0 6px; }
+    .lk-lesson h2 { margin: 0 0 12px; font-size: 24px; font-weight: 750;
+      letter-spacing: -.02em; text-wrap: balance; }
+    .lk-hook { font-size: 15px; color: #d9d9dd; margin: 0 0 20px; }
+    .lk-hook b { color: var(--text); }
+    .lk-lesson h4.lk-sub { font-size: 12px; letter-spacing: .05em; text-transform: uppercase;
+      color: var(--muted); margin: 24px 0 12px; font-weight: 700; }
+    .lk-lesson p { font-size: 14.5px; margin: 0 0 12px; color: #dcdce0; }
+    .lk-lesson p b { color: var(--text); font-weight: 650; }
+    .lk-lesson .lk-cross { color: var(--blue); font-size: 13.5px; }
+    .lk-lesson .lk-cross b { color: var(--blue); }
+    .lk-lesson figure { margin: 0 0 6px; }
+    .lk-lesson figure svg { display: block; width: 100%; height: auto; }
+    .lk-lesson figcaption { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+    .lk-lesson figcaption b { color: var(--accent-2); }
+    .lk-thumbs { display: flex; gap: 10px; margin: 0 0 6px; }
+    .lk-thumb { flex: 1; text-align: center; }
+    .lk-thumb svg { width: 100%; height: auto; background: var(--bg-elev);
+      border: 1px solid var(--line); border-radius: 10px; }
+    .lk-thumb span { display: block; font-size: 12px; font-weight: 600; margin-top: 7px; color: #d9d9dd; }
+    .lk-merke, .lk-probier { border-radius: 12px; padding: 14px 15px; margin: 18px 0 4px; font-size: 14px; }
+    .lk-merke { background: rgba(255,159,69,.09); border: 1px solid rgba(255,159,69,.28); }
+    .lk-probier { background: rgba(122,184,245,.08); border: 1px solid rgba(122,184,245,.26); }
+    .lk-merke .h, .lk-probier .h { display: block; font-size: 11px; letter-spacing: .07em;
+      text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+    .lk-merke .h { color: var(--accent-2); }
+    .lk-probier .h { color: var(--blue); }
+    .lk-merke p, .lk-probier p { margin: 0; color: #dcdce0; font-size: 14px; }
+    .lk-merke b { color: var(--accent-2); }
+    .lk-lesson details { margin: 20px 0 6px; border: 1px solid var(--line); border-radius: 12px;
+      background: var(--bg-elev); overflow: hidden; }
+    .lk-lesson summary { cursor: pointer; padding: 14px 15px; font-size: 13.5px; font-weight: 650;
+      list-style: none; display: flex; align-items: center; gap: 9px; }
+    .lk-lesson summary::-webkit-details-marker { display: none; }
+    .lk-lesson summary .chev { margin-left: auto; }
+    .lk-lesson details[open] summary .chev { transform: rotate(90deg); }
+    .lk-adv { padding: 0 15px 15px; }
+    .lk-adv p { font-size: 14px; margin: 0 0 10px; color: #dcdce0; }
+    .lk-adv .k { color: var(--accent-2); font-weight: 650; }
+    .lk-foot { display: flex; align-items: center; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+    .lk-read { appearance: none; border: none; cursor: pointer; font-size: 14px; font-weight: 650;
+      padding: 11px 15px; border-radius: 12px; background: var(--bg-card-2); color: var(--green);
+      box-shadow: inset 0 0 0 1px var(--line); }
+    .lk-read.on { background: var(--green); color: #0c2413; box-shadow: none; }
+    .lk-next { margin-left: auto; appearance: none; border: none; cursor: pointer; font-size: 14px;
+      font-weight: 650; padding: 11px 15px; border-radius: 12px; background: var(--accent); color: #201400; }
+    .lk-item:focus-visible, .lk-back:focus-visible, .lk-read:focus-visible,
+    .lk-next:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* SVG-Grafiken der Lektionen */
+    .s-grid { stroke: var(--line); stroke-width: 1; }
+    .s-axis { stroke: #54545c; stroke-width: 1.5; }
+    .s-diag { stroke: var(--muted); stroke-width: 1.6; stroke-dasharray: 5 5; fill: none; }
+    .s-curve { stroke: var(--accent); stroke-width: 3.5; fill: none; stroke-linecap: round; }
+    .s-pt { fill: var(--accent); }
+    .s-pt-o { fill: var(--bg-card); stroke: var(--accent); stroke-width: 2.5; }
+    .s-lbl { fill: var(--muted); font-size: 12px; }
+    .s-lbl-s { fill: #7c7c86; font-size: 10.5px; }
+    .s-tick { fill: var(--accent-2); font-size: 10.5px; font-weight: 600; }
+
     /* Meine Rezepte / Tipps */
     .note-form textarea { width: 100%; min-height: 76px; resize: vertical; padding: 12px 14px;
       font-size: 15px; border-radius: 12px; border: 1px solid var(--line);
@@ -299,7 +384,7 @@
 <body>
   <header>
     <h1><span class="dot"></span> ColorGrade</h1>
-    <p>Bildbearbeitung verstehen – Looks, Farben &amp; Wissen</p>
+    <p>Bildbearbeitung lernen &amp; verstehen – Schritt für Schritt</p>
   </header>
 
   <div id="installBar" hidden>
@@ -309,7 +394,7 @@
   </div>
 
   <main>
-    <section id="tab-berater" class="tab-panel active">
+    <section id="tab-berater" class="tab-panel">
       <p class="lead">Welches Bild hast du? Motiv antippen – du bekommst den kompletten Ablauf: <b>Basis → Kurven → lokal → Finish</b>, plus das Color Grading mit konkreten Kurvengriffen.</p>
       <div class="maxim">
         <div class="col"><span class="k">Gegenfarbe rein</span> = Spannung</div>
@@ -371,31 +456,473 @@
       <div id="recipeOut"></div>
     </section>
 
-    <section id="tab-spick" class="tab-panel">
-      <p class="lead">Dein Spickzettel: <b>was</b> jedes Werkzeug macht und <b>wann</b> du es einsetzt. Tippe eine Gruppe an zum Aufklappen.</p>
-      <div class="hintbox">Die <b>Werkzeugnamen</b> unterscheiden sich je nach Programm.
-      Ambiente heißt anderswo Dunst oder Klarheit, Feinabstimmung heißt Grundeinstellungen oder Licht,
-      Selektiv heißt Maske oder Korrekturpinsel. Das Prinzip dahinter ist überall gleich.</div>
-      <div class="row" style="margin-bottom:14px">
-        <button class="btn" id="addWisBtn">+ Eigener Eintrag</button>
+    <section id="tab-spick" class="tab-panel active">
+      <div class="seg" id="wisSeg" role="tablist">
+        <button class="segbtn active" data-wview="lernen" role="tab">📚 Lernen</button>
+        <button class="segbtn" data-wview="nach" role="tab">🔎 Nachschlagen</button>
       </div>
-      <input class="search" id="searchSpick" placeholder="Suchen … (z. B. Kurven, Struktur, Split)" />
-      <div id="spickList"></div>
-      <h5 class="sec">Vorlagen verwalten</h5>
-      <p class="info" id="vorlagenInfo"></p>
-      <div class="row" style="margin-bottom:24px">
-        <button class="btn ghost small" id="hideAllBtn">Alle Vorlagen ausblenden</button>
-        <button class="btn ghost small" id="restoreBtn">Vorlagen wiederherstellen</button>
+
+      <!-- ============ LERNEN ============ -->
+      <div id="wview-lernen">
+        <div id="lernList">
+          <p class="lead">Bildbearbeitung von Grund auf – <b>Schritt für Schritt</b>, in der Reihenfolge, in der du später auch arbeitest. Tippe eine Lektion an.</p>
+          <p class="info" id="lkProg"></p>
+          <div class="lk-list" id="lkList"></div>
+        </div>
+
+        <div id="lernLesson" hidden>
+          <button class="lk-back" id="lkBack">← Alle Lektionen</button>
+
+          <!-- L1 -->
+          <article class="lk-lesson" data-lek="1" data-em="🧭" data-title="Was ist Bildbearbeitung?" data-sub="Du steuerst Licht &amp; Farbe – nichts geht kaputt" hidden>
+            <p class="lk-eyebrow">Lektion 1 · Grundverständnis</p>
+            <h2>Was ist Bildbearbeitung?</h2>
+            <p class="lk-hook">Bildbearbeitung heißt nicht, ein Bild <b>neu zu malen</b>. Du arbeitest mit dem Licht und den Farben, die schon im Foto stecken – du machst sie nur sichtbarer, ruhiger oder stimmungsvoller. Das ist das Wichtigste für den Anfang: Du kannst nichts kaputt machen.</p>
+
+            <h4 class="lk-sub">Drei Dinge, die du steuerst</h4>
+            <p>Fast jedes Werkzeug in jeder App fällt in eine dieser drei Schubladen:</p>
+            <figure>
+              <svg viewBox="0 0 400 116" role="img" aria-label="Die drei Bereiche der Bildbearbeitung: Licht, Farbe, Details">
+                <rect x="8" y="20" width="116" height="72" rx="12" fill="var(--bg-card-2)" stroke="var(--line)"/>
+                <rect x="142" y="20" width="116" height="72" rx="12" fill="var(--bg-card-2)" stroke="var(--line)"/>
+                <rect x="276" y="20" width="116" height="72" rx="12" fill="var(--bg-card-2)" stroke="var(--line)"/>
+                <text x="66" y="52" text-anchor="middle" font-size="26">☀️</text>
+                <text x="200" y="52" text-anchor="middle" font-size="26">🎨</text>
+                <text x="334" y="52" text-anchor="middle" font-size="26">✨</text>
+                <text class="s-tick" x="66" y="80" text-anchor="middle">Licht</text>
+                <text class="s-tick" x="200" y="80" text-anchor="middle">Farbe</text>
+                <text class="s-tick" x="334" y="80" text-anchor="middle">Details</text>
+              </svg>
+              <figcaption>Licht (hell/dunkel), Farbe (Ton &amp; Stimmung) und Details (Schärfe, Struktur). Mehr Kategorien gibt es im Kern nicht.</figcaption>
+            </figure>
+
+            <h4 class="lk-sub">Regler sind keine Einbahnstraße</h4>
+            <p>Jeder Regler und jede Kurve lässt sich zurückdrehen – auf null, jederzeit. Deine App verändert nur eine Anleitung, nicht das Originalfoto. Deshalb ist der beste Weg zu lernen: <b>ausprobieren</b>, schauen, wieder zurück.</p>
+            <p>Und: Die Werte in Rezepten und Vorlagen sind <b>Startpunkte</b>, keine festen Regeln. Jedes Bild ist anders – du passt immer an, was das konkrete Foto braucht.</p>
+
+            <div class="lk-merke"><span class="h">Merke</span><p>Du steuerst <b>Licht, Farbe, Details</b>. Alles ist umkehrbar. „Weniger" wirkt fast immer natürlicher als „mehr".</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Öffne ein beliebiges Foto. Zieh die Helligkeit ganz nach oben, dann ganz nach unten – und wieder auf null. Du siehst: Nichts geht verloren. Genau dieses Vertrauen brauchst du.</p></div>
+
+            <details><summary>Für Fortgeschrittene: zerstörungsfrei &amp; RAW <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p><span class="k">Zerstörungsfrei</span> heißt: Deine Änderungen liegen wie eine Folie über dem Bild, das Original bleibt unberührt. In den meisten Foto-Apps ist das automatisch so.</p>
+                <p><span class="k">RAW statt JPEG:</span> Ein RAW speichert viel mehr Ton- und Farbinformation. Überstrahlte Lichter und abgesoffene Schatten holst du damit deutlich weiter zurück. Wenn deine Kamera oder dein Handy RAW kann, lohnt es sich.</p>
+              </div>
+            </details>
+
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-next="2">Weiter: Die drei Zonen →</button></div>
+          </article>
+
+          <!-- L2 -->
+          <article class="lk-lesson" data-lek="2" data-em="🌗" data-title="Die drei Zonen" data-sub="Schatten · Mitteltöne · Lichter" hidden>
+            <p class="lk-eyebrow">Lektion 2 · Licht &amp; Ton</p>
+            <h2>Die drei Zonen</h2>
+            <p class="lk-hook">Bevor du irgendeinen Regler anfasst, brauchst du eine <b>Landkarte</b> des Bildes. Jedes Foto besteht aus dunklen, mittleren und hellen Tönen – und fast jedes Werkzeug spricht gezielt einen dieser Bereiche an. Wer sie auseinanderhält, weiß immer, welchen Regler er braucht.</p>
+
+            <figure>
+              <svg viewBox="0 0 400 92" role="img" aria-label="Verlauf von Schwarz nach Weiß mit den Zonen Schatten, Mitteltöne und Lichter">
+                <defs><linearGradient id="toneA" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0a0a0b"/><stop offset="1" stop-color="#f2f2f4"/></linearGradient></defs>
+                <rect x="12" y="10" width="376" height="40" rx="7" fill="url(#toneA)" stroke="#3a3a40"/>
+                <line x1="137.3" y1="10" x2="137.3" y2="50" stroke="#000" stroke-opacity=".35" stroke-dasharray="3 3"/>
+                <line x1="262.6" y1="10" x2="262.6" y2="50" stroke="#fff" stroke-opacity=".35" stroke-dasharray="3 3"/>
+                <text class="s-tick" x="74" y="70" text-anchor="middle">Schatten</text>
+                <text class="s-tick" x="200" y="70" text-anchor="middle">Mitteltöne</text>
+                <text class="s-tick" x="325" y="70" text-anchor="middle">Lichter</text>
+                <text class="s-lbl-s" x="12" y="86">← dunkel</text>
+                <text class="s-lbl-s" x="388" y="86" text-anchor="end">hell →</text>
+              </svg>
+              <figcaption>Von ganz dunkel bis ganz hell. Die Mitteltöne sind der größte Bereich – dort liegen Haut, Wege und die meisten Flächen.</figcaption>
+            </figure>
+
+            <p><b>Schatten</b> sind die dunklen Partien (Baumschatten, dunkle Kleidung). <b>Lichter</b> sind die hellsten Stellen (Himmel, Sonne auf der Haut, weiße Wand). <b>Mitteltöne</b> ist alles dazwischen – meist der größte Teil des Bildes, inklusive Hauttöne.</p>
+
+            <h4 class="lk-sub">Warum das so wichtig ist</h4>
+            <p>„Lichter runter" rettet einen ausgebrannten Himmel, ohne den Rest zu verändern. „Schatten hoch" holt Zeichnung aus dunklen Ecken. Weil beide nur ihre Zone treffen, arbeitest du viel sauberer als mit einem Regler, der alles gleichzeitig aufhellt.</p>
+
+            <figure>
+              <svg viewBox="0 0 400 150" role="img" aria-label="Ein Histogramm: die Höhe zeigt, wie viele Bildpunkte es von jedem Ton gibt">
+                <defs><linearGradient id="toneH" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0a0a0b"/><stop offset="1" stop-color="#f2f2f4"/></linearGradient></defs>
+                <line class="s-grid" x1="12" y1="120" x2="388" y2="120"/>
+                <path fill="var(--accent)" fill-opacity=".22" stroke="var(--accent)" stroke-width="2" d="M12 120 C60 120 95 46 150 40 C205 34 245 104 300 98 C345 94 362 74 388 116 L388 120 Z"/>
+                <rect x="12" y="128" width="376" height="12" rx="3" fill="url(#toneH)" stroke="#3a3a40"/>
+                <text class="s-lbl-s" x="12" y="150">dunkel</text>
+                <text class="s-lbl-s" x="388" y="150" text-anchor="end">hell</text>
+              </svg>
+              <figcaption>Das Histogramm ist dieselbe Achse von dunkel nach hell – nur zeigt die Höhe, wie viele Bildpunkte es von jedem Ton gibt. Ein Berg, der rechts an die Wand stößt, heißt: Lichter „ausgebrannt", dort fehlt Zeichnung.</figcaption>
+            </figure>
+
+            <div class="lk-merke"><span class="h">Merke</span><p>Denk in drei Zonen: <b>Schatten</b> (dunkel), <b>Mitteltöne</b> (Haut &amp; Flächen), <b>Lichter</b> (hell). Fast jeder Regler gehört zu einer davon.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Öffne ein Foto und ordne laut zu: Wo sind die Schatten, wo die Lichter? Schau dann, ob dein Histogramm links oder rechts an die Wand stößt.</p></div>
+
+            <details><summary>Für Fortgeschrittene: das Histogramm lesen <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p>Stößt der Berg links an, sind die Schatten <span class="k">abgesoffen</span> – nur noch Schwarz, keine Zeichnung. Rechts an der Wand sind die Lichter <span class="k">ausgebrannt</span> – reines Weiß.</p>
+                <p>Ein bisschen davon ist oft in Ordnung: Ein Sonnenreflex darf weiß sein. Große ausgebrannte Flächen holst du mit dem Lichter-Regler zurück, solange noch Daten da sind (RAW hilft).</p>
+              </div>
+            </details>
+
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-next="3">Weiter: Licht steuern →</button></div>
+          </article>
+
+          <!-- L3 -->
+          <article class="lk-lesson" data-lek="3" data-em="☀️" data-title="Licht steuern" data-sub="Belichtung, Kontrast, Lichter &amp; Schatten" hidden>
+            <p class="lk-eyebrow">Lektion 3 · Licht &amp; Ton</p>
+            <h2>Licht steuern</h2>
+            <p class="lk-hook">Die meisten Bilder gewinnen schon in den ersten 30 Sekunden – allein durchs Licht. Vier Regler reichen für den Anfang: Belichtung, Kontrast, Lichter, Schatten. Am besten in genau dieser Reihenfolge.</p>
+
+            <h4 class="lk-sub">Die vier Grundregler</h4>
+            <ol class="steps">
+              <li><b>Belichtung / Helligkeit:</b> die Grundhelligkeit. Zuerst das Bild insgesamt richtig hell stellen.<span class="why">Wirkt am stärksten auf die Mitteltöne.</span></li>
+              <li><b>Kontrast:</b> spreizt die Töne – Dunkles dunkler, Helles heller. Gibt dem Bild „Biss".<span class="why">Zu viel wirkt hart; in kleinen Schritten.</span></li>
+              <li><b>Lichter runter:</b> holt einen zu hellen Himmel oder überstrahlte Stellen zurück.</li>
+              <li><b>Schatten hoch:</b> öffnet dunkle Ecken und zeigt verborgene Zeichnung.</li>
+            </ol>
+
+            <figure>
+              <svg viewBox="0 0 400 110" role="img" aria-label="Lichter herunter und Schatten herauf holen die Tonwerte zur Mitte">
+                <defs><linearGradient id="toneL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0a0a0b"/><stop offset="1" stop-color="#f2f2f4"/></linearGradient></defs>
+                <line class="s-axis" x1="40" y1="34" x2="150" y2="34"/>
+                <polygon points="150,34 140,29 140,39" fill="#54545c"/>
+                <text class="s-tick" x="40" y="22">Schatten ↑ aufhellen</text>
+                <line class="s-axis" x1="360" y1="34" x2="250" y2="34"/>
+                <polygon points="250,34 260,29 260,39" fill="#54545c"/>
+                <text class="s-tick" x="360" y="22" text-anchor="end">Lichter ↓ zurückholen</text>
+                <rect x="12" y="48" width="376" height="40" rx="7" fill="url(#toneL)" stroke="#3a3a40"/>
+                <text class="s-lbl-s" x="12" y="104">← dunkel</text>
+                <text class="s-lbl-s" x="388" y="104" text-anchor="end">hell →</text>
+              </svg>
+              <figcaption>Lichter runter und Schatten hoch holen die beiden Enden zur Mitte – das Bild wirkt ausgewogener und zeigt in Hell wie Dunkel wieder Zeichnung.</figcaption>
+            </figure>
+
+            <p>Reihenfolge merken: erst die Gesamthelligkeit (Belichtung), dann der Biss (Kontrast), dann die Feinrettung an den Enden (Lichter/Schatten). So arbeitest du dich vom Groben zum Feinen.</p>
+
+            <div class="lk-merke"><span class="h">Merke</span><p><b>Belichtung → Kontrast → Lichter runter → Schatten hoch.</b> Erst das Ganze, dann die Enden.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Nimm ein Foto mit hellem Himmel. Zieh die Lichter deutlich runter – der Himmel bekommt Struktur zurück. Dann Schatten leicht hoch, bis dunkle Ecken lesbar sind.</p></div>
+
+            <details><summary>Für Fortgeschrittene: Dynamikumfang &amp; Rauschen <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p>Der <span class="k">Dynamikumfang</span> ist der Abstand zwischen den dunkelsten und hellsten Stellen, die die Kamera noch mit Zeichnung festhält. Ist er überschritten, hilft kein Regler mehr – dort ist nur noch Weiß oder Schwarz.</p>
+                <p>Schatten stark aufhellen bringt <span class="k">Rauschen</span> hervor (Bildkörnung in dunklen Flächen). Lieber gleich richtig belichten als im Nachhinein extrem aufhellen.</p>
+              </div>
+            </details>
+
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-next="4">Weiter: Die Kurve →</button></div>
+          </article>
+
+          <!-- L4 -->
+          <article class="lk-lesson" data-lek="4" data-em="📈" data-title="Die Kurve verstehen" data-sub="Das ehrlichste Werkzeug" hidden>
+            <p class="lk-eyebrow">Lektion 4 · Licht &amp; Ton</p>
+            <h2>Die Kurve verstehen</h2>
+            <p class="lk-hook">Die Kurve sieht kompliziert aus – ist aber das <b>ehrlichste Werkzeug</b> der Bildbearbeitung. Sie zeigt dir schwarz auf weiß, welchen Ton dein Bild hat und welchen du daraus machst. Wer die Kurve versteht, versteht fast alles andere von selbst.</p>
+
+            <h4 class="lk-sub">Erst die drei Zonen</h4>
+            <p>Die waagerechte Achse der Kurve ist genau die Tonachse aus Lektion 2 – von dunkel nach hell:</p>
+            <figure>
+              <svg viewBox="0 0 400 92" role="img" aria-label="Tonachse von Schatten über Mitteltöne zu Lichtern">
+                <defs><linearGradient id="toneB" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0a0a0b"/><stop offset="1" stop-color="#f2f2f4"/></linearGradient></defs>
+                <rect x="12" y="10" width="376" height="40" rx="7" fill="url(#toneB)" stroke="#3a3a40"/>
+                <line x1="137.3" y1="10" x2="137.3" y2="50" stroke="#000" stroke-opacity=".35" stroke-dasharray="3 3"/>
+                <line x1="262.6" y1="10" x2="262.6" y2="50" stroke="#fff" stroke-opacity=".35" stroke-dasharray="3 3"/>
+                <text class="s-tick" x="74" y="70" text-anchor="middle">Schatten</text>
+                <text class="s-tick" x="200" y="70" text-anchor="middle">Mitteltöne</text>
+                <text class="s-tick" x="325" y="70" text-anchor="middle">Lichter</text>
+              </svg>
+            </figure>
+
+            <h4 class="lk-sub">So liest du die Kurve</h4>
+            <figure>
+              <svg viewBox="0 0 384 372" role="img" aria-label="Kurven-Diagramm: waagerecht der vorhandene Ton, senkrecht der Zielton. Die gestrichelte Diagonale bedeutet unverändert, die S-Kurve erhöht den Kontrast.">
+                <g class="s-grid">
+                  <line x1="56" y1="24" x2="56" y2="324"/><line x1="131" y1="24" x2="131" y2="324"/>
+                  <line x1="206" y1="24" x2="206" y2="324"/><line x1="281" y1="24" x2="281" y2="324"/>
+                  <line x1="356" y1="24" x2="356" y2="324"/>
+                  <line x1="56" y1="24" x2="356" y2="24"/><line x1="56" y1="99" x2="356" y2="99"/>
+                  <line x1="56" y1="174" x2="356" y2="174"/><line x1="56" y1="249" x2="356" y2="249"/>
+                  <line x1="56" y1="324" x2="356" y2="324"/>
+                </g>
+                <line class="s-axis" x1="56" y1="24" x2="56" y2="324"/>
+                <line class="s-axis" x1="56" y1="324" x2="356" y2="324"/>
+                <path class="s-diag" d="M56 324 L356 24"/>
+                <path class="s-curve" d="M56 324 C120 300 150 255 206 174 C262 93 296 48 356 24"/>
+                <circle class="s-pt-o" cx="56" cy="324" r="5"/>
+                <circle class="s-pt" cx="206" cy="174" r="6"/>
+                <circle class="s-pt-o" cx="356" cy="24" r="5"/>
+                <text class="s-lbl-s" x="128" y="300">Schatten ↓ dunkler</text>
+                <text class="s-lbl-s" x="352" y="66" text-anchor="end">heller ↑ Lichter</text>
+                <text class="s-tick" x="214" y="166">Mitte = Angelpunkt</text>
+                <text class="s-lbl-s" x="60" y="340">dunkel</text>
+                <text class="s-lbl-s" x="352" y="340" text-anchor="end">hell</text>
+                <text class="s-lbl" x="206" y="362" text-anchor="middle">Ist-Ton — was das Bild hat</text>
+                <text class="s-lbl" x="20" y="180" text-anchor="middle" transform="rotate(-90 20 180)">Soll-Ton — was er wird</text>
+                <text class="s-lbl-s" x="48" y="34" text-anchor="end">hell</text>
+                <text class="s-lbl-s" x="48" y="322" text-anchor="end">dunkel</text>
+              </svg>
+              <figcaption>Waagerecht der Ton, den das Bild <b>hat</b>, senkrecht der Ton, den er <b>wird</b>. Die gestrichelte Diagonale heißt „unverändert". Die S-Kurve drückt die Schatten runter und zieht die Lichter hoch – das ergibt mehr Kontrast.</figcaption>
+            </figure>
+
+            <p>Ein Punkt <b>über</b> der Diagonale macht diesen Ton heller, ein Punkt <b>darunter</b> dunkler. Mehr Regel gibt es nicht. Weil du jeden Helligkeitsbereich einzeln anfassen kannst, ist die Kurve genauer als jeder Helligkeits-Regler.</p>
+
+            <h4 class="lk-sub">Die drei Grundbewegungen</h4>
+            <div class="lk-thumbs">
+              <div class="lk-thumb">
+                <svg viewBox="0 0 100 100" role="img" aria-label="Kurve nach oben gewölbt – Bild wird heller"><path class="s-diag" d="M12 88 L88 12"/><path class="s-curve" d="M12 88 Q50 20 88 12"/></svg><span>Heller</span>
+              </div>
+              <div class="lk-thumb">
+                <svg viewBox="0 0 100 100" role="img" aria-label="Kurve nach unten gewölbt – Bild wird dunkler"><path class="s-diag" d="M12 88 L88 12"/><path class="s-curve" d="M12 88 Q50 80 88 12"/></svg><span>Dunkler</span>
+              </div>
+              <div class="lk-thumb">
+                <svg viewBox="0 0 100 100" role="img" aria-label="S-förmige Kurve – mehr Kontrast"><path class="s-diag" d="M12 88 L88 12"/><path class="s-curve" d="M12 88 C35 80 40 60 50 50 C60 40 65 20 88 12"/></svg><span>Kontrast (S)</span>
+              </div>
+            </div>
+
+            <div class="lk-merke"><span class="h">Merke</span><p>Punkt in der Mitte <b>hoch</b> = alles heller. <b>S-Form</b> = mehr Kontrast (Dunkles dunkler, Helles heller). <b>Umgekehrtes S</b> = weicher, matter „Faded"-Look.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Öffne ein Foto, geh in die Kurve und setz einen Punkt genau in die Mitte. Zieh ihn ein Stück hoch, dann runter – und beobachte nur, was mit dem ganzen Bild passiert. Noch nichts festlegen, nur schauen.</p></div>
+
+            <details><summary>Für Fortgeschrittene: Farbe statt Licht <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p>Bis hier hast du die <span class="k">RGB-Kurve</span> bewegt – sie steuert nur Helligkeit. Schaltest du auf einen einzelnen <span class="k">Farbkanal</span> (Rot, Grün, Blau), gibst du einer Seite eine Farbe und der anderen automatisch die Gegenfarbe. Das ist Color Grading.</p>
+                <p><b>Beispiel Blau-Kanal:</b> Schatten hoch = kühle blaue Schatten, Lichter runter = warme gelbe Lichter. Beides zusammen ergibt den berühmten <span class="k">Teal-&amp;-Orange</span>-Look. Halte solche Kurven immer flach und subtil.</p>
+                <p><b>Matter Filmlook:</b> Hebst du die linke untere Ecke an, wird Schwarz zu Grau – das „Faded"-Gefühl vieler analoger Filme.</p>
+              </div>
+            </details>
+
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-next="5">Weiter: Weißabgleich →</button></div>
+          </article>
+
+          <!-- L5 -->
+          <article class="lk-lesson" data-lek="5" data-em="🌡️" data-title="Weißabgleich" data-sub="Warm oder kühl – die Stimmung des Lichts" hidden>
+            <p class="lk-eyebrow">Lektion 5 · Farbe</p>
+            <h2>Weißabgleich</h2>
+            <p class="lk-hook">Licht hat eine Farbe. Kerzen sind orange, Schatten im Schnee sind bläulich, Neonlicht kann grünlich wirken. Der Weißabgleich korrigiert diese Färbung – oder setzt sie bewusst als Stimmung ein.</p>
+
+            <figure>
+              <svg viewBox="0 0 400 84" role="img" aria-label="Temperatur-Verlauf von kühlem Blau über Neutral zu warmem Orange">
+                <defs><linearGradient id="wc" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3f7bd6"/><stop offset=".5" stop-color="#8f8f96"/><stop offset="1" stop-color="#ff9f45"/></linearGradient></defs>
+                <rect x="12" y="10" width="376" height="40" rx="7" fill="url(#wc)" stroke="#3a3a40"/>
+                <text class="s-lbl-s" x="16" y="68">kühl / blau</text>
+                <text class="s-lbl-s" x="200" y="68" text-anchor="middle">neutral</text>
+                <text class="s-lbl-s" x="384" y="68" text-anchor="end">warm / orange</text>
+              </svg>
+              <figcaption>Temperatur schiebt das ganze Bild zwischen kühlem Blau und warmem Orange. Nach rechts wird's wärmer, nach links kühler.</figcaption>
+            </figure>
+
+            <p>Zwei Regler machen den Weißabgleich aus:</p>
+            <p><b>Temperatur</b> (Blau ↔ Gelb/Orange): korrigiert die Lichtfarbe. War das Licht kühl-bläulich, machst du wärmer; war es zu orange, kühler.</p>
+            <p><b>Tönung</b> (Grün ↔ Magenta): die Feinkorrektur für einen Grün- oder Magentastich – typisch bei Kunst- und Neonlicht.</p>
+
+            <figure>
+              <svg viewBox="0 0 400 60" role="img" aria-label="Tönung von Grün über Neutral zu Magenta">
+                <defs><linearGradient id="gm" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5fce87"/><stop offset=".5" stop-color="#8f8f96"/><stop offset="1" stop-color="#d86ec8"/></linearGradient></defs>
+                <rect x="12" y="8" width="376" height="28" rx="6" fill="url(#gm)" stroke="#3a3a40"/>
+                <text class="s-lbl-s" x="16" y="52">grün</text>
+                <text class="s-lbl-s" x="200" y="52" text-anchor="middle">Tönung</text>
+                <text class="s-lbl-s" x="384" y="52" text-anchor="end">magenta</text>
+              </svg>
+            </figure>
+
+            <h4 class="lk-sub">Korrigieren oder Stimmung machen</h4>
+            <p>Neutral heißt: Weiß ist wirklich weiß. Am schnellsten triffst du das, indem du eine Fläche wählst, die grau oder weiß sein soll (Pipette, falls deine App eine hat). Danach darfst du bewusst abweichen: etwas wärmer für Gemütlichkeit (Sonnenuntergang, Porträt), etwas kühler für Ruhe und Distanz (Regennacht, Winter).</p>
+
+            <div class="lk-merke"><span class="h">Merke</span><p><b>Temperatur</b> = blau ↔ orange (Hauptkorrektur). <b>Tönung</b> = grün ↔ magenta (Feinschliff). Erst neutral treffen, dann bewusst wärmer/kühler stimmen.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Stell die Temperatur bewusst zu warm, dann zu kühl. Spür, wie sich die Stimmung ändert – und finde den Punkt, der sich „richtig" anfühlt.</p></div>
+
+            <details><summary>Für Fortgeschrittene: Kelvin &amp; Mischlicht <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p>Der Weißabgleich wird in <span class="k">Kelvin</span> gemessen: niedrig = warmes Licht (Kerze ~1800 K), hoch = kühles Licht (Schatten ~7000 K). Verwirrend: Ein hoher Kelvin-Wert im Regler macht das Bild <b>wärmer</b>, weil er kühles Licht ausgleicht.</p>
+                <p><span class="k">Mischlicht</span> (z. B. warme Lampe + blaues Fensterlicht) lässt sich nie für beide Bereiche gleichzeitig korrigieren. Entscheide, welcher Bereich stimmen soll – oder korrigiere ihn später lokal.</p>
+              </div>
+            </details>
+
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-next="6">Weiter: Farbe &amp; Sättigung →</button></div>
+          </article>
+
+          <!-- L6 -->
+          <article class="lk-lesson" data-lek="6" data-em="🌈" data-title="Farbe &amp; Sättigung" data-sub="Wie kräftig – und einzelne Farben anfassen" hidden>
+            <p class="lk-eyebrow">Lektion 6 · Farbe</p>
+            <h2>Farbe &amp; Sättigung</h2>
+            <p class="lk-hook">Farbe trägt Gefühl. Bevor du sie gezielt einsetzt, musst du nur zwei Dinge können: wissen, wie kräftig eine Farbe ist – und eine einzelne Farbe anfassen, ohne die anderen zu stören.</p>
+
+            <figure>
+              <svg viewBox="0 0 400 84" role="img" aria-label="Sättigung von grau links zu kräftiger Farbe rechts">
+                <defs>
+                  <linearGradient id="rain" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff5a5a"/><stop offset=".16" stop-color="#ffb347"/><stop offset=".33" stop-color="#ffe14d"/><stop offset=".5" stop-color="#5fd06b"/><stop offset=".66" stop-color="#3fc4d6"/><stop offset=".83" stop-color="#6e8ce0"/><stop offset="1" stop-color="#d86ec8"/></linearGradient>
+                  <linearGradient id="grey" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7d7d80" stop-opacity="1"/><stop offset="1" stop-color="#7d7d80" stop-opacity="0"/></linearGradient>
+                </defs>
+                <rect x="12" y="10" width="376" height="40" rx="7" fill="url(#rain)"/>
+                <rect x="12" y="10" width="376" height="40" rx="7" fill="url(#grey)"/>
+                <rect x="12" y="10" width="376" height="40" rx="7" fill="none" stroke="#3a3a40"/>
+                <text class="s-lbl-s" x="16" y="68">wenig – grau</text>
+                <text class="s-lbl-s" x="384" y="68" text-anchor="end">viel – bunt</text>
+              </svg>
+              <figcaption>Sättigung von links (grau, keine Farbe) nach rechts (volle Farbe). Die meisten Bilder wirken schon leicht unterhalb von „ganz bunt" am natürlichsten.</figcaption>
+            </figure>
+
+            <p><b>Sättigung</b> dreht alle Farben gleich stark auf oder ab. Kräftig wirkt sofort, kippt aber schnell ins Kitschige – vor allem Hauttöne werden rasch orange.</p>
+            <p><b>Dynamik</b> (auch „Vibrance") ist die klügere Schwester: Sie hebt vor allem die blassen Farben an und schont die schon kräftigen – und damit die Haut. Für den Anfang fast immer die bessere Wahl.</p>
+
+            <h4 class="lk-sub">Eine einzelne Farbe anfassen: HSL</h4>
+            <p>Mit <b>HSL</b> (oder „Color") bearbeitest du jede Farbe für sich, über drei Fragen:</p>
+            <ol class="steps">
+              <li><b>Farbton (Hue):</b> welcher Ton genau? Ein Grün Richtung Gelb oder Richtung Blau schieben.</li>
+              <li><b>Sättigung:</b> wie kräftig diese eine Farbe ist – z. B. ein knalliges Rot im Hintergrund beruhigen.</li>
+              <li><b>Helligkeit (Luminanz):</b> wie hell die Farbe ist – z. B. nur das Blau des Himmels abdunkeln.</li>
+            </ol>
+
+            <div class="lk-merke"><span class="h">Merke</span><p><b>Sättigung</b> = alle Farben. <b>Dynamik/Vibrance</b> = schont die Haut, meist besser. <b>HSL</b> = eine Farbe gezielt, über Farbton · Sättigung · Helligkeit.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Such dir eine Farbe, die vom Motiv ablenkt (ein grelles Schild, eine bunte Jacke). Senk in HSL nur deren Sättigung – der Blick bleibt jetzt beim Wesentlichen.</p></div>
+
+            <details><summary>Für Fortgeschrittene: Himmel &amp; Hauttöne <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p><span class="k">Himmel:</span> Über die Luminanz des Blau-Kanals den Himmel abdunkeln macht ihn dramatischer, ohne den Rest zu beeinflussen. Zu viel wirkt schnell künstlich.</p>
+                <p><span class="k">Haut:</span> Hauttöne liegen im Orange. Kleine Korrekturen an Orange (Sättigung leicht runter, Luminanz leicht hoch) wirken oft Wunder – aber sparsam, sonst wird die Haut fahl oder fleckig.</p>
+              </div>
+            </details>
+
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-next="7">Weiter: Stimmung machen →</button></div>
+          </article>
+
+          <!-- L7 -->
+          <article class="lk-lesson" data-lek="7" data-em="🎭" data-title="Stimmung machen" data-sub="Color Grading: Gegenfarben &amp; Split Toning" hidden>
+            <p class="lk-eyebrow">Lektion 7 · Color Grading</p>
+            <h2>Stimmung machen</h2>
+            <p class="lk-hook">Jetzt kommt der Teil, der aus einem korrekten Bild ein <b>stimmungsvolles</b> macht: Du gibst den dunklen und hellen Partien gezielt eine Farbe. Das ist Color Grading – und dahinter steckt ein einziges einfaches Prinzip.</p>
+
+            <figure>
+              <svg viewBox="0 0 200 210" role="img" aria-label="Farbkreis mit zwei gegenüberliegenden Punkten Orange und Teal auf einer Achse">
+                <circle cx="100" cy="100" r="82" fill="none" stroke="var(--line)"/>
+                <circle cx="172" cy="100" r="5" fill="#ff5a5a"/>
+                <circle cx="162.4" cy="136" r="7" fill="#ff9f45"/>
+                <circle cx="136" cy="162.4" r="5" fill="#ffe14d"/>
+                <circle cx="100" cy="172" r="5" fill="#9ee34f"/>
+                <circle cx="64" cy="162.4" r="5" fill="#4fd06b"/>
+                <circle cx="37.6" cy="136" r="5" fill="#3fcf9e"/>
+                <circle cx="28" cy="100" r="5" fill="#3fc4d6"/>
+                <circle cx="37.6" cy="64" r="7" fill="#4f9fe0"/>
+                <circle cx="64" cy="37.6" r="5" fill="#6e6ee0"/>
+                <circle cx="100" cy="28" r="5" fill="#9e6ee0"/>
+                <circle cx="136" cy="37.6" r="5" fill="#d86ec8"/>
+                <circle cx="162.4" cy="64" r="5" fill="#ff5aa0"/>
+                <line x1="162.4" y1="136" x2="37.6" y2="64" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <circle cx="100" cy="100" r="2.5" fill="var(--muted)"/>
+                <text class="s-lbl-s" x="150" y="158">warm</text>
+                <text class="s-lbl-s" x="24" y="52">kühl</text>
+                <text class="s-lbl" x="100" y="204" text-anchor="middle">gegenüber = Gegenfarbe</text>
+              </svg>
+              <figcaption>Gegenüberliegende Farben (hier Blau/Orange) erzeugen Spannung, benachbarte erzeugen Harmonie. Das ist der ganze Trick.</figcaption>
+            </figure>
+
+            <div class="lk-merke"><span class="h">Das Grundprinzip</span><p><b>Gegenfarbe rein = Spannung.</b> <b>Gleiche oder benachbarte Farbe = Harmonie.</b> Diesen Satz nutzt du ab jetzt bei jedem Bild.</p></div>
+
+            <h4 class="lk-sub">Split Toning: Schatten und Lichter trennen</h4>
+            <p>Die einfachste Methode: Gib den <b>Schatten</b> eine Farbe und den <b>Lichtern</b> die andere. Der Klassiker – kühle blaue Schatten, warme orange Lichter – ist der berühmte „Teal &amp; Orange"-Look, den fast jeder Kinofilm nutzt.</p>
+
+            <figure>
+              <svg viewBox="0 0 400 92" role="img" aria-label="Split Toning: Schatten kühl, Lichter warm">
+                <rect x="12" y="10" width="182" height="46" rx="8" fill="#3f6ea8" stroke="#3a3a40"/>
+                <rect x="206" y="10" width="182" height="46" rx="8" fill="#e0a15a" stroke="#3a3a40"/>
+                <text x="103" y="39" text-anchor="middle" font-size="13" font-weight="600" fill="#eaf1fb">Schatten → kühl</text>
+                <text x="297" y="39" text-anchor="middle" font-size="13" font-weight="600" fill="#3a2400">Lichter → warm</text>
+                <text class="s-lbl-s" x="200" y="80" text-anchor="middle">Mitteltöne dazwischen bleiben neutral</text>
+              </svg>
+              <figcaption>Schatten kühl, Lichter warm – gegenläufig. Die Mitteltöne (und damit die Haut) lässt du möglichst neutral.</figcaption>
+            </figure>
+
+            <p>Wichtig: Halte alles <b>subtil</b>. Ein Hauch Farbe reicht. Und lass die Mitteltöne neutral – sonst bekommen Hauttöne einen unnatürlichen Stich.</p>
+            <p class="lk-cross">👉 Im Tab <b>🎨 Farben</b> kannst du genau das direkt am Farbrad ausprobieren und die zwei Punkte selbst ziehen.</p>
+
+            <div class="lk-merke"><span class="h">Merke</span><p>Schatten eine Farbe, Lichter die Gegenfarbe, Mitte neutral. Immer dezent. <b>Gegenfarbe = Spannung, gleiche Farbe = Harmonie.</b></p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Gib den Schatten einen Hauch Blau und den Lichtern einen Hauch Orange. Vergleiche mit dem Original – dieselbe Szene, sofort „filmischer".</p></div>
+
+            <details><summary>Für Fortgeschrittene: das Farbrad-Werkzeug <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p>Viele Programme haben ein eigenes <span class="k">Farbrad</span> (oft „Color Grading"). Es färbt Schatten, Mitteltöne und Lichter getrennt – dasselbe Prinzip wie oben, nur präziser. Pro Zone wählst du <span class="k">Farbton</span> (welche Farbe), <span class="k">Sättigung</span> (wie viel) und <span class="k">Luminanz</span> (heller/dunkler).</p>
+                <p>Mit <span class="k">Bereich</span> und <span class="k">Übergang</span> stellst du ein, ab welcher Helligkeit ein Ton als Schatten oder Licht zählt – so bleiben die Mitteltöne automatisch sauber, ganz ohne festen Kurvenpunkt.</p>
+              </div>
+            </details>
+
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-next="8">Weiter: Details &amp; Finish →</button></div>
+          </article>
+
+          <!-- L8 -->
+          <article class="lk-lesson" data-lek="8" data-em="✨" data-title="Details &amp; Finish" data-sub="Struktur, Schärfe, Korn, Vignette" hidden>
+            <p class="lk-eyebrow">Lektion 8 · Finish</p>
+            <h2>Details &amp; Finish</h2>
+            <p class="lk-hook">Die letzten 10 %. Hier geht es nicht mehr um große Änderungen, sondern um den Feinschliff, der ein Bild „fertig" aussehen lässt. Regel Nummer eins: sparsam.</p>
+
+            <h4 class="lk-sub">Die Reihenfolge des Feinschliffs</h4>
+            <figure>
+              <svg viewBox="0 0 400 96" role="img" aria-label="Der Ablauf einer Bearbeitung: Licht, Farbe, Details, Finish">
+                <rect x="6" y="26" width="84" height="48" rx="10" fill="var(--bg-card-2)" stroke="var(--line)"/>
+                <rect x="108" y="26" width="84" height="48" rx="10" fill="var(--bg-card-2)" stroke="var(--line)"/>
+                <rect x="210" y="26" width="84" height="48" rx="10" fill="var(--bg-card-2)" stroke="var(--line)"/>
+                <rect x="312" y="26" width="82" height="48" rx="10" fill="rgba(255,159,69,.12)" stroke="var(--accent)"/>
+                <text x="48" y="48" text-anchor="middle" font-size="17">☀️</text>
+                <text x="150" y="48" text-anchor="middle" font-size="17">🎨</text>
+                <text x="252" y="48" text-anchor="middle" font-size="17">✨</text>
+                <text x="353" y="48" text-anchor="middle" font-size="17">🏁</text>
+                <text class="s-lbl-s" x="48" y="66" text-anchor="middle">Licht</text>
+                <text class="s-lbl-s" x="150" y="66" text-anchor="middle">Farbe</text>
+                <text class="s-lbl-s" x="252" y="66" text-anchor="middle">Details</text>
+                <text class="s-tick" x="353" y="66" text-anchor="middle">Finish</text>
+                <polygon points="90,50 100,45 100,55" fill="#54545c"/>
+                <polygon points="192,50 202,45 202,55" fill="#54545c"/>
+                <polygon points="294,50 304,45 304,55" fill="#54545c"/>
+              </svg>
+              <figcaption>So läuft fast jede Bearbeitung: erst das Licht, dann die Farbe, dann Details – ganz zuletzt der Finish. Immer vom Groben zum Feinen.</figcaption>
+            </figure>
+
+            <ol class="steps">
+              <li><b>Struktur / Klarheit:</b> verstärkt Textur und Oberfläche – toll für Fels, Mauern, Wolken. Bei Haut und Wasser eher zurücknehmen.</li>
+              <li><b>Schärfe:</b> betont feine Kanten. Immer als Letztes und sparsam – zu viel erzeugt harte, künstliche Ränder.</li>
+              <li><b>Körnung (Korn):</b> feines Filmkorn für Stimmung und analogen Charakter. Bewusstes Stilmittel, kein Muss.</li>
+              <li><b>Vignette:</b> dunkelt die Ränder leicht ab und zieht den Blick zur Mitte. Dezent fällt sie gar nicht auf – sie wirkt einfach.</li>
+            </ol>
+
+            <h4 class="lk-sub">Der Bildausschnitt</h4>
+            <p>Auch Zuschneiden gehört zum Finish. Die Leitfrage: <b>Wo soll das Auge landen?</b> Alles, was am Rand nur ablenkt, darf weg. Formate: 4:5 fürs Hochformat im Feed, 9:16 für Stories/Reels, 16:9 fürs Querformat.</p>
+
+            <div class="lk-merke"><span class="h">Merke</span><p>Reihenfolge: <b>Licht → Farbe → Details → Finish.</b> Schärfe immer zuletzt. Bei allem gilt: lieber zu wenig als zu viel.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Leg eine dezente Vignette auf ein Porträt und schalte sie an/aus. Achte darauf, wie stark dein Blick zur Person gezogen wird – obwohl du die Vignette kaum bewusst wahrnimmst.</p></div>
+
+            <details><summary>Für Fortgeschrittene: Ausgabe &amp; Export <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p><span class="k">Ausgabeschärfung:</span> Ein Bild fürs Handydisplay braucht andere Schärfe als eins für den Druck. Viele Programme schärfen beim Export passend nach – getrennt von deiner kreativen Schärfe.</p>
+                <p><span class="k">Korn dosieren:</span> Für einen cleanen, modernen Look wenig bis kein Korn; für Film/Vintage darf es mehr sein. Immer im 100-%-Zoom prüfen, sonst dosierst du daneben.</p>
+              </div>
+            </details>
+
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-finish>✓ Geschafft – zur Übersicht</button></div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============ NACHSCHLAGEN ============ -->
+      <div id="wview-nach" hidden>
+        <p class="lead">Dein Spickzettel: <b>was</b> jedes Werkzeug macht und <b>wann</b> du es einsetzt. Tippe eine Gruppe an zum Aufklappen.</p>
+        <div class="hintbox">Die <b>Werkzeugnamen</b> unterscheiden sich je nach Programm.
+        Ambiente heißt anderswo Dunst oder Klarheit, Feinabstimmung heißt Grundeinstellungen oder Licht,
+        Selektiv heißt Maske oder Korrekturpinsel. Das Prinzip dahinter ist überall gleich.</div>
+        <div class="row" style="margin-bottom:14px">
+          <button class="btn" id="addWisBtn">+ Eigener Eintrag</button>
+        </div>
+        <input class="search" id="searchSpick" placeholder="Suchen … (z. B. Kurven, Struktur, Split)" />
+        <div id="spickList"></div>
+        <h5 class="sec">Vorlagen verwalten</h5>
+        <p class="info" id="vorlagenInfo"></p>
+        <div class="row" style="margin-bottom:24px">
+          <button class="btn ghost small" id="hideAllBtn">Alle Vorlagen ausblenden</button>
+          <button class="btn ghost small" id="restoreBtn">Vorlagen wiederherstellen</button>
+        </div>
       </div>
     </section>
 
   </main>
 
   <nav>
-    <button data-tab="berater" class="active"><span class="ic">📷</span>Berater</button>
+    <button data-tab="spick" class="active"><span class="ic">📖</span>Wissen</button>
+    <button data-tab="berater"><span class="ic">📷</span>Berater</button>
     <button data-tab="rezepte"><span class="ic">🧪</span>Rezepte</button>
     <button data-tab="farbe"><span class="ic">🎨</span>Farben</button>
-    <button data-tab="spick"><span class="ic">📖</span>Wissen</button>
   </nav>
 
   <dialog id="wisDialog">
@@ -2052,6 +2579,81 @@
   });
 
   //=========================================================================
+  //  LERNBEREICH – geführte Lektionen (Lernen / Nachschlagen)
+  //=========================================================================
+  const lkListEl = el('lkList');
+  const lkArticles = [].slice.call(document.querySelectorAll('#lernLesson [data-lek]'));
+  const lkOrder = lkArticles.map(a => a.dataset.lek);
+  let curLesson = null;
+  const lkRead = () => LS.get('fw_lernen', []);
+  const lkIsRead = id => lkRead().indexOf(id) > -1;
+  const lkById = id => lkArticles.filter(a => a.dataset.lek === id)[0];
+  function lkMark(id, on) {
+    const r = lkRead().filter(x => x !== id);
+    if (on) r.push(id);
+    LS.set('fw_lernen', r);
+  }
+  function paintRead(btn, on) {
+    if (!btn) return;
+    btn.classList.toggle('on', on);
+    btn.textContent = on ? '✓ Gelesen' : 'Als gelesen markieren';
+  }
+  function renderLkList() {
+    const read = lkRead();
+    let firstUnread = null;
+    for (let i = 0; i < lkOrder.length; i++) {
+      if (read.indexOf(lkOrder[i]) < 0) { firstUnread = lkOrder[i]; break; }
+    }
+    lkListEl.innerHTML = lkArticles.map((a, i) => {
+      const id = a.dataset.lek, done = read.indexOf(id) > -1, cur = id === firstUnread;
+      const tag = done ? 'gelesen' : (cur ? 'weiter' : 'offen');
+      return `<button class="lk-item${done ? ' done' : ''}${cur ? ' current' : ''}" data-open="${id}">
+        <span class="lk-num">${done ? '✓' : (i + 1)}</span>
+        <span class="lk-em">${a.dataset.em}</span>
+        <span class="lk-txt"><b>${esc(a.dataset.title)}</b><span>${esc(a.dataset.sub)}</span></span>
+        <span class="lk-tag">${tag}</span></button>`;
+    }).join('');
+    const doneCount = read.filter(id => lkOrder.indexOf(id) > -1).length;
+    el('lkProg').textContent = `${doneCount} von ${lkOrder.length} Lektionen gelesen`;
+  }
+  function openLesson(id) {
+    if (lkOrder.indexOf(id) < 0) return;
+    curLesson = id;
+    lkArticles.forEach(a => { a.hidden = a.dataset.lek !== id; });
+    paintRead(lkById(id).querySelector('.lk-read'), lkIsRead(id));
+    el('lernList').hidden = true;
+    el('lernLesson').hidden = false;
+    window.scrollTo({ top: 0 });
+  }
+  function closeLesson() {
+    el('lernLesson').hidden = true;
+    el('lernList').hidden = false;
+    renderLkList();
+    window.scrollTo({ top: 0 });
+  }
+  el('tab-spick').addEventListener('click', e => {
+    const open = e.target.closest('[data-open]');
+    if (open) { openLesson(open.dataset.open); return; }
+    if (e.target.closest('#lkBack')) { closeLesson(); return; }
+    const rd = e.target.closest('.lk-read');
+    if (rd) { const on = !lkIsRead(curLesson); lkMark(curLesson, on); paintRead(rd, on); return; }
+    const nx = e.target.closest('.lk-next');
+    if (nx) {
+      lkMark(curLesson, true);
+      if (nx.hasAttribute('data-finish')) closeLesson();
+      else if (nx.dataset.next) openLesson(nx.dataset.next);
+    }
+  });
+  el('wisSeg').addEventListener('click', e => {
+    const b = e.target.closest('.segbtn'); if (!b) return;
+    [].forEach.call(el('wisSeg').querySelectorAll('.segbtn'), x => x.classList.toggle('active', x === b));
+    const lern = b.dataset.wview === 'lernen';
+    el('wview-lernen').hidden = !lern;
+    el('wview-nach').hidden = lern;
+    if (lern) closeLesson();
+  });
+
+  //=========================================================================
   //  Start
   //=========================================================================
   // Frühere Schnellnotizen einmalig in das eigene Wissen uebernehmen
@@ -2070,6 +2672,7 @@
   renderMotifs();
   renderRecipes();
   renderSpick();
+  renderLkList();
   updateVorlagenInfo();
   renderColor();
 

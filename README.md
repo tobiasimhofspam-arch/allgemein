@@ -5,7 +5,10 @@ Code auf dem Tablet.
 ## 🎨 ColorGrade (PWA)
 
 Ein Lern- und Nachschlagewerkzeug für Bildbearbeitung fürs Tablet – installierbar als App (PWA),
-funktioniert offline, speichert deine Daten lokal auf dem Gerät.
+funktioniert offline, speichert deine Daten lokal auf dem Gerät. Die App startet mit einem
+**geführten Lernbereich**: acht aufeinander aufbauende Grundlagen-Lektionen mit kleinen Grafiken,
+die Einsteiger Schritt für Schritt durch ihre erste Bildbearbeitung führen – und die
+Fortgeschrittene über ausklappbare Vertiefungen und das Nachschlagewerk weiterhin bedienen.
 
 **Vier Bereiche:**
 - 📷 **Bild-Berater** – Motiv antippen (Wald/Grün &amp; Braun, Meer, Regennacht,
@@ -21,9 +24,14 @@ funktioniert offline, speichert deine Daten lokal auf dem Gerät.
   Zeigt die Beziehung der Töne, was jede Farbe ausdrückt, die Palette und die
   konkrete Umsetzung – dazu sechs **Richtungen** (saftig, märchenhaft,
   mystisch, nostalgisch, Kino, modern), die man aufs Rad übernehmen kann.
-- 📖 **Wissen** – Spickzettel in 19 Gruppen, durchsuchbar; darunter zwei
-  Video-Gruppen (Bildrate wählen · Kamera-Grundeinstellungen). Eigene Einträge
-  und Gruppen lassen sich ergänzen.
+- 📖 **Wissen** – der Einstieg der App, mit zwei Ebenen. **Lernen:** ein
+  geführter Pfad aus acht Grundlagen-Lektionen (Was ist Bildbearbeitung? · Die
+  drei Zonen · Licht steuern · Die Kurve verstehen · Weißabgleich · Farbe &amp;
+  Sättigung · Stimmung machen · Details &amp; Finish), jede mit Hook, kleiner
+  Grafik, einfacher Erklärung, „Merke", „Probier's" und einer ausklappbaren
+  Vertiefung für Fortgeschrittene; gelesene Lektionen werden lokal abgehakt.
+  **Nachschlagen:** der durchsuchbare Spickzettel in 19 Gruppen (inkl. zwei
+  Video-Gruppen). Eigene Einträge und Gruppen lassen sich ergänzen.
 
 **Alles ist löschbar.** Jedes mitgelieferte Rezept und jeder Wissens-Eintrag lässt
 sich ausblenden, damit man die App komplett mit eigenem Wissen füllen kann.
