@@ -12,13 +12,15 @@ funktioniert offline, speichert deine Daten lokal auf dem Gerät.
   Sonnenuntergang, Porträt, Berge, Stadt, Blumen, Food, Schnee) → kompletter
   Ablauf in vier Phasen (Basis → Kurven → lokal → Finish) plus Color Grading
   wahlweise auf Spannung oder Harmonie, mit konkreten Kurvengriffen.
-- 🧪 **Rezepte** – 17 Looks, jeder mit Kurvenarbeit, Begründung je Schritt und
+- 🧪 **Rezepte** – zwei Reiter: **Bild** (17 Looks, jeder mit Kurvenarbeit, Begründung je Schritt und
   Merksatz (70er-Kurven-Methode, Madeira/Wald, Teal &amp; Orange, Regennacht,
-  Golden Hour, Moody, Street, Noir, Faded u. a.). Eigene Rezepte möglich.
+  Golden Hour, Moody, Street, Noir, Faded u. a.) und **Video** (Story-Grundgerüst,
+  B-Roll-Checkliste, Reel-Aufbau, Kamera-Einstellungen). Eigene Rezepte in beiden.
 - 🎨 **Farb-Helfer** – Farbrad mit zwei ziehbaren Punkten (Lichter/Schatten),
   darunter Feinsteuerung über Farbwähler und Sättigungs-/Helligkeitsregler.
   Zeigt die Beziehung der Töne, was jede Farbe ausdrückt, die Palette und die
-  konkrete Snapseed-Umsetzung.
+  konkrete Snapseed-Umsetzung – dazu sechs **Richtungen** (saftig, märchenhaft,
+  mystisch, nostalgisch, Kino, modern), die man aufs Rad übernehmen kann.
 - 📖 **Wissen** – der komplette Spickzettel in 16 Gruppen, durchsuchbar.
 - 📌 **Eigenes** – eigene Rezepte (Überschrift, Schritte, Merksatz, Stichworte)
   und schnelle Notizen. Wird lokal auf dem Gerät gespeichert.

@@ -221,6 +221,18 @@
       border-radius: 9px; padding: 7px 10px; }
     .gegen .g b { font-weight: 700; }
     .effect { display: block; font-size: 12.5px; margin-top: 4px; color: var(--accent-2); }
+    .seg { display: flex; gap: 6px; background: var(--bg-card); border: 1px solid var(--line);
+      border-radius: 12px; padding: 4px; margin-bottom: 14px; }
+    .segbtn { flex: 1; background: none; border: none; color: var(--muted); cursor: pointer;
+      font-size: 14px; font-weight: 650; padding: 9px 8px; border-radius: 9px; }
+    .segbtn.active { background: var(--bg-card-2); color: var(--accent); }
+    .dir .card-head h3 { font-size: 15px; }
+    .dir .goal { font-size: 12.5px; color: var(--muted); margin: 0 0 10px; }
+    .dir .when { font-size: 12.5px; margin: 10px 0 0; color: var(--green); }
+    .dir .extra { margin: 10px 0 0; padding: 0; list-style: none; }
+    .dir .extra li { font-size: 13px; padding: 5px 0 5px 16px; position: relative; }
+    .dir .extra li:before { content: '·'; position: absolute; left: 5px; color: var(--accent); font-weight: 700; }
+    .applybtn { margin-top: 12px; width: 100%; }
     .info { color: var(--muted); font-size: 12.5px; margin: 4px 2px 16px; }
 
     /* Wissen */
@@ -286,6 +298,10 @@
     </section>
 
     <section id="tab-rezepte" class="tab-panel">
+      <div class="seg" id="rezSeg" role="tablist">
+        <button class="segbtn active" data-kind="bild" role="tab">📷 Bild</button>
+        <button class="segbtn" data-kind="video" role="tab">🎬 Video</button>
+      </div>
       <input class="search" id="searchRez" placeholder="Look suchen … (z. B. 70er, Teal, Wald)" />
       <div class="row" style="margin-bottom:14px">
         <button class="btn" id="addRezBtn">+ Eigenes Rezept</button>
@@ -323,7 +339,11 @@
       <div class="tipbox" id="paletteWhat"></div>
       <h5 class="sec">Was diese Farben ausdrücken</h5>
       <div id="meanings"></div>
-      <h5 class="sec key">So setzt du die Palette in Snapseed um</h5>
+      <h5 class="sec key">Wohin diese Farben führen können</h5>
+      <p class="info">Dieselben zwei Farben ergeben je nach Grading eine ganz andere Geschichte.
+      Tippe eine Richtung an – und übernimm sie mit einem Tipp aufs Rad, wenn sie dir gefällt.</p>
+      <div id="richtungen"></div>
+      <h5 class="sec key" id="umsetzTitle">So setzt du die Palette in Snapseed um</h5>
       <div id="gegenBox"></div>
       <div id="zoneBox"></div>
       <div id="recipeOut"></div>
@@ -338,7 +358,8 @@
     <section id="tab-tipps" class="tab-panel">
       <p class="lead">Hier sammelst du Eigenes: ein <b>komplettes Rezept</b> mit Überschrift und Schritten – oder schnell einen Tipp, den du irgendwo gesehen hast.</p>
       <div class="row" style="margin-bottom:16px">
-        <button class="btn" id="addRezBtn2">+ Eigenes Rezept anlegen</button>
+        <button class="btn" id="addRezBtn2">+ Bild-Rezept</button>
+        <button class="btn ghost" id="addVidBtn">+ Video-Rezept</button>
       </div>
       <div class="note-form">
         <textarea id="noteText" placeholder="Kurzer Tipp … (z. B. 'Für Herbstlaub Sättigung leicht runter, Wärme +5')"></textarea>
@@ -374,7 +395,7 @@
       <label class="fl" for="rezTags">Stichworte (Komma)</label>
       <input id="rezTags" placeholder="z. B. Warm, Vintage" />
       <div class="sheet-foot">
-        <button value="cancel" class="btn ghost">Abbrechen</button>
+        <button type="button" id="cancelRez" class="btn ghost">Abbrechen</button>
         <button value="save" class="btn" id="saveRez">Speichern</button>
       </div>
     </form>
@@ -732,6 +753,69 @@
       ]
     }
   ];
+
+  //=========================================================================
+  //  VIDEO-REZEPTE – Dreh- und Story-Vorlagen
+  //=========================================================================
+  const DEFAULT_VIDEO = [
+    {
+      id: "v-story5", name: "Story-Grundgerüst (5 Shots)",
+      mood: "Die Mindestausstattung, um einen Ort oder Moment zu erzählen",
+      desc: "Wenn du nur fünf Aufnahmen machen kannst, dann diese. Zusammen ergeben sie automatisch eine Geschichte.",
+      merke: "Weit – nah – Handlung – Reaktion – Abschluss. In dieser Reihenfolge denkt der Zuschauer mit.",
+      tags: ["Story", "Grundlagen"],
+      steps: [
+        { t: "1 · Establishing", s: "Weit, statisch, 4–6 Sekunden", w: "Beantwortet: Wo sind wir? Ohne diesen Shot ist der Zuschauer verloren." },
+        { t: "2 · Detail", s: "Nah dran auf ein einzelnes Objekt, 2–3 Sekunden", w: "Gibt dem Ort Charakter und liefert einen Schnittpunkt." },
+        { t: "3 · Action", s: "Jemand oder etwas tut etwas, mittlere Distanz", w: "Bewegung im Bild hält den Blick fest." },
+        { t: "4 · Reaction", s: "Gesicht, Hände oder Folge der Handlung", w: "Erst die Reaktion macht aus einer Handlung eine Geschichte." },
+        { t: "5 · Abschluss", s: "Weit oder Wegbewegung, 4–6 Sekunden", w: "Signalisiert: Szene vorbei. Gutes Ende für den Schnitt." }
+      ]
+    },
+    {
+      id: "v-broll", name: "B-Roll-Sammlung für einen Ort",
+      mood: "Genug Material, damit der Schnitt später nicht klemmt",
+      desc: "Die Liste, die du abarbeitest, wenn du irgendwo ankommst und filmen willst.",
+      merke: "Immer 3 Distanzen pro Motiv: weit, mittel, nah. Und jeden Shot länger halten als es sich richtig anfühlt.",
+      tags: ["B-Roll", "Checkliste"],
+      steps: [
+        { t: "Drei Distanzen", s: "Vom selben Motiv weit, mittel und nah aufnehmen", w: "Erlaubt später jeden Schnitt, ohne dass es springt." },
+        { t: "Eine Bewegung", s: "Langsamer Schwenk oder Schritt zur Seite (Parallaxe)", w: "Bewegung wirkt lebendiger als ein starres Bild." },
+        { t: "Etwas im Vordergrund", s: "Durch Blätter, ein Geländer oder eine Türöffnung filmen", w: "Erzeugt Tiefe und wirkt sofort hochwertiger." },
+        { t: "Licht suchen", s: "Gegenlicht, Schattenkante, Spiegelung", w: "Licht ist der Unterschied zwischen Doku und Stimmung." },
+        { t: "Länger halten", s: "Jeden Shot mindestens 8 Sekunden laufen lassen", w: "Im Schnitt brauchst du Vor- und Nachlauf – kurze Clips sind unbrauchbar." }
+      ]
+    },
+    {
+      id: "v-reel", name: "Reel-Aufbau (Hook · Inhalt · Schluss)",
+      mood: "Struktur für ein kurzes Video, das bis zum Ende geschaut wird",
+      desc: "Die ersten zwei Sekunden entscheiden alles andere.",
+      merke: "Hook in den ersten 2 Sekunden, dann liefern, am Ende ein Grund zum Wiederschauen.",
+      tags: ["Reel", "Social"],
+      steps: [
+        { t: "Hook (0–2 s)", s: "Stärkstes Bild oder klare Aussage sofort", w: "Kein Intro, kein Aufwärmen – hier wird weitergewischt oder nicht." },
+        { t: "Versprechen", s: "In einem Satz sagen, was kommt", w: "Der Zuschauer bleibt, wenn er weiß, wofür." },
+        { t: "Inhalt (3–5 Schnitte)", s: "Jeder Schnitt bringt etwas Neues", w: "Sobald sich etwas wiederholt, springt die Aufmerksamkeit ab." },
+        { t: "Schluss", s: "Ergebnis zeigen oder zum Anfang zurückschneiden", w: "Eine geschlossene Schleife erhöht die Wiederholungen." },
+        { t: "Format", s: "9:16 aufnehmen, wichtige Dinge nicht an den Rand", w: "Oben und unten liegen Bedienelemente über dem Bild." }
+      ]
+    },
+    {
+      id: "v-settings", name: "Kamera-Einstellungen fürs Filmen",
+      mood: "Die Basiswerte, bevor du aufnimmst",
+      desc: "Kurz prüfen, dann filmen – spart hinterher viel Ärger.",
+      merke: "Verschlusszeit = doppelte Bildrate. Bei 30 fps also 1/60.",
+      tags: ["Technik", "Grundlagen"],
+      steps: [
+        { t: "Bildrate", s: "24 oder 30 fps für normal, 60 fps für Zeitlupe", w: "In Zeitlupe verwandelt sich 60 fps sauber in halbes Tempo." },
+        { t: "Verschlusszeit", s: "Doppelte Bildrate (30 fps → 1/60)", w: "Ergibt natürliche Bewegungsunschärfe. Zu kurz wirkt ruckelig." },
+        { t: "Weißabgleich fixieren", s: "Nicht auf Automatik lassen", w: "Sonst springt die Farbe mitten im Clip – im Schnitt kaum zu retten." },
+        { t: "Belichtung fixieren", s: "Auf das Wichtigste messen und sperren", w: "Automatik pumpt beim Schwenken hell und dunkel." },
+        { t: "Stabil halten", s: "Beide Hände, Ellbogen am Körper, langsam gehen", w: "Nachträgliche Stabilisierung beschneidet das Bild." }
+      ]
+    }
+  ];
+
   //=========================================================================
   //  BILD-BERATER – Ablauf in vier Phasen, Schwerpunkt Kurven.
   //  tension/harmony tragen Farbtoene (hi = Lichter, sh = Schatten),
@@ -1158,6 +1242,19 @@
   }
   function hueInfo(h) { return HUE_INFO[Math.round(norm(h) / 30) % 12]; }
   function hueName(h) { return hueInfo(h).n; }
+  // Alltagsname: Braun ist dunkles Orange, Oliv dunkles Gelbgruen usw.
+  function toneName(c) {
+    const h = norm(c.h), sat = c.s, li = c.l;
+    if (sat < 12) return li < 40 ? 'Anthrazit' : (li > 70 ? 'Hellgrau' : 'Neutralgrau');
+    if (h >= 12 && h < 50) {
+      if (li < 42) return 'Braun';
+      if (li >= 55 && sat < 40) return 'Beige';
+    }
+    if (h >= 50 && h < 100 && li < 45) return 'Oliv';
+    if (h >= 100 && h < 165 && li < 30) return 'Tannengrün';
+    if (h >= 330 || h < 12) { if (li < 38) return 'Weinrot'; }
+    return hueName(h);
+  }
 
   // Welche RGB-Kanaele muss die Kurve bewegen, um diesen Farbton zu erzeugen?
   function channelMoves(h) {
@@ -1305,6 +1402,9 @@
   }
   function openRecipe(id) {
     goTab('rezepte');
+    REZ_KIND = 'bild';
+    document.querySelectorAll('#rezSeg .segbtn').forEach(x =>
+      x.classList.toggle('active', x.dataset.kind === 'bild'));
     searchRez.value = '';
     renderRecipes();
     requestAnimationFrame(() => {
@@ -1318,8 +1418,12 @@
   //=========================================================================
   const rezList = document.getElementById('rezList');
   const searchRez = document.getElementById('searchRez');
+  let REZ_KIND = 'bild';
   function getUserRecipes() { return LS.get('fw_recipes', []); }
-  function allRecipes() { return [...getUserRecipes(), ...DEFAULT_RECIPES]; }
+  function allRecipes() {
+    const own = getUserRecipes().filter(r => (r.kind || 'bild') === REZ_KIND);
+    return [...own, ...(REZ_KIND === 'video' ? DEFAULT_VIDEO : DEFAULT_RECIPES)];
+  }
   function renderRecipes() {
     const q = searchRez.value.trim().toLowerCase();
     const items = allRecipes().filter(r => {
@@ -1327,7 +1431,7 @@
       return plain(r.name + ' ' + (r.mood||'') + ' ' + (r.tags||[]).join(' ') + ' ' +
         r.steps.map(s => s.t + ' ' + s.s + ' ' + (s.w||'')).join(' ')).toLowerCase().includes(q);
     });
-    if (!items.length) { rezList.innerHTML = '<div class="empty">Kein Look gefunden.</div>'; return; }
+    if (!items.length) { rezList.innerHTML = `<div class="empty">${REZ_KIND === 'video' ? 'Kein Video-Rezept gefunden.' : 'Kein Look gefunden.'}</div>`; return; }
     rezList.innerHTML = items.map(r => `
       <div class="card" data-id="${esc(r.id)}">
         <div class="card-head">
@@ -1356,23 +1460,49 @@
       }));
   }
   searchRez.addEventListener('input', renderRecipes);
+  document.querySelectorAll('#rezSeg .segbtn').forEach(b =>
+    b.addEventListener('click', () => {
+      REZ_KIND = b.dataset.kind;
+      document.querySelectorAll('#rezSeg .segbtn').forEach(x =>
+        x.classList.toggle('active', x === b));
+      searchRez.value = '';
+      searchRez.placeholder = REZ_KIND === 'video'
+        ? 'Video-Rezept suchen … (z. B. Story, Reel)' : 'Look suchen … (z. B. 70er, Teal, Wald)';
+      document.getElementById('addRezBtn').textContent =
+        REZ_KIND === 'video' ? '+ Eigenes Video-Rezept' : '+ Eigenes Rezept';
+      renderRecipes();
+    }));
+
 
   const rezDialog = document.getElementById('rezDialog');
   const rezSteps = document.getElementById('rezSteps');
   function addStepInput() {
     const div = document.createElement('div');
     div.className = 'step-in';
-    div.innerHTML = '<input placeholder="Werkzeug (z. B. Kurven · Blau)"><input placeholder="Einstellung">';
+    div.innerHTML = DIALOG_KIND === 'video'
+      ? '<input placeholder="Shot / Schritt"><input placeholder="Beschreibung">'
+      : '<input placeholder="Werkzeug (z. B. Kurven · Blau)"><input placeholder="Einstellung">';
     rezSteps.appendChild(div);
   }
-  function openRezDialog() {
+  let DIALOG_KIND = 'bild';
+  function openRezDialog(kind) {
+    DIALOG_KIND = kind || REZ_KIND;
+    const vid = DIALOG_KIND === 'video';
     ['rezName','rezMood','rezMerke','rezTags'].forEach(id => document.getElementById(id).value = '');
+    document.querySelector('#rezForm h3').textContent = vid ? 'Eigenes Video-Rezept' : 'Eigenes Rezept';
+    document.querySelector('#rezForm .hint').textContent = vid
+      ? 'Überschrift, worum es geht und beliebig viele Shots oder Schritte.'
+      : 'Überschrift, Stimmung und beliebig viele Schritte – wie bei den fertigen Looks.';
+    document.getElementById('rezName').placeholder = vid ? 'z. B. Shots für einen Herbstspaziergang' : 'z. B. Madeira Abendlicht';
+    document.getElementById('rezMood').placeholder = vid ? 'z. B. Ruhige Story in fünf Einstellungen' : 'z. B. Warm, weich, leicht verblasst';
     rezSteps.innerHTML = '';
     addStepInput(); addStepInput(); addStepInput();
     rezDialog.showModal();
   }
-  document.getElementById('addRezBtn').addEventListener('click', openRezDialog);
-  document.getElementById('addRezBtn2').addEventListener('click', openRezDialog);
+  document.getElementById('addRezBtn').addEventListener('click', () => openRezDialog());
+  document.getElementById('addRezBtn2').addEventListener('click', () => openRezDialog('bild'));
+  document.getElementById('addVidBtn').addEventListener('click', () => openRezDialog('video'));
+  document.getElementById('cancelRez').addEventListener('click', () => rezDialog.close('cancel'));
   document.getElementById('addStepBtn').addEventListener('click', addStepInput);
   document.getElementById('rezForm').addEventListener('submit', e => {
     if (e.submitter && e.submitter.value === 'save') {
@@ -1383,12 +1513,18 @@
         return { t: ins[0].value.trim(), s: ins[1].value.trim() };
       }).filter(s => s.t || s.s);
       LS.set('fw_recipes', [{
-        id: 'u-' + Date.now(), custom: true, name,
+        id: 'u-' + Date.now(), custom: true, kind: DIALOG_KIND, name,
         mood: document.getElementById('rezMood').value.trim(),
         merke: document.getElementById('rezMerke').value.trim(),
         tags: document.getElementById('rezTags').value.split(',').map(t => t.trim()).filter(Boolean),
         desc: '', steps: steps.length ? steps : [{ t: 'Notiz', s: '—' }]
       }, ...getUserRecipes()]);
+      REZ_KIND = DIALOG_KIND;
+      document.querySelectorAll('#rezSeg .segbtn').forEach(x =>
+        x.classList.toggle('active', x.dataset.kind === REZ_KIND));
+      document.getElementById('addRezBtn').textContent =
+        REZ_KIND === 'video' ? '+ Eigenes Video-Rezept' : '+ Eigenes Rezept';
+      searchRez.value = '';
       renderRecipes();
       goTab('rezepte');
     }
@@ -1407,7 +1543,7 @@
         ? g.items.filter(it => plain((it.t||'') + ' ' + it.d + ' ' + g.group).toLowerCase().includes(q))
         : g.items;
       if (!items.length) return;
-      const open = q ? true : gi === 0;
+      const open = !!q;
       html += `<div class="card ${open ? 'open' : ''}">
           <div class="card-head">
             <span style="font-size:20px">${g.em}</span>
@@ -1510,6 +1646,98 @@
   const isCool = h => (norm(h) >= 150 && norm(h) < 285);
 
   const el = id => document.getElementById(id);
+
+  //=========================================================================
+  //  RICHTUNGEN – wohin die gewaehlten Farben fuehren koennen
+  //=========================================================================
+  const DIRECTIONS = [
+    { id: 'saftig', em: '🌿', n: 'Saftig &amp; lebendig',
+      goal: 'Verstärkt, was ohnehin im Bild ist. Die Farben werden voller, das Motiv bleibt natürlich.',
+      when: 'Passt, wenn dir das Bild so gefällt, wie es ist, und nur Kraft fehlt.',
+      calc: () => ({ hi: { h: norm(HI.h - 8), s: Math.min(100, HI.s + 12) }, sh: { h: SH.h, s: Math.min(100, SH.s + 8) } }),
+      extra: ['Ambiente +25 statt die Sättigung hochzudrehen – das hält die Farben echt.',
+              'Kurven · Farbkanal deiner Hauptfarbe · Mitteltöne leicht ↑ – dort sitzt die große Fläche.',
+              'Selektiv auf die Hauptfarbe tippen und nur dort die Sättigung anheben.'] },
+    { id: 'maerchen', em: '🧚', n: 'Märchenhaft &amp; verträumt',
+      goal: 'Goldenes Licht, violette Tiefen und ein Hauch Dunst. Die Szene wirkt eine Spur unwirklich.',
+      when: 'Ideal, wenn Licht durch Blätter fällt, Nebel liegt oder du eine Geschichte erzählen willst.',
+      calc: () => ({ hi: { h: 42, s: 58, l: 66 }, sh: { h: 268, s: 38, l: 34 } }),
+      extra: ['Kurven · RGB · Fußpunkt ↑ – milchige Tiefen wie leichter Dunst. Das ist der Schlüsselgriff.',
+              'Feinabstimmung: Kontrast −15, Sättigung −8 – Weichheit statt Knall.',
+              'Glanz (Glamour Glow) ~25 % für das Leuchten in den Lichtern.'] },
+    { id: 'mystisch', em: '🌫️', n: 'Mystisch &amp; düster',
+      goal: 'Kühle, schwere Tiefen und zurückgenommene Mitteltöne. Es wird still und ein bisschen unheimlich.',
+      when: 'Für dichten Wald, Regenwetter, frühen Morgen – überall, wo Stimmung wichtiger ist als Farbe.',
+      calc: () => ({ hi: { h: norm(SH.h + 15), s: 30, l: 58 }, sh: { h: 196, s: 45, l: 26 } }),
+      extra: ['Kurven · RGB · Mitteltöne ↓ – der Kern: das Bild wird schwer, ohne dass die Tiefen zulaufen.',
+              'Feinabstimmung: Sättigung −12, Glanzlichter −25.',
+              'Vignette −30, damit sich die Szene schließt.'] },
+    { id: 'nostalgie', em: '🎞️', n: 'Warm &amp; nostalgisch',
+      goal: 'Alles wandert ins Gelbliche, die Schwarztöne werden milchig. Wirkt wie ein Fund aus der Schublade.',
+      when: 'Wenn das Bild eine Erinnerung sein soll statt einer Dokumentation.',
+      calc: () => ({ hi: { h: 45, s: 52, l: 64 }, sh: { h: 40, s: 26, l: 38 } }),
+      extra: ['Kurven · Blau · ganze Kurve ↓ – nimmt Blau raus, das ganze Bild wird gelblich.',
+              'Kurven · RGB · Fußpunkt ↑ – der Faded-Griff, Schwarz wird Grau.',
+              'Grobkörniger Film mit zurückgenommener Stärke, damit nur das Korn bleibt.'] },
+    { id: 'kino', em: '🎬', n: 'Kino &amp; maximale Spannung',
+      goal: 'Deine Hauptfarbe bleibt, die Schatten gehen in die Gegenfarbe. Das Motiv springt aus dem Bild.',
+      when: 'Wenn eine Person, ein Tier oder ein Objekt klar im Mittelpunkt stehen soll.',
+      calc: () => ({ hi: { h: HI.h, s: Math.max(50, HI.s) }, sh: { h: norm(HI.h + 180), s: 50, l: 30 } }),
+      extra: ['Ein einziger Farbkanal genügt: links hoch, rechts runter – gegenläufig.',
+              'Kurven · Mitte fixieren, sonst kippen Haut und Hauptmotiv mit.',
+              'Tonaler Kontrast · Mitteltöne +15 für Plastizität.'] },
+    { id: 'modern', em: '🧊', n: 'Klar &amp; modern',
+      goal: 'Entsättigt und kühl. Formen, Linien und Licht übernehmen die Hauptrolle.',
+      when: 'Für Architektur, Street und alles, was nüchtern und aufgeräumt wirken soll.',
+      calc: () => ({ hi: { h: 202, s: 22, l: 62 }, sh: { h: 216, s: 32, l: 30 } }),
+      extra: ['Feinabstimmung: Sättigung −15, Kontrast +15.',
+              'Kurven · RGB · Fußpunkt leicht ↑ für den matten, modernen Ton.',
+              'Tonaler Kontrast · Mitteltöne +20 – hier entsteht der Biss.'] }
+  ];
+
+  let OPEN_DIR = null;
+  function renderDirections() {
+    el('richtungen').innerHTML = DIRECTIONS.map(d => {
+      const t = d.calc();
+      const shH = t.sh.h, hiH = t.hi.h;
+      const shHex = hslToHex(shH, t.sh.s != null ? t.sh.s : SH.s, t.sh.l != null ? t.sh.l : SH.l);
+      const hiHex = hslToHex(hiH, t.hi.s != null ? t.hi.s : HI.s, t.hi.l != null ? t.hi.l : HI.l);
+      return `<div class="card dir ${OPEN_DIR === d.id ? 'open' : ''}" data-dir="${d.id}">
+        <div class="card-head">
+          <span style="font-size:20px">${d.em}</span>
+          <div class="txt"><h3>${rich(d.n)}</h3>
+            <p class="mood">${toneName({h:shH, s:(t.sh.s!=null?t.sh.s:SH.s), l:(t.sh.l!=null?t.sh.l:SH.l)})} in den Schatten · ${toneName({h:hiH, s:(t.hi.s!=null?t.hi.s:HI.s), l:(t.hi.l!=null?t.hi.l:HI.l)})} in den Lichtern</p></div>
+          <span class="chev">▶</span>
+        </div>
+        <div class="card-body">
+          <p class="goal">${rich(d.goal)}</p>
+          <div class="duo">
+            <div class="d" style="background:${shHex};color:#fff">Schatten</div>
+            <div class="d" style="background:${hiHex}">Lichter</div>
+          </div>
+          <div class="moves" style="margin-top:10px">${movesHtml(shH, 'sh')}${movesHtml(hiH, 'hi')}</div>
+          <ul class="extra">${d.extra.map(x => `<li>${rich(x)}</li>`).join('')}</ul>
+          <p class="when">✓ ${rich(d.when)}</p>
+          <button class="btn applybtn" data-apply="${d.id}">Diese Richtung aufs Rad übernehmen</button>
+        </div></div>`;
+    }).join('');
+    el('richtungen').querySelectorAll('.card-head').forEach(h =>
+      h.addEventListener('click', () => {
+        const card = h.parentElement;
+        OPEN_DIR = card.classList.contains('open') ? null : card.dataset.dir;
+        renderDirections();
+      }));
+    el('richtungen').querySelectorAll('[data-apply]').forEach(b =>
+      b.addEventListener('click', () => {
+        const d = DIRECTIONS.find(x => x.id === b.dataset.apply);
+        const t = d.calc();
+        HI.h = t.hi.h; if (t.hi.s != null) HI.s = t.hi.s; if (t.hi.l != null) HI.l = t.hi.l;
+        SH.h = t.sh.h; if (t.sh.s != null) SH.s = t.sh.s; if (t.sh.l != null) SH.l = t.sh.l;
+        renderColor();
+        document.getElementById('wheelWrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }));
+  }
+
   function renderColor() {
     drawWheel();
     const hiHex = hslToHex(HI.h, HI.s, HI.l), shHex = hslToHex(SH.h, SH.s, SH.l);
@@ -1523,7 +1751,7 @@
 
     let d = Math.abs(norm(HI.h) - norm(SH.h)); if (d > 180) d = 360 - d;
     const rel = relation(d);
-    const hiN = hueName(HI.h), shN = hueName(SH.h);
+    const hiN = toneName(HI), shN = toneName(SH);
     let wk = '';
     if (isWarm(HI.h) && isCool(SH.h)) wk = '✓ Warm/Kühl-Teilung: warme Lichter, kühle Schatten – der emotionale Grundpfeiler und die verlässlichste Kombination.';
     else if (isCool(HI.h) && isWarm(SH.h)) wk = '↔ Umgekehrte Teilung: kühle Lichter, warme Schatten. Ungewöhnlich, wirkt nächtlich oder künstlich – bewusst einsetzbar.';
@@ -1550,22 +1778,28 @@
     const iHi = hueInfo(HI.h), iSh = hueInfo(SH.h);
     el('meanings').innerHTML = `
       <div class="meaning">
-        <div class="hd"><span class="sw" style="background:${hiHex}"></span><h4>${iHi.n}</h4><span class="role">☀️ Lichter</span></div>
+        <div class="hd"><span class="sw" style="background:${hiHex}"></span><h4>${hiN}</h4><span class="role">☀️ Lichter · ${iHi.n}</span></div>
         <div class="ln"><b>Wirkung:</b> ${rich(iHi.feel)}</div>
         <div class="ln"><b>Hier als Lichterfarbe:</b> ${rich(iHi.hi)}</div>
         <div class="ln"><b>Wenn du weiterdrehst:</b> ${rich(iHi.dir)}</div>
       </div>
       <div class="meaning">
-        <div class="hd"><span class="sw" style="background:${shHex}"></span><h4>${iSh.n}</h4><span class="role">🌑 Schatten</span></div>
+        <div class="hd"><span class="sw" style="background:${shHex}"></span><h4>${shN}</h4><span class="role">🌑 Schatten · ${iSh.n}</span></div>
         <div class="ln"><b>Wirkung:</b> ${rich(iSh.feel)}</div>
         <div class="ln"><b>Hier als Schattenfarbe:</b> ${rich(iSh.sh)}</div>
         <div class="ln"><b>Wenn du weiterdrehst:</b> ${rich(iSh.dir)}</div>
       </div>`;
 
+    renderDirections();
+    el('umsetzTitle').textContent = `So setzt du ${shN} → ${hiN} in Snapseed um`;
+    const shChs = channelMoves(SH.h), hiChs = channelMoves(HI.h);
+    const haupt = shChs.find(a => hiChs.some(b2 => b2.ch === a.ch && b2.dir !== a.dir));
+    const hauptSatz = haupt
+      ? `Bei deiner Palette ist der <b>${haupt.ch}-Kanal</b> der Hauptkanal: ein Punkt links, einer rechts, gegenläufig gezogen – mehr braucht es im Kern nicht.`
+      : `Deine beiden Töne liegen nah beieinander, deshalb arbeitest du hier mit mehreren Kanälen in dieselbe Richtung statt gegenläufig.`;
     el('gegenBox').innerHTML = `<div class="hintbox">
       <b>Der ganze Zauber in einem Satz:</b> Ein Kanal hoch = diese Farbe rein. Ein Kanal runter =
-      automatisch die <b>Gegenfarbe</b> rein. Deshalb reicht für Teal &amp; Orange ein einziger Kanal
-      mit zwei Punkten.
+      automatisch die <b>Gegenfarbe</b> rein. ${hauptSatz}
       <div class="gegen">
         <div class="g"><b style="color:#ff8b7a">Rot ↑</b> = Rot</div>
         <div class="g"><b style="color:#ff8b7a">Rot ↓</b> = Cyan</div>
@@ -1575,8 +1809,8 @@
         <div class="g"><b style="color:var(--blue)">Blau ↓</b> = Gelb</div>
       </div></div>`;
     el('zoneBox').innerHTML = zoneDiagram('Links wirkt auf die Schatten, rechts auf die Lichter. Der Punkt in der Mitte bleibt liegen.');
-    const shMv = channelMoves(SH.h).map(m => moveSentence(m, 'sh'));
-    const hiMv = channelMoves(HI.h).map(m => moveSentence(m, 'hi'));
+    const shMv = shChs.map(m => moveSentence(m, 'sh'));
+    const hiMv = hiChs.map(m => moveSentence(m, 'hi'));
     const liOf = m => `<li><b>${m.t}:</b> ${m.s}<span class="why">${m.w}</span></li>`;
     el('recipeOut').innerHTML = `<ol class="steps">
       <li><b>Vorbereiten:</b> Feinabstimmung → Sättigung −5 bis −10<span class="why">Etwas Farbe rausnehmen, damit das Grading danach nicht übersteuert.</span></li>
