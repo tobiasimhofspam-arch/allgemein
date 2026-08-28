@@ -201,6 +201,26 @@
     .tipbox.green { border-left-color: var(--green); }
     .tipbox b { color: var(--accent-2); }
     .tipbox.green b { color: var(--green); }
+    .zonesvg { width: 100%; max-width: 340px; display: block; margin: 6px auto 4px;
+      color: var(--muted); }
+    .zonecap { text-align: center; color: var(--muted); font-size: 11.5px; margin: 0 0 14px; }
+    .hintbox { background: var(--bg-card-2); border: 1px solid var(--line); border-radius: 12px;
+      padding: 11px 13px; font-size: 12.5px; color: var(--muted); margin-bottom: 12px; }
+    .hintbox b { color: var(--accent-2); }
+    .chgroup { margin-bottom: 14px; }
+    .chgroup h6 { margin: 0 0 2px; font-size: 13px; font-weight: 700;
+      display: flex; align-items: center; gap: 7px; }
+    .chgroup h6 .num { background: var(--bg-card-2); border: 1px solid var(--line);
+      border-radius: 6px; padding: 1px 7px; font-size: 11px; color: var(--muted); font-weight: 700; }
+    .chgroup h6.rgb { color: var(--text); }
+    .chgroup h6.rot { color: #ff8b7a; }
+    .chgroup h6.gruen { color: var(--green); }
+    .chgroup h6.blau { color: var(--blue); }
+    .gegen { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
+    .gegen .g { font-size: 12px; background: var(--bg-card-2); border: 1px solid var(--line);
+      border-radius: 9px; padding: 7px 10px; }
+    .gegen .g b { font-weight: 700; }
+    .effect { display: block; font-size: 12.5px; margin-top: 4px; color: var(--accent-2); }
     .info { color: var(--muted); font-size: 12.5px; margin: 4px 2px 16px; }
 
     /* Wissen */
@@ -293,6 +313,8 @@
           <div class="sl"><label>Helligkeit <span id="ligShV"></span></label><input type="range" id="ligSh" min="10" max="90" /></div>
         </div>
       </div>
+      <h5 class="sec">Startpunkte</h5>
+      <p class="info">Diese Knöpfe setzen nur die zwei Punkte auf dem Rad an typische Positionen – sie verändern kein Foto und sind kein Filter. Sie sind ein Sprungbrett, damit du nicht bei null anfängst; danach ziehst du selbst weiter.</p>
       <div class="quickrow" id="quickRow"></div>
       <div id="relBox"></div>
       <h5 class="sec">Deine Palette</h5>
@@ -302,6 +324,8 @@
       <h5 class="sec">Was diese Farben ausdrücken</h5>
       <div id="meanings"></div>
       <h5 class="sec key">So setzt du die Palette in Snapseed um</h5>
+      <div id="gegenBox"></div>
+      <div id="zoneBox"></div>
       <div id="recipeOut"></div>
     </section>
 
@@ -1180,6 +1204,63 @@
     return `<ol class="steps">${arr.map(s =>
       `<li><b>${rich(s.t)}:</b> ${rich(s.s)}${s.w ? `<span class="why">${rich(s.w)}</span>` : ''}</li>`).join('')}</ol>`;
   }
+
+  // Kurven-Zonen als kleine Grafik
+  function zoneDiagram(cap) {
+    return `<svg class="zonesvg" viewBox="0 0 300 196" role="img" aria-label="Die Zonen der Kurve von Schatten bis Lichter">
+      <rect x="34" y="8" width="252" height="140" rx="6" fill="none" stroke="currentColor" stroke-opacity=".35"/>
+      <line x1="97" y1="8" x2="97" y2="148" stroke="currentColor" stroke-opacity=".18"/>
+      <line x1="160" y1="8" x2="160" y2="148" stroke="currentColor" stroke-opacity=".18"/>
+      <line x1="223" y1="8" x2="223" y2="148" stroke="currentColor" stroke-opacity=".18"/>
+      <line x1="34" y1="148" x2="286" y2="8" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="97" cy="113" r="5.5" fill="var(--accent)" stroke="var(--bg-card)" stroke-width="2"/>
+      <circle cx="160" cy="78" r="5.5" fill="var(--accent)" stroke="var(--bg-card)" stroke-width="2"/>
+      <circle cx="223" cy="43" r="5.5" fill="var(--accent)" stroke="var(--bg-card)" stroke-width="2"/>
+      <text x="34" y="167" font-size="11.5" fill="currentColor" text-anchor="start">Schatten</text>
+      <text x="160" y="167" font-size="11.5" fill="currentColor" text-anchor="middle">Mitte</text>
+      <text x="286" y="167" font-size="11.5" fill="currentColor" text-anchor="end">Lichter</text>
+      <text x="97" y="187" font-size="11" fill="currentColor" opacity=".8" text-anchor="middle">untere Mitteltöne (¼)</text>
+      <text x="223" y="187" font-size="11" fill="currentColor" opacity=".8" text-anchor="middle">obere Mitteltöne (¾)</text>
+    </svg><p class="zonecap">${cap || 'Wo du die Kurve anfasst, entscheidet, welcher Bildbereich sich ändert.'}</p>`;
+  }
+
+  // Kurven-Schritte nach Kanal gruppieren – so arbeitet man in Snapseed wirklich
+  const CH_LABEL = { 'RGB': 'RGB – Licht &amp; Kontrast', 'Rot': 'Rot-Kanal',
+                     'Grün': 'Grün-Kanal', 'Blau': 'Blau-Kanal' };
+  const CH_CLASS = { 'RGB': 'rgb', 'Rot': 'rot', 'Grün': 'gruen', 'Blau': 'blau' };
+  const CH_ORDER = ['RGB', 'Blau', 'Rot', 'Grün'];
+  function kurvenGrouped(arr) {
+    const groups = new Map();
+    arr.forEach(st => {
+      const parts = plain(st.t).split('·').map(x => x.trim());
+      let ch = parts[0], rest = parts.slice(1).join(' · ');
+      if (!CH_ORDER.includes(ch)) { ch = 'Weitere'; rest = st.t; }
+      if (!groups.has(ch)) groups.set(ch, []);
+      groups.get(ch).push({ t: rest || st.t, s: st.s, w: st.w });
+    });
+    const keys = [...groups.keys()].sort((a, b) => {
+      const ia = CH_ORDER.indexOf(a), ib = CH_ORDER.indexOf(b);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+    });
+    return keys.map((k, i) => `<div class="chgroup">
+      <h6 class="${CH_CLASS[k] || ''}"><span class="num">${i + 1}</span>${CH_LABEL[k] || k}</h6>
+      ${stepList(groups.get(k))}</div>`).join('');
+  }
+
+  const KURVEN_HINWEIS = `<div class="hintbox"><b>Kurven ist ein Werkzeug – du bleibst drin.</b>
+    Einmal öffnen und oben zwischen RGB und den Farbkanälen umschalten. Arbeite Kanal für Kanal ab:
+    erst RGB komplett, dann jeden Farbkanal in einem Durchgang. Erst ganz am Ende übernehmen.</div>`;
+
+  // Klartext: was bewirkt diese Kanalbewegung?
+  const GEGEN = { 'Rot': 'Cyan', 'Grün': 'Magenta', 'Blau': 'Gelb' };
+  function moveSentence(m, zone) {
+    const ende = zone === 'sh' ? 'linkes Ende' : 'rechtes Ende';
+    const bereich = zone === 'sh' ? 'Schatten' : 'Lichter';
+    const farbe = m.dir === '↑' ? m.ch : GEGEN[m.ch];
+    return { t: `${m.ch}-Kanal · ${ende} ${m.dir === '↑' ? 'hoch' : 'runter'}`,
+             s: `<span style="color:var(--muted)">(${m.strength} – flach halten)</span>`,
+             w: `⟶ bringt <b style="color:var(--accent-2)">${farbe}</b> in die ${bereich}.` };
+  }
   function gradeBox(kind, g) {
     const label = kind === 'tension' ? 'Spannung' : 'Harmonie';
     return `<div class="gradebox ${kind}">
@@ -1209,7 +1290,7 @@
         <h3><span>${m.em}</span> ${rich(m.name)}</h3>
         <p class="sum">${rich(m.sum)}</p>
         <h5 class="sec"><span class="n">1</span> Basis</h5>${stepList(m.basis)}
-        <h5 class="sec key"><span class="n">2</span> Kurven – der Kern</h5>${stepList(m.kurven)}
+        <h5 class="sec key"><span class="n">2</span> Kurven – der Kern</h5>${KURVEN_HINWEIS}${zoneDiagram()}${kurvenGrouped(m.kurven)}
         <h5 class="sec"><span class="n">3</span> Lokal verfeinern</h5>${stepList(m.lokal)}
         <h5 class="sec"><span class="n">4</span> Finish</h5>${stepList(m.finish)}
         <h5 class="sec">Color Grading – zwei Wege</h5>
@@ -1258,6 +1339,7 @@
         </div>
         <div class="card-body">
           ${r.desc ? `<p class="desc">${rich(r.desc)}</p>` : ''}
+          ${r.steps.some(st => /^Kurven/.test(plain(st.t))) ? KURVEN_HINWEIS : ''}
           ${stepList(r.steps)}
           ${r.merke ? `<div class="merke"><b>Merke:</b> ${rich(r.merke)}</div>` : ''}
           ${(r.tags && r.tags.length) ? `<div class="tags">${r.tags.map(t => `<span class="tag">${rich(t)}</span>`).join('')}</div>` : ''}
@@ -1454,7 +1536,16 @@
 
     const midHex = hslToHex((HI.h + SH.h) / 2, 6, 50);
     el('paletteStrip').style.background = `linear-gradient(90deg, ${shHex} 0%, ${midHex} 50%, ${hiHex} 100%)`;
-    el('paletteWhat').innerHTML = `<b>Was bringt mir eine Palette?</b> Eine Palette ist kein Filter, sondern eine Entscheidung: welche Farbe im Dunklen liegt und welche im Hellen. Die Presets, die du auf Social Media siehst, sind fast immer genau das – plus etwas Kontrast und Korn. Deine hier lautet: <b>${shN}</b> in den Schatten, neutrale Mitte, <b>${hiN}</b> in den Lichtern. Wenn du diese zwei Farben kennst, kannst du jedes Preset selbst nachbauen.`;
+    el('paletteWhat').innerHTML = `
+      <b>Was ist eine Palette?</b> Jedes Foto hat helle und dunkle Stellen. Du kannst diesen beiden
+      Bereichen <b>getrennt eine Farbe geben</b> – genau das, und nichts anderes, ist eine Palette:
+      welche Farbe im Dunklen liegt und welche im Hellen.
+      <br><br>Deine hier lautet: <b>${shN}</b> in den Schatten, neutrale Mitte, <b>${hiN}</b> in den Lichtern.
+      <br><br><b>Und was bringt dir das?</b> Die Presets, die du auf Social Media siehst, sind zum
+      größten Teil genau diese eine Entscheidung – plus etwas Kontrast und Korn. Ein Preset kann dein
+      Foto nicht kennen; es färbt einfach Schatten und Lichter ein. Wenn du also bei einem Bild
+      erkennst, dass die Schatten blau und die Lichter orange sind, kannst du das in Snapseed in zwei
+      Minuten selbst nachbauen – ohne Kauf und ohne Zusatz-App.`;
 
     const iHi = hueInfo(HI.h), iSh = hueInfo(SH.h);
     el('meanings').innerHTML = `
@@ -1471,13 +1562,29 @@
         <div class="ln"><b>Wenn du weiterdrehst:</b> ${rich(iSh.dir)}</div>
       </div>`;
 
+    el('gegenBox').innerHTML = `<div class="hintbox">
+      <b>Der ganze Zauber in einem Satz:</b> Ein Kanal hoch = diese Farbe rein. Ein Kanal runter =
+      automatisch die <b>Gegenfarbe</b> rein. Deshalb reicht für Teal &amp; Orange ein einziger Kanal
+      mit zwei Punkten.
+      <div class="gegen">
+        <div class="g"><b style="color:#ff8b7a">Rot ↑</b> = Rot</div>
+        <div class="g"><b style="color:#ff8b7a">Rot ↓</b> = Cyan</div>
+        <div class="g"><b style="color:var(--green)">Grün ↑</b> = Grün</div>
+        <div class="g"><b style="color:var(--green)">Grün ↓</b> = Magenta</div>
+        <div class="g"><b style="color:var(--blue)">Blau ↑</b> = Blau</div>
+        <div class="g"><b style="color:var(--blue)">Blau ↓</b> = Gelb</div>
+      </div></div>`;
+    el('zoneBox').innerHTML = zoneDiagram('Links wirkt auf die Schatten, rechts auf die Lichter. Der Punkt in der Mitte bleibt liegen.');
+    const shMv = channelMoves(SH.h).map(m => moveSentence(m, 'sh'));
+    const hiMv = channelMoves(HI.h).map(m => moveSentence(m, 'hi'));
+    const liOf = m => `<li><b>${m.t}:</b> ${m.s}<span class="why">${m.w}</span></li>`;
     el('recipeOut').innerHTML = `<ol class="steps">
-      <li><b>Feinabstimmung:</b> Sättigung −5 bis −10<span class="why">Etwas Farbe rausnehmen, damit das Grading danach nicht übersteuert.</span></li>
-      <li><b>Kurven · Farbkanal öffnen:</b> zwei Punkte setzen – links (Schatten) und rechts (Lichter)<span class="why">Gegenläufig ziehen, das ist das Split-Toning-Prinzip.</span></li>
-      <li><b>Schatten Richtung ${shN}:</b><span class="why">${channelMoves(SH.h).map(m => `${m.ch}-Kanal linkes Ende ${m.dir} (${m.strength})`).join(' · ') || 'neutral lassen'}</span></li>
-      <li><b>Lichter Richtung ${hiN}:</b><span class="why">${channelMoves(HI.h).map(m => `${m.ch}-Kanal rechtes Ende ${m.dir} (${m.strength})`).join(' · ') || 'neutral lassen'}</span></li>
-      <li><b>Mitte neutral halten:</b> Punkt in der Kurvenmitte setzen und nicht bewegen<span class="why">Schützt die Hauttöne – ohne diesen Punkt kippt das ganze Gesicht mit.</span></li>
-      <li><b>Kontrolle:</b> Kurven flach und subtil halten<span class="why">Grading soll man spüren, nicht sehen. Im Zweifel die halbe Stärke.</span></li>
+      <li><b>Vorbereiten:</b> Feinabstimmung → Sättigung −5 bis −10<span class="why">Etwas Farbe rausnehmen, damit das Grading danach nicht übersteuert.</span></li>
+      <li><b>Kurven öffnen:</b> oben von RGB auf einen Farbkanal umschalten<span class="why">Du bleibst im Werkzeug und schaltest nur den Kanal um – nicht raus und wieder rein.</span></li>
+      ${shMv.length ? shMv.map(liOf).join('') : '<li><b>Schatten:</b> neutral lassen<span class="why">Deine Schattenfarbe ist fast grau – hier ist nichts zu tun.</span></li>'}
+      ${hiMv.length ? hiMv.map(liOf).join('') : '<li><b>Lichter:</b> neutral lassen<span class="why">Deine Lichterfarbe ist fast grau – hier ist nichts zu tun.</span></li>'}
+      <li><b>Mitte sichern:</b> einen Punkt genau in der Kurvenmitte setzen und nicht bewegen<span class="why">Schützt die Hauttöne – ohne diesen Punkt kippt das ganze Gesicht mit.</span></li>
+      <li><b>Kontrolle:</b> Kurven flach halten, im Zweifel halbe Stärke<span class="why">Grading soll man spüren, nicht sehen.</span></li>
     </ol>`;
   }
 
