@@ -796,6 +796,24 @@
   //=========================================================================
   const DEFAULT_VIDEO = [
     {
+      id: "v-setup", name: "Kamera einrichten (Spiegelreflex)",
+      mood: "Der Ablauf vor jeder Aufnahme – einmal durchgehen, dann läuft es",
+      desc: "Die Reihenfolge ist wichtig: erst das Menü, dann der Modus, dann die Blende – und zwar bevor der Live View an ist.",
+      merke: "Verschlusszeit steht fest auf 1/50. ISO so tief wie möglich. Blende bestimmt den Look. Erst wenn der ISO am Boden ist und es immer noch zu hell ist, kommt der ND-Filter.",
+      tags: ["Setup", "Grundlagen", "Technik"],
+      steps: [
+        { t: "1 · Menü vorbereiten", s: "1080p / 25 fps, Filmqualität hoch, manuelle Videoeinstellungen EIN, Flimmerreduzierung 50 Hz, ISO-Automatik AUS", w: "Ohne die manuellen Videoeinstellungen kannst du die 1/50 gar nicht setzen." },
+        { t: "2 · Moduswahlrad auf M", s: "Nicht P, A oder S", w: "Nur in M greifen die manuellen Videoeinstellungen." },
+        { t: "3 · Blende setzen", s: "f/4 als Startwert – noch VOR dem Live View", w: "Im Live View ist die Blende bei vielen Einsteigerkameras gesperrt. Bei Nikon: +/− halten und am Rad drehen." },
+        { t: "4 · Live View an, Verschlusszeit 1/50", s: "Und ab jetzt nicht mehr anfassen", w: "Die 1/50 erzeugt die Bewegungsunschärfe, die das Bild flüssig macht." },
+        { t: "5 · ISO anpassen", s: "So weit hoch, bis die Belichtungsanzeige auf 0 steht – nicht höher", w: "Jeder ISO-Schritt kostet Bildqualität. Bis 800 ist sauber." },
+        { t: "6 · Immer noch zu dunkel?", s: "Licht dazustellen statt ISO über 1600 zu drehen", w: "Ein Fenster als Lichtquelle bringt mehr als jede Einstellung." },
+        { t: "7 · Zu hell trotz ISO 100?", s: "ND-Filter aufschrauben, nicht die Verschlusszeit verkürzen", w: "Kürzere Verschlusszeit bedeutet sofort ruckelige Bewegung." },
+        { t: "8 · Weißabgleich fest, Fokus manuell", s: "Beides einmal setzen und stehen lassen", w: "Automatik lässt Farbe und Schärfe mitten in der Aufnahme wandern." },
+        { t: "9 · Stativ, klatschen, aufnehmen", s: "Ein Klatscher am Anfang jeder Einstellung", w: "Damit synchronisierst du später die separate Tonspur." }
+      ]
+    },
+    {
       id: "v-story5", name: "Story-Grundgerüst (5 Shots)",
       mood: "Die Mindestausstattung, um einen Ort oder Moment zu erzählen",
       desc: "Wenn du nur fünf Aufnahmen machen kannst, dann diese. Zusammen ergeben sie automatisch eine Geschichte.",
@@ -837,20 +855,6 @@
         { t: "Format", s: "9:16 aufnehmen, wichtige Dinge nicht an den Rand", w: "Oben und unten liegen Bedienelemente über dem Bild." }
       ]
     },
-    {
-      id: "v-settings", name: "Kamera-Einstellungen fürs Filmen",
-      mood: "Die Basiswerte, bevor du aufnimmst",
-      desc: "Kurz prüfen, dann filmen – spart hinterher viel Ärger.",
-      merke: "Verschlusszeit = doppelte Bildrate. Bei 30 fps also 1/60.",
-      tags: ["Technik", "Grundlagen"],
-      steps: [
-        { t: "Bildrate", s: "24 oder 30 fps für normal, 60 fps für Zeitlupe", w: "In Zeitlupe verwandelt sich 60 fps sauber in halbes Tempo." },
-        { t: "Verschlusszeit", s: "Doppelte Bildrate (30 fps → 1/60)", w: "Ergibt natürliche Bewegungsunschärfe. Zu kurz wirkt ruckelig." },
-        { t: "Weißabgleich fixieren", s: "Nicht auf Automatik lassen", w: "Sonst springt die Farbe mitten im Clip – im Schnitt kaum zu retten." },
-        { t: "Belichtung fixieren", s: "Auf das Wichtigste messen und sperren", w: "Automatik pumpt beim Schwenken hell und dunkel." },
-        { t: "Stabil halten", s: "Beide Hände, Ellbogen am Körper, langsam gehen", w: "Nachträgliche Stabilisierung beschneidet das Bild." }
-      ]
-    }
   ];
 
   //=========================================================================
@@ -1177,7 +1181,42 @@
       { t: "Blau / Wasser / Himmel / Schnee", d: "Spannung → warme Lichter rein. Harmonie → Blau/Cyan verstärken, entsättigen." },
       { t: "Porträt", d: "Teal &amp; Orange, aber sanft." },
       { t: "Urban / Street / Nacht / Neon", d: "Spannung → Cyan/Magenta-Split (kühle Schatten, magenta Lichter). Harmonie → eine Neonfarbe dominieren lassen, Rest entsättigen." }
-    ]}
+    ]},
+    { group: "Video · Bildrate wählen", em: "🎬", items: [
+      { t: "Grundsatz", d: "Die Bildrate verändert nicht die Auflösung – 25 und 60 fps sind beide Full HD. Sie verändert nur, wie Bewegung aussieht." },
+      { t: "Geschnittenes Video", d: "25 fps: Interview, Story, Kurzfilm, Social-Beitrag. Wirkt weich und filmisch." },
+      { t: "Zeitlupe geplant", d: "50 oder 60 fps aufnehmen und in der Bearbeitung auf 25 fps verlangsamen – ergibt weiche Slow-Motion." },
+      { t: "Live unterwegs", d: "30 fps. Über Mobilfunk ist die Bandbreite knapp; bei 60 fps bekommt jedes Bild nur die halbe Datenmenge und wird bei Bewegung matschig." },
+      { t: "Live am Rechner / Gameplay", d: "60 fps. Genug Bandbreite, schnelle Bewegung, Unmittelbarkeit zählt mehr als Look." },
+      { t: "Sport-Übertragung", d: "50 fps. Live plus sehr schnelle Bewegung – der einzige Fall, wo hohe Bildrate wirklich glänzt." },
+      { t: "180-Grad-Regel", d: "Verschlusszeit = doppelte Bildrate. 25 fps → 1/50 · 30 fps → 1/60 · 50 fps → 1/100 · 60 fps → 1/120." },
+      { t: "Flüssig kommt von der Verschlusszeit", d: "Nicht von der Bildrate. 25 fps mit 1/500 ruckelt stark. Erst die 1/50 erzeugt die Bewegungsunschärfe, die das Auge als weich liest." },
+      { t: "Warum 25 und nicht 30 in Europa", d: "Das Stromnetz hat 50 Hz, LED-Licht pulsiert mit 100 Hz. Nur Verschlusszeiten wie 1/50, 1/100 oder 1/200 passen ins Raster. Bei 25 fps ist die ideale 1/50 – bei 30 fps wäre es 1/60, und das flimmert." },
+      { t: "Ruckelt es trotzdem?", d: "Drei häufige Ursachen: zu schnell geschwenkt (ein Schwenk übers ganze Bild braucht mindestens 5 Sekunden), Verschlusszeit zu kurz, oder Motiv zu nah und zu schnell." },
+      { t: "Mischen erlaubt", d: "25 fps für Interviews und 50/60 fps für Actionszenen lassen sich problemlos im selben Projekt schneiden." },
+      { t: "Merksatz", d: "Wird es live gesehen? → 30 oder 60. Wird es geschnitten und später angeschaut? → 25, außer du brauchst Zeitlupe." }
+    ]},
+    { group: "Video · Kamera-Grundeinstellungen", em: "📷", items: [
+      { t: "Modus M", d: "Nur im manuellen Modus greifen die manuellen Videoeinstellungen. Bei P, A oder S regelt die Kamera weiter selbst." },
+      { t: "Manuelle Videoeinstellungen: EIN", d: "Sonst wählt die Kamera Verschlusszeit und ISO selbst – die 1/50 ist dann gar nicht einstellbar, und die Helligkeit pumpt beim Schwenken." },
+      { t: "Das Dreieck hat ein gefesseltes Bein", d: "Anders als beim Foto ist die Verschlusszeit im Video gesperrt. Zum Belichten bleiben nur Blende, ISO und Licht." },
+      { t: "Belichtungsreihenfolge", d: "1. Verschlusszeit fest auf 1/50. 2. ISO so tief wie möglich. 3. Blende nach Bildwirkung. Erst wenn der ISO am Boden ist und es immer noch zu hell ist, kommt ein ND-Filter." },
+      { t: "Blende vor dem Live View setzen", d: "Bei vielen Einsteiger-Spiegelreflexkameras lässt sich die Blende im Live View nicht mehr ändern. Live View verlassen, Blende einstellen, wieder einschalten. Bei Nikon: +/− Taste halten und am Einstellrad drehen." },
+      { t: "Kit-Objektiv", d: "Die Offenblende ändert sich beim Zoomen (18–55 mm: f/3.5 bei 18 mm, f/5.6 bei 55 mm). Eingezoomt ist f/4 gar nicht wählbar." },
+      { t: "ISO-Automatik: AUS", d: "Sonst zieht die Kamera den ISO trotz Modus M nach und die Helligkeit wandert mitten in der Aufnahme." },
+      { t: "ISO-Grenzen", d: "Bei Einsteiger-Kameras bis etwa 800 sauber, ab 1600 wird das Rauschen sichtbar. Lieber Licht dazustellen als den ISO hochzudrehen." },
+      { t: "Weißabgleich: fest", d: "Nicht Auto, sonst wandert die Farbe mitten in der Einstellung. Kunstlicht: Glühlampe. Am Fenster: Tageslicht." },
+      { t: "Flimmerreduzierung: 50 Hz", d: "In Europa zwingend, sonst wandern Streifen durchs Bild." },
+      { t: "Bildstil", d: "Standard oder Neutral, Scharfzeichnung eher zurücknehmen. Nachschärfen geht später, wegnehmen nicht." },
+      { t: "Aktives D-Lighting: AUS", d: "Kann bei Helligkeitswechseln zu sichtbaren Helligkeitssprüngen führen." },
+      { t: "Fokus: manuell", d: "Der Autofokus vieler Spiegelreflexkameras sucht im Video hörbar und sichtbar. Fokus vor der Aufnahme setzen und nicht mehr anfassen." },
+      { t: "Filmqualität: hoch", d: "Höhere Datenrate heißt mehr Details in Bewegung und weniger Klötzchen. Nachteil sind größere Dateien." },
+      { t: "Ton separat aufnehmen", d: "Eingebaute Mikrofone reichen für Sprache nicht. Ansteckmikro am Handy oder Recorder nutzen – und den Kameraton trotzdem eingeschaltet lassen, er ist die Referenzspur zum Synchronisieren." },
+      { t: "Windgeräuschreduzierung", d: "Drinnen aus, sonst klingt die Stimme dünn und blechern. Draußen bei Wind an." },
+      { t: "Am Anfang klatschen", d: "Ein Klatscher zu Beginn jeder Einstellung gibt einen klaren Ausschlag in beiden Tonspuren – daran richtest du sie später aus." },
+      { t: "Stativ", d: "Nach dem Licht der größte sichtbare Unterschied. Schwenks langsam und gleichmäßig führen." },
+      { t: "Belichtungsanzeige", d: "Die 0 ist ein Richtwert, kein Gesetz. Bei hellem Fenster im Bild wird das Motiv zu dunkel gemessen. Für Video lieber einen Hauch dunkler (−1/3): ausgefressene Lichter sind verloren, dunkle Stellen nicht." }
+    ]},
   ];
   //=========================================================================
   //  FARBWIRKUNG – 12 Sektoren zu je 30 Grad

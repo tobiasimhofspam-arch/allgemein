@@ -21,8 +21,9 @@ funktioniert offline, speichert deine Daten lokal auf dem Gerät.
   Zeigt die Beziehung der Töne, was jede Farbe ausdrückt, die Palette und die
   konkrete Umsetzung – dazu sechs **Richtungen** (saftig, märchenhaft,
   mystisch, nostalgisch, Kino, modern), die man aufs Rad übernehmen kann.
-- 📖 **Wissen** – Spickzettel in 16 Gruppen, durchsuchbar; eigene Einträge und
-  Gruppen lassen sich ergänzen.
+- 📖 **Wissen** – Spickzettel in 18 Gruppen, durchsuchbar; darunter zwei
+  Video-Gruppen (Bildrate wählen · Kamera-Grundeinstellungen). Eigene Einträge
+  und Gruppen lassen sich ergänzen.
 
 **Alles ist löschbar.** Jedes mitgelieferte Rezept und jeder Wissens-Eintrag lässt
 sich ausblenden, damit man die App komplett mit eigenem Wissen füllen kann.
