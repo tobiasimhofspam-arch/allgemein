@@ -1,7 +1,7 @@
-// Einfacher Offline-Cache für die Foto-Werkstatt.
+// Einfacher Offline-Cache für ColorGrade.
 // Bei jeder Veröffentlichung die Versionsnummer erhöhen, damit Nutzer
 // automatisch die neue Version bekommen.
-const CACHE = 'foto-werkstatt-v7';
+const CACHE = 'colorgrade-v8';
 const ASSETS = [
   './',
   './index.html',

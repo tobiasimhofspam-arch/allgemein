@@ -1,6 +1,6 @@
 {
-  "name": "Foto-Werkstatt",
-  "short_name": "Foto-Werkstatt",
+  "name": "ColorGrade",
+  "short_name": "ColorGrade",
   "description": "Bildbearbeitung verstehen: Bild-Berater, Kurven-Rezepte, Farb-Helfer und Wissen - fuer jedes Bearbeitungsprogramm.",
   "start_url": "./index.html",
   "scope": "./",

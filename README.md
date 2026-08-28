@@ -2,7 +2,7 @@
 
 Code auf dem Tablet.
 
-## 📷 Foto-Werkstatt (PWA)
+## 🎨 ColorGrade (PWA)
 
 Ein Lern- und Nachschlagewerkzeug für Bildbearbeitung fürs Tablet – installierbar als App (PWA),
 funktioniert offline, speichert deine Daten lokal auf dem Gerät.
@@ -34,11 +34,18 @@ gilt in jedem Bearbeitungsprogramm.
 
 ### Auf dem Tablet als App installieren
 
-1. In den **Repo-Einstellungen → Pages** als Quelle den Branch mit diesen
-   Dateien und den Ordner `/ (root)` wählen. GitHub gibt dann eine Adresse aus
-   (z. B. `https://<dein-name>.github.io/allgemein/`).
-2. Diese Adresse am Tablet im Browser öffnen.
-3. **Zum Startbildschirm hinzufügen** – fertig, eigenes App-Icon (Farbrad).
+1. **Veröffentlichen** über GitHub Pages: Repo-Einstellungen → *Pages* → Source
+   `Deploy from a branch`, Branch `main`, Ordner `/ (root)`. Nach ein bis zwei
+   Minuten liegt die App unter `https://<benutzername>.github.io/allgemein/`.
+   Hinweis: Bei einem **privaten** Repo braucht GitHub Pages einen Bezahlplan –
+   bei einem kostenlosen Konto das Repo dafür auf öffentlich stellen oder einen
+   anderen Static-Host (Netlify, Cloudflare Pages) verwenden.
+2. Die Adresse am Tablet im Browser öffnen.
+3. **Zum Startbildschirm hinzufügen** – fertig, eigenes App-Icon (Farbrad),
+   Vollbild ohne Browserleiste, funktioniert offline.
+
+Nach einer Änderung: `service-worker.js` die Cache-Version hochzählen, damit
+installierte Geräte die neue Fassung laden.
 
 ### Dateien
 
