@@ -12,9 +12,13 @@ Fortgeschrittene über ausklappbare Vertiefungen und das Nachschlagewerk weiterh
 
 **Vier Bereiche:**
 - 📷 **Bild-Berater** – Motiv antippen (Wald/Grün &amp; Braun, Meer, Regennacht,
-  Sonnenuntergang, Porträt, Berge, Stadt, Blumen, Food, Schnee) → kompletter
-  Ablauf in vier Phasen (Basis → Kurven → lokal → Finish) plus Color Grading
-  wahlweise auf Spannung oder Harmonie, mit konkreten Kurvengriffen.
+  Sonnenuntergang, Porträt, Berge, Stadt, Blumen, Food, Schnee) mit zwei
+  Ebenen wie im Wissen. **Verstehen:** das Konzept aufgeschlüsselt – Kernidee,
+  eine Grafik, die zeigt, wo auf der Tonachse es greift, ein „So spielt es
+  zusammen“ Phase für Phase mit Sprung in die passende Lektion, und ein Fazit.
+  **Anwenden:** der komplette Ablauf in vier Phasen (Basis → Kurven → lokal →
+  Finish) plus Color Grading wahlweise auf Spannung oder Harmonie, mit
+  konkreten Kurvengriffen.
 - 🧪 **Rezepte** – zwei Reiter: **Bild** (17 Looks, jeder mit Kurvenarbeit, Begründung je Schritt und
   Merksatz (70er-Kurven-Methode, Madeira/Wald, Teal &amp; Orange, Regennacht,
   Golden Hour, Moody, Street, Noir, Faded u. a.) und **Video** (Story-Grundgerüst,
