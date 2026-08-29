@@ -1472,6 +1472,18 @@
       ],
       tension: { hi: 35, sh: 195, txt: "Warme Lichter gegen türkise Tiefen – der Küsten-Klassiker." },
       harmony: { hi: 190, sh: 215, txt: "Alles in der Blau-Familie: Lichter Türkis, Schatten Blau." },
+      learn: {
+        idee: "Wasser lebt in den <b>unteren Mitteltönen</b>. Nur die Sättigung hochzudrehen gibt Neon-Blau – erst die Kurve genau dort macht es glaubwürdig. Dazu die Warm/Kühl-Teilung: türkise Tiefen, warmer Sand.",
+        zone: [{ from: 22, to: 45, label: "Wasser" }],
+        zoneCap: "Die Wasseroberfläche sitzt in den unteren Mitteltönen – dort entsteht die Tiefe.",
+        zusammenspiel: [
+          { phase: "Basis", funk: "Feinabstimmung", text: "Glanzlichter runter, Tiefen und Helligkeit hoch – das rettet den Himmel und öffnet die dunklen Wasserpartien.", lek: 3 },
+          { phase: "Kurve", funk: "RGB in den unteren Mitteltönen", text: "ein Punkt bei etwa einem Viertel leicht gesenkt gibt dem Wasser Tiefe, die Lichter leicht angehoben lassen Sand und Gischt brillieren.", lek: 4 },
+          { phase: "Kurve", funk: "Blau-Kanal gegenläufig", text: "Schatten hoch bringt Türkis ins dunkle Wasser, Lichter runter macht den Sand warm – genau die Warm/Kühl-Teilung (Teal &amp; Orange).", lek: 7 },
+          { phase: "Lokal &amp; Finish", funk: "Selektiv aufs Wasser, Struktur sparsam", text: "nur Feinschliff nach der Kurve; Struktur sparsam, sonst wird die Oberfläche unruhig.", lek: 8 }
+        ],
+        fazit: "Die Basis rettet die Enden, die Kurve gibt dem Wasser in den unteren Mitteltönen Tiefe, der Blau-Kanal setzt türkise Tiefen gegen warmen Sand – ein glaubwürdiges Meer statt Neon-Blau."
+      },
       looks: ["r-meer", "r-highkey", "r-teal-orange"]
     },
     {
@@ -1496,6 +1508,18 @@
       ],
       tension: { hi: 310, sh: 200, txt: "Cyan/Magenta-Split: kühle Schatten, magenta Lichter." },
       harmony: { hi: 200, sh: 225, txt: "Eine Neonfarbe dominieren lassen, den Rest entsättigen." },
+      learn: {
+        idee: "Nasser Asphalt, Pfützen und Neon leben in den <b>unteren Mitteltönen</b> – dort liegen die Spiegelungen. Der Clou: genau die anheben, aber den Fußpunkt links unten lassen, damit die Nacht echtes Schwarz behält.",
+        zone: [{ from: 20, to: 42, label: "Spiegelungen" }],
+        zoneCap: "Die Spiegelungen sitzen in den unteren Mitteltönen – der Fußpunkt links bleibt aber unten (echtes Schwarz).",
+        zusammenspiel: [
+          { phase: "Basis", funk: "Feinabstimmung", text: "Glanzlichter stark runter, Kontrast leicht hoch – sonst brennen Laternen und Neonschilder zu reinem Weiß aus.", lek: 3 },
+          { phase: "Kurve", funk: "RGB: untere Mitteltöne ↑, Fußpunkt unten", text: "der wichtigste Griff – nasser Asphalt und Pfützen kommen hervor, während Nachthimmel und echtes Schwarz erhalten bleiben.", lek: 4 },
+          { phase: "Kurve", funk: "Blau-Schatten &amp; Rot-Lichter", text: "kühle nächtliche Tiefen gegen warmes, magentafarbenes Neon ergeben den Cyan/Magenta-Split.", lek: 7 },
+          { phase: "Lokal &amp; Finish", funk: "Pfütze &amp; Farbkontrast", text: "macht die Reflexion knackig und die nasse Oberfläche texturiert; Struktur trotzdem sparsam, weil hohe ISO-Werte sonst rauschen.", lek: 8 }
+        ],
+        fazit: "Die unteren Mitteltöne bringen die Spiegelungen, das echte Schwarz hält die Nacht, der Cyan/Magenta-Split gibt die Neon-Stimmung – eine glaubwürdige Regennacht statt milchigem Grau."
+      },
       looks: ["r-regennacht", "r-blaue-stunde", "r-street"]
     },
     {
@@ -1518,6 +1542,18 @@
       ],
       tension: { hi: 30, sh: 195, txt: "Teal &amp; Orange: kühle Schatten gegen warme Lichter." },
       harmony: { hi: 35, sh: 20, txt: "Ganz in Wärme und Bernstein baden – eine Farbfamilie." },
+      learn: {
+        idee: "Goldenes Licht verstärken, ohne dass alles zu <b>Orangebrei</b> wird. Der Trick liegt im Blau-Kanal – weniger Blau im Hellen ergibt Gold – und in einem Hauch kühler Schatten als Gegenpol.",
+        zone: [{ from: 70, to: 98, label: "goldene Lichter" }],
+        zoneCap: "Das goldene Licht sitzt in den Lichtern – dort setzt der Blau-Kanal an, während die Schatten kühl bleiben.",
+        zusammenspiel: [
+          { phase: "Basis", funk: "Weißabgleich &amp; Ambiente", text: "Temperatur deutlich wärmer, Farbton minimal Richtung Magenta – das verhindert, dass warmes Licht ins Grünliche kippt.", lek: 5 },
+          { phase: "Kurve", funk: "Blau-Kanal: Lichter ↓", text: "der eigentliche Gold-Griff – weniger Blau im Hellen macht die Sonne golden.", lek: 4 },
+          { phase: "Kurve", funk: "Blau-Schatten ↑ als Gegenpol", text: "ein Hauch kühler Schatten gibt Tiefe und bremst den Orangebrei – Wärme und Kühle im Gleichgewicht.", lek: 7 },
+          { phase: "Lokal &amp; Finish", funk: "Selektiv Himmel, Glamour Glow", text: "der Himmel darf kräftiger sein als der Rest, ein dezentes Leuchten rundet das Gegenlicht ab.", lek: 8 }
+        ],
+        fazit: "Warmer Weißabgleich als Basis, der Blau-Kanal macht die Lichter golden, kühle Schatten setzen den Gegenpol – goldene Stunde mit Tiefe statt flachem Orange."
+      },
       looks: ["r-golden", "r-teal-orange", "r-polaroid"]
     },
     {
@@ -1541,6 +1577,18 @@
       ],
       tension: { hi: 30, sh: 190, txt: "Teal &amp; Orange – aber sanft, Hauttöne schützen." },
       harmony: { hi: 35, sh: 25, txt: "Warme, weiche Töne durchgehend, Mitteltöne neutral." },
+      learn: {
+        idee: "Bei Menschen gilt eine Regel über allem: <b>Mitteltöne schützen</b>. Die Haut liegt dort – alles Grading passiert nur in Schatten und Lichtern, die Mitte bleibt fixiert.",
+        zone: [{ from: 33, to: 67, label: "Haut – geschützt" }],
+        zoneCap: "Hauttöne liegen in den Mitteltönen – ein fixierter Punkt dort hält sie beim Grading sauber.",
+        zusammenspiel: [
+          { phase: "Basis", funk: "Feinabstimmung", text: "Glanzlichter runter, Tiefen hoch, wenig Kontrast – und vor allem kaum Struktur: das ist bei Haut die wichtigste Regel.", lek: 3 },
+          { phase: "Kurve", funk: "Blau-Kanal: Mitte fixieren", text: "ein Punkt in der Kurvenmitte, der nicht bewegt wird – ohne ihn kippt der Hautton beim Grading sofort mit.", lek: 4 },
+          { phase: "Kurve", funk: "Blau: Lichter ↓, Schatten ↑ (sanft)", text: "warme Lichter auf der Haut, kühler Hintergrund – Teal &amp; Orange, aber sehr dezent.", lek: 7 },
+          { phase: "Lokal &amp; Finish", funk: "Face Spotlight &amp; Augen", text: "Gesichtslicht und Augen leicht anheben, Glamour Glow dezent – immer zurückhaltend, sonst wirkt es plastikartig." }
+        ],
+        fazit: "Wenig Struktur, fixierte Mitteltöne, sanftes Grading nur in Schatten und Lichtern – ein schmeichelndes Porträt mit natürlicher Haut."
+      },
       looks: ["r-portrait-warm", "r-teal-orange", "r-highkey"]
     },
     {
@@ -1563,6 +1611,18 @@
       ],
       tension: { hi: 40, sh: 210, txt: "Warme Vordergründe gegen kühlen, bläulichen Fern-Himmel." },
       harmony: { hi: 200, sh: 225, txt: "Kühle ruhige Palette, die Ferne leicht entsättigen." },
+      learn: {
+        idee: "Räumliche Tiefe entsteht nicht durch Schärfe, sondern durch <b>Warm/Kühl</b>: warmer Vordergrund, kühle Ferne. Das macht die Kurve – die sogenannte Luftperspektive.",
+        zone: [{ from: 2, to: 30, label: "kühle Ferne" }, { from: 70, to: 98, label: "warmer Vordergrund" }],
+        zoneCap: "Kühle Schatten schieben die Ferne zurück, warme Lichter holen den Vordergrund nach vorn – Raumtiefe über die Töne.",
+        zusammenspiel: [
+          { phase: "Basis", funk: "Ambiente", text: "bei Landschaft der stärkste einzelne Regler – dazu Glanzlichter runter und Tiefen hoch für Zeichnung von Schnee bis Fels.", lek: 3 },
+          { phase: "Kurve", funk: "RGB-S-Kurve, flach", text: "Kontrast im Fels, ohne Details in Schnee oder Schatten zu verlieren.", lek: 4 },
+          { phase: "Kurve", funk: "Blau-Schatten ↑ &amp; Rot-Lichter ↑", text: "kühle Ferne gegen warmen Vordergrund – dieser Warm/Kühl-Kontrast erzeugt die Raumtiefe.", lek: 7 },
+          { phase: "Lokal &amp; Finish", funk: "Selektiv Himmel, Struktur, Vignette", text: "der Himmel verträgt mehr, Fels lebt von Struktur, eine leichte Vignette lenkt den Blick in die Weite.", lek: 8 }
+        ],
+        fazit: "Ambiente als Fundament, flache S-Kurve für Fels-Kontrast, warme Lichter gegen kühle Schatten für Tiefe – Weite, die man spürt."
+      },
       looks: ["r-berge", "r-moody", "r-highkey"]
     },
     {
@@ -1584,6 +1644,18 @@
       ],
       tension: { hi: 35, sh: 200, txt: "Ein warmer Farbtupfer gegen kühlen Grundton zieht den Blick." },
       harmony: { hi: 210, sh: 225, txt: "Durchgehend kühl und entsättigt – nüchtern und modern." },
+      learn: {
+        idee: "Beton lebt vom <b>Mitteltonkontrast</b>, nicht von Farbe. Farbe wird reduziert, damit Formen und Linien grafisch wirken – oft mit mattem Fußpunkt für den modernen Look.",
+        zone: [{ from: 33, to: 67, label: "Mitteltonkontrast" }],
+        zoneCap: "In den Mitteltönen entsteht der urbane Biss – Beton und Metall bekommen dort Gewicht.",
+        zusammenspiel: [
+          { phase: "Basis", funk: "Feinabstimmung", text: "Kontrast hoch, Sättigung runter – reduzierte Farbe lässt Architektur grafisch wirken.", lek: 3 },
+          { phase: "Kurve", funk: "RGB: Fußpunkt ↑, Mitteltöne leicht ↓", text: "die angehobene linke Ecke gibt den matten, modernen Look, gesenkte Mitteltöne geben Beton und Metall Gewicht.", lek: 4 },
+          { phase: "Kurve", funk: "Blau leicht angehoben", text: "ein durchgehend kühler Grundton, wie ihn Street-Presets nutzen.", lek: 7 },
+          { phase: "Lokal &amp; Finish", funk: "Farbkontrast &amp; Struktur", text: "Mitteltöne im Farbkontrast anheben – hier entsteht der urbane Biss; Architektur verträgt viel Struktur.", lek: 8 }
+        ],
+        fazit: "Weniger Farbe, mehr Mitteltonkontrast, matter Fußpunkt und ein kühler Grundton – nüchterne, moderne Street-Ästhetik."
+      },
       looks: ["r-street", "r-noir", "r-faded"]
     },
     {
@@ -1606,6 +1678,18 @@
       ],
       tension: { hi: 45, sh: 270, txt: "Blüte warm halten, Hintergrund Richtung Violett/Blau kühlen." },
       harmony: { hi: 60, sh: 120, txt: "In einer Farbfamilie bleiben, Hintergrund entsättigen." },
+      learn: {
+        idee: "Die Blüte gegen ihren Hintergrund <b>freistellen – farblich, nicht durch Schärfe</b>. Man schwächt das Umfeld und lässt die Blütenfarbe unangetastet dominieren.",
+        zone: [{ from: 33, to: 67, label: "Blütenfarbe halten" }],
+        zoneCap: "Die Blütenfarbe in den Mitteltönen bleibt unverfälscht – geschwächt wird nur das Umfeld.",
+        zusammenspiel: [
+          { phase: "Basis", funk: "Feinabstimmung", text: "Glanzlichter runter, weil zarte Blütenblätter schnell ausbrennen.", lek: 3 },
+          { phase: "Kurve", funk: "RGB Lichter ↓, Mitte halten", text: "rettet Zeichnung in hellen Blüten und hält die Blütenfarbe unverfälscht.", lek: 4 },
+          { phase: "Kurve", funk: "Grün-Kanal Mitteltöne ↓", text: "nimmt dem Blattgrün Kraft, sodass die Blüte optisch dominiert.", lek: 7 },
+          { phase: "Lokal", funk: "Selektiv Blüte vs. Hintergrund", text: "Blüte kräftiger, Hintergrund entsättigt und abgedunkelt – hier passiert das eigentliche Freistellen.", lek: 6 }
+        ],
+        fazit: "Blütenfarbe halten, Blattgrün schwächen, Hintergrund entsättigen – die Blüte tritt hervor, ganz ohne Schärfetricks."
+      },
       looks: ["r-highkey", "r-herbst", "r-wald"]
     },
     {
@@ -1628,6 +1712,18 @@
       ],
       tension: { hi: 35, sh: 200, txt: "Warmer Teller gegen kühlen/neutralen Untergrund." },
       harmony: { hi: 40, sh: 25, txt: "Warme, natürliche Töne durchziehen – appetitlich." },
+      learn: {
+        idee: "Beim Essen entscheidet der <b>Weißabgleich</b> über den Appetit. Der größte Feind ist ein Grünstich vom Kunstlicht – und helle, saubere Bilder wirken frischer.",
+        zone: [{ from: 70, to: 98, label: "Glanzpunkte" }],
+        zoneCap: "Glanzpunkte auf Soßen und Gläsern in den Lichtern machen Appetit – der Grundton muss sauber und grünfrei sein.",
+        zusammenspiel: [
+          { phase: "Basis", funk: "Weißabgleich", text: "neutral bis minimal warm, Farbton Richtung Magenta prüfen – Kunstlicht in Lokalen erzeugt fast immer einen Grünstich.", lek: 5 },
+          { phase: "Kurve", funk: "RGB: Lichter ↑, Fußpunkt leicht ↑", text: "Glanzpunkte auf Soßen und Gläsern machen Appetit, weiche Schatten statt harter schwarzer Löcher.", lek: 4 },
+          { phase: "Kurve", funk: "Grün-Kanal Mitteltöne ↓ (bei Stich)", text: "der zuverlässigste Weg, einen Grünstich endgültig loszuwerden.", lek: 7 },
+          { phase: "Lokal &amp; Finish", funk: "Selektiv Gericht, Vignette", text: "nur das Essen bekommt Struktur und Sättigung, eine leichte Vignette führt den Blick auf den Teller.", lek: 8 }
+        ],
+        fazit: "Sauberer, grünfreier Weißabgleich, helle Lichter mit Glanzpunkten und ein fokussierter Teller – Food, das appetitlich wirkt."
+      },
       looks: ["r-food", "r-highkey"]
     },
     {
@@ -1650,6 +1746,18 @@
       ],
       tension: { hi: 35, sh: 210, txt: "Ein paar warme Lichter gegen die kühle Fläche setzen." },
       harmony: { hi: 195, sh: 220, txt: "Blau/Cyan verstärken und entsättigen – klare Winterruhe." },
+      learn: {
+        idee: "Die Kamera misst Schnee <b>grau</b> – er muss aktiv aufgehellt und der Weißpunkt gesetzt werden. Dazu ein Hauch kühler Schatten für winterliche Stimmung, ohne dass es leblos wird.",
+        zone: [{ from: 70, to: 98, label: "Weißpunkt (Schnee)" }],
+        zoneCap: "Der Weißpunkt in den Lichtern muss gesetzt werden, sonst bleibt Schnee grau – die Schatten bleiben dezent kühl.",
+        zusammenspiel: [
+          { phase: "Basis", funk: "Feinabstimmung &amp; Weißabgleich", text: "Helligkeit hoch korrigiert die systematische Unterbelichtung, der Blaustich raus – Schneeschatten sind von Natur aus blau.", lek: 3 },
+          { phase: "Kurve", funk: "RGB: Weißpunkt setzen, Schatten halten", text: "das rechte Ende anheben, bis Weiß wirklich weiß ist, das linke Ende halten, damit der Schnee sein Volumen behält.", lek: 4 },
+          { phase: "Kurve", funk: "Blau-Schatten ↑ (dezent)", text: "ein kleines Stück kühler Schatten wirkt winterlich – zu viel wirkt leblos.", lek: 7 },
+          { phase: "Lokal &amp; Finish", funk: "Selektiv Schneeschatten, Struktur", text: "holt Zeichnung in die Vertiefungen, Struktur betont Kanten von Verwehungen und Spuren.", lek: 8 }
+        ],
+        fazit: "Aktiv aufhellen, Weißpunkt setzen, Volumen halten und die Schatten nur dezent kühlen – strahlender Schnee statt grauer Fläche."
+      },
       looks: ["r-schnee", "r-highkey", "r-faded"]
     }
   ];
