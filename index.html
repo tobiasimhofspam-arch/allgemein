@@ -40,7 +40,19 @@
     header .dot { width: 22px; height: 22px; border-radius: 50%;
       background: conic-gradient(red, orange, yellow, lime, cyan, blue, magenta, red);
       box-shadow: inset 0 0 0 4px var(--bg-elev); flex: none; }
-    header p { margin: 3px 0 0 31px; color: var(--muted); font-size: 12.5px; }
+    header p { margin: 10px 0 0; color: var(--muted); font-size: 12.5px; }
+    /* Modus-Umschalter (Bild / Video) direkt im Header */
+    .modeswitch { display: flex; gap: 6px; margin: 12px 0 0; }
+    .modebtn { flex: 1; background: var(--bg-card); border: 1px solid var(--line);
+      color: var(--muted); cursor: pointer; font-family: inherit; font-size: 13px;
+      font-weight: 650; padding: 9px 8px; border-radius: 999px; letter-spacing: -.01em;
+      display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .modebtn.active { background: var(--accent); border-color: transparent; color: #201400; }
+    .modebtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    /* Phasen-Überschriften in der Video-Lektionsliste */
+    .vg-phase { font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin: 18px 0 2px; padding-left: 2px; }
+    .vg-phase:first-child { margin-top: 2px; }
 
     main { padding: 16px 16px 8px; max-width: 720px; margin: 0 auto; }
     .tab-panel { display: none; animation: fade .2s ease; }
@@ -413,6 +425,7 @@
       align-items: center; gap: 3px; font-weight: 600; }
     nav button .ic { font-size: 21px; line-height: 1; }
     nav button.active { color: var(--accent); }
+    nav button[hidden] { display: none; }
 
     dialog { border: none; background: transparent; padding: 0; }
     dialog::backdrop { background: rgba(0,0,0,.6); backdrop-filter: blur(2px); }
@@ -433,7 +446,11 @@
 <body>
   <header>
     <h1><span class="dot"></span> ColorGrade</h1>
-    <p>Bildbearbeitung lernen &amp; verstehen – Schritt für Schritt</p>
+    <div class="modeswitch" id="modeSwitch" role="tablist" aria-label="Bereich wählen">
+      <button class="modebtn active" data-mode="foto" role="tab">📷 Bildbearbeitung</button>
+      <button class="modebtn" data-mode="video" role="tab">🎬 Videobearbeitung</button>
+    </div>
+    <p id="modeSub">Bildbearbeitung lernen &amp; verstehen – Schritt für Schritt</p>
   </header>
 
   <div id="installBar" hidden>
@@ -1427,13 +1444,561 @@
       </div>
     </section>
 
+    <!-- ===================== VIDEO · BEREICH A: GRUNDLAGEN ===================== -->
+    <section id="tab-vgrund" class="tab-panel">
+      <div id="vgList_wrap">
+        <p class="lead">Video von Grund auf – <b>die Technik und die Sprache</b>, die du brauchst, um ein gutes Video zu drehen. In der Reihenfolge, in der du sie beim Drehen auch brauchst. Tippe eine Lektion an.</p>
+        <p class="info" id="vgProg"></p>
+        <div class="lk-list" id="vgList"></div>
+      </div>
+
+      <div id="vgLesson" hidden>
+        <button class="lk-back" id="vgBack">← Alle Lektionen</button>
+
+        <!-- V1 -->
+        <article class="lk-lesson" data-vg="1" data-phase="1" data-phase-title="Das bewegte Bild · die Technik" data-em="🎬" data-title="Was ein Video zum Video macht" data-sub="Bilder pro Sekunde &amp; die Zeitachse" hidden>
+          <p class="lk-eyebrow">Lektion 1 · Das bewegte Bild</p>
+          <h2>Was ein Video zum Video macht</h2>
+          <p class="lk-hook">Ein Video ist nichts anderes als sehr viele Fotos, die so schnell nacheinander gezeigt werden, dass dein Auge sie als Bewegung liest. Genau darin liegt der ganze Unterschied zum Foto: Es kommt eine zweite Größe dazu – die <b>Zeit</b>. Fast alles, was du bei Video neu lernst, dreht sich um diese Zeitachse.</p>
+
+          <h4 class="lk-sub">Das Daumenkino-Prinzip</h4>
+          <p>Halte 24 Einzelbilder pro Sekunde vors Auge, und aus Standbildern wird flüssige Bewegung. Jedes dieser Bilder heißt <b>Frame</b> (Vollbild). „Bilder pro Sekunde" – englisch <i>frames per second</i>, kurz <b>fps</b> – ist die wichtigste neue Zahl in deinem Video-Kopf.</p>
+          <figure>
+            <svg viewBox="0 0 400 104" role="img" aria-label="Filmstreifen aus Einzelbildern, die eine Sekunde ergeben">
+              <rect x="12" y="16" width="376" height="56" rx="5" fill="var(--bg-card-2)" stroke="var(--line)"/>
+              <g fill="none" stroke="var(--line)"><line x1="87" y1="16" x2="87" y2="72"/><line x1="162" y1="16" x2="162" y2="72"/><line x1="237" y1="16" x2="237" y2="72"/><line x1="312" y1="16" x2="312" y2="72"/></g>
+              <g fill="#3a3a40"><rect x="20" y="20" width="10" height="7" rx="1.5"/><rect x="58" y="20" width="10" height="7" rx="1.5"/><rect x="96" y="20" width="10" height="7" rx="1.5"/><rect x="134" y="20" width="10" height="7" rx="1.5"/><rect x="172" y="20" width="10" height="7" rx="1.5"/><rect x="210" y="20" width="10" height="7" rx="1.5"/><rect x="248" y="20" width="10" height="7" rx="1.5"/><rect x="286" y="20" width="10" height="7" rx="1.5"/><rect x="324" y="20" width="10" height="7" rx="1.5"/><rect x="362" y="20" width="10" height="7" rx="1.5"/><rect x="20" y="61" width="10" height="7" rx="1.5"/><rect x="58" y="61" width="10" height="7" rx="1.5"/><rect x="96" y="61" width="10" height="7" rx="1.5"/><rect x="134" y="61" width="10" height="7" rx="1.5"/><rect x="172" y="61" width="10" height="7" rx="1.5"/><rect x="210" y="61" width="10" height="7" rx="1.5"/><rect x="248" y="61" width="10" height="7" rx="1.5"/><rect x="286" y="61" width="10" height="7" rx="1.5"/><rect x="324" y="61" width="10" height="7" rx="1.5"/><rect x="362" y="61" width="10" height="7" rx="1.5"/></g>
+              <line x1="12" y1="88" x2="388" y2="88" stroke="var(--accent)" stroke-width="1.5"/>
+              <path d="M12 84 v8 M388 84 v8" stroke="var(--accent)" stroke-width="1.5"/>
+              <text class="s-tick" x="200" y="100" text-anchor="middle">1 Sekunde = 24–30 Frames</text>
+            </svg>
+            <figcaption>Ein Video ist ein <b>Filmstreifen</b> aus lauter Einzelbildern. Wie viele pro Sekunde – das ist die Bildrate.</figcaption>
+          </figure>
+
+          <h4 class="lk-sub">Zwei Achsen statt einer</h4>
+          <p>Beim Foto entscheidest du über einen einzigen Moment. Beim Video entscheidest du zusätzlich, <b>wie lange</b> etwas zu sehen ist, in welcher <b>Reihenfolge</b>, und <b>wie Bewegung aussieht</b>. Ein Foto hat eine Fläche – ein Video hat eine Fläche <i>und</i> eine Länge.</p>
+
+          <h4 class="lk-sub">Das „gefesselte Bein"</h4>
+          <p>Beim Foto darfst du Verschlusszeit, Blende und ISO frei kombinieren. Im Video ist die <b>Verschlusszeit fast festgenagelt</b> (warum, kommt in Lektion 3). Merk dir schon jetzt: Im Video hast du eine Freiheit weniger – und genau das macht das Belichten anders.</p>
+
+          <div class="lk-merke"><span class="h">Merke</span><p>Video = viele Fotos pro Sekunde <b>+ eine Zeitachse</b>. Die neue Leitzahl heißt <b>fps</b>. Und: die Verschlusszeit ist im Video kein freier Regler mehr.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Film mit dem Handy 5 Sekunden lang, wie du die Hand schnell vor der Kamera bewegst. Scrubbe den Clip langsam Bild für Bild durch. Du siehst: lauter Einzelbilder – und in jedem ist die schnelle Hand leicht verwischt. Dieses Verwischen ist gleich Thema.</p></div>
+
+          <details><summary>Für Fortgeschrittene: Woher die „24" kommt <span class="chev">▶</span></summary>
+            <div class="lk-adv">
+              <p><span class="k">24 fps</span> stammt aus der Anfangszeit des Tonfilms: Der Ton brauchte eine gleichmäßige, feste Laufgeschwindigkeit, und 24 Bilder pro Sekunde waren das Sparsamste, das noch flüssig wirkte und für die Tonspur reichte. Bis heute ist 24/25 fps deshalb der „Kino-Look".</p>
+            </div>
+          </details>
+
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-vnext="2">Weiter: Bildrate →</button></div>
+        </article>
+
+        <!-- V2 -->
+        <article class="lk-lesson" data-vg="2" data-phase="1" data-phase-title="Das bewegte Bild · die Technik" data-em="⏱️" data-title="Bildrate (fps)" data-sub="24 · 25 · 30 · 50 · 60 – der Look der Bewegung" hidden>
+          <p class="lk-eyebrow">Lektion 2 · Das bewegte Bild</p>
+          <h2>Bildrate (fps)</h2>
+          <p class="lk-hook">Die Bildrate legt fest, wie viele Frames pro Sekunde aufgenommen werden – und damit, <b>wie sich Bewegung anfühlt</b>. Sie verändert nicht die Schärfe oder Auflösung (25 und 60 fps sind beide Full HD). Sie verändert nur den <b>Charakter</b> der Bewegung: filmisch-weich oder glasklar-direkt.</p>
+
+          <h4 class="lk-sub">Die fünf Zahlen, die zählen</h4>
+          <p><b>24 fps</b> – der Kino-Look. Weltweiter Standard für Filme, wirkt „nach Kino".</p>
+          <p><b>25 fps</b> – der Europa-Standard (PAL). Teilt sich sauber ins 50-Hz-Stromnetz. In Europa deine <b>Standardwahl</b> für geschnittene Videos.</p>
+          <p><b>30 fps</b> (genau 29,97) – der TV-Standard in Nordamerika (NTSC), auch beliebt für Social-Clips. Etwas glatter als 24/25.</p>
+          <p><b>50 fps</b> – Zeitlupe für Europa: in ein 25p-Projekt gelegt ergibt das weiche Slow-Motion in halbem Tempo. Auch für schnellen Sport live.</p>
+          <p><b>60 fps</b> – Zeitlupe/Action in der 30p-Welt; sehr direkt, „wie durchs Fenster geschaut". Standard bei Gaming und Live.</p>
+
+          <figure>
+            <svg viewBox="0 0 400 118" role="img" aria-label="Weniger Bilder pro Sekunde wirken filmisch, mehr wirken direkt">
+              <text class="s-lbl" x="8" y="26">25 fps</text>
+              <line x1="70" y1="22" x2="392" y2="22" stroke="var(--line)"/>
+              <g fill="var(--accent)"><circle cx="94" cy="22" r="5"/><circle cx="154" cy="22" r="5"/><circle cx="214" cy="22" r="5"/><circle cx="274" cy="22" r="5"/><circle cx="334" cy="22" r="5"/></g>
+              <text class="s-tick" x="392" y="42" text-anchor="end">filmisch, weich</text>
+              <text class="s-lbl" x="8" y="82">60 fps</text>
+              <line x1="70" y1="78" x2="392" y2="78" stroke="var(--line)"/>
+              <g fill="var(--blue)"><circle cx="82" cy="78" r="4"/><circle cx="108" cy="78" r="4"/><circle cx="134" cy="78" r="4"/><circle cx="160" cy="78" r="4"/><circle cx="186" cy="78" r="4"/><circle cx="212" cy="78" r="4"/><circle cx="238" cy="78" r="4"/><circle cx="264" cy="78" r="4"/><circle cx="290" cy="78" r="4"/><circle cx="316" cy="78" r="4"/><circle cx="342" cy="78" r="4"/><circle cx="368" cy="78" r="4"/></g>
+              <text class="s-lbl-s" x="392" y="98" text-anchor="end">direkt, nüchtern – oder auf halbes Tempo = weiche Zeitlupe</text>
+              <text class="s-lbl-s" x="70" y="112">gleiche Sekunde – mehr Punkte = mehr eingefangene Bilder</text>
+            </svg>
+            <figcaption>Weniger Frames pro Sekunde wirken <b>filmisch</b>, mehr Frames wirken <b>direkter</b> – und lassen sich zu Zeitlupe verlangsamen.</figcaption>
+          </figure>
+
+          <h4 class="lk-sub">Filmisch oder direkt?</h4>
+          <p>Weniger Frames (24/25) wirken traumhafter, „nach Film". Mehr Frames (50/60) wirken direkter, nüchterner, fast wie eine Live-Übertragung. Deshalb sehen Kinofilme mit 24 fps „edel" aus – und der glatte 50/60-Look wird oft als „billig" empfunden (der berüchtigte Soap-Opera-Effekt).</p>
+
+          <h4 class="lk-sub">Zeitlupe: hoch aufnehmen, langsam abspielen</h4>
+          <p>Zeitlupe entsteht nicht in der Kamera, sondern im Schnitt. Du nimmst mit hoher Bildrate auf (z. B. 50 fps) und legst die Clips in ein 25-fps-Projekt. Die Kamera hat <b>doppelt so viele Bilder</b> gesammelt, wie das Projekt zeigt – also läuft alles in halbem Tempo, weich statt ruckelig. <b>Planst du Zeitlupe, dreh die Szene gleich mit 50 oder 60.</b></p>
+
+          <div class="lk-merke"><span class="h">Merke</span><p>Wird's geschnitten und später angeschaut? → <b>25</b> (Europa). Zeitlupe geplant? → <b>50/60</b> aufnehmen. Live/Sport? → 30/50/60. Die Bildrate macht den <b>Look</b> der Bewegung, nicht die Schärfe.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Film dieselbe Bewegung (jemand geht vorbei) einmal mit 25 fps und einmal mit 60 fps, und leg beide unverlangsamt nebeneinander. Der 60er wirkt nüchterner, der 25er „filmischer". Dann verlangsame den 60er auf halbes Tempo – weiche Zeitlupe.</p></div>
+
+          <details><summary>Für Fortgeschrittene: 29,97 &amp; nicht mischen <span class="chev">▶</span></summary>
+            <div class="lk-adv">
+              <p><span class="k">29,97 statt 30</span> (und 23,976 statt 24) stammt aus der alten Farbfernseh-Technik in NTSC-Ländern. Für dich in Europa reicht: 25 oder 50.</p>
+              <p><span class="k">Nicht blind mischen:</span> 25/50 und 30/60 im selben Schnitt nur, wenn die Software sauber umrechnet – sonst ruckelt es. Am einfachsten: ein Projekt, eine Basis-Bildrate.</p>
+            </div>
+          </details>
+
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-vnext="3">Weiter: Verschlusszeit &amp; 180°-Regel →</button></div>
+        </article>
+
+        <!-- V3 -->
+        <article class="lk-lesson" data-vg="3" data-phase="1" data-phase-title="Das bewegte Bild · die Technik" data-em="🌀" data-title="Verschlusszeit &amp; 180°-Regel" data-sub="Woher die weiche Bewegung kommt" hidden>
+          <p class="lk-eyebrow">Lektion 3 · Das bewegte Bild</p>
+          <h2>Verschlusszeit &amp; die 180°-Regel</h2>
+          <p class="lk-hook">Jetzt der wichtigste Aha-Moment für Einsteiger: <b>Flüssige Bewegung kommt nicht von der Bildrate, sondern von der Verschlusszeit.</b> Sie bestimmt, wie viel Bewegungsunschärfe in jedem einzelnen Frame steckt – und genau diese Unschärfe liest das Auge als „weich".</p>
+
+          <h4 class="lk-sub">Die 180-Grad-Regel</h4>
+          <p>Die Faustregel: <b>Verschlusszeit = doppelte Bildrate.</b> Also 25 fps → 1/50, 30 fps → 1/60, 50 fps → 1/100, 60 fps → 1/125. Der Name kommt von alten Filmkameras mit einer halb offenen, rotierenden Blende (180° = halb offen): Jedes Frame wird die <b>Hälfte der Zeit</b> belichtet. Das ergibt genau die Menge Bewegungsunschärfe, die natürlich aussieht.</p>
+          <figure>
+            <svg viewBox="0 0 400 132" role="img" aria-label="180-Grad-Verschluss und die passenden Verschlusszeiten">
+              <circle cx="70" cy="60" r="46" fill="none" stroke="var(--line)" stroke-width="2"/>
+              <path d="M70 14 A46 46 0 0 1 70 106 Z" fill="var(--accent)" fill-opacity=".85"/>
+              <line x1="70" y1="14" x2="70" y2="106" stroke="var(--bg-card)" stroke-width="2"/>
+              <text class="s-tick" x="70" y="126" text-anchor="middle">180° = halb offen</text>
+              <text class="s-lbl" x="150" y="34">Bildrate → Verschlusszeit</text>
+              <g><text class="s-lbl-s" x="150" y="58">25 fps</text><text class="s-tick" x="230" y="58">1/50</text>
+                 <text class="s-lbl-s" x="150" y="78">30 fps</text><text class="s-tick" x="230" y="78">1/60</text>
+                 <text class="s-lbl-s" x="150" y="98">50 fps</text><text class="s-tick" x="230" y="98">1/100</text>
+                 <text class="s-lbl-s" x="150" y="118">60 fps</text><text class="s-tick" x="230" y="118">1/125</text></g>
+            </svg>
+            <figcaption>Verschlusszeit auf das <b>Doppelte der Bildrate</b> stellen – dann stimmt die Bewegungsunschärfe.</figcaption>
+          </figure>
+
+          <h4 class="lk-sub">Zu kurz = ruckelig, zu lang = matschig</h4>
+          <p><b>Kürzere Verschlusszeit</b> (z. B. 1/500 bei 25 fps): jedes Bild ist gestochen scharf, aber zwischen den Bildern klafft eine Lücke – Bewegung stottert und wirkt hart (der „Schlachtfeld"-Look). <b>Längere Verschlusszeit:</b> mehr Unschärfe, Bewegung verschwimmt und wirkt schwammig. Die 180°-Regel ist der ruhige Mittelweg.</p>
+
+          <h4 class="lk-sub">Warum sie im Video fast fest ist</h4>
+          <p>Weil du die Verschlusszeit an die Bildrate koppelst, ist sie <b>kein freier Belichtungsregler</b> mehr – das ist das „gefesselte Bein" aus Lektion 1. Zum Belichten bleiben dir Blende, ISO und Licht. Genau darum geht es in der nächsten Lektion.</p>
+
+          <h4 class="lk-sub">Flimmern vermeiden</h4>
+          <p>Kunstlicht und LED pulsieren mit dem Stromnetz (in Europa 50 Hz → 100 Pulse pro Sekunde). Passt deine Verschlusszeit nicht ins Raster, wandern dunkle Streifen durchs Bild oder es flackert. In Europa passen 1/50 und 1/100 – deshalb ist <b>25 fps mit 1/50</b> hier ideal. Stell die „Flimmerreduzierung" auf 50 Hz.</p>
+
+          <div class="lk-merke"><span class="h">Merke</span><p>Verschlusszeit = <b>2 × Bildrate</b> (25p → 1/50). Flüssig kommt von der Verschlusszeit, nicht von der Bildrate. In Europa 1/50 gegen Flimmern.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Film einen Schwenk einmal mit 1/50 und einmal mit 1/1000 (Verschlusszeit im Menü hochsetzen). Der 1/1000-Clip ruckelt sichtbar, obwohl jedes Standbild schärfer ist. So fühlst du, was Bewegungsunschärfe leistet.</p></div>
+
+          <details><summary>Für Fortgeschrittene: Verschlusswinkel als Stilmittel <span class="chev">▶</span></summary>
+            <div class="lk-adv">
+              <p><span class="k">Shutter angle:</span> Manche Kameras zeigen statt „1/50" einen Winkel wie 180°. 180° bedeutet immer „doppelte Bildrate", egal welche fps.</p>
+              <p><span class="k">Bewusst brechen:</span> 45° oder 90° geben einen harten, ruckeligen Look (z. B. Kampf-/Actionszenen). 360° wirkt sehr weich und verträumt. Die Regel kennen heißt, sie gezielt brechen zu dürfen.</p>
+            </div>
+          </details>
+
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-vnext="4">Weiter: Belichten im Video →</button></div>
+        </article>
+
+        <!-- V4 -->
+        <article class="lk-lesson" data-vg="4" data-phase="1" data-phase-title="Das bewegte Bild · die Technik" data-em="🎚️" data-title="Belichten im Video" data-sub="Dreieck mit gesperrtem Bein · ND · Zebra" hidden>
+          <p class="lk-eyebrow">Lektion 4 · Das bewegte Bild</p>
+          <h2>Belichten im Video</h2>
+          <p class="lk-hook">Beim Foto hast du drei Regler fürs Licht: Verschlusszeit, Blende, ISO – das „Belichtungsdreieck". Im Video ist die Verschlusszeit an die Bildrate gebunden (Lektion 3). Ein Bein des Dreiecks ist <b>gesperrt</b>. Damit ändert sich die Reihenfolge, in der du belichtest.</p>
+
+          <figure>
+            <svg viewBox="0 0 400 96" role="img" aria-label="Belichtungsreihenfolge im Video: Verschluss fest, ISO, Blende, ND">
+              <g font-size="12">
+                <rect x="6" y="30" width="86" height="40" rx="9" fill="var(--bg-card-2)" stroke="var(--accent)"/>
+                <text x="49" y="50" text-anchor="middle" class="s-tick">🔒 1/50</text><text x="49" y="64" text-anchor="middle" class="s-lbl-s">fest</text>
+                <rect x="108" y="30" width="86" height="40" rx="9" fill="var(--bg-card-2)" stroke="var(--line)"/>
+                <text x="151" y="50" text-anchor="middle" class="s-lbl">ISO ↓</text><text x="151" y="64" text-anchor="middle" class="s-lbl-s">so tief wie möglich</text>
+                <rect x="210" y="30" width="86" height="40" rx="9" fill="var(--bg-card-2)" stroke="var(--line)"/>
+                <text x="253" y="50" text-anchor="middle" class="s-lbl">Blende</text><text x="253" y="64" text-anchor="middle" class="s-lbl-s">nach Look</text>
+                <rect x="312" y="30" width="82" height="40" rx="9" fill="var(--bg-card-2)" stroke="var(--line)"/>
+                <text x="353" y="50" text-anchor="middle" class="s-lbl">ND ☀</text><text x="353" y="64" text-anchor="middle" class="s-lbl-s">wenn zu hell</text>
+              </g>
+              <g fill="var(--muted)"><path d="M96 50 l8 0 M100 46 l6 4 -6 4z"/><path d="M198 50 l8 0 M202 46 l6 4 -6 4z"/><path d="M300 50 l8 0 M304 46 l6 4 -6 4z"/></g>
+            </svg>
+            <figcaption>Die feste <b>Reihenfolge</b>: Verschluss steht → ISO tief → Blende nach Bildwirkung → erst dann ND-Filter.</figcaption>
+          </figure>
+
+          <h4 class="lk-sub">Die feste Reihenfolge</h4>
+          <p><b>1.</b> Verschlusszeit fest auf 1/50 (bei 25p) – und stehen lassen. <b>2.</b> ISO so niedrig wie möglich (Grundwert, meist 100). <b>3.</b> Blende nach Bildwirkung – sie bestimmt, wie viel scharf ist (Schärfentiefe). <b>4.</b> Zu dunkel? Erst ISO vorsichtig anheben, dann lieber Licht dazustellen. <b>5.</b> Zu hell trotz ISO 100? ND-Filter drauf – <b>nicht</b> die Verschlusszeit verkürzen.</p>
+
+          <h4 class="lk-sub">Der ND-Filter – die Sonnenbrille fürs Objektiv</h4>
+          <p>Draußen bei Sonne liefert 1/50 oft viel zu viel Licht, selbst bei ISO 100. Du darfst die Verschlusszeit aber nicht verkürzen (sonst ruckelt es) und willst die Blende oft offen halten (für den unscharfen Hintergrund). Der <b>ND-Filter</b> (Neutraldichte) ist eine graue Scheibe, die gleichmäßig Licht schluckt – wie eine Sonnenbrille. So bleibst du bei 1/50 und offener Blende, obwohl die Sonne knallt.</p>
+
+          <h4 class="lk-sub">ISO: so wenig wie nötig</h4>
+          <p>Jeder ISO-Schritt verstärkt das Signal – und mit ihm das <b>Bildrauschen</b>. Einsteigerkameras sind bis etwa ISO 800 sauber, ab 1600 wird das Korn sichtbar. Faustregel: lieber eine Lampe mehr als ISO 3200.</p>
+
+          <h4 class="lk-sub">Belichtung sehen statt raten</h4>
+          <p>Das Display lügt bei Sonne und im Dunkeln. Kameras haben deshalb Helfer, die dir die Helligkeit ehrlich zeigen:</p>
+          <p><b>Histogramm:</b> die Verteilung von Dunkel (links) nach Hell (rechts). Klebt alles an der rechten Wand, sind Lichter „ausgefressen" – für immer weg.</p>
+          <p><b>Zebra:</b> schraffiert überbelichtete Stellen direkt im Bild. Du siehst genau, <i>wo</i> es zu hell wird.</p>
+          <p><b>Waveform / False Color</b> (an besseren Kameras und Monitoren): zeigen die Helligkeit als Kurve bzw. farbcodiert – ideal, um Hauttöne richtig zu legen.</p>
+          <p>Faustregel fürs Video: lieber einen Hauch <b>dunkler</b> (−1/3) als zu hell. Ausgefressene Lichter bekommst du nie zurück, dunkle Stellen lassen sich aufhellen.</p>
+
+          <div class="lk-merke"><span class="h">Merke</span><p>Reihenfolge: <b>1/50 fest → ISO tief → Blende nach Look → zu hell? ND</b>. Zu dunkel? Licht dazu. Nie die Lichter ausbrennen – Zebra/Histogramm nutzen.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Schalt Zebra ein und richte die Kamera aufs helle Fenster. Öffne die Blende, bis die Schraffur erscheint – das ist „zu hell". Schließ sie wieder, bis die Zebras gerade verschwinden.</p></div>
+
+          <details><summary>Für Fortgeschrittene: Warum manche absichtlich flach belichten <span class="chev">▶</span></summary>
+            <div class="lk-adv">
+              <p><span class="k">Log-Profile:</span> Manche Kameras nehmen bewusst kontrastarm und flach auf, um im Nachhinein mehr Spielraum bei Farbe und Kontrast zu haben.</p>
+              <p><span class="k">Das ist Color Grading</span> – und dafür bekommt Video einen eigenen Bereich <b>Farbe</b>. Hier legst du erst einmal nur das saubere, richtig belichtete Fundament.</p>
+            </div>
+          </details>
+
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-vnext="5">Weiter: Auflösung, Format &amp; Codec →</button></div>
+        </article>
+
+        <!-- V5 -->
+        <article class="lk-lesson" data-vg="5" data-phase="1" data-phase-title="Das bewegte Bild · die Technik" data-em="🖼️" data-title="Auflösung, Format &amp; Codec" data-sub="1080p/4K · 16:9/9:16 · 8/10-Bit" hidden>
+          <p class="lk-eyebrow">Lektion 5 · Das bewegte Bild</p>
+          <h2>Auflösung, Format &amp; Codec</h2>
+          <p class="lk-hook">Drei technische Entscheidungen legst du <b>vor</b> dem Dreh fest: wie viele Bildpunkte (Auflösung), welches Bildformat (Seitenverhältnis) und wie das Material gespeichert wird (Codec). Klingt trocken, entscheidet aber, wie viel Spielraum du später hast.</p>
+
+          <h4 class="lk-sub">Auflösung: Full HD oder 4K</h4>
+          <p><b>Full HD (1080p)</b> = 1920×1080 Bildpunkte. <b>4K</b> = 3840×2160, also die vierfache Fläche. 4K braucht mehr Speicher und einen stärkeren Rechner, hat aber selbst für Full-HD-Videos einen echten Vorteil: Du kannst nachträglich <b>hineinzoomen</b> oder den Ausschnitt verschieben, ohne dass es unscharf wird – du „schneidest" aus dem großen Bild. Faustregel: <b>in 4K aufnehmen, in 1080p ausgeben</b>, wenn dein Gerät mitmacht.</p>
+
+          <h4 class="lk-sub">Seitenverhältnis: quer, hoch, quadratisch</h4>
+          <p><b>16:9</b> (quer) ist Standard für YouTube, Fernseher, Laptop. <b>9:16</b> (hoch) für Reels/Shorts/TikTok, weil das Handy hochkant gehalten wird. <b>1:1</b> (quadratisch) für den Feed. Wichtig: schon beim Dreh wissen, wohin das Video soll – ein Querformat auf Hochkant zu beschneiden, kostet viel Bild.</p>
+          <figure>
+            <svg viewBox="0 0 400 96" role="img" aria-label="Seitenverhältnisse 16:9, 9:16 und 1:1">
+              <rect x="20" y="26" width="112" height="63" rx="4" fill="var(--bg-card-2)" stroke="var(--line)"/>
+              <text class="s-tick" x="76" y="20" text-anchor="middle">16:9</text><text class="s-lbl-s" x="76" y="60" text-anchor="middle">quer · YouTube</text>
+              <rect x="182" y="14" width="42" height="75" rx="4" fill="var(--bg-card-2)" stroke="var(--line)"/>
+              <text class="s-tick" x="203" y="20" text-anchor="middle" transform="translate(0,-12)"></text>
+              <text class="s-tick" x="203" y="10" text-anchor="middle">9:16</text><text class="s-lbl-s" x="252" y="52">hoch · Reel</text>
+              <rect x="316" y="24" width="65" height="65" rx="4" fill="var(--bg-card-2)" stroke="var(--line)"/>
+              <text class="s-tick" x="348" y="18" text-anchor="middle">1:1</text><text class="s-lbl-s" x="348" y="60" text-anchor="middle">Feed</text>
+            </svg>
+            <figcaption>Vorher festlegen, <b>wohin</b> das Video soll – oder etwas weiter drehen und Rand lassen, dann passt beides.</figcaption>
+          </figure>
+
+          <h4 class="lk-sub">Codec, Bitrate &amp; Bit-Tiefe</h4>
+          <p>Die Kamera muss die riesige Bildmenge zusammenpacken. Der <b>Codec</b> ist das Pack-Verfahren (H.264 ist überall lesbar, H.265/HEVC packt effizienter). Die <b>Bitrate</b> ist, wie viel Datenmenge pro Sekunde übrig bleibt – mehr Bitrate = mehr Details in Bewegung, weniger „Klötzchen", aber größere Dateien. Stell die Filmqualität in der Kamera <b>hoch</b>.</p>
+          <p>Die <b>Bit-Tiefe</b> entscheidet über die Farbabstufungen: 8-Bit hat 256 Stufen pro Kanal, 10-Bit über 1000. Für sanfte Verläufe (Himmel!) und starkes Color Grading ist 10-Bit deutlich robuster – 8-Bit „bricht" bei kräftigen Eingriffen und zeigt Streifen (Banding). Für den Anfang reicht <b>8-Bit in hoher Bitrate</b>; 10-Bit lohnt, sobald du ernsthaft gradest.</p>
+
+          <div class="lk-merke"><span class="h">Merke</span><p>In <b>4K</b> drehen gibt Reserve zum Reframen. Format <b>vorher</b> festlegen (16:9 quer, 9:16 hoch). Filmqualität/Bitrate hoch; 10-Bit erst, wenn du viel gradest.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Nimm dieselbe Szene in 1080p und in 4K auf. Zieh den 4K-Clip in ein 1080p-Projekt und zoome auf 150 %. Er bleibt scharf – der 1080p-Clip würde matschig.</p></div>
+
+          <details><summary>Für Fortgeschrittene: Log &amp; LUT <span class="chev">▶</span></summary>
+            <div class="lk-adv">
+              <p><span class="k">Log</span> ist ein flaches Aufnahmeprofil (siehe Lektion 4), das den vollen Kontrastumfang „platt" speichert – dafür braucht es 10-Bit, damit nichts bricht.</p>
+              <p><span class="k">LUT:</span> Zum Anschauen legt man später eine LUT (eine Umrechnungstabelle) drüber, die das flache Bild in einen fertigen Look bringt. Das gehört ins Color Grading und kommt im Bereich <b>Farbe</b>.</p>
+            </div>
+          </details>
+
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-vnext="6">Weiter: Scharf &amp; farbstabil →</button></div>
+        </article>
+
+        <!-- V6 -->
+        <article class="lk-lesson" data-vg="6" data-phase="1" data-phase-title="Das bewegte Bild · die Technik" data-em="🎯" data-title="Scharf &amp; farbstabil" data-sub="Weißabgleich, Fokus und Bildstil fest" hidden>
+          <p class="lk-eyebrow">Lektion 6 · Das bewegte Bild</p>
+          <h2>Scharf &amp; farbstabil</h2>
+          <p class="lk-hook">Beim Foto darf die Kamera vieles automatisch machen – jedes Bild steht für sich. Im Video ist das ein Problem: Wenn Fokus, Weißabgleich oder Helligkeit <b>mitten in der Aufnahme</b> „nachdenken", sieht man das Wandern. Die Regel fürs Video heißt: <b>einmal einstellen, dann feststellen.</b></p>
+
+          <h4 class="lk-sub">Weißabgleich fest statt Auto</h4>
+          <p>Der Weißabgleich sagt der Kamera, was „weiß" ist – also ob das Licht warm (Glühlampe) oder kühl (Schatten/Wolken) ist. Auf Automatik regelt die Kamera das laufend nach; schwenkst du von der Fensterseite zur Lampenseite, <b>wandert die Farbe sichtbar</b>. Stell den Weißabgleich fest ein – über eine Vorwahl (Tageslicht/Kunstlicht) oder direkt in <b>Kelvin</b> (ca. 3200 K Glühlampe, 5600 K Tageslicht). Höhere Kelvinzahl = wärmeres Bild.</p>
+
+          <h4 class="lk-sub">Fokus: manuell und ziehen</h4>
+          <p>Der Autofokus vieler Kameras sucht im Video hörbar und sichtbar hin und her – „Pumpen". Setz den Fokus <b>vor</b> der Aufnahme manuell und fass ihn nicht mehr an; nutze die Lupe oder das Fokus-Peaking zum Scharfstellen. Bewegt sich jemand, kannst du den Fokus bewusst „ziehen" (langsam nachführen) – ein Stilmittel, kein Zufall.</p>
+
+          <h4 class="lk-sub">Bildstil neutral, nicht überschärfen</h4>
+          <p>Stell den Bildstil auf <b>Standard oder Neutral</b> und nimm die Nachschärfung eher zurück. Nachschärfen kannst du später immer, wegnehmen nie. Schalte automatische Kontrast-/Helligkeitshelfer („Aktives D-Lighting" o. ä.) aus – sie können bei Helligkeitswechseln sichtbar springen.</p>
+
+          <div class="lk-merke"><span class="h">Merke</span><p>Einmal einstellen, dann feststellen: <b>Weißabgleich fest</b> (Kelvin/Vorwahl), <b>Fokus manuell</b>, Bildstil neutral, Auto-Helligkeit aus. Automatik ist im Video der Feind der Ruhe.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Film einen Schwenk vom hellen Fenster zur dunklen Zimmerecke – einmal mit Auto-Weißabgleich und Autofokus, einmal mit beidem fest. Beim Auto-Clip siehst du Farbe und Schärfe „arbeiten". Der feste Clip bleibt ruhig.</p></div>
+
+          <details><summary>Für Fortgeschrittene: Graukarte &amp; einheitliche Farbe <span class="chev">▶</span></summary>
+            <div class="lk-adv">
+              <p><span class="k">Manueller Weißabgleich:</span> Für exakte Farbe hältst du eine graue/weiße Karte ins Licht und machst den Weißabgleich darauf.</p>
+              <p><span class="k">Warum das zählt:</span> Bei mehreren Clips am selben Ort sorgt das dafür, dass alle Aufnahmen farblich zusammenpassen – die Basis für ein einheitliches Video. Mehr dazu im Bereich <b>Farbe</b>.</p>
+            </div>
+          </details>
+
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-vnext="7">Weiter: Einstellungsgrößen →</button></div>
+        </article>
+
+        <!-- V7 -->
+        <article class="lk-lesson" data-vg="7" data-phase="2" data-phase-title="Erzählen mit Bildern · die Sprache" data-em="🔭" data-title="Einstellungsgrößen" data-sub="Von der Totale bis zum Detail" hidden>
+          <p class="lk-eyebrow">Lektion 7 · Erzählen mit Bildern</p>
+          <h2>Einstellungsgrößen</h2>
+          <p class="lk-hook">Ab hier geht es nicht mehr um die Kamera, sondern ums <b>Erzählen</b>. Das erste Wort dieser Sprache ist die Einstellungsgröße: wie viel vom Motiv im Bild ist. Jede Größe sagt dem Zuschauer etwas anderes – und erst der <b>Wechsel</b> zwischen ihnen macht ein Video lebendig.</p>
+
+          <figure>
+            <svg viewBox="0 0 400 108" role="img" aria-label="Einstellungsgrößen von der Totale bis zum Detail">
+              <g stroke="var(--line)" fill="var(--bg-card-2)">
+                <rect x="8" y="16" width="88" height="66" rx="5"/><rect x="112" y="16" width="88" height="66" rx="5"/><rect x="216" y="16" width="88" height="66" rx="5"/><rect x="320" y="16" width="72" height="66" rx="5"/>
+              </g>
+              <g fill="var(--muted)">
+                <circle cx="52" cy="52" r="5"/><rect x="49" y="58" width="6" height="14" rx="2"/>
+                <circle cx="156" cy="44" r="9"/><rect x="147" y="54" width="18" height="26" rx="4"/>
+                <circle cx="260" cy="46" r="16"/>
+                <circle cx="356" cy="45" r="9" fill="none" stroke="var(--muted)" stroke-width="2"/><circle cx="356" cy="45" r="3"/>
+              </g>
+              <g class="s-tick" text-anchor="middle"><text x="52" y="98">Totale</text><text x="156" y="98">Halbnah</text><text x="260" y="98">Nah</text><text x="356" y="98">Detail</text></g>
+            </svg>
+            <figcaption>Je näher, desto mehr Gefühl. Die <b>Totale</b> erklärt den Ort, das <b>Detail</b> betont das Wichtige.</figcaption>
+          </figure>
+
+          <h4 class="lk-sub">Die Leiter der Einstellungen</h4>
+          <p><b>Totale (weit):</b> zeigt den ganzen Ort, beantwortet „Wo sind wir?". Der Establishing Shot am Anfang einer Szene.</p>
+          <p><b>Halbtotale:</b> Person ganz im Umfeld – Handlung und Ort zusammen.</p>
+          <p><b>Halbnah (Medium):</b> Person etwa ab der Hüfte. Das Arbeitspferd für Gespräche.</p>
+          <p><b>Nah (Close-up):</b> Gesicht füllt das Bild. Zeigt Gefühl, schafft Nähe.</p>
+          <p><b>Detail (Extreme Close-up):</b> nur Augen, Hände, ein Objekt. Betont, was wichtig ist.</p>
+
+          <h4 class="lk-sub">Warum du wechseln musst</h4>
+          <p>Bleibst du immer gleich weit weg, wird es langweilig und der Zuschauer weiß nicht, wohin er schauen soll. Wechselst du die Größe, <b>führst du seinen Blick</b>: die Totale erklärt, der Close-up berührt, das Detail betont. Faustregel: <b>pro neuer Idee eine neue Einstellungsgröße.</b></p>
+
+          <h4 class="lk-sub">Genug Abstand zwischen den Größen</h4>
+          <p>Zwei sehr ähnliche Einstellungen hintereinander (z. B. Halbnah auf Halbnah) wirken beim Schnitt wie ein Ruck (Jump Cut). Wechsel <b>deutlich</b> – von halbnah auf nah oder Detail. Dann schneidet es sich sauber.</p>
+
+          <div class="lk-merke"><span class="h">Merke</span><p>Totale = wo, Medium = wer/was passiert, Nah = Gefühl, Detail = Betonung. <b>Pro Idee eine neue Größe</b> – und deutlich wechseln, nicht minimal.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Film einen simplen Vorgang (Kaffee eingießen) in vier Größen: Totale der Küche, halbnah der Person, Nah der Tasse, Detail des Strahls. Schon aus diesen vier Clips entsteht im Kopf eine kleine Szene.</p></div>
+
+          <details><summary>Für Fortgeschrittene: Master + Details <span class="chev">▶</span></summary>
+            <div class="lk-adv">
+              <p><span class="k">Deckung (Coverage):</span> Nimm dieselbe Handlung einmal komplett in der Totale auf (den „Master") und dann noch einmal in Nah und Detail. Im Schnitt kannst du frei zwischen den Größen wählen – und die Szene kürzen, ohne dass Löcher entstehen. Mehr dazu in der Sequenz-Lektion.</p>
+            </div>
+          </details>
+
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-vnext="8">Weiter: Bildaufbau in Bewegung →</button></div>
+        </article>
+
+        <!-- V8 -->
+        <article class="lk-lesson" data-vg="8" data-phase="2" data-phase-title="Erzählen mit Bildern · die Sprache" data-em="📐" data-title="Bildaufbau in Bewegung" data-sub="Perspektive, Drittel, Luft im Bild" hidden>
+          <p class="lk-eyebrow">Lektion 8 · Erzählen mit Bildern</p>
+          <h2>Bildaufbau in Bewegung</h2>
+          <p class="lk-hook">Die Regeln des guten Bildaufbaus gelten im Video genauso wie beim Foto – nur kommt Bewegung dazu. Wenn du die Foto-Grundlagen kennst, hast du hier schon die halbe Miete. Ein paar Dinge sind aber video-spezifisch.</p>
+
+          <p class="lk-cross">Die Grundlagen – Drittelregel, Blickführung, Bildtiefe – stecken ausführlich in der Bildbearbeitung.</p>
+          <button class="bv-lek" data-foto-lek="12">→ Bildbearbeitung · Lektion 12: Bildaufbau</button>
+
+          <h4 class="lk-sub">Drittel &amp; Blicklinien</h4>
+          <p>Teile das Bild gedanklich in neun Felder (zwei Linien quer, zwei hoch). Setz Wichtiges auf die Linien oder deren Kreuzungspunkte statt in die Mitte. Linien im Bild (Straße, Geländer) <b>führen den Blick</b>.</p>
+          <figure>
+            <svg viewBox="0 0 400 116" role="img" aria-label="Drittelraster mit Headroom und Blickraum">
+              <rect x="40" y="10" width="320" height="96" rx="6" fill="var(--bg-card-2)" stroke="var(--line)"/>
+              <g stroke="var(--line)" stroke-dasharray="4 4"><line x1="146" y1="10" x2="146" y2="106"/><line x1="253" y1="10" x2="253" y2="106"/><line x1="40" y1="42" x2="360" y2="42"/><line x1="40" y1="74" x2="360" y2="74"/></g>
+              <circle cx="146" cy="50" r="14" fill="var(--muted)"/><rect x="134" y="64" width="24" height="34" rx="6" fill="var(--muted)"/>
+              <path d="M158 46 h150" stroke="var(--blue)" stroke-width="1.5" marker-end="url(#a)"/>
+              <text class="s-lbl-s" x="146" y="30" text-anchor="middle" fill="var(--accent-2)">Headroom</text>
+              <text class="s-lbl-s" x="300" y="40" text-anchor="middle" fill="var(--blue)">Blickraum</text>
+            </svg>
+            <figcaption>Motiv auf ein <b>Drittel</b>, etwas Luft über dem Kopf (Headroom) und in <b>Blickrichtung</b> (Noseroom).</figcaption>
+          </figure>
+
+          <h4 class="lk-sub">Luft im Bild: Headroom &amp; Noseroom</h4>
+          <p>Über dem Kopf lässt du etwas Luft (<b>Headroom</b>) – nicht zu viel, nicht angeschnitten. Schaut jemand nach rechts, lass <b>rechts</b> mehr Platz (Noseroom/Blickraum), damit der Blick „hin kann". Ohne diesen Raum wirkt die Person eingequetscht.</p>
+
+          <h4 class="lk-sub">Tiefe: der Vordergrund-Trick</h4>
+          <p>Ein Video wirkt sofort hochwertiger, wenn es <b>Tiefe</b> hat. Filme durch etwas hindurch – Blätter, einen Türrahmen, eine Person unscharf im Vordergrund. Drei Ebenen (vorn/Mitte/hinten) geben dem flachen Bild Räumlichkeit. Bewegst du dich seitlich, entsteht <b>Parallaxe</b> – dazu mehr in der nächsten Lektion.</p>
+
+          <h4 class="lk-sub">Auf Augenhöhe – oder bewusst nicht</h4>
+          <p>Kamera auf Augenhöhe wirkt neutral. Von unten (Frosch) wirkt das Motiv größer/mächtiger, von oben (Vogel) kleiner/verletzlicher. Wähle die Höhe bewusst – der häufigste Einsteigerfehler ist „einfach im Stehen aus Erwachsenengröße".</p>
+
+          <div class="lk-merke"><span class="h">Merke</span><p>Drittel statt Mitte, Luft über dem Kopf und in Blickrichtung, drei Bildebenen für Tiefe, Kamerahöhe bewusst wählen.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Stell eine Person ans Fenster. Nimm sie einmal mittig, angeschnitten, auf Stehhöhe – und einmal auf einem Drittel, mit Headroom, auf Augenhöhe, mit einer unscharfen Pflanze im Vordergrund. Der Unterschied ist riesig.</p></div>
+
+          <details><summary>Für Fortgeschrittene: 9:16 anders aufbauen <span class="chev">▶</span></summary>
+            <div class="lk-adv">
+              <p><span class="k">Hochformat:</span> Im 9:16 hast du kaum Breite. Nutze die Höhe (Elemente übereinander schichten), geh näher ran, und halte Wichtiges aus der oberen/unteren Zone, wo Bedienelemente der App über dem Bild liegen.</p>
+            </div>
+          </details>
+
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-vnext="9">Weiter: Kamerabewegung →</button></div>
+        </article>
+
+        <!-- V9 -->
+        <article class="lk-lesson" data-vg="9" data-phase="2" data-phase-title="Erzählen mit Bildern · die Sprache" data-em="🎥" data-title="Kamerabewegung" data-sub="Statisch, Schwenk, Parallaxe – mit Motiv" hidden>
+          <p class="lk-eyebrow">Lektion 9 · Erzählen mit Bildern</p>
+          <h2>Kamerabewegung</h2>
+          <p class="lk-hook">Eine bewegte Kamera kann ein Video lebendig machen – oder seekrank. Der Unterschied ist nicht die Ausrüstung, sondern ob die Bewegung einen <b>Grund</b> hat. Erst die Arten, dann die eine wichtige Regel.</p>
+
+          <figure>
+            <svg viewBox="0 0 400 92" role="img" aria-label="Grundbewegungen: statisch, Schwenk, Fahrt">
+              <g fill="none" stroke="var(--muted)" stroke-width="2">
+                <path d="M40 66 h44 M62 66 v-20 M50 44 h24"/>
+                <path d="M150 30 a44 44 0 0 1 44 44" stroke="var(--accent)"/>
+                <path d="M262 62 h72" stroke="var(--blue)"/>
+              </g>
+              <g fill="var(--accent)"><path d="M194 68 l6 6 -8 2z"/></g>
+              <g fill="var(--blue)"><path d="M334 58 l8 4 -8 4z"/><path d="M262 58 l-8 4 8 4z"/></g>
+              <g class="s-tick" text-anchor="middle"><text x="62" y="88">statisch</text><text x="176" y="88">Schwenk</text><text x="298" y="88">Fahrt</text></g>
+            </svg>
+            <figcaption>Ruhig vom Stativ, drehen auf der Stelle (Schwenk) oder seitlich mitfahren (Parallaxe).</figcaption>
+          </figure>
+
+          <h4 class="lk-sub">Die Grundbewegungen</h4>
+          <p><b>Statisch (Stativ):</b> die Basis. Ein ruhiges Bild ist fast immer besser als ein wackeliges. Anfänger unterschätzen, wie stark schon ein Stativ wirkt.</p>
+          <p><b>Schwenk (Pan) / Neigen (Tilt):</b> Kamera dreht auf der Stelle – horizontal oder vertikal. Langsam und gleichmäßig; ein Schwenk übers ganze Bild braucht mindestens 5 Sekunden.</p>
+          <p><b>Fahrt (Dolly) / Slider:</b> Kamera bewegt sich seitlich oder vor/zurück. Erzeugt Parallaxe und echtes Raumgefühl.</p>
+          <p><b>Handheld:</b> aus der Hand, leicht lebendig/dokumentarisch. Gewollt unruhig – aber kontrolliert, nicht zittrig.</p>
+          <p><b>Gimbal:</b> ein motorisierter Stabilisator, mit dem du gehend butterweiche Fahrten machst.</p>
+
+          <h4 class="lk-sub">Die eine Regel: Bewegung braucht Motivation</h4>
+          <p>Bewege die Kamera nur, wenn es einen Grund gibt – der Bewegung im Bild <b>folgen</b> (jemand geht), etwas <b>enthüllen</b> (Schwenk aufs Ziel) oder Nähe/Spannung <b>aufbauen</b> (langsames Heranfahren). Bewegung ohne Grund lenkt ab. Im Zweifel: Stativ und lieber das Motiv bewegen lassen.</p>
+
+          <h4 class="lk-sub">Sauber bewegen</h4>
+          <p>Führe Schwenks langsam und gleichmäßig, mit <b>Vor- und Nachlauf</b> (ein paar Sekunden ruhig stehen, bevor und nachdem du bewegst) – das brauchst du im Schnitt. Handheld wird ruhiger, wenn du die Ellbogen an den Körper nimmst, ausatmest und dich aus der Hüfte drehst statt aus den Armen.</p>
+
+          <div class="lk-merke"><span class="h">Merke</span><p>Ruhig schlägt wackelig. Jede Kamerabewegung braucht einen Grund: <b>folgen, enthüllen, aufbauen</b>. Langsam, mit Vor- und Nachlauf.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Film jemanden, der durch einen Raum geht – einmal mit Schwenk vom Stativ, einmal seitlich mitgehend (Parallaxe). Dann ein bewusst grundloser, hektischer Schwenk zum Vergleich – du merkst sofort, warum „Motivation" zählt.</p></div>
+
+          <details><summary>Für Fortgeschrittene: Parallaxe vs. Zoom <span class="chev">▶</span></summary>
+            <div class="lk-adv">
+              <p><span class="k">Parallaxe:</span> Bei einer Seitwärtsfahrt wandert der Vordergrund schneller als der Hintergrund. Genau das liest das Auge als „räumlich".</p>
+              <p><span class="k">Deshalb</span> wirkt schon ein kleiner Schritt zur Seite lebendiger als jeder Zoom – Zoom ist nur Vergrößern, kein echter Raum.</p>
+            </div>
+          </details>
+
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-vnext="10">Weiter: Die Sequenz →</button></div>
+        </article>
+
+        <!-- V10 -->
+        <article class="lk-lesson" data-vg="10" data-phase="2" data-phase-title="Erzählen mit Bildern · die Sprache" data-em="🎞️" data-title="Die Sequenz" data-sub="5 Shots, Anschluss &amp; die Handlungsachse" hidden>
+          <p class="lk-eyebrow">Lektion 10 · Erzählen mit Bildern</p>
+          <h2>Die Sequenz</h2>
+          <p class="lk-hook">Ein einzelner Clip ist noch keine Geschichte. Erst mehrere Einstellungen in der richtigen Reihenfolge ergeben eine Szene, die der Zuschauer „mitdenkt". Zwei Werkzeuge reichen für den Anfang: die <b>5-Shot-Methode</b> und die <b>Handlungsachse</b>.</p>
+
+          <h4 class="lk-sub">Die 5-Shot-Methode</h4>
+          <p>Wenn du nur fünf Aufnahmen von einem Vorgang machst, dann diese – zusammen ergeben sie automatisch eine kleine Geschichte:</p>
+          <figure>
+            <svg viewBox="0 0 400 66" role="img" aria-label="Fünf Einstellungen ergeben eine Szene">
+              <g stroke="var(--line)" fill="var(--bg-card-2)"><rect x="6" y="10" width="72" height="34" rx="5"/><rect x="86" y="10" width="72" height="34" rx="5"/><rect x="166" y="10" width="72" height="34" rx="5"/><rect x="246" y="10" width="72" height="34" rx="5"/><rect x="326" y="10" width="68" height="34" rx="5"/></g>
+              <g class="s-tick" text-anchor="middle" font-size="9"><text x="42" y="30">1 weit</text><text x="122" y="30">2 Detail</text><text x="202" y="30">3 Handlung</text><text x="282" y="30">4 Reaktion</text><text x="360" y="30">5 Ende</text></g>
+              <g class="s-lbl-s" text-anchor="middle"><text x="42" y="58">wo?</text><text x="122" y="58">Charakter</text><text x="202" y="58">Bewegung</text><text x="282" y="58">Gefühl</text><text x="360" y="58">Abschluss</text></g>
+            </svg>
+            <figcaption>Weit → Detail → Handlung → Reaktion → Abschluss: fünf Shots, eine fertige Szene.</figcaption>
+          </figure>
+          <p><b>1. Establishing (weit):</b> Wo sind wir? 4–6 Sekunden, statisch.</p>
+          <p><b>2. Detail (nah):</b> ein einzelnes Objekt – gibt Charakter, liefert Schnittpunkte.</p>
+          <p><b>3. Handlung (mittel):</b> jemand/etwas tut etwas – Bewegung hält den Blick.</p>
+          <p><b>4. Reaktion (nah):</b> Gesicht/Hände/Folge – erst die Reaktion macht aus Handlung eine Geschichte.</p>
+          <p><b>5. Abschluss (weit/Wegbewegung):</b> Szene vorbei – ein gutes Ende für den Schnitt.</p>
+
+          <h4 class="lk-sub">Die Handlungsachse (180°-Regel des Schnitts)</h4>
+          <p>Zieh eine gedachte Linie zwischen zwei Personen (oder in Blick-/Laufrichtung). <b>Bleib mit der Kamera auf einer Seite</b> dieser Linie. Springst du auf die andere Seite, tauschen im Schnitt plötzlich die Blickrichtungen – und es wirkt, als schauten beide aneinander vorbei. Auf einer Seite bleiben = der Zuschauer behält die Orientierung.</p>
+          <figure>
+            <svg viewBox="0 0 400 108" role="img" aria-label="Handlungsachse: Kamera auf einer Seite bleiben">
+              <line x1="120" y1="54" x2="280" y2="54" stroke="var(--muted)" stroke-dasharray="5 5"/>
+              <circle cx="120" cy="54" r="12" fill="var(--muted)"/><text x="120" y="58" text-anchor="middle" font-size="11" fill="var(--bg-card)">A</text>
+              <circle cx="280" cy="54" r="12" fill="var(--muted)"/><text x="280" y="58" text-anchor="middle" font-size="11" fill="var(--bg-card)">B</text>
+              <g fill="var(--green)"><path d="M160 18 l10 -6 0 12z"/><path d="M240 18 l10 -6 0 12z"/></g>
+              <text class="s-tick" x="200" y="14" text-anchor="middle" fill="var(--green)">✓ eine Seite</text>
+              <path d="M196 92 l-10 6 0 -12z" fill="#e06a5a"/>
+              <text class="s-lbl-s" x="214" y="96" fill="#e06a5a">✗ nicht auf die andere Seite springen</text>
+            </svg>
+            <figcaption>Kamera auf der <b>grünen</b> Seite halten. Der Sprung über die Achse (rot) verwirrt die Blickrichtungen.</figcaption>
+          </figure>
+
+          <h4 class="lk-sub">Anschluss (Continuity)</h4>
+          <p>Achte auf Kleinigkeiten, die zwischen zwei Einstellungen gleich bleiben müssen: dieselbe Hand hält die Tasse, dieselbe Kleidung, dieselbe Blickrichtung. Schneide am besten <b>auf Bewegung</b> (jemand hebt den Arm) – so überdeckt die Bewegung den Schnitt, und er fällt kaum auf.</p>
+
+          <div class="lk-merke"><span class="h">Merke</span><p>5 Shots (weit–Detail–Handlung–Reaktion–Abschluss) ergeben eine Szene. Master + Details für Freiheit im Schnitt. Auf <b>einer Seite der Handlungsachse</b> bleiben. Auf Bewegung schneiden.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Film mit der 5-Shot-Methode, wie jemand die Tür öffnet und reingeht. Halte jeden Shot mindestens 6 Sekunden. Leg sie in dieser Reihenfolge hintereinander – fertig ist deine erste echte Szene.</p></div>
+
+          <details><summary>Für Fortgeschrittene: die Achse bewusst überqueren <span class="chev">▶</span></summary>
+            <div class="lk-adv">
+              <p><span class="k">Erlaubt,</span> wenn du den Sprung <b>zeigst</b> – etwa mit einer durchgehenden Kamerafahrt um die Personen herum. Dann nimmt der Zuschauer die neue Seite mit. Nur der harte Schnitt über die Achse verwirrt.</p>
+            </div>
+          </details>
+
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-vnext="11">Weiter: Ton →</button></div>
+        </article>
+
+        <!-- V11 -->
+        <article class="lk-lesson" data-vg="11" data-phase="3" data-phase-title="Ton &amp; Schnitt · zum fertigen Film" data-em="🎙️" data-title="Ton" data-sub="Die halbe Miete: Mikro, Pegel, Atmo" hidden>
+          <p class="lk-eyebrow">Lektion 11 · Ton &amp; Schnitt</p>
+          <h2>Ton</h2>
+          <p class="lk-hook">Ein hartes, aber wahres Gesetz: Das Publikum verzeiht mittelmäßiges Bild, aber <b>niemals schlechten Ton</b>. Ton ist die halbe Miete – und der häufigste Grund, warum Einsteiger-Videos „billig" wirken. Das eingebaute Kameramikro reicht dafür fast nie.</p>
+
+          <h4 class="lk-sub">Näher ran ist alles</h4>
+          <p>Die wichtigste Regel für guten Ton ist <b>Nähe</b>: das Mikro so nah wie möglich an die Schallquelle. Ein einfaches Mikro dicht an der Person klingt besser als ein teures drei Meter weg. Der Grund: je näher, desto mehr Stimme und desto weniger Raumhall und Nebengeräusch.</p>
+
+          <h4 class="lk-sub">Welches Mikro wofür</h4>
+          <p><b>Ansteckmikro (Lavalier):</b> klein, an der Brust – ideal für Interviews und Sprechen zur Kamera. Unauffällig, immer gleicher Abstand.</p>
+          <p><b>Richtmikro (Shotgun):</b> auf der Kamera oder an einer Angel über dem Kopf – nimmt gezielt von vorn auf, blendet die Seiten aus. Gut, wenn kein Mikro im Bild sein soll.</p>
+          <p><b>Handy/Recorder:</b> als separater Tonrekorder in der Nähe – oft besser als die Kamera.</p>
+
+          <h4 class="lk-sub">Pegel: laut genug, aber nie am Anschlag</h4>
+          <p>Ton wird in <b>dBFS</b> gemessen; 0 dBFS ist die Decke. Stößt das Signal dagegen, wird es „geclippt" (abgeschnitten) – und das ist für immer kaputt, kein Werkzeug holt es zurück. Ziel: Sprache pegelt sich um <b>−12 dBFS</b> ein, Spitzen bleiben unter −6 dBFS. Lieber etwas zu leise (kann man später anheben) als zu laut.</p>
+          <figure>
+            <svg viewBox="0 0 400 60" role="img" aria-label="Aussteuerung: Ziel um minus 12 dBFS, nie an 0">
+              <rect x="8" y="18" width="280" height="20" rx="4" fill="var(--green)" fill-opacity=".55"/>
+              <rect x="288" y="18" width="70" height="20" fill="var(--accent)" fill-opacity=".6"/>
+              <rect x="358" y="18" width="34" height="20" rx="4" fill="#e06a5a" fill-opacity=".7"/>
+              <line x1="288" y1="12" x2="288" y2="44" stroke="var(--text)" stroke-width="1.5"/>
+              <g class="s-lbl-s"><text x="150" y="52" text-anchor="middle">gut: bis ca. −12</text><text x="323" y="52" text-anchor="middle">Reserve</text><text x="384" y="52" text-anchor="end">0 = Clip</text></g>
+              <text class="s-tick" x="288" y="10" text-anchor="middle">−12 dBFS</text>
+            </svg>
+            <figcaption>Sprache im grünen Bereich um <b>−12 dBFS</b> halten, Spitzen unter −6. Die 0 nie berühren.</figcaption>
+          </figure>
+
+          <h4 class="lk-sub">Referenzspur &amp; Klatscher</h4>
+          <p>Nimm den Kameraton immer mit auf, auch wenn du ein separates Mikro nutzt – er ist die <b>Referenz</b>, an der du die gute Tonspur später ausrichtest. Ein Klatschen am Anfang jeder Einstellung gibt einen klaren Ausschlag in beiden Spuren; daran synchronisierst du im Schnitt.</p>
+
+          <h4 class="lk-sub">Atmo und Wind</h4>
+          <p>Nimm an jedem Ort 30 Sekunden <b>Raumton/Atmo</b> ohne Sprechen auf – dieser Grundklang ist der unsichtbare Kleber, mit dem im Schnitt Lücken und harte Übergänge natürlich klingen. Draußen bei Wind gehört ein Fell/Windschutz aufs Mikro und die Windgeräuschreduzierung an; drinnen aus, sonst klingt die Stimme dünn.</p>
+
+          <div class="lk-merke"><span class="h">Merke</span><p>Näher ran schlägt teurer. Sprache auf ca. <b>−12 dBFS</b>, nie an 0 (Clipping ist unheilbar). Kameraton als Referenz + Klatscher. An jedem Ort Atmo aufnehmen.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Sprich einen Satz einmal ins Kameramikro aus 3 m und einmal in ein Handy-Mikro aus 30 cm. Der Nah-Ton ist klar und voll, der Fern-Ton hallig und dünn. Prüf dabei den Pegel – bleib unter 0.</p></div>
+
+          <details><summary>Für Fortgeschrittene: Musik &amp; Lautheit <span class="chev">▶</span></summary>
+            <div class="lk-adv">
+              <p><span class="k">Musik</span> legt Stimmung, darf die Sprache aber nie zudecken – unter dem Dialog „ducken" (leiser regeln, wenn gesprochen wird).</p>
+              <p><span class="k">Lautheit:</span> Social-Plattformen normalisieren auf eine Ziel-Lautheit (grob −14 LUFS); zu laute Uploads werden ohnehin leiser geregelt. Wichtiger als die Zahl: ein <b>gleichmäßiger Pegel</b> über das ganze Video.</p>
+            </div>
+          </details>
+
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-vnext="12">Weiter: Der Schnitt &amp; Export →</button></div>
+        </article>
+
+        <!-- V12 -->
+        <article class="lk-lesson" data-vg="12" data-phase="3" data-phase-title="Ton &amp; Schnitt · zum fertigen Film" data-em="✂️" data-title="Der Schnitt &amp; Export" data-sub="Rhythmus, J/L-Cut, fertig ausspielen" hidden>
+          <p class="lk-eyebrow">Lektion 12 · Ton &amp; Schnitt</p>
+          <h2>Der Schnitt &amp; Export</h2>
+          <p class="lk-hook">Im Schnitt entsteht der Film. Hier wählst du aus dem Material die besten Momente, bringst sie in Rhythmus und spielst am Ende eine fertige Datei aus. Du brauchst dafür kein teures Programm – nur ein paar Grundprinzipien.</p>
+
+          <h4 class="lk-sub">Erst ordnen, dann schneiden</h4>
+          <p>Bevor du schneidest: Material sichten und sichern. Kopiere die Aufnahmen an <b>zwei</b> Orte (eine Kopie ist keine Kopie), leg eine simple Ordnerstruktur an (Video/Ton/Musik) und wirf offensichtlich misslungene Clips gleich raus. Eine kleine Shotlist oder ein Storyboard vor dem Dreh spart hier die meiste Zeit.</p>
+
+          <h4 class="lk-sub">Der Grundschnitt: weglassen</h4>
+          <p>Schneiden heißt vor allem <b>weglassen</b>. Behalte nur, was die Geschichte trägt. Jeder Clip braucht etwas <b>Vor- und Nachlauf</b> (das ruhige Stück vor und nach der Handlung), damit du sauber schneiden kannst – deshalb hast du beim Dreh länger gehalten, als sich richtig anfühlte.</p>
+
+          <h4 class="lk-sub">Schnittarten</h4>
+          <p><b>Harter Schnitt:</b> Bild A endet, Bild B beginnt. Der Normalfall – unauffällig, wenn du auf Bewegung schneidest.</p>
+          <p><b>J- und L-Cut:</b> der Ton läuft vor dem Bild (J) oder über den Schnitt hinaus (L). So gleitest du weich von Szene zu Szene – das Standardmittel für Gespräche und Interviews.</p>
+          <p><b>Blende (Überblendung):</b> weiches Ineinander – sparsam einsetzen, signalisiert „Zeit vergeht".</p>
+          <figure>
+            <svg viewBox="0 0 400 74" role="img" aria-label="J/L-Cut: Bild und Ton versetzt schneiden">
+              <text class="s-lbl-s" x="6" y="24">Bild</text>
+              <rect x="44" y="14" width="150" height="18" rx="3" fill="var(--bg-card-2)" stroke="var(--line)"/><rect x="196" y="14" width="196" height="18" rx="3" fill="var(--accent)" fill-opacity=".35" stroke="var(--line)"/>
+              <text class="s-lbl-s" x="6" y="54">Ton</text>
+              <rect x="44" y="44" width="214" height="18" rx="3" fill="var(--bg-card-2)" stroke="var(--line)"/><rect x="260" y="44" width="132" height="18" rx="3" fill="var(--blue)" fill-opacity=".35" stroke="var(--line)"/>
+              <line x1="196" y1="8" x2="196" y2="68" stroke="var(--text)" stroke-dasharray="3 3"/>
+              <text class="s-tick" x="228" y="70" text-anchor="middle">Ton läuft über den Bildschnitt (L-Cut)</text>
+            </svg>
+            <figcaption>Bild und Ton <b>versetzt</b> schneiden – der Ton der nächsten Szene beginnt früher (J) oder klingt nach (L).</figcaption>
+          </figure>
+
+          <h4 class="lk-sub">Rhythmus &amp; Tempo</h4>
+          <p>Kurze Clips treiben, lange beruhigen. Ein Musikvideo schneidet schnell, eine ruhige Landschaft langsam. Schneide (wo es passt) auf den <b>Takt der Musik</b>. Wichtig: Gib dem Zuschauer bei jedem Schnitt etwas Neues – wiederholt sich etwas, springt die Aufmerksamkeit ab.</p>
+
+          <h4 class="lk-sub">Fertig ausspielen (Export)</h4>
+          <p>Zum Schluss exportierst du eine einzelne Datei. Für fast alles im Web: Codec <b>H.264 (.mp4)</b>, dieselbe Auflösung und Bildrate wie dein Projekt, hohe Bitrate. So läuft dein Video überall und sieht gut aus. Für Hochformat in 9:16 exportieren, für YouTube in 16:9.</p>
+
+          <div class="lk-merke"><span class="h">Merke</span><p>Erst sichern &amp; ordnen. Schneiden = weglassen, mit Vor-/Nachlauf. Auf Bewegung schneiden, J/L-Cuts für weiche Übergänge, Rhythmus bewusst. Export als <b>H.264/MP4</b> in Projekt-Auflösung.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Nimm deine 5-Shot-Szene aus Lektion 10 und schneide sie zusammen: nur die besten Sekunden je Clip, auf Bewegung geschnitten, am Ende als MP4 exportiert. Das ist ein fertiges kleines Video – dein erstes.</p></div>
+
+          <details><summary>Wohin als Nächstes? <span class="chev">▶</span></summary>
+            <div class="lk-adv">
+              <p>Damit steht dein <span class="k">technisches und erzählerisches Fundament</span>. Der nächste eigene Bereich <b>Farbe</b> zeigt, wie du deinen Clips einen einheitlichen, stimmigen Look gibst (Color Grading) – damit z. B. ein ganzes Urlaubsvideo wie aus einem Guss wirkt.</p>
+            </div>
+          </details>
+
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-vfinish>✓ Geschafft – zur Übersicht</button></div>
+        </article>
+
+      </div>
+    </section>
+
   </main>
 
   <nav>
-    <button data-tab="spick" class="active"><span class="ic">📖</span>Wissen</button>
-    <button data-tab="berater"><span class="ic">📷</span>Berater</button>
-    <button data-tab="farbe"><span class="ic">🎨</span>Farben</button>
-    <button data-tab="rezepte"><span class="ic">🧪</span>Rezepte</button>
+    <button data-tab="spick" data-navmode="foto" class="active"><span class="ic">📖</span>Wissen</button>
+    <button data-tab="berater" data-navmode="foto"><span class="ic">📷</span>Berater</button>
+    <button data-tab="farbe" data-navmode="foto"><span class="ic">🎨</span>Farben</button>
+    <button data-tab="rezepte" data-navmode="foto"><span class="ic">🧪</span>Rezepte</button>
+    <button data-tab="vgrund" data-navmode="video" hidden><span class="ic">🎬</span>Grundlagen</button>
   </nav>
 
   <dialog id="wisDialog">
@@ -2623,13 +3188,35 @@
   //  Tabs
   //=========================================================================
   const navBtns = document.querySelectorAll('nav button');
+  const MODE_TABS = { foto: 'spick', video: 'vgrund' };
+  let curMode = 'foto';
   function goTab(tab) {
     navBtns.forEach(x => x.classList.toggle('active', x.dataset.tab === tab));
     document.querySelectorAll('.tab-panel').forEach(p =>
       p.classList.toggle('active', p.id === 'tab-' + tab));
     window.scrollTo({ top: 0 });
+    LS.set('fw_tab_' + curMode, tab);
   }
   navBtns.forEach(b => b.addEventListener('click', () => goTab(b.dataset.tab)));
+
+  // Moduswechsel Bild / Video (Buttons im Header)
+  const modeBtns = document.querySelectorAll('#modeSwitch .modebtn');
+  const MODE_SUB = {
+    foto: 'Bildbearbeitung lernen & verstehen – Schritt für Schritt',
+    video: 'Videobearbeitung lernen & verstehen – Schritt für Schritt'
+  };
+  function setMode(mode, tab) {
+    if (!MODE_TABS[mode]) mode = 'foto';
+    curMode = mode;
+    modeBtns.forEach(x => x.classList.toggle('active', x.dataset.mode === mode));
+    navBtns.forEach(x => { x.hidden = x.dataset.navmode !== mode; });
+    el('modeSub').textContent = MODE_SUB[mode];
+    LS.set('fw_mode', mode);
+    let t = tab || LS.get('fw_tab_' + mode, MODE_TABS[mode]);
+    const ok = [].some.call(navBtns, x => x.dataset.tab === t && x.dataset.navmode === mode);
+    goTab(ok ? t : MODE_TABS[mode]);
+  }
+  modeBtns.forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
 
   //=========================================================================
   //  BILD-BERATER
@@ -3453,6 +4040,85 @@
   });
 
   //=========================================================================
+  //  VIDEO · Bereich A: Grundlagen-Lektionen (gespiegeltes lk-Muster)
+  //=========================================================================
+  const vgListEl = el('vgList');
+  const vgArticles = [].slice.call(document.querySelectorAll('#vgLesson [data-vg]'));
+  const vgOrder = vgArticles.map(a => a.dataset.vg);
+  let curVg = null;
+  const vgRead = () => LS.get('fw_video_grundlagen', []);
+  const vgIsRead = id => vgRead().indexOf(id) > -1;
+  const vgById = id => vgArticles.filter(a => a.dataset.vg === id)[0];
+  function vgMark(id, on) {
+    const r = vgRead().filter(x => x !== id);
+    if (on) r.push(id);
+    LS.set('fw_video_grundlagen', r);
+  }
+  function renderVgList() {
+    const read = vgRead();
+    let firstUnread = null;
+    for (let i = 0; i < vgOrder.length; i++) {
+      if (read.indexOf(vgOrder[i]) < 0) { firstUnread = vgOrder[i]; break; }
+    }
+    let lastPhase = null, html = '';
+    vgArticles.forEach((a, i) => {
+      if (a.dataset.phase !== lastPhase) {
+        lastPhase = a.dataset.phase;
+        html += `<div class="vg-phase">${esc(a.dataset.phaseTitle)}</div>`;
+      }
+      const id = a.dataset.vg, done = read.indexOf(id) > -1, cur = id === firstUnread;
+      const tag = done ? 'gelesen' : (cur ? 'weiter' : 'offen');
+      html += `<button class="lk-item${done ? ' done' : ''}${cur ? ' current' : ''}" data-vgopen="${id}">
+        <span class="lk-num">${done ? '✓' : (i + 1)}</span>
+        <span class="lk-em">${a.dataset.em}</span>
+        <span class="lk-txt"><b>${esc(a.dataset.title)}</b><span>${esc(a.dataset.sub)}</span></span>
+        <span class="lk-tag">${tag}</span></button>`;
+    });
+    vgListEl.innerHTML = html;
+    const doneCount = read.filter(id => vgOrder.indexOf(id) > -1).length;
+    el('vgProg').textContent = `${doneCount} von ${vgOrder.length} Lektionen gelesen`;
+  }
+  function openVg(id) {
+    if (vgOrder.indexOf(id) < 0) return;
+    curVg = id;
+    vgArticles.forEach(a => { a.hidden = a.dataset.vg !== id; });
+    paintRead(vgById(id).querySelector('.lk-read'), vgIsRead(id));
+    el('vgList_wrap').hidden = true;
+    el('vgLesson').hidden = false;
+    window.scrollTo({ top: 0 });
+  }
+  function closeVg() {
+    el('vgLesson').hidden = true;
+    el('vgList_wrap').hidden = false;
+    renderVgList();
+    window.scrollTo({ top: 0 });
+  }
+  el('tab-vgrund').addEventListener('click', e => {
+    const open = e.target.closest('[data-vgopen]');
+    if (open) { openVg(open.dataset.vgopen); return; }
+    if (e.target.closest('#vgBack')) { closeVg(); return; }
+    const jump = e.target.closest('[data-foto-lek]');
+    if (jump) { gotoFotoLesson(jump.dataset.fotoLek); return; }
+    const rd = e.target.closest('.lk-read');
+    if (rd) { const on = !vgIsRead(curVg); vgMark(curVg, on); paintRead(rd, on); return; }
+    const nx = e.target.closest('.lk-next');
+    if (nx) {
+      vgMark(curVg, true);
+      if (nx.hasAttribute('data-vfinish')) closeVg();
+      else if (nx.dataset.vnext) openVg(nx.dataset.vnext);
+    }
+  });
+  // Modusübergreifender Sprung: aus einer Video-Lektion in eine Foto-Lektion
+  function gotoFotoLesson(id) {
+    setMode('foto', 'spick');
+    const seg = el('wisSeg');
+    [].forEach.call(seg.querySelectorAll('.segbtn'), x => x.classList.toggle('active', x.dataset.wview === 'lernen'));
+    el('wview-lernen').hidden = false;
+    el('wview-nach').hidden = true;
+    openLesson(id);
+  }
+
+  //=========================================================================
   //  FARBLEHRE – Lektionen im Farbe-Tab (Farblehre / Farbrad)
   //=========================================================================
   const flListEl = el('flListItems');
@@ -3548,8 +4214,11 @@
   renderSpick();
   renderLkList();
   renderFlList();
+  renderVgList();
   updateVorlagenInfo();
   renderColor();
+  // Zuletzt gewählten Modus (Bild/Video) und Tab wiederherstellen
+  setMode(LS.get('fw_mode', 'foto'));
 
   // Installations-Angebot von Chrome/Edge/Samsung Internet abfangen
   let deferredPrompt = null;

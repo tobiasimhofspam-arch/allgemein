@@ -19,19 +19,31 @@ Bearbeitung, Farbe und den eigenen Stil.
 
 ---
 
-## Aktueller Stand (Cache `v19`)
+## Aktueller Stand (Cache `v20`)
 
-**Fertig:**
+Ganz oben schaltet ein **Kopf-Umschalter** zwischen zwei Welten: **📷 Bildbearbeitung**
+und **🎬 Videobearbeitung**. Die untere Navigation zeigt je Modus die passenden Bereiche;
+der zuletzt gewählte Modus wird lokal gemerkt.
+
+**Fertig – Bild:**
 - 📖 **Wissen** – Startseite, zwei Ebenen (Lernen + Nachschlagen), **12 Lektionen**.
 - 📷 **Berater** – 10 Motive, **drei Ebenen** je Motiv (Aufnehmen · Verstehen · Anwenden).
 - 🎨 **Farbe** – zwei Ebenen: **Farblehre** (8 Lektionen) + **Farbrad**.
-- 🧪 **Rezepte** – Bild + Video, eigene Rezepte speicherbar (letztes Kapitel der Reise).
+- 🧪 **Rezepte** – Bild + Video, eigene Rezepte speicherbar.
 
-**Als Nächstes / offen:**
-- 🎬 **Video-Thema** wie die Foto-Geschichte aufbauen (eigener geführter Lernpfad;
-  Struktur zuerst vorschlagen, dann bauen).
-- 🧪 Das **Rezepte-Kapitel** als bewussten „eigenen Stil speichern"-Abschluss ausbauen.
-- Feinschliff über alle Kapitel.
+**Fertig – Video:**
+- 🎬 **Bereich A · Grundlagen** – **12 geführte Lektionen** in drei Phasen: *Das bewegte
+  Bild* (fps, 180°-Regel, Belichten, Auflösung/Codec, scharf & farbstabil), *Erzählen mit
+  Bildern* (Einstellungsgrößen, Bildaufbau, Kamerabewegung, die Sequenz) und *Ton & Schnitt*.
+  Gleiches Lektions-Muster wie im Bild-Wissen, mit modusübergreifendem Sprung zu Foto-Lektionen.
+
+**Als Nächstes / offen (Video):**
+- 🧭 **Bereich B · Berater** – nach Situation/Genre (Interview, Reise/B-Roll, Reel …),
+  drei Ebenen je Kachel, ausführlich mit Beispielen.
+- 🎨 **Bereich C · Farbe** – eigenständiger Color-Grading-Bereich (einheitlicher Look,
+  z. B. fürs Urlaubsvideo). **Keine** Rezepte-Sammlung – Fokus nur auf Farbe/Grading.
+- ➕ **Bereich D** – Konzept noch offen.
+- Struktur je Schritt zuerst abstimmen, dann bauen.
 
 ---
 
@@ -128,6 +140,7 @@ Konzept jederzeit zur Grundlage springen kann.
 
 | Version | Was |
 |---------|-----|
+| **v20** | Video als eigene Welt: Bild/Video-Umschalter im Kopf + eigene Bottom-Nav je Modus; **Bereich A „Grundlagen"** mit 12 geführten Lektionen (bewegtes Bild · Erzählen · Ton & Schnitt), inkl. modusübergreifendem Sprung zu Foto-Lektionen. |
 | **v19** | Fotografie: Wissen-Lektion 12 „Bildaufbau" (Drittelregel, 9 Felder, Bildtiefe) + Berater-Ansicht „📸 Aufnehmen" je Motiv (Aufnahme-Tipps). |
 | **v18** | Wissen: drei Lektionen zum lokalen/strukturellen Bearbeiten – Ebenen & Masken, Auswählen & Freistellen, Retuschieren (→ 11 Lektionen). |
 | **v17** | Farbe-Tab: Farblehre (8 Lektionen) + Farbrad-Umschalter; Navigation neu geordnet zu Wissen → Berater → Farbe → Rezepte. |
