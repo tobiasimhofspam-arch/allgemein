@@ -343,6 +343,32 @@
     .s-lbl-s { fill: #7c7c86; font-size: 10.5px; }
     .s-tick { fill: var(--accent-2); font-size: 10.5px; font-weight: 600; }
 
+    /* Berater – Verstehen (Konzept-Aufschlüsselung) */
+    .bv-idee, .bv-fazit { border-radius: 12px; padding: 14px 15px; margin: 14px 0; }
+    .bv-idee { background: rgba(255,159,69,.09); border: 1px solid rgba(255,159,69,.28); }
+    .bv-fazit { background: rgba(123,216,143,.09); border: 1px solid rgba(123,216,143,.28); }
+    .bv-idee .h, .bv-fazit .h { display: block; font-size: 11px; letter-spacing: .07em;
+      text-transform: uppercase; font-weight: 700; margin-bottom: 6px; }
+    .bv-idee .h { color: var(--accent-2); }
+    .bv-fazit .h { color: var(--green); }
+    .bv-idee p, .bv-fazit p { margin: 0; font-size: 14px; color: #dcdce0; }
+    .bv-idee b { color: var(--accent-2); }
+    .bv-fig { margin: 6px 0 4px; }
+    .bv-fig svg { display: block; width: 100%; height: auto; }
+    .bv-fig figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; text-align: center; }
+    .bv-steps { display: flex; flex-direction: column; gap: 8px; margin: 4px 0; }
+    .bv-step { display: flex; gap: 11px; background: var(--bg-card); border: 1px solid var(--line);
+      border-radius: 12px; padding: 12px 13px; }
+    .bv-ph { flex: none; align-self: flex-start; font-size: 10.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .04em; color: var(--accent-2);
+      background: var(--bg-card-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; }
+    .bv-body { flex: 1; min-width: 0; font-size: 13.5px; color: #dcdce0; }
+    .bv-body b { color: var(--text); }
+    .bv-lek { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 650;
+      color: var(--blue); background: rgba(122,184,245,.1); border: 1px solid rgba(122,184,245,.28);
+      border-radius: 999px; padding: 4px 10px; cursor: pointer; }
+    .bv-lek:active { transform: scale(.98); }
+
     /* Meine Rezepte / Tipps */
     .note-form textarea { width: 100%; min-height: 76px; resize: vertical; padding: 12px 14px;
       font-size: 15px; border-radius: 12px; border: 1px solid var(--line);
@@ -1411,6 +1437,19 @@
       ],
       tension: { hi: 25, sh: 130, txt: "Wärme/Magenta in die Lichter, Grün im Schatten belassen." },
       harmony: { hi: 80, sh: 120, txt: "Grün behalten und leicht Richtung Gelb-Grün wärmen." },
+      learn: {
+        idee: "Beim Wald sitzt die ganze Stimmung in den <b>Mitteltönen</b> – dort lebt das Laub. Wer nur global die Sättigung hochdreht, bekommt giftiges Neon-Grün. Der Trick ist, gezielt in den Mitteltönen zu arbeiten.",
+        zone: [{ from: 32, to: 70, label: "Mitteltöne" }],
+        zoneCap: "Laub und Grün liegen in den Mitteltönen – genau dort setzt das Konzept an.",
+        zusammenspiel: [
+          { phase: "Basis", funk: "Weißabgleich &amp; Ambiente", text: "nehmen zuerst den kühl-bläulichen Stich unter dem Blätterdach heraus und geben dem Dickicht Tiefe – die Bühne für die Farbe.", lek: 5 },
+          { phase: "Kurve", funk: "Grün-Kanal in den Mitteltönen", text: "ist die eigentliche Arbeit: ein winziger Punkt in der Mitte des Grün-Kanals hebt das Laub – edler als jede globale Sättigung. Die flache RGB-S-Kurve gibt Kontrast, ohne das Grün zu verbiegen.", lek: 4 },
+          { phase: "Kurve", funk: "Blau-Kanal in den Schatten", text: "macht die Tiefen zwischen den Stämmen kühl – dieser kühle Gegenpol lässt das warme Braun erst richtig hervortreten (Gegenfarben-Prinzip).", lek: 7 },
+          { phase: "Lokal", funk: "Selektiv auf Rinde &amp; Blatt", text: "trennt Holz und Boden vom Blattwerk – erst nachdem die Kurve die Grundstimmung gesetzt hat.", lek: 6 },
+          { phase: "Stimmung", funk: "Grading: Spannung oder Harmonie", text: "gibt zum Schluss die Richtung: Wärme in die Lichter für Spannung, oder Grün behalten und Richtung Gelb-Grün wärmen für Harmonie.", lek: 7 }
+        ],
+        fazit: "Die Basis macht die Bühne, die Kurve trägt in den Mitteltönen das Grün, die kühlen Schatten heben das Braun hervor – zusammen ein tiefer, edler Wald statt Neon-Grün."
+      },
       looks: ["r-wald", "r-moody", "r-herbst"]
     },
     {
@@ -1914,6 +1953,15 @@
   //=========================================================================
   const motifGrid = document.getElementById('motifGrid');
   const adviceBox = document.getElementById('adviceBox');
+  adviceBox.addEventListener('click', e => {
+    const seg = e.target.closest('#bSeg .segbtn');
+    if (seg) { switchBView(seg.dataset.bview); return; }
+    const jump = e.target.closest('[data-lek-jump]');
+    if (jump) { goLesson(jump.dataset.lekJump); return; }
+    if (e.target.closest('[data-goto-anwenden]')) { switchBView('anwenden'); return; }
+    const look = e.target.closest('[data-look]');
+    if (look) { openRecipe(look.dataset.look); return; }
+  });
   function recipeName(id) { const r = DEFAULT_RECIPES.find(x => x.id === id); return r ? r.name : id; }
   function stepList(arr) {
     return `<ol class="steps">${arr.map(s =>
@@ -1995,15 +2043,9 @@
     motifGrid.querySelectorAll('.motif').forEach(b =>
       b.addEventListener('click', () => showAdvice(b.dataset.id)));
   }
-  function showAdvice(id) {
-    const m = ADVISOR.find(x => x.id === id);
-    if (!m) return;
-    motifGrid.querySelectorAll('.motif').forEach(b =>
-      b.classList.toggle('active', b.dataset.id === id));
-    adviceBox.innerHTML = `
-      <div class="advice">
-        <h3><span>${m.em}</span> ${rich(m.name)}</h3>
-        <p class="sum">${rich(m.sum)}</p>
+  // ── Anwenden: der fertige Ablauf (wie bisher) ─────────────────────────
+  function adviceApply(m) {
+    return `<p class="sum">${rich(m.sum)}</p>
         <h5 class="sec"><span class="n">1</span> Basis</h5>${stepList(m.basis)}
         <h5 class="sec key"><span class="n">2</span> Kurven – der Kern</h5>${KURVEN_HINWEIS}${zoneDiagram()}${kurvenGrouped(m.kurven)}
         <h5 class="sec"><span class="n">3</span> Lokal verfeinern</h5>${stepList(m.lokal)}
@@ -2012,10 +2054,72 @@
         ${gradeBox('tension', m.tension)}${gradeBox('harmony', m.harmony)}
         <h5 class="sec">Passende Looks (antippen)</h5>
         <div class="look-chips">${m.looks.map(x =>
-          `<button class="look-chip" data-look="${x}">${rich(recipeName(x))}</button>`).join('')}</div>
+          `<button class="look-chip" data-look="${x}">${rich(recipeName(x))}</button>`).join('')}</div>`;
+  }
+
+  // ── Verstehen: das Konzept aufgeschlüsselt ────────────────────────────
+  function lekTitel(id) {
+    const a = document.querySelector('#lernLesson [data-lek="' + id + '"]');
+    return a ? plain(a.dataset.title) : ('Lektion ' + id);
+  }
+  function zoneFocusBar(spans, cap) {
+    const X = p => 12 + p / 100 * 376;
+    const hi = spans.map(s => `<rect x="${X(s.from)}" y="6" width="${X(s.to) - X(s.from)}" height="48" rx="6" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+        <text class="s-tick" x="${(X(s.from) + X(s.to)) / 2}" y="72" text-anchor="middle">${s.label}</text>`).join('');
+    return `<figure class="bv-fig"><svg viewBox="0 0 400 84" role="img" aria-label="Tonachse mit hervorgehobenem Arbeitsbereich">
+        <defs><linearGradient id="bzt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0a0a0b"/><stop offset="1" stop-color="#f2f2f4"/></linearGradient></defs>
+        <rect x="12" y="10" width="376" height="40" rx="7" fill="url(#bzt)" stroke="#3a3a40"/>
+        ${hi}
+        <text class="s-lbl-s" x="12" y="82">← dunkel</text><text class="s-lbl-s" x="388" y="82" text-anchor="end">hell →</text>
+      </svg><figcaption>${rich(cap)}</figcaption></figure>`;
+  }
+  function learnView(m) {
+    const L = m.learn;
+    return `<div class="bv">
+        <div class="bv-idee"><span class="h">Kernidee</span><p>${rich(L.idee)}</p></div>
+        ${zoneFocusBar(L.zone, L.zoneCap)}
+        <h5 class="sec key">So spielt es zusammen</h5>
+        <div class="bv-steps">${L.zusammenspiel.map(z => `<div class="bv-step">
+          <div class="bv-ph">${rich(z.phase)}</div>
+          <div class="bv-body"><b>${rich(z.funk)}</b> ${rich(z.text)}${z.lek ?
+            `<button class="bv-lek" data-lek-jump="${z.lek}">→ Lektion ${z.lek}: ${esc(lekTitel(z.lek))}</button>` : ''}</div>
+        </div>`).join('')}</div>
+        <div class="bv-fazit"><span class="h">So entsteht das Konzept</span><p>${rich(L.fazit)}</p></div>
+        <button class="btn ghost small" data-goto-anwenden style="margin-top:6px">📋 Zum fertigen Ablauf</button>
       </div>`;
-    adviceBox.querySelectorAll('[data-look]').forEach(b =>
-      b.addEventListener('click', () => openRecipe(b.dataset.look)));
+  }
+  function switchBView(v) {
+    const seg = document.getElementById('bSeg'); if (!seg) return;
+    [].forEach.call(seg.querySelectorAll('.segbtn'), x => x.classList.toggle('active', x.dataset.bview === v));
+    el('bv-view').hidden = v !== 'verstehen';
+    el('ba-view').hidden = v !== 'anwenden';
+  }
+  function goLesson(id) {
+    goTab('spick');
+    const seg = el('wisSeg');
+    [].forEach.call(seg.querySelectorAll('.segbtn'), x => x.classList.toggle('active', x.dataset.wview === 'lernen'));
+    el('wview-lernen').hidden = false;
+    el('wview-nach').hidden = true;
+    openLesson(String(id));
+  }
+  function showAdvice(id) {
+    const m = ADVISOR.find(x => x.id === id);
+    if (!m) return;
+    motifGrid.querySelectorAll('.motif').forEach(b =>
+      b.classList.toggle('active', b.dataset.id === id));
+    const head = `<h3><span>${m.em}</span> ${rich(m.name)}</h3>`;
+    if (m.learn) {
+      adviceBox.innerHTML = `<div class="advice">${head}
+        <div class="seg" id="bSeg" role="tablist">
+          <button class="segbtn active" data-bview="verstehen" role="tab">🧩 Verstehen</button>
+          <button class="segbtn" data-bview="anwenden" role="tab">📋 Anwenden</button>
+        </div>
+        <div id="bv-view">${learnView(m)}</div>
+        <div id="ba-view" hidden>${adviceApply(m)}</div>
+      </div>`;
+    } else {
+      adviceBox.innerHTML = `<div class="advice">${head}${adviceApply(m)}</div>`;
+    }
     adviceBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
   function openRecipe(id) {
