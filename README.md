@@ -33,9 +33,10 @@ Fortgeschrittene über ausklappbare Vertiefungen und das Nachschlagewerk weiterh
   (saftig, märchenhaft, mystisch, nostalgisch, Kino, modern) – die Farblehre am
   eigenen Bild angewandt.
 - 📖 **Wissen** – der Einstieg der App, mit zwei Ebenen. **Lernen:** ein
-  geführter Pfad aus acht Grundlagen-Lektionen (Was ist Bildbearbeitung? · Die
+  geführter Pfad aus elf Grundlagen-Lektionen (Was ist Bildbearbeitung? · Die
   drei Zonen · Licht steuern · Die Kurve verstehen · Weißabgleich · Farbe &amp;
-  Sättigung · Stimmung machen · Details &amp; Finish), jede mit Hook, kleiner
+  Sättigung · Stimmung machen · Details &amp; Finish · Ebenen &amp; Masken ·
+  Auswählen &amp; Freistellen · Retuschieren), jede mit Hook, kleiner
   Grafik, einfacher Erklärung, „Merke", „Probier's" und einer ausklappbaren
   Vertiefung für Fortgeschrittene; gelesene Lektionen werden lokal abgehakt.
   **Nachschlagen:** der durchsuchbare Spickzettel in 19 Gruppen (inkl. zwei
