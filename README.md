@@ -12,8 +12,9 @@ Fortgeschrittene über ausklappbare Vertiefungen und das Nachschlagewerk weiterh
 
 **Vier Bereiche:**
 - 📷 **Bild-Berater** – Motiv antippen (Wald/Grün &amp; Braun, Meer, Regennacht,
-  Sonnenuntergang, Porträt, Berge, Stadt, Blumen, Food, Schnee) mit zwei
-  Ebenen wie im Wissen. **Verstehen:** das Konzept aufgeschlüsselt – Kernidee,
+  Sonnenuntergang, Porträt, Berge, Stadt, Blumen, Food, Schnee) mit drei
+  Ebenen. **Aufnehmen:** wie du dieses Motiv am besten fotografierst (Licht,
+  Perspektive, Bildaufbau, Technik). **Verstehen:** das Konzept aufgeschlüsselt – Kernidee,
   eine Grafik, die zeigt, wo auf der Tonachse es greift, ein „So spielt es
   zusammen“ Phase für Phase mit Sprung in die passende Lektion, und ein Fazit.
   **Anwenden:** der komplette Ablauf in vier Phasen (Basis → Kurven → lokal →
@@ -33,10 +34,10 @@ Fortgeschrittene über ausklappbare Vertiefungen und das Nachschlagewerk weiterh
   (saftig, märchenhaft, mystisch, nostalgisch, Kino, modern) – die Farblehre am
   eigenen Bild angewandt.
 - 📖 **Wissen** – der Einstieg der App, mit zwei Ebenen. **Lernen:** ein
-  geführter Pfad aus elf Grundlagen-Lektionen (Was ist Bildbearbeitung? · Die
+  geführter Pfad aus zwölf Grundlagen-Lektionen (Was ist Bildbearbeitung? · Die
   drei Zonen · Licht steuern · Die Kurve verstehen · Weißabgleich · Farbe &amp;
   Sättigung · Stimmung machen · Details &amp; Finish · Ebenen &amp; Masken ·
-  Auswählen &amp; Freistellen · Retuschieren), jede mit Hook, kleiner
+  Auswählen &amp; Freistellen · Retuschieren · Bildaufbau), jede mit Hook, kleiner
   Grafik, einfacher Erklärung, „Merke", „Probier's" und einer ausklappbaren
   Vertiefung für Fortgeschrittene; gelesene Lektionen werden lokal abgehakt.
   **Nachschlagen:** der durchsuchbare Spickzettel in 19 Gruppen (inkl. zwei
