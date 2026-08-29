@@ -23,11 +23,15 @@ Fortgeschrittene über ausklappbare Vertiefungen und das Nachschlagewerk weiterh
   Merksatz (70er-Kurven-Methode, Madeira/Wald, Teal &amp; Orange, Regennacht,
   Golden Hour, Moody, Street, Noir, Faded u. a.) und **Video** (Story-Grundgerüst,
   B-Roll-Checkliste, Reel-Aufbau, Kamera-Einstellungen). Eigene Rezepte in beiden.
-- 🎨 **Farb-Helfer** – Farbrad mit zwei ziehbaren Punkten (Lichter/Schatten),
-  darunter Feinsteuerung über Farbwähler und Sättigungs-/Helligkeitsregler.
-  Zeigt die Beziehung der Töne, was jede Farbe ausdrückt, die Palette und die
-  konkrete Umsetzung – dazu sechs **Richtungen** (saftig, märchenhaft,
-  mystisch, nostalgisch, Kino, modern), die man aufs Rad übernehmen kann.
+- 🎨 **Farbe** – zwei Ebenen wie im Wissen. **Farblehre:** ein geführter Pfad
+  aus acht Lektionen zur Farbtheorie (Was ist Farbe? · Der Farbkreis · Die drei
+  Eigenschaften · Warm &amp; Kühl · Farbharmonien · Kontrast &amp; Kontext · Was
+  Farben ausdrücken · Farbe im Bild einsetzen), jede mit Grafik, „Merke",
+  „Probier's" und Sprüngen ins Farbrad und in die passenden Wissens-Lektionen.
+  **Farbrad:** das Rad mit zwei ziehbaren Punkten (Lichter/Schatten), Feinsteuerung,
+  Beziehung der Töne, Bedeutung der Farben, Palette und sechs **Richtungen**
+  (saftig, märchenhaft, mystisch, nostalgisch, Kino, modern) – die Farblehre am
+  eigenen Bild angewandt.
 - 📖 **Wissen** – der Einstieg der App, mit zwei Ebenen. **Lernen:** ein
   geführter Pfad aus acht Grundlagen-Lektionen (Was ist Bildbearbeitung? · Die
   drei Zonen · Licht steuern · Die Kurve verstehen · Weißabgleich · Farbe &amp;

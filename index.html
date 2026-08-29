@@ -369,6 +369,29 @@
       border-radius: 999px; padding: 4px 10px; cursor: pointer; }
     .bv-lek:active { transform: scale(.98); }
 
+    /* Farblehre-Grafiken */
+    .fl-mix { display: flex; gap: 12px; }
+    .fl-mix > div { flex: 1; text-align: center; }
+    .fl-mix svg { width: 100%; max-width: 150px; height: auto; }
+    .fl-mix span { display: block; font-size: 11.5px; color: var(--muted); margin-top: 6px; }
+    .mix-screen circle { mix-blend-mode: screen; }
+    .mix-mult circle { mix-blend-mode: multiply; }
+    .fl-harm { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 10px; }
+    .fl-harm .cell { background: var(--bg-elev); border: 1px solid var(--line); border-radius: 10px;
+      padding: 10px 6px; text-align: center; }
+    .fl-harm .cell svg { width: 100%; max-width: 92px; height: auto; }
+    .fl-harm .cell span { display: block; font-size: 11.5px; font-weight: 600; margin-top: 6px; color: #d9d9dd; }
+    .fl-swatches { display: flex; flex-direction: column; gap: 8px; }
+    .fl-sw { display: flex; gap: 12px; align-items: center; background: var(--bg-card);
+      border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+    .fl-sw .chip { width: 34px; height: 34px; border-radius: 8px; flex: none; border: 1px solid rgba(255,255,255,.12); }
+    .fl-sw div { font-size: 13px; color: #dcdce0; }
+    .fl-sw b { color: var(--text); }
+    .fl-bar { display: flex; height: 46px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+    .fl-bar span { display: flex; align-items: center; justify-content: center; font-size: 11px;
+      font-weight: 700; color: rgba(0,0,0,.72); padding: 0 4px; text-align: center; }
+    .fl-bar .a { background: var(--blue); } .fl-bar .b { background: var(--accent-2); } .fl-bar .c { background: var(--accent); }
+
     /* Meine Rezepte / Tipps */
     .note-form textarea { width: 100%; min-height: 76px; resize: vertical; padding: 12px 14px;
       font-size: 15px; border-radius: 12px; border: 1px solid var(--line);
@@ -443,6 +466,288 @@
     </section>
 
     <section id="tab-farbe" class="tab-panel">
+      <div class="seg" id="farbSeg" role="tablist">
+        <button class="segbtn active" data-fview="lehre" role="tab">📚 Farblehre</button>
+        <button class="segbtn" data-fview="rad" role="tab">🎡 Farbrad</button>
+      </div>
+
+      <!-- ============ FARBLEHRE (lernen) ============ -->
+      <div id="fview-lehre">
+        <div id="flList">
+          <p class="lead">Die <b>Sprache der Farbe</b> – von „Was ist Farbe?" bis „So setze ich Farbe in meinem Bild ein". Danach wendest du alles im Farbrad an.</p>
+          <p class="info" id="flProg"></p>
+          <div class="lk-list" id="flListItems"></div>
+        </div>
+
+        <div id="flLesson" hidden>
+          <button class="lk-back" id="flBack">← Alle Lektionen</button>
+
+          <!-- FL1 -->
+          <article class="lk-lesson" data-fl="1" data-em="🔦" data-title="Was ist Farbe?" data-sub="Licht, das dein Auge deutet" hidden>
+            <p class="lk-eyebrow">Lektion 1 · Grundlagen</p>
+            <h2>Was ist Farbe?</h2>
+            <p class="lk-hook">Farbe ist nichts, was „an den Dingen klebt". Farbe ist <b>Licht</b> – und wie dein Auge und Gehirn es deuten. Fürs Bearbeiten zählt eine Unterscheidung: Bildschirm-Farbe entsteht anders als Druck-Farbe.</p>
+            <h4 class="lk-sub">Zwei Arten zu mischen</h4>
+            <figure>
+              <div class="fl-mix">
+                <div>
+                  <svg viewBox="0 0 120 120" role="img" aria-label="Additive Lichtmischung: Rot, Grün, Blau ergeben Weiß">
+                    <rect x="0" y="0" width="120" height="120" rx="10" fill="#0a0a0b"/>
+                    <g class="mix-screen"><circle cx="60" cy="45" r="30" fill="#ff0000"/><circle cx="45" cy="72" r="30" fill="#00ff00"/><circle cx="75" cy="72" r="30" fill="#0000ff"/></g>
+                  </svg>
+                  <span>Licht (RGB) – addiert sich zu Weiß</span>
+                </div>
+                <div>
+                  <svg viewBox="0 0 120 120" role="img" aria-label="Subtraktive Farbmischung: Cyan, Magenta, Gelb ergeben Schwarz">
+                    <rect x="0" y="0" width="120" height="120" rx="10" fill="#f2f2f4"/>
+                    <g class="mix-mult"><circle cx="60" cy="45" r="30" fill="#00ffff"/><circle cx="45" cy="72" r="30" fill="#ff00ff"/><circle cx="75" cy="72" r="30" fill="#ffff00"/></g>
+                  </svg>
+                  <span>Farbe (CMY) – schluckt Licht zu Schwarz</span>
+                </div>
+              </div>
+              <figcaption><b>Licht (RGB)</b> mischt additiv: Rot, Grün und Blau addieren sich – alle zusammen ergeben Weiß (jeder Bildschirm). <b>Farbe (CMY)</b> mischt subtraktiv: Cyan, Magenta, Gelb schlucken Licht – zusammen (fast) Schwarz (Druck).</figcaption>
+            </figure>
+            <p>Für dich am Bildschirm zählt das <b>Licht-Modell</b>: Deine App denkt in Rot, Grün und Blau. Deshalb ist die Gegenfarbe von Blau nicht Orange wie im Malkasten, sondern <b>Gelb</b> – und „Teal &amp; Orange" funktioniert, weil Blau und Gelb/Orange sich gegenüberliegen.</p>
+            <div class="lk-merke"><span class="h">Merke</span><p>Farbe = Licht, das dein Auge deutet. Am Bildschirm mischt sich Licht additiv (RGB → Weiß). Die Gegenfarben sind Rot↔Cyan, Grün↔Magenta, Blau↔Gelb.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Schau ein Foto ganz nah am Bildschirm an (Zoom/Lupe). Du siehst winzige rote, grüne und blaue Punkte – aus nur diesen drei Lichtfarben entsteht jede Farbe, die du siehst.</p></div>
+            <details><summary>Für Fortgeschrittene: RGB, CMYK &amp; der Malkasten <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p><span class="k">RGB</span> (Rot-Grün-Blau) ist das Licht-Modell für Bildschirm und Kamera. <span class="k">CMYK</span> (Cyan-Magenta-Gelb-Schwarz) ist das Druck-Modell. Der klassische <span class="k">Malkasten</span> nutzt Rot-Gelb-Blau (RYB) – dort ist die Gegenfarbe von Blau Orange.</p>
+                <p>Alle drei sind „richtig", nur für verschiedene Medien. Für die Bildbearbeitung gilt RGB – deshalb bauen die Lektionen darauf auf.</p>
+              </div>
+            </details>
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-fl-next="2">Weiter: Der Farbkreis →</button></div>
+          </article>
+
+          <!-- FL2 -->
+          <article class="lk-lesson" data-fl="2" data-em="🎡" data-title="Der Farbkreis" data-sub="Primär, Sekundär, Tertiär" hidden>
+            <p class="lk-eyebrow">Lektion 2 · Grundlagen</p>
+            <h2>Der Farbkreis</h2>
+            <p class="lk-hook">Der Farbkreis ist die <b>Landkarte aller Farbtöne</b>. Er biegt das Spektrum zum Kreis, sodass benachbarte Farben verwandt sind und gegenüberliegende sich maximal unterscheiden. Genau dieser Kreis steckt hinter dem Farbrad deiner App.</p>
+            <figure>
+              <svg viewBox="0 0 200 200" role="img" aria-label="Farbkreis mit Primär- und Sekundärfarben">
+                <circle cx="100" cy="100" r="72" fill="none" stroke="var(--line)"/>
+                <circle cx="100" cy="28" r="9" fill="#ff3b3b"/><circle cx="136" cy="37.6" r="6.5" fill="#ff8c1a"/>
+                <circle cx="162.4" cy="64" r="9" fill="#ffe000"/><circle cx="172" cy="100" r="6.5" fill="#9be01a"/>
+                <circle cx="162.4" cy="136" r="9" fill="#2fd44f"/><circle cx="136" cy="162.4" r="6.5" fill="#1ad48c"/>
+                <circle cx="100" cy="172" r="9" fill="#1ad4d4"/><circle cx="64" cy="162.4" r="6.5" fill="#1a9bff"/>
+                <circle cx="37.6" cy="136" r="9" fill="#3b5bff"/><circle cx="28" cy="100" r="6.5" fill="#8c3bff"/>
+                <circle cx="37.6" cy="64" r="9" fill="#ff3bd4"/><circle cx="64" cy="37.6" r="6.5" fill="#ff3b8c"/>
+                <text class="s-lbl-s" x="100" y="16" text-anchor="middle">Rot</text>
+                <text class="s-lbl-s" x="182" y="140" text-anchor="start">Grün</text>
+                <text class="s-lbl-s" x="18" y="140" text-anchor="end">Blau</text>
+              </svg>
+              <figcaption><b>Primärfarben</b> (Rot, Grün, Blau – die großen Punkte) sind die Grundfarben des Lichts. Je zwei gemischt ergeben die <b>Sekundärfarben</b> (Cyan, Magenta, Gelb). Dazwischen liegen die <b>Tertiärfarben</b> (Orange, Türkis …).</figcaption>
+            </figure>
+            <p>Warum als Kreis? Weil so das Wichtigste sofort ablesbar ist: <b>benachbart</b> = verwandt und harmonisch, <b>gegenüber</b> = größter Kontrast (die Gegenfarbe). Diese zwei Beziehungen sind die Grundlage für alles Grading.</p>
+            <div class="lk-merke"><span class="h">Merke</span><p>Primär: Rot · Grün · Blau. Sekundär: Cyan · Magenta · Gelb. <b>Nachbarn harmonieren, Gegenüber ist der stärkste Kontrast.</b></p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Wechsle ins Farbrad und dreh einen Punkt einmal ganz herum. Beobachte, wie die Farbe durch Rot → Gelb → Grün → Cyan → Blau → Magenta wandert – das ist der Farbkreis.</p></div>
+            <button class="btn ghost small" data-goto-rad style="margin:2px 0 6px">🎡 Zum Farbrad</button>
+            <details><summary>Für Fortgeschrittene: warum diese Reihenfolge? <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p>Die Reihenfolge folgt der <span class="k">Wellenlänge</span> des Lichts: Rot ist langwellig, Blau/Violett kurzwellig. <span class="k">Magenta</span> gibt es im Spektrum gar nicht – es ist eine Mischung aus Rot und Blau und schließt den Kreis zwischen den beiden Enden.</p>
+              </div>
+            </details>
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-fl-next="3">Weiter: Die drei Eigenschaften →</button></div>
+          </article>
+
+          <!-- FL3 -->
+          <article class="lk-lesson" data-fl="3" data-em="🎛️" data-title="Die drei Eigenschaften" data-sub="Farbton · Sättigung · Helligkeit" hidden>
+            <p class="lk-eyebrow">Lektion 3 · Grundlagen</p>
+            <h2>Die drei Eigenschaften</h2>
+            <p class="lk-hook">Jede Farbe lässt sich mit drei Reglern vollständig beschreiben – und genau die steuerst du am Farbrad: <b>Farbton, Sättigung, Helligkeit</b> (kurz HSL).</p>
+            <figure>
+              <svg viewBox="0 0 400 150" role="img" aria-label="Farbton, Sättigung und Helligkeit als drei Streifen">
+                <defs>
+                  <linearGradient id="flHue" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff3b3b"/><stop offset=".16" stop-color="#ffe000"/><stop offset=".33" stop-color="#2fd44f"/><stop offset=".5" stop-color="#1ad4d4"/><stop offset=".66" stop-color="#3b5bff"/><stop offset=".83" stop-color="#ff3bd4"/><stop offset="1" stop-color="#ff3b3b"/></linearGradient>
+                  <linearGradient id="flSat" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8a8a8f"/><stop offset="1" stop-color="#ff7a2f"/></linearGradient>
+                  <linearGradient id="flLig" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000"/><stop offset=".5" stop-color="#ff7a2f"/><stop offset="1" stop-color="#fff"/></linearGradient>
+                </defs>
+                <text class="s-lbl-s" x="12" y="20">Farbton</text>
+                <rect x="12" y="26" width="376" height="24" rx="5" fill="url(#flHue)" stroke="#3a3a40"/>
+                <text class="s-lbl-s" x="12" y="72">Sättigung</text>
+                <rect x="12" y="78" width="376" height="24" rx="5" fill="url(#flSat)" stroke="#3a3a40"/>
+                <text class="s-lbl-s" x="12" y="124">Helligkeit</text>
+                <rect x="12" y="130" width="376" height="16" rx="5" fill="url(#flLig)" stroke="#3a3a40"/>
+              </svg>
+              <figcaption><b>Farbton</b> (welche Farbe), <b>Sättigung</b> (wie kräftig, von grau bis knallig) und <b>Helligkeit</b> (von schwarz über die Farbe bis weiß) – zusammen beschreiben sie jede Farbe eindeutig.</figcaption>
+            </figure>
+            <p>Am Rad wählst du mit dem <b>Winkel</b> den Farbton und mit dem <b>Abstand zur Mitte</b> die Sättigung; die Regler darunter justieren Sättigung und Helligkeit fein.</p>
+            <div class="lk-merke"><span class="h">Merke</span><p><b>Farbton</b> = welche Farbe (Winkel). <b>Sättigung</b> = wie kräftig (Abstand zur Mitte). <b>Helligkeit</b> = wie hell oder dunkel.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Zieh im Farbrad einen Punkt von der Mitte nach außen: der Farbton bleibt, nur die Sättigung steigt. Dann dreh im Kreis: gleiche Sättigung, anderer Farbton.</p></div>
+            <button class="btn ghost small" data-goto-rad style="margin:2px 0 6px">🎡 Zum Farbrad</button>
+            <details><summary>Für Fortgeschrittene: HSL, HSB &amp; Luminanz <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p><span class="k">HSL</span> (Lightness) und <span class="k">HSB/HSV</span> (Brightness) sind zwei leicht verschiedene Modelle für dasselbe Prinzip. Wichtig fürs Grading: Farben haben von Natur aus unterschiedliche <span class="k">Luminanz</span> – Gelb wirkt bei gleicher „Helligkeit" heller als Blau. Deshalb steuert man Farbe (HSL) und Tonwert (Kurve) am besten getrennt.</p>
+                <p>Mehr zu Sättigung und HSL im Bild: Wissen, Lektion 6.</p>
+              </div>
+            </details>
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-fl-next="4">Weiter: Warm &amp; Kühl →</button></div>
+          </article>
+
+          <!-- FL4 -->
+          <article class="lk-lesson" data-fl="4" data-em="🔥" data-title="Warm &amp; Kühl" data-sub="Die Temperatur der Farben" hidden>
+            <p class="lk-eyebrow">Lektion 4 · Wirkung</p>
+            <h2>Warm &amp; Kühl</h2>
+            <p class="lk-hook">Teil den Farbkreis in zwei Hälften – und du hast das mächtigste Werkzeug der Bildstimmung: <b>warme</b> Töne (Rot, Orange, Gelb) und <b>kühle</b> Töne (Grün, Cyan, Blau).</p>
+            <figure>
+              <svg viewBox="0 0 200 200" role="img" aria-label="Farbkreis in eine warme und eine kühle Hälfte geteilt">
+                <circle cx="100" cy="100" r="72" fill="none" stroke="var(--line)"/>
+                <circle cx="100" cy="28" r="7" fill="#ff3b3b"/><circle cx="136" cy="37.6" r="7" fill="#ff8c1a"/>
+                <circle cx="162.4" cy="64" r="7" fill="#ffe000"/><circle cx="172" cy="100" r="6" fill="#9be01a"/>
+                <circle cx="162.4" cy="136" r="7" fill="#2fd44f"/><circle cx="136" cy="162.4" r="6" fill="#1ad48c"/>
+                <circle cx="100" cy="172" r="7" fill="#1ad4d4"/><circle cx="64" cy="162.4" r="7" fill="#1a9bff"/>
+                <circle cx="37.6" cy="136" r="7" fill="#3b5bff"/><circle cx="28" cy="100" r="6" fill="#8c3bff"/>
+                <circle cx="37.6" cy="64" r="7" fill="#ff3bd4"/><circle cx="64" cy="37.6" r="6" fill="#ff3b8c"/>
+                <line x1="160" y1="40" x2="40" y2="160" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 5"/>
+                <text class="s-tick" x="150" y="150">☀️ warm</text>
+                <text class="s-lbl" x="30" y="56" fill="var(--blue)">❄️ kühl</text>
+              </svg>
+              <figcaption>Warme Farben kommen optisch <b>nach vorn</b>, kühle <b>treten zurück</b>. Deshalb erzeugt „warmer Vordergrund, kühle Ferne" räumliche Tiefe.</figcaption>
+            </figure>
+            <p>Warm wirkt einladend, energetisch, nah (Sonnenuntergang, Haut, Gemütlichkeit). Kühl wirkt ruhig, distanziert, weit (Nacht, Winter, Technik). Die meisten starken Looks spielen bewusst mit dieser Spannung.</p>
+            <div class="lk-merke"><span class="h">Merke</span><p><b>Warm</b> (Rot–Gelb) kommt nach vorn, wirkt nah und energetisch. <b>Kühl</b> (Grün–Blau) tritt zurück, wirkt ruhig und weit.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Denk an dein Lieblingsfoto: Ist die Stimmung eher warm oder kühl? Und passt das zu dem Gefühl, das du transportieren willst?</p></div>
+            <button class="bv-lek" data-lek-jump="5">→ Wissen · Lektion 5: Weißabgleich</button>
+            <details><summary>Für Fortgeschrittene: warm/kühl ist relativ <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p>Es gibt „warme" und „kühle" Varianten <b>jeder</b> Farbe – ein rotstichiges Blau wirkt wärmer als ein grünstichiges. Auch Neutraltöne kippen: ein warmes Grau vs. ein kühles Grau. Fürs Grading nutzt man das, um Vorder- und Hintergrund fein zu trennen (siehe Berater · Berge).</p>
+              </div>
+            </details>
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-fl-next="5">Weiter: Farbharmonien →</button></div>
+          </article>
+
+          <!-- FL5 -->
+          <article class="lk-lesson" data-fl="5" data-em="🔗" data-title="Farbharmonien" data-sub="Kombinationen, die wirken" hidden>
+            <p class="lk-eyebrow">Lektion 5 · Anwendung</p>
+            <h2>Farbharmonien</h2>
+            <p class="lk-hook">Eine <b>Harmonie</b> ist ein Bauplan: Sie sagt dir, welche Farben zusammen wirken. Statt zu raten, wählst du eine Geometrie auf dem Farbkreis – das ist das Herz des Color Gradings.</p>
+            <figure>
+              <div class="fl-harm">
+                <div class="cell">
+                  <svg viewBox="0 0 90 90" role="img" aria-label="Komplementär"><circle cx="45" cy="45" r="32" fill="none" stroke="var(--line)"/><line x1="45" y1="13" x2="45" y2="77" stroke="var(--accent)" stroke-width="2"/><circle cx="45" cy="13" r="7" fill="#ff3b3b"/><circle cx="45" cy="77" r="7" fill="#1ad4d4"/></svg>
+                  <span>Komplementär</span>
+                </div>
+                <div class="cell">
+                  <svg viewBox="0 0 90 90" role="img" aria-label="Analog"><circle cx="45" cy="45" r="32" fill="none" stroke="var(--line)"/><polyline points="61,72.7 45,77 29,72.7" fill="none" stroke="var(--accent)" stroke-width="2"/><circle cx="45" cy="77" r="7" fill="#1ad4d4"/><circle cx="61" cy="72.7" r="7" fill="#1ad48c"/><circle cx="29" cy="72.7" r="7" fill="#1a9bff"/></svg>
+                  <span>Analog</span>
+                </div>
+                <div class="cell">
+                  <svg viewBox="0 0 90 90" role="img" aria-label="Triade"><circle cx="45" cy="45" r="32" fill="none" stroke="var(--line)"/><polygon points="45,13 72.7,61 17.3,61" fill="none" stroke="var(--accent)" stroke-width="2"/><circle cx="45" cy="13" r="7" fill="#ff3b3b"/><circle cx="72.7" cy="61" r="7" fill="#2fd44f"/><circle cx="17.3" cy="61" r="7" fill="#3b5bff"/></svg>
+                  <span>Triade</span>
+                </div>
+                <div class="cell">
+                  <svg viewBox="0 0 90 90" role="img" aria-label="Split-Komplementär"><circle cx="45" cy="45" r="32" fill="none" stroke="var(--line)"/><line x1="45" y1="13" x2="61" y2="72.7" stroke="var(--accent)" stroke-width="2"/><line x1="45" y1="13" x2="29" y2="72.7" stroke="var(--accent)" stroke-width="2"/><circle cx="45" cy="13" r="7" fill="#ff3b3b"/><circle cx="61" cy="72.7" r="7" fill="#1ad48c"/><circle cx="29" cy="72.7" r="7" fill="#1a9bff"/></svg>
+                  <span>Split-Kompl.</span>
+                </div>
+                <div class="cell">
+                  <svg viewBox="0 0 90 90" role="img" aria-label="Monochrom"><rect x="20" y="20" width="50" height="15" rx="3" fill="#12365e"/><rect x="20" y="38" width="50" height="15" rx="3" fill="#1a9bff"/><rect x="20" y="56" width="50" height="15" rx="3" fill="#a9d6ff"/></svg>
+                  <span>Monochrom</span>
+                </div>
+              </div>
+              <figcaption>Jede Harmonie ist eine Figur auf dem Farbkreis. Je weiter die Farben auseinanderliegen, desto mehr Spannung; je näher, desto mehr Ruhe.</figcaption>
+            </figure>
+            <ol class="steps">
+              <li><b>Komplementär:</b> zwei Gegenüber – maximale Spannung. Der Teal-&amp;-Orange-Klassiker.</li>
+              <li><b>Analog:</b> zwei bis drei Nachbarn – ruhig und stimmig, eine Grundstimmung.</li>
+              <li><b>Triade:</b> drei gleichmäßig verteilte – lebendig und ausgewogen, aber kräftig.</li>
+              <li><b>Split-Komplementär:</b> eine Farbe plus die zwei Nachbarn ihrer Gegenfarbe – Spannung, aber weicher.</li>
+              <li><b>Monochrom:</b> eine Farbe in verschiedenen Helligkeiten – elegant und geschlossen.</li>
+            </ol>
+            <div class="lk-merke"><span class="h">Merke</span><p><b>Gegenüber = Spannung</b> (Komplementär), <b>nebeneinander = Harmonie</b> (Analog). Alles andere liegt dazwischen.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Wähl im Farbrad zwei gegenüberliegende Farben (Komplementär) für Schatten und Lichter – und danach zwei benachbarte (Analog). Spür den Unterschied: Spannung gegen Ruhe.</p></div>
+            <button class="btn ghost small" data-goto-rad style="margin:2px 0 6px">🎡 Zum Farbrad</button>
+            <button class="bv-lek" data-lek-jump="7">→ Wissen · Lektion 7: Stimmung machen</button>
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-fl-next="6">Weiter: Kontrast &amp; Kontext →</button></div>
+          </article>
+
+          <!-- FL6 -->
+          <article class="lk-lesson" data-fl="6" data-em="👁️" data-title="Kontrast &amp; Kontext" data-sub="Farbe ist immer relativ" hidden>
+            <p class="lk-eyebrow">Lektion 6 · Wirkung</p>
+            <h2>Kontrast &amp; Kontext</h2>
+            <p class="lk-hook">Eine Farbe hat <b>keine feste Wirkung</b> – sie hängt immer von ihrer Umgebung ab. Dieselbe Farbe kann kräftig oder blass, warm oder kühl wirken, je nachdem, was daneben liegt.</p>
+            <figure>
+              <svg viewBox="0 0 320 140" role="img" aria-label="Simultankontrast: dasselbe Grau wirkt vor Dunkel heller, vor Hell dunkler">
+                <rect x="8" y="10" width="140" height="120" rx="8" fill="#161618"/>
+                <rect x="172" y="10" width="140" height="120" rx="8" fill="#e8e8ea"/>
+                <rect x="53" y="45" width="50" height="50" rx="6" fill="#8f8f92"/>
+                <rect x="217" y="45" width="50" height="50" rx="6" fill="#8f8f92"/>
+              </svg>
+              <figcaption>Beide inneren Quadrate haben <b>exakt dieselbe Farbe</b>. Vor Dunkel wirkt es heller, vor Hell dunkler – das ist der Simultankontrast.</figcaption>
+            </figure>
+            <p>Die wichtigsten Kontraste fürs Bild: <b>Hell-Dunkel</b> (trägt fast jedes Bild), <b>Kalt-Warm</b> (Tiefe und Stimmung), <b>Komplementär</b> (ein Motiv „knallt" vor seiner Gegenfarbe) und die <b>Menge</b> (ein kleiner Akzent wirkt stärker als eine große Fläche).</p>
+            <p>Praktisch heißt das: Eine Farbe wird nicht nur durch sich selbst wirksam, sondern durch das, was du daneben setzt oder wegnimmst. Einen Akzent lässt du strahlen, indem du den Rest entsättigst.</p>
+            <div class="lk-merke"><span class="h">Merke</span><p>Farbe ist relativ. Die Kontraste – <b>Hell-Dunkel, Kalt-Warm, Komplementär, Menge</b> – bestimmen die Wirkung stärker als die Farbe allein.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Such ein Foto mit einem farbigen Akzent (rote Jacke, gelbes Schild). Entsättige gedanklich den Hintergrund – der Akzent wird sofort lauter, ohne dass du ihn selbst verändert hast.</p></div>
+            <details><summary>Für Fortgeschrittene: die Kontraste nach Itten <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p>Johannes Itten beschrieb sieben Farbkontraste. Fürs Bearbeiten am wichtigsten sind: <span class="k">Hell-Dunkel</span>, <span class="k">Kalt-Warm</span>, <span class="k">Komplementär</span>, <span class="k">Simultan</span> (Umgebungswirkung) und der <span class="k">Quantitätskontrast</span> (Fläche gegen Akzent). Wer diese kennt, sieht in jedem Bild, woran es liegt, wenn Farbe „nicht wirkt".</p>
+              </div>
+            </details>
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-fl-next="7">Weiter: Was Farben ausdrücken →</button></div>
+          </article>
+
+          <!-- FL7 -->
+          <article class="lk-lesson" data-fl="7" data-em="💬" data-title="Was Farben ausdrücken" data-sub="Die Sprache der Farben" hidden>
+            <p class="lk-eyebrow">Lektion 7 · Wirkung</p>
+            <h2>Was Farben ausdrücken</h2>
+            <p class="lk-hook">Farben tragen Bedeutung – teils kulturell gelernt, teils tief verankert. Wenn du weißt, was eine Farbe „sagt", wählst du deinen Look nicht nach Zufall, sondern nach Gefühl.</p>
+            <figure>
+              <div class="fl-swatches">
+                <div class="fl-sw"><span class="chip" style="background:#e23b3b"></span><div><b>Rot</b> – Energie, Leidenschaft, Gefahr, Aufmerksamkeit</div></div>
+                <div class="fl-sw"><span class="chip" style="background:#ef8a3c"></span><div><b>Orange</b> – Wärme, Freude, Appetit, Geselligkeit</div></div>
+                <div class="fl-sw"><span class="chip" style="background:#e8c93a"></span><div><b>Gelb</b> – Optimismus, Licht, Aufmerksamkeit, Vorsicht</div></div>
+                <div class="fl-sw"><span class="chip" style="background:#4bbf6b"></span><div><b>Grün</b> – Natur, Ruhe, Wachstum, Balance</div></div>
+                <div class="fl-sw"><span class="chip" style="background:#4a86d8"></span><div><b>Blau</b> – Ruhe, Vertrauen, Weite, Kühle &amp; Distanz</div></div>
+                <div class="fl-sw"><span class="chip" style="background:#8b5cd6"></span><div><b>Violett</b> – Fantasie, Luxus, Mystik, Kreativität</div></div>
+                <div class="fl-sw"><span class="chip" style="background:#d45aa8"></span><div><b>Magenta / Pink</b> – Verspieltheit, Modernität, Romantik</div></div>
+                <div class="fl-sw"><span class="chip" style="background:#a9866a"></span><div><b>Braun / Beige</b> – Erdung, Natürlichkeit, Nostalgie</div></div>
+                <div class="fl-sw"><span class="chip" style="background:linear-gradient(90deg,#111,#fff)"></span><div><b>Schwarz / Weiß</b> – Klarheit, Eleganz, Kontrast, Zeitlosigkeit</div></div>
+              </div>
+              <figcaption>Grundstimmungen der Farben – als Startpunkt, nicht als Gesetz.</figcaption>
+            </figure>
+            <p>Wichtig: Bedeutung ist <b>Kontext</b>. Ein sattes Rot schreit, ein entsättigtes Rostrot erzählt von Nostalgie. Erst Farbe + Sättigung + Helligkeit zusammen ergeben die Aussage.</p>
+            <div class="lk-merke"><span class="h">Merke</span><p>Jede Farbe hat eine Grundstimmung – aber Sättigung und Helligkeit entscheiden mit. Wähl die Farbe, die zum Gefühl deines Bildes passt.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Überleg vor der nächsten Bearbeitung: Welches <b>eine Wort</b> soll dein Bild transportieren? Wähl die Grundfarbe, die dieses Wort trägt.</p></div>
+            <details><summary>Für Fortgeschrittene: Kultur &amp; „cinematic" <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p>Bedeutung ist <span class="k">kulturabhängig</span>: Weiß steht im Westen für Reinheit, in Teilen Asiens für Trauer. Und im Film gilt: <span class="k">reine, knallige Farben</span> wirken selten „edel" – gedämpfte, leicht entsättigte Töne lesen sich als hochwertig und kinoreif.</p>
+              </div>
+            </details>
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-fl-next="8">Weiter: Farbe im Bild einsetzen →</button></div>
+          </article>
+
+          <!-- FL8 -->
+          <article class="lk-lesson" data-fl="8" data-em="🎯" data-title="Farbe im Bild einsetzen" data-sub="Vom Wissen zum eigenen Look" hidden>
+            <p class="lk-eyebrow">Lektion 8 · Anwendung</p>
+            <h2>Farbe im Bild einsetzen</h2>
+            <p class="lk-hook">Jetzt bringst du alles zusammen: Du erkennst die <b>Hauptfarben</b> deines Bildes, wählst eine <b>Harmonie</b> und eine <b>Stimmung</b> – und wendest sie am Farbrad an.</p>
+            <figure>
+              <div class="fl-bar"><span class="a" style="flex:60">Grundton 60 %</span><span class="b" style="flex:30">Sekundär 30 %</span><span class="c" style="flex:10">Akzent 10 %</span></div>
+              <figcaption>Die <b>60-30-10-Regel</b>: eine Grundfarbe (60 %), eine unterstützende (30 %) und ein kleiner Akzent (10 %). So bleibt ein Bild farblich geordnet statt bunt.</figcaption>
+            </figure>
+            <h4 class="lk-sub">In drei Schritten</h4>
+            <ol class="steps">
+              <li><b>Hauptfarben erkennen:</b> Welche zwei, drei Farben dominieren dein Bild? Meist eine für die Schatten, eine für die Lichter.</li>
+              <li><b>Richtung wählen:</b> Spannung (Gegenfarben) oder Harmonie (Nachbarn)? Warm oder kühl?</li>
+              <li><b>Am Rad umsetzen:</b> Schatten- und Lichter-Farbe setzen, Mitteltöne (Haut) neutral lassen, dezent bleiben.</li>
+            </ol>
+            <p>Zwei Dauerregeln: <b>Weniger ist mehr</b> – ein Hauch Farbe wirkt edler als ein Farbstich. Und <b>Hauttöne schützen</b> – die Mitteltöne bleiben neutral.</p>
+            <div class="lk-merke"><span class="h">Merke</span><p>Hauptfarben erkennen → Harmonie &amp; Stimmung wählen → am Rad dezent umsetzen. 60-30-10 hält es geordnet, Mitteltöne bleiben neutral.</p></div>
+            <div class="lk-probier"><span class="h">Probier's aus</span><p>Öffne jetzt das Farbrad, setz eine Gegenfarben-Kombi (z. B. kühle Schatten, warme Lichter) und übernimm eine Richtung. Das ist dein erstes bewusstes Color Grading.</p></div>
+            <button class="btn" data-goto-rad style="margin:2px 0 6px">🎡 Jetzt am Farbrad anwenden</button>
+            <details><summary>Für Fortgeschrittene: dein eigener Stil <span class="chev">▶</span></summary>
+              <div class="lk-adv">
+                <p>Wenn dir eine Kombination gefällt, <span class="k">speicher sie als Rezept</span> (Tab Rezepte). Wer dieselbe Handschrift über eine ganze Bildserie zieht – gleiche Harmonie, gleiche Warm/Kühl-Balance – bekommt einen wiedererkennbaren <span class="k">eigenen Stil</span>. Genau darum geht es im letzten Kapitel.</p>
+              </div>
+            </details>
+            <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-fl-finish>✓ Geschafft – zur Übersicht</button></div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============ FARBRAD (anwenden) ============ -->
+      <div id="fview-rad" hidden>
       <p class="lead">Zieh die zwei Punkte über das Rad: <b>oben die Lichter-Farbe</b>, <b>unten die Schatten-Farbe</b>. Darunter stellst du jeden Ton exakt ein – und erfährst, was er bewirkt.</p>
       <div id="wheelWrap"><canvas id="wheel" width="600" height="600" tabindex="0" aria-label="Farbrad mit zwei ziehbaren Punkten"></canvas></div>
       <p class="wheelhint">Ziehen: Winkel = Farbton · nach außen = kräftiger</p>
@@ -480,6 +785,7 @@
       <div id="gegenBox"></div>
       <div id="zoneBox"></div>
       <div id="recipeOut"></div>
+      </div>
     </section>
 
     <section id="tab-spick" class="tab-panel active">
@@ -947,8 +1253,8 @@
   <nav>
     <button data-tab="spick" class="active"><span class="ic">📖</span>Wissen</button>
     <button data-tab="berater"><span class="ic">📷</span>Berater</button>
-    <button data-tab="rezepte"><span class="ic">🧪</span>Rezepte</button>
     <button data-tab="farbe"><span class="ic">🎨</span>Farben</button>
+    <button data-tab="rezepte"><span class="ic">🧪</span>Rezepte</button>
   </nav>
 
   <dialog id="wisDialog">
@@ -2866,6 +3172,81 @@
   });
 
   //=========================================================================
+  //  FARBLEHRE – Lektionen im Farbe-Tab (Farblehre / Farbrad)
+  //=========================================================================
+  const flListEl = el('flListItems');
+  const flArticles = [].slice.call(document.querySelectorAll('#flLesson [data-fl]'));
+  const flOrder = flArticles.map(a => a.dataset.fl);
+  let curFl = null;
+  const flRead = () => LS.get('fw_farblehre', []);
+  const flIsRead = id => flRead().indexOf(id) > -1;
+  const flById = id => flArticles.filter(a => a.dataset.fl === id)[0];
+  function flMark(id, on) {
+    const r = flRead().filter(x => x !== id);
+    if (on) r.push(id);
+    LS.set('fw_farblehre', r);
+  }
+  function renderFlList() {
+    const read = flRead();
+    let firstUnread = null;
+    for (let i = 0; i < flOrder.length; i++) {
+      if (read.indexOf(flOrder[i]) < 0) { firstUnread = flOrder[i]; break; }
+    }
+    flListEl.innerHTML = flArticles.map((a, i) => {
+      const id = a.dataset.fl, done = read.indexOf(id) > -1, cur = id === firstUnread;
+      const tag = done ? 'gelesen' : (cur ? 'weiter' : 'offen');
+      return `<button class="lk-item${done ? ' done' : ''}${cur ? ' current' : ''}" data-fl-open="${id}">
+        <span class="lk-num">${done ? '✓' : (i + 1)}</span>
+        <span class="lk-em">${a.dataset.em}</span>
+        <span class="lk-txt"><b>${a.dataset.title}</b><span>${a.dataset.sub}</span></span>
+        <span class="lk-tag">${tag}</span></button>`;
+    }).join('');
+    const doneCount = read.filter(id => flOrder.indexOf(id) > -1).length;
+    el('flProg').textContent = `${doneCount} von ${flOrder.length} Lektionen gelesen`;
+  }
+  function openFl(id) {
+    if (flOrder.indexOf(id) < 0) return;
+    curFl = id;
+    flArticles.forEach(a => { a.hidden = a.dataset.fl !== id; });
+    paintRead(flById(id).querySelector('.lk-read'), flIsRead(id));
+    el('flList').hidden = true;
+    el('flLesson').hidden = false;
+    window.scrollTo({ top: 0 });
+  }
+  function closeFl() {
+    el('flLesson').hidden = true;
+    el('flList').hidden = false;
+    renderFlList();
+    window.scrollTo({ top: 0 });
+  }
+  function switchFView(v) {
+    const seg = el('farbSeg');
+    [].forEach.call(seg.querySelectorAll('.segbtn'), x => x.classList.toggle('active', x.dataset.fview === v));
+    const lehre = v === 'lehre';
+    el('fview-lehre').hidden = !lehre;
+    el('fview-rad').hidden = lehre;
+    if (lehre) closeFl(); else renderColor();
+  }
+  el('tab-farbe').addEventListener('click', e => {
+    const seg = e.target.closest('#farbSeg .segbtn');
+    if (seg) { switchFView(seg.dataset.fview); return; }
+    const open = e.target.closest('[data-fl-open]');
+    if (open) { openFl(open.dataset.flOpen); return; }
+    if (e.target.closest('#flBack')) { closeFl(); return; }
+    const jump = e.target.closest('[data-lek-jump]');
+    if (jump) { goLesson(jump.dataset.lekJump); return; }
+    if (e.target.closest('[data-goto-rad]')) { switchFView('rad'); return; }
+    const rd = e.target.closest('.lk-read');
+    if (rd) { const on = !flIsRead(curFl); flMark(curFl, on); paintRead(rd, on); return; }
+    const nx = e.target.closest('.lk-next');
+    if (nx) {
+      flMark(curFl, true);
+      if (nx.hasAttribute('data-fl-finish')) closeFl();
+      else if (nx.dataset.flNext) openFl(nx.dataset.flNext);
+    }
+  });
+
+  //=========================================================================
   //  Start
   //=========================================================================
   // Frühere Schnellnotizen einmalig in das eigene Wissen uebernehmen
@@ -2885,6 +3266,7 @@
   renderRecipes();
   renderSpick();
   renderLkList();
+  renderFlList();
   updateVorlagenInfo();
   renderColor();
 
