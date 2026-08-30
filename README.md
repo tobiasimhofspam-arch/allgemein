@@ -19,7 +19,7 @@ Bearbeitung, Farbe und den eigenen Stil.
 
 ---
 
-## Aktueller Stand (Cache `v20`)
+## Aktueller Stand (Cache `v24`)
 
 Ganz oben schaltet ein **Kopf-Umschalter** zwischen zwei Welten: **📷 Bildbearbeitung**
 und **🎬 Videobearbeitung**. Die untere Navigation zeigt je Modus die passenden Bereiche;
@@ -37,15 +37,15 @@ der zuletzt gewählte Modus wird lokal gemerkt.
   Bildern* (Einstellungsgrößen, Bildaufbau, Kamerabewegung, die Sequenz) und *Ton & Schnitt*.
   Gleiches Lektions-Muster wie im Bild-Wissen, mit modusübergreifendem Sprung zu Foto-Lektionen.
 
-- 🧭 **Bereich B · Berater (Start)** – Situations-Gitter; die erste Situation
-  **Interview & Podcast** ist voll ausgearbeitet: Steckbrief, *Technik & Bild*, *Ton*,
-  *Einstellungen & Winkel*, *Geschichte erzählen*, *Worauf-achten*-Checkliste und ein
-  **Übungs-Dreh** zum Nachdrehen – mit Sprüngen in die passenden Grundlagen-Lektionen.
+- 🧭 **Bereich B · Berater** – Situations-Gitter mit **10 Dreh-Situationen**, jede nach
+  gleichem Template: Steckbrief, *Technik & Bild*, *Einstellungen & Winkel* (mit Grafik),
+  *Geschichte erzählen*, *Worauf-achten*-Checkliste und ein **Übungs-Dreh** zum Nachdrehen,
+  plus Sprünge in die passenden Grundlagen-Lektionen. Die 10:
+  Interview & Podcast · Reise & Orte (B-Roll) · Event & Feier · Produkt & Unboxing ·
+  Tutorial & How-to · Vlog & zur Kamera · Reel & Short · Reportage & Doku-Vlog ·
+  Day-in-the-Life / GRWM · Sketch & POV.
 
 **Als Nächstes / offen (Video):**
-- 🧭 **Bereich B · restliche Situationen** (8–10 gesamt) nach Absegnung des Interview-Prototyps.
-  Kandidaten: Vlog/Sprechen zur Kamera, Reise & Orte (B-Roll), Event & Feier, Produkt/Unboxing,
-  Tutorial/How-to, Reel/Short, Konzert/Performance, Sport/Action, Natur & Landschaft.
 - 🎨 **Bereich C · Farbe** – eigenständiger Color-Grading-Bereich (einheitlicher Look,
   z. B. fürs Urlaubsvideo). **Keine** Rezepte-Sammlung – Fokus nur auf Farbe/Grading.
 - ➕ **Bereich D** – Konzept noch offen.
@@ -147,6 +147,9 @@ Konzept jederzeit zur Grundlage springen kann.
 
 | Version | Was |
 |---------|-----|
+| **v24** | Video-Berater komplett (10 Situationen): + Reportage & Doku-Vlog, Day-in-the-Life/GRWM, Sketch & POV. |
+| **v23** | Video-Berater: Situationen Tutorial & How-to, Vlog & zur Kamera, Reel & Short. |
+| **v22** | Video-Berater: Situationen Reise & Orte, Event & Feier, Produkt & Unboxing. |
 | **v21** | Video-Bereich B „Berater": Situations-Gitter + erste Situation „Interview & Podcast" (Steckbrief, Technik, Ton, Einstellungen, Story, Checkliste, Übungs-Dreh) mit Sprüngen in die Grundlagen-Lektionen. |
 | **v20** | Video als eigene Welt: Bild/Video-Umschalter im Kopf + eigene Bottom-Nav je Modus; **Bereich A „Grundlagen"** mit 12 geführten Lektionen (bewegtes Bild · Erzählen · Ton & Schnitt), inkl. modusübergreifendem Sprung zu Foto-Lektionen. |
 | **v19** | Fotografie: Wissen-Lektion 12 „Bildaufbau" (Drittelregel, 9 Felder, Bildtiefe) + Berater-Ansicht „📸 Aufnehmen" je Motiv (Aufnahme-Tipps). |

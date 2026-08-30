@@ -1,7 +1,7 @@
 // Einfacher Offline-Cache für ColorGrade.
 // Bei jeder Veröffentlichung die Versionsnummer erhöhen, damit Nutzer
 // automatisch die neue Version bekommen.
-const CACHE = 'colorgrade-v23';
+const CACHE = 'colorgrade-v24';
 const ASSETS = [
   './',
   './index.html',
