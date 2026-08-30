@@ -90,6 +90,28 @@
     .motif .em { font-size: 22px; flex: none; }
     .motif:active { transform: scale(.98); }
     .motif.active { border-color: var(--accent); background: var(--bg-card-2); }
+    /* Video-Berater: Situations-Detail */
+    .vb-sec { font-size: 15px; font-weight: 700; color: var(--accent-2);
+      margin: 26px 0 10px; display: flex; gap: 8px; align-items: center; }
+    .vb-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      background: var(--line); border: 1px solid var(--line); border-radius: 12px;
+      overflow: hidden; margin: 4px 0 6px; }
+    .vb-facts > div { background: var(--bg-card); padding: 10px 12px; }
+    .vb-facts .k { display: block; font-size: 10px; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 3px; }
+    .vb-facts .v { font-size: 13px; color: var(--text); font-weight: 600; line-height: 1.4; }
+    .vb-check { list-style: none; padding: 0; margin: 4px 0; }
+    .vb-check li { position: relative; padding-left: 26px; margin-bottom: 9px;
+      font-size: 14px; color: #dcdce0; }
+    .vb-check li b { color: var(--text); }
+    .vb-check li::before { content: "✓"; position: absolute; left: 3px; top: -1px;
+      color: var(--green); font-weight: 700; }
+    .vb-shoot { background: rgba(123,216,143,.09); border: 1px solid rgba(123,216,143,.3);
+      border-radius: 12px; padding: 14px 15px; margin: 20px 0 4px; }
+    .vb-shoot .h { display: block; font-size: 11px; letter-spacing: .07em;
+      text-transform: uppercase; font-weight: 700; margin-bottom: 6px; color: var(--green); }
+    .vb-shoot p { margin: 0; color: #dcdce0; font-size: 14px; }
+    .vb-shoot b { color: var(--green); }
     .advice { background: var(--bg-card); border: 1px solid var(--line);
       border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 16px; }
     .advice h3 { margin: 0 0 4px; font-size: 17px; display: flex; align-items: center; gap: 9px; }
@@ -1991,6 +2013,102 @@
       </div>
     </section>
 
+    <!-- ===================== VIDEO · BEREICH B: BERATER (Situationen) ===================== -->
+    <section id="tab-vberater" class="tab-panel">
+      <div id="vbList_wrap">
+        <p class="lead">Du kennst die <b>Grundlagen</b> – hier siehst du sie in echten Dreh-Situationen. Wähle eine Situation: Du bekommst den kompletten Plan (Technik, Einstellungen, Story, Worauf-achten) und am Ende einen <b>Übungs-Dreh</b> zum Nachdrehen.</p>
+        <div class="motif-grid" id="vbGrid"></div>
+        <p class="info" id="vbSoon"></p>
+      </div>
+
+      <div id="vbDetail" hidden>
+        <button class="lk-back" id="vbBack">← Alle Situationen</button>
+
+        <!-- B: INTERVIEW -->
+        <article class="lk-lesson" data-vb="interview" data-em="🎙️" data-name="Interview &amp; Podcast" hidden>
+          <p class="lk-eyebrow">Video-Berater · Gespräch</p>
+          <h2>Interview &amp; Podcast</h2>
+          <p class="lk-hook">Ein Interview lebt von zwei Dingen: dass man die Person <b>klar versteht</b> (Ton!) und dass es <b>nicht steif</b> wirkt. Ob Podcast am Tisch oder spontanes Straßen-Interview – die Technik ist fast dieselbe, nur die Umgebung ändert sich. Hier ist der komplette Plan.</p>
+
+          <div class="vb-facts">
+            <div><span class="k">Bildrate</span><span class="v">25 fps · 1/50 – ruhig, filmisch, keine Zeitlupe</span></div>
+            <div><span class="k">Format</span><span class="v">16:9 in 4K (Reserve für 2. Ausschnitt)</span></div>
+            <div><span class="k">Haupteinstellung</span><span class="v">Halbnah · Nah für Emotion</span></div>
+            <div><span class="k">Ton</span><span class="v">wichtigster Punkt: Mikro nah, −12 dBFS</span></div>
+            <div><span class="k">Licht</span><span class="v">weich von schräg vorn (Fenster als Key)</span></div>
+            <div><span class="k">Perspektive</span><span class="v">Augenhöhe · Blick knapp an der Linse vorbei</span></div>
+          </div>
+
+          <h4 class="vb-sec">📐 Technik &amp; Bild</h4>
+          <p><b>Bildrate &amp; Verschluss:</b> 25 fps mit 1/50. Ein Interview braucht keine Zeitlupe; 25p wirkt ruhig und filmisch.</p>
+          <p><b>Format &amp; Auflösung:</b> 16:9, und wenn möglich in 4K aufnehmen – dann kannst du aus <b>einer</b> Kamera zwei Bildausschnitte schneiden (halbnah + ein näherer „Nach-Zoom"), ohne zweite Kamera.</p>
+          <p><b>Belichtung &amp; Licht:</b> Das Gesicht gleichmäßig und weich ausleuchten. Bestes Gratis-Licht: ein großes Fenster <b>seitlich-vorn</b> – nie im Rücken der Person, sonst wird sie zur Silhouette. Belichtung aufs Gesicht, mit Zebra prüfen.</p>
+          <p><b>Weißabgleich fest:</b> am Fenster ~5600 K, bei Lampe ~3200 K – nicht Auto, sonst wandert die Farbe.</p>
+          <div class="row" style="gap:6px;flex-wrap:wrap">
+            <button class="bv-lek" data-vg-jump="3">→ Grundlagen 3: Verschlusszeit</button>
+            <button class="bv-lek" data-vg-jump="4">→ Grundlagen 4: Belichten</button>
+            <button class="bv-lek" data-vg-jump="6">→ Grundlagen 6: Scharf &amp; farbstabil</button>
+          </div>
+
+          <h4 class="vb-sec">🎙️ Ton – hier entscheidet sich alles</h4>
+          <p>Schlechten Ton verzeiht niemand. Für ein Interview ist er wichtiger als jedes schöne Bild.</p>
+          <p><b>Sitzend / Podcast:</b> Ansteckmikro (Lavalier) an der Brust jeder Person – unauffällig, immer gleicher Abstand. Zwei Personen = zwei Mikros.</p>
+          <p><b>Straße:</b> ein Reporter-/Handmikro nah an den Mund oder ein Richtmikro knapp außerhalb des Bildes. Wind und Umgebungslärm sind der Feind – <b>Fell/Windschutz</b> drauf, Windgeräuschreduzierung an.</p>
+          <p><b>Immer:</b> Pegel auf ca. −12 dBFS, <b>Kopfhörer auf</b> und mithören. Kameraton als Referenz mitlaufen lassen.</p>
+          <button class="bv-lek" data-vg-jump="11">→ Grundlagen 11: Ton</button>
+
+          <h4 class="vb-sec">🎥 Die Einstellungen (Shots &amp; Winkel)</h4>
+          <figure>
+            <svg viewBox="0 0 360 196" role="img" aria-label="Interview-Bildaufbau: Person auf einem Drittel mit Blickraum">
+              <rect x="30" y="12" width="300" height="169" rx="6" fill="var(--bg-card-2)" stroke="var(--line)"/>
+              <g stroke="var(--line)" stroke-dasharray="4 4"><line x1="130" y1="12" x2="130" y2="181"/><line x1="230" y1="12" x2="230" y2="181"/><line x1="30" y1="68" x2="330" y2="68"/><line x1="30" y1="125" x2="330" y2="125"/></g>
+              <circle cx="230" cy="78" r="26" fill="var(--muted)"/>
+              <path d="M196 181 v-24 a34 34 0 0 1 68 0 v24 z" fill="var(--muted)"/>
+              <path d="M198 74 h-96" stroke="var(--blue)" stroke-width="2"/><path d="M102 74 l10 -5 0 10 z" fill="var(--blue)"/>
+              <text class="s-lbl-s" x="150" y="64" text-anchor="middle" fill="var(--blue)">Blick zum Fragenden</text>
+              <text class="s-tick" x="110" y="150" text-anchor="middle">Blickraum</text>
+              <text class="s-lbl-s" x="230" y="40" text-anchor="middle" fill="var(--accent-2)">Headroom</text>
+            </svg>
+            <figcaption>Person auf ein <b>Drittel</b>, Augen auf die obere Drittellinie, <b>Blickraum</b> in Blickrichtung.</figcaption>
+          </figure>
+          <p><b>Haupteinstellung – Halbnah:</b> von der Brust aufwärts. Nah genug für Verbindung, genug Raum für Gestik.</p>
+          <p><b>Nah (Close-up)</b> für die emotionalen oder wichtigsten Antworten – ideal als Schnittbild.</p>
+          <p><b>Blickrichtung:</b> Die Person schaut den Fragenden an, <b>knapp neben der Linse</b> – nicht direkt hinein. (Ausnahme: Sie spricht das Publikum direkt an, z. B. im Podcast-Monolog → dann in die Linse.) Auge auf der oberen Drittellinie, Blickraum (Noseroom) in Blickrichtung.</p>
+          <p><b>Zwei Winkel ohne Sprung:</b> Entweder eine 2. Kamera im ~30–45°-Winkel, oder – bei 4K – im Schnitt zwischen weitem und engem Ausschnitt wechseln. So kannst du Antworten kürzen, ohne dass es ruckt.</p>
+          <p><b>Straße – Over-the-Shoulder:</b> die Schulter des Reporters im Vordergrund gibt Tiefe und zeigt, dass es ein Gespräch ist.</p>
+          <p><b>Handlungsachse:</b> Fragender und Befragter liegen auf einer Achse – bleib mit der Kamera <b>auf einer Seite</b>, sonst kippen die Blickrichtungen.</p>
+          <div class="row" style="gap:6px;flex-wrap:wrap">
+            <button class="bv-lek" data-vg-jump="7">→ Grundlagen 7: Einstellungsgrößen</button>
+            <button class="bv-lek" data-vg-jump="8">→ Grundlagen 8: Bildaufbau</button>
+            <button class="bv-lek" data-vg-jump="10">→ Grundlagen 10: Handlungsachse</button>
+          </div>
+
+          <h4 class="vb-sec">🎬 Die Geschichte erzählen</h4>
+          <p><b>Ein Interview ist kein Frage-Antwort-Protokoll, sondern eine Erzählung.</b> Die stärkste Aussage gehört als Hook an den Anfang – auch wenn sie erst in der Mitte gesagt wurde.</p>
+          <p><b>Fragen als roter Faden:</b> Stell <b>offene</b> Fragen (nicht Ja/Nein). Im Schnitt schneidest du die Frage oft raus – die Antwort steht für sich.</p>
+          <p><b>Antworten kürzen:</b> Innerhalb einer Antwort überdeckst du Schnitte mit <b>B-Roll</b> oder dem Nah-Schnittbild – sonst entsteht ein sichtbarer Ruck (Jump Cut). J-/L-Cuts machen Übergänge weich.</p>
+          <p><b>Bogen:</b> kurze Vorstellung am Anfang, ein starkes Schlusszitat am Ende.</p>
+          <button class="bv-lek" data-vg-jump="12">→ Grundlagen 12: Schnitt</button>
+
+          <h4 class="vb-sec">✅ Worauf du beim Dreh achtest</h4>
+          <ul class="vb-check">
+            <li><b>Ton zuerst</b> prüfen: Pegel um −12, Kopfhörer auf. Schlechter Ton = unbrauchbar.</li>
+            <li><b>Licht aufs Gesicht</b>, kein Fenster/keine Sonne im Rücken der Person.</li>
+            <li><b>Hintergrund</b> mit etwas Tiefe (nicht direkt an der Wand), aufgeräumt, nicht ablenkend.</li>
+            <li><b>Blickachse und -richtung</b> über alle Einstellungen konstant halten.</li>
+            <li><b>Fokus manuell</b> aufs Auge – die Augen müssen scharf sein.</li>
+            <li><b>Headroom &amp; Blickraum</b> stimmen, Person auf einem Drittel.</li>
+            <li><b>B-Roll sammeln:</b> Hände, Umgebung, Tätigkeit – Rettung für jeden Schnitt.</li>
+            <li><b>Vor-/Nachlauf:</b> Kamera vor der ersten Frage starten, nach der Antwort kurz weiterlaufen lassen.</li>
+            <li><b>Straße:</b> freundlich fragen, Einverständnis einholen, kurz halten.</li>
+          </ul>
+
+          <div class="vb-shoot"><span class="h">🎯 Nachdrehen – dein Übungs-Dreh</span><p>Nimm dir eine Person und führe ein <b>2-Minuten-Interview</b>: 25 fps/1/50, Mikro nah, Fenster als Licht, Halbnah als Haupteinstellung, 3 offene Fragen. Dreh danach <b>5 B-Roll-Clips</b> der Person (Hände, Umgebung). Im Schnitt: die beste Antwort als Hook nach vorn, und überdeck einen Schnitt mit B-Roll. Fertig ist dein erstes Interview-Video.</p></div>
+        </article>
+
+      </div>
+    </section>
+
   </main>
 
   <nav>
@@ -1999,6 +2117,7 @@
     <button data-tab="farbe" data-navmode="foto"><span class="ic">🎨</span>Farben</button>
     <button data-tab="rezepte" data-navmode="foto"><span class="ic">🧪</span>Rezepte</button>
     <button data-tab="vgrund" data-navmode="video" hidden><span class="ic">🎬</span>Grundlagen</button>
+    <button data-tab="vberater" data-navmode="video" hidden><span class="ic">🧭</span>Berater</button>
   </nav>
 
   <dialog id="wisDialog">
@@ -4117,6 +4236,44 @@
     el('wview-nach').hidden = true;
     openLesson(id);
   }
+
+  //=========================================================================
+  //  VIDEO · Bereich B: Berater (Dreh-Situationen)
+  //=========================================================================
+  const vbGridEl = el('vbGrid');
+  const vbArticles = [].slice.call(document.querySelectorAll('#vbDetail [data-vb]'));
+  function renderVbGrid() {
+    vbGridEl.innerHTML = vbArticles.map(a =>
+      `<button class="motif" data-vbopen="${a.dataset.vb}"><span class="em">${a.dataset.em}</span><span>${esc(a.dataset.name)}</span></button>`).join('');
+    el('vbSoon').textContent = vbArticles.length <= 1
+      ? 'Erster Prototyp – weitere Situationen folgen, sobald du diese hier abgesegnet hast.'
+      : `${vbArticles.length} Situationen`;
+  }
+  function openVb(id) {
+    if (!vbArticles.some(a => a.dataset.vb === id)) return;
+    vbArticles.forEach(a => { a.hidden = a.dataset.vb !== id; });
+    el('vbList_wrap').hidden = true;
+    el('vbDetail').hidden = false;
+    window.scrollTo({ top: 0 });
+  }
+  function closeVb() {
+    el('vbDetail').hidden = true;
+    el('vbList_wrap').hidden = false;
+    window.scrollTo({ top: 0 });
+  }
+  el('tab-vberater').addEventListener('click', e => {
+    const open = e.target.closest('[data-vbopen]');
+    if (open) { openVb(open.dataset.vbopen); return; }
+    if (e.target.closest('#vbBack')) { closeVb(); return; }
+    const jump = e.target.closest('[data-vg-jump]');
+    if (jump) { gotoVgLesson(jump.dataset.vgJump); return; }
+  });
+  // Sprung aus dem Berater in eine Grundlagen-Lektion (innerhalb Video)
+  function gotoVgLesson(id) {
+    goTab('vgrund');
+    openVg(id);
+  }
+  renderVbGrid();
 
   //=========================================================================
   //  FARBLEHRE – Lektionen im Farbe-Tab (Farblehre / Farbrad)

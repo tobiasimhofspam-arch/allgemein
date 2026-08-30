@@ -37,12 +37,19 @@ der zuletzt gewählte Modus wird lokal gemerkt.
   Bildern* (Einstellungsgrößen, Bildaufbau, Kamerabewegung, die Sequenz) und *Ton & Schnitt*.
   Gleiches Lektions-Muster wie im Bild-Wissen, mit modusübergreifendem Sprung zu Foto-Lektionen.
 
+- 🧭 **Bereich B · Berater (Start)** – Situations-Gitter; die erste Situation
+  **Interview & Podcast** ist voll ausgearbeitet: Steckbrief, *Technik & Bild*, *Ton*,
+  *Einstellungen & Winkel*, *Geschichte erzählen*, *Worauf-achten*-Checkliste und ein
+  **Übungs-Dreh** zum Nachdrehen – mit Sprüngen in die passenden Grundlagen-Lektionen.
+
 **Als Nächstes / offen (Video):**
-- 🧭 **Bereich B · Berater** – nach Situation/Genre (Interview, Reise/B-Roll, Reel …),
-  drei Ebenen je Kachel, ausführlich mit Beispielen.
+- 🧭 **Bereich B · restliche Situationen** (8–10 gesamt) nach Absegnung des Interview-Prototyps.
+  Kandidaten: Vlog/Sprechen zur Kamera, Reise & Orte (B-Roll), Event & Feier, Produkt/Unboxing,
+  Tutorial/How-to, Reel/Short, Konzert/Performance, Sport/Action, Natur & Landschaft.
 - 🎨 **Bereich C · Farbe** – eigenständiger Color-Grading-Bereich (einheitlicher Look,
   z. B. fürs Urlaubsvideo). **Keine** Rezepte-Sammlung – Fokus nur auf Farbe/Grading.
 - ➕ **Bereich D** – Konzept noch offen.
+- Feinschliff Bereich A: einige SVG-Grafiken sauberer machen.
 - Struktur je Schritt zuerst abstimmen, dann bauen.
 
 ---
@@ -140,6 +147,7 @@ Konzept jederzeit zur Grundlage springen kann.
 
 | Version | Was |
 |---------|-----|
+| **v21** | Video-Bereich B „Berater": Situations-Gitter + erste Situation „Interview & Podcast" (Steckbrief, Technik, Ton, Einstellungen, Story, Checkliste, Übungs-Dreh) mit Sprüngen in die Grundlagen-Lektionen. |
 | **v20** | Video als eigene Welt: Bild/Video-Umschalter im Kopf + eigene Bottom-Nav je Modus; **Bereich A „Grundlagen"** mit 12 geführten Lektionen (bewegtes Bild · Erzählen · Ton & Schnitt), inkl. modusübergreifendem Sprung zu Foto-Lektionen. |
 | **v19** | Fotografie: Wissen-Lektion 12 „Bildaufbau" (Drittelregel, 9 Felder, Bildtiefe) + Berater-Ansicht „📸 Aufnehmen" je Motiv (Aufnahme-Tipps). |
 | **v18** | Wissen: drei Lektionen zum lokalen/strukturellen Bearbeiten – Ebenen & Masken, Auswählen & Freistellen, Retuschieren (→ 11 Lektionen). |
