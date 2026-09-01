@@ -493,10 +493,7 @@
     </section>
 
     <section id="tab-rezepte" class="tab-panel">
-      <div class="seg" id="rezSeg" role="tablist">
-        <button class="segbtn active" data-kind="bild" role="tab">📷 Bild</button>
-        <button class="segbtn" data-kind="video" role="tab">🎬 Video</button>
-      </div>
+      <p class="lead">Fertige <b>Bild-Looks</b> mit Kurvenarbeit und Begründung je Schritt – als Startpunkt für deinen eigenen Stil. <i>Video-Rezepte sind jetzt drüben im Video-Bereich unter „Rezepte".</i></p>
       <input class="search" id="searchRez" placeholder="Look suchen … (z. B. 70er, Teal, Wald)" />
       <div class="row" style="margin-bottom:14px">
         <button class="btn" id="addRezBtn">+ Eigenes Rezept</button>
@@ -2706,6 +2703,233 @@
       </div>
     </section>
 
+    <!-- ===================== VIDEO · BEREICH C: FARBE / COLOR GRADING ===================== -->
+    <section id="tab-vfarbe" class="tab-panel">
+      <div id="cgList_wrap">
+        <p class="lead">Farbe fürs Video – vom <b>technisch sauberen Bild</b> bis zum <b>einheitlichen Look</b>. Damit z. B. dein ganzes Urlaubsvideo wie aus einem Guss wirkt. Tippe eine Lektion an.</p>
+        <p class="info" id="cgProg"></p>
+        <div class="lk-list" id="cgList"></div>
+      </div>
+
+      <div id="cgLesson" hidden>
+        <button class="lk-back" id="cgBack">← Alle Lektionen</button>
+
+        <!-- C1 -->
+        <article class="lk-lesson" data-cg="1" data-em="🎨" data-title="Was ist Color Grading?" data-sub="Korrektur vs. Grading" hidden>
+          <p class="lk-eyebrow">Video-Farbe · Grundidee</p>
+          <h2>Was ist Color Grading?</h2>
+          <p class="lk-hook">Farbe im Video passiert in zwei Schritten. Zuerst die <b>Korrektur</b>: das Bild technisch richtig machen, damit es natürlich aussieht. Dann das <b>Grading</b>: bewusst einen Look und eine Stimmung geben. Beim Foto machst du beides an einem Bild – beim Video an <b>vielen Clips</b>, die am Ende zusammenpassen müssen.</p>
+          <figure>
+            <svg viewBox="0 0 360 110" role="img" aria-label="Von neutral über Korrektur zum Look">
+              <g stroke="var(--line)"><rect x="8" y="20" width="96" height="60" rx="6" fill="#6b6b70"/><rect x="132" y="20" width="96" height="60" rx="6" fill="#8a8a86"/><rect x="256" y="20" width="96" height="60" rx="6" fill="#b98a5e"/></g>
+              <g fill="var(--muted)"><path d="M104 50 h28 M126 46 l6 4 -6 4z"/><path d="M228 50 h28 M250 46 l6 4 -6 4z"/></g>
+              <g class="s-tick" text-anchor="middle"><text x="56" y="98">Rohmaterial</text><text x="180" y="98">Korrektur</text><text x="304" y="98">Grading (Look)</text></g>
+            </svg>
+            <figcaption>Erst <b>korrigieren</b> (echt &amp; sauber), dann <b>graden</b> (Stimmung &amp; Look).</figcaption>
+          </figure>
+          <h4 class="lk-sub">Korrektur ≠ Grading</h4>
+          <p><b>Korrektur (color correction):</b> neutral und korrekt – richtige Helligkeit, neutrale Farbe, saubere Hauttöne. Ziel: sieht echt aus.</p>
+          <p><b>Grading (color grading):</b> kreativ – warm/kühl, Kontrast, ein Look. Ziel: Stimmung und Stil.</p>
+          <h4 class="lk-sub">Warum Video anders ist als Foto</h4>
+          <p><b>Viele Clips statt einem</b> – sie müssen zueinander passen (Konsistenz). Und die <b>Zeitachse</b>: der Look zieht sich durch alle Szenen. Deshalb ist beim Video das <b>Angleichen der Clips</b> fast wichtiger als der schickste Look.</p>
+          <div class="lk-merke"><span class="h">Merke</span><p>Erst <b>korrigieren</b> (echt), dann <b>graden</b> (Stimmung). Beim Video zählt vor allem: alle Clips passen zusammen.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Nimm zwei Clips vom selben Ort zu unterschiedlichen Zeiten. Schau, wie verschieden Helligkeit und Farbe sind – genau das gleichst du beim Grading an.</p></div>
+          <details><summary>Für Fortgeschrittene: nicht-destruktiv <span class="chev">▶</span></summary><div class="lk-adv"><p><span class="k">Wie beim Foto</span> liegt das Grading als Ebene über dem Clip, das Original bleibt unberührt. In Schnittprogrammen heißt das oft <b>Adjustment Layer</b> oder <b>Node</b>.</p></div></details>
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-cgnext="2">Weiter: Erst korrigieren, dann graden →</button></div>
+        </article>
+
+        <!-- C2 -->
+        <article class="lk-lesson" data-cg="2" data-em="🪜" data-title="Erst korrigieren, dann graden" data-sub="Die richtige Reihenfolge" hidden>
+          <p class="lk-eyebrow">Video-Farbe · Reihenfolge</p>
+          <h2>Erst korrigieren, dann graden</h2>
+          <p class="lk-hook">Die häufigste Einsteiger-Falle ist, sofort einen „Kino-Look" draufzuwerfen. Profis gehen in einer <b>festen Reihenfolge</b> vor – erst das Bild sauber, dann der Stil. So mischst du Korrektur und Look nicht und behältst die Kontrolle.</p>
+          <figure>
+            <svg viewBox="0 0 360 86" role="img" aria-label="Reihenfolge: Belichtung, Weißabgleich, Angleichen, Look, Sekundär">
+              <g font-size="10.5">
+                <rect x="4" y="26" width="60" height="34" rx="7" fill="var(--bg-card-2)" stroke="var(--line)"/><text x="34" y="47" text-anchor="middle" class="s-lbl">Belicht.</text>
+                <rect x="74" y="26" width="66" height="34" rx="7" fill="var(--bg-card-2)" stroke="var(--line)"/><text x="107" y="47" text-anchor="middle" class="s-lbl">Weißabgl.</text>
+                <rect x="150" y="26" width="70" height="34" rx="7" fill="var(--bg-card-2)" stroke="var(--line)"/><text x="185" y="47" text-anchor="middle" class="s-lbl">Angleichen</text>
+                <rect x="230" y="26" width="54" height="34" rx="7" fill="var(--bg-card-2)" stroke="var(--accent)"/><text x="257" y="47" text-anchor="middle" class="s-tick">Look</text>
+                <rect x="294" y="26" width="62" height="34" rx="7" fill="var(--bg-card-2)" stroke="var(--line)"/><text x="325" y="47" text-anchor="middle" class="s-lbl">sekundär</text>
+              </g>
+            </svg>
+            <figcaption>Immer in dieser Reihenfolge – der <b>Look</b> kommt erst, wenn das Bild sitzt.</figcaption>
+          </figure>
+          <h4 class="lk-sub">Die Reihenfolge</h4>
+          <p><b>1. Belichtung &amp; Kontrast</b> setzen (das Bild sitzt auf den Scopes richtig). <b>2. Weißabgleich neutral</b> (Farbstich raus, Haut natürlich). <b>3. Clips angleichen</b> (alle auf ein Niveau). <b>4. Der Look</b> (Grading) – warm/kühl, Kontrast, Farbstimmung. <b>5. Sekundär</b> feinschleifen (einzelne Bereiche wie Haut oder Himmel).</p>
+          <h4 class="lk-sub">Primär vs. sekundär</h4>
+          <p><b>Primär</b> wirkt aufs ganze Bild (Belichtung, Weißabgleich, globaler Look). <b>Sekundär</b> betrifft nur einen Bereich oder eine Farbe (Haut, Himmel, ein Objekt) – gezielt.</p>
+          <div class="lk-merke"><span class="h">Merke</span><p><b>1 Belichtung → 2 Weißabgleich → 3 Clips angleichen → 4 Look → 5 sekundär.</b> Nie mit dem Look anfangen.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Nimm einen flachen/dunklen Clip. Setz zuerst nur Belichtung und Weißabgleich – oft sieht er schon zu 80 % gut aus, bevor du überhaupt „gradest".</p></div>
+          <div class="row" style="gap:6px;flex-wrap:wrap"><button class="bv-lek" data-vg-jump="4">→ Grundlagen 4: Belichten</button></div>
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-cgnext="3">Weiter: Räder &amp; Kurven →</button></div>
+        </article>
+
+        <!-- C3 -->
+        <article class="lk-lesson" data-cg="3" data-em="🎛️" data-title="Werkzeuge: Räder &amp; Kurven" data-sub="Schatten · Mitten · Lichter" hidden>
+          <p class="lk-eyebrow">Video-Farbe · Werkzeuge</p>
+          <h2>Die Werkzeuge: Räder &amp; Kurven</h2>
+          <p class="lk-hook">Zum Graden hast du im Kern dieselben Werkzeuge wie beim Foto – sie heißen im Video nur oft anders. Die drei wichtigsten: <b>Farbräder</b> (Lift/Gamma/Gain), <b>Kurven</b> und <b>Sättigung/HSL</b>.</p>
+          <figure>
+            <svg viewBox="0 0 360 116" role="img" aria-label="Drei Farbräder: Lift, Gamma, Gain">
+              <g><circle cx="70" cy="46" r="34" fill="none" stroke="var(--line)" stroke-width="2"/><circle cx="62" cy="54" r="4" fill="var(--muted)"/>
+                 <circle cx="180" cy="46" r="34" fill="none" stroke="var(--line)" stroke-width="2"/><circle cx="186" cy="40" r="4" fill="var(--muted)"/>
+                 <circle cx="290" cy="46" r="34" fill="none" stroke="var(--line)" stroke-width="2"/><circle cx="296" cy="52" r="4" fill="var(--muted)"/></g>
+              <g class="s-tick" text-anchor="middle"><text x="70" y="98">Lift</text><text x="180" y="98">Gamma</text><text x="290" y="98">Gain</text></g>
+              <g class="s-lbl-s" text-anchor="middle"><text x="70" y="112">Schatten</text><text x="180" y="112">Mitten</text><text x="290" y="112">Lichter</text></g>
+            </svg>
+            <figcaption><b>Lift</b> = Schatten, <b>Gamma</b> = Mitteltöne, <b>Gain</b> = Lichter – je ein Rad schiebt Helligkeit <i>und</i> Farbe eines Tonbereichs.</figcaption>
+          </figure>
+          <h4 class="lk-sub">Die drei Farbräder</h4>
+          <p><b>Lift = Schatten, Gamma = Mitteltöne, Gain = Lichter.</b> Jedes Rad kann Helligkeit und Farbe seines Tonbereichs schieben – genau die drei Zonen, die du aus dem Bild kennst.</p>
+          <h4 class="lk-sub">Kurven &amp; HSL</h4>
+          <p><b>Kurven</b> wie beim Foto: RGB für Kontrast (S-Kurve), einzelne Kanäle (Rot/Grün/Blau) gegen Farbstiche in bestimmten Zonen. <b>HSL/Sättigung</b>: globale Sättigung dezent, HSL, um <i>einzelne</i> Farben gezielt zu ändern (z. B. das Grün des Rasens).</p>
+          <div class="lk-merke"><span class="h">Merke</span><p>Lift=Schatten, Gamma=Mitten, Gain=Lichter. Kurven für Kontrast/Farbstiche, HSL für einzelne Farben. Und: <b>dezent</b>.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Zieh das Gain-Rad (Lichter) minimal Richtung Blau und das Lift (Schatten) Richtung Orange – und wieder zurück. So fühlst du, wie Tonbereiche getrennt Farbe annehmen.</p></div>
+          <details><summary>Für Fortgeschrittene: das Farbrad aus dem Bild-Bereich <span class="chev">▶</span></summary><div class="lk-adv"><p><span class="k">Gleiches Prinzip:</span> In der Bildbearbeitung unter <b>Farbe → Farbrad</b> gibt es genau diese Idee interaktiv (zwei Punkte für Lichter/Schatten). Wer damit spielt, versteht die Räder sofort.</p></div></details>
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-cgnext="4">Weiter: Die Scopes lesen →</button></div>
+        </article>
+
+        <!-- C4 -->
+        <article class="lk-lesson" data-cg="4" data-em="📊" data-title="Die Scopes lesen" data-sub="Waveform · Vektorskop · Parade" hidden>
+          <p class="lk-eyebrow">Video-Farbe · Messen</p>
+          <h2>Die Scopes lesen</h2>
+          <p class="lk-hook">Dein Auge und dein Display <b>lügen</b> – je nach Umgebungslicht und Monitor. Die <b>Scopes</b> sind Messgeräte, die die Wahrheit über Helligkeit und Farbe zeigen. Drei musst du kennen.</p>
+          <figure>
+            <svg viewBox="0 0 360 120" role="img" aria-label="Waveform und Vektorskop">
+              <rect x="8" y="12" width="180" height="82" rx="6" fill="var(--bg-elev)" stroke="var(--line)"/>
+              <g stroke="var(--green)" stroke-width="2" opacity=".8"><line x1="26" y1="80" x2="26" y2="40"/><line x1="46" y1="80" x2="46" y2="30"/><line x1="66" y1="80" x2="66" y2="52"/><line x1="86" y1="80" x2="86" y2="34"/><line x1="106" y1="80" x2="106" y2="60"/><line x1="126" y1="80" x2="126" y2="28"/><line x1="146" y1="80" x2="146" y2="48"/><line x1="166" y1="80" x2="166" y2="66"/></g>
+              <text class="s-tick" x="98" y="108" text-anchor="middle">Waveform · Helligkeit</text>
+              <circle cx="278" cy="53" r="40" fill="var(--bg-elev)" stroke="var(--line)"/>
+              <line x1="278" y1="53" x2="304" y2="27" stroke="var(--accent)" stroke-width="2"/><circle cx="304" cy="27" r="3" fill="var(--accent)"/>
+              <circle cx="278" cy="53" r="4" fill="var(--muted)"/>
+              <text class="s-tick" x="278" y="108" text-anchor="middle">Vektorskop · Farbe</text>
+            </svg>
+            <figcaption>Die <b>Waveform</b> misst Helligkeit, das <b>Vektorskop</b> Farbe &amp; Sättigung (Mitte = neutral).</figcaption>
+          </figure>
+          <h4 class="lk-sub">Die drei Scopes</h4>
+          <p><b>Waveform – Helligkeit:</b> von unten (Schwarz, 0) nach oben (Weiß, 100). Für die Belichtung: nichts klebt oben (ausgefressen) oder unten (abgesoffen), außer gewollt.</p>
+          <p><b>Vektorskop – Farbe:</b> zeigt Farbrichtung und Sättigung als Kreis. Punkt in der Mitte = neutral, kein Farbstich. Auf der „Skin-Tone-Linie" liegen gesunde Hauttöne (Lektion 6).</p>
+          <p><b>RGB-Parade – Balance:</b> Rot, Grün, Blau nebeneinander. Bei Weiß/Grau sollten alle drei etwa gleich hoch sein – steht einer höher, hast du einen Farbstich.</p>
+          <div class="lk-merke"><span class="h">Merke</span><p>Waveform = Belichtung, RGB-Parade = Weißabgleich/Balance, Vektorskop = Farbe &amp; Hauttöne. <b>Miss, statt zu raten.</b></p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Leg die RGB-Parade auf einen Clip mit weißer Wand. Steht ein Kanal höher, hast du einen Farbstich – zieh ihn mit Weißabgleich/Kurven auf gleiche Höhe.</p></div>
+          <details><summary>Für Fortgeschrittene: Monitor &amp; Umgebung <span class="chev">▶</span></summary><div class="lk-adv"><p>Grade in <span class="k">ruhiger, neutraler Umgebung</span>, Bildschirm nicht zu hell. Ein kalibrierter Monitor hilft – aber die Scopes sind dein Sicherheitsnetz.</p></div></details>
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-cgnext="5">Weiter: Log &amp; LUT →</button></div>
+        </article>
+
+        <!-- C5 -->
+        <article class="lk-lesson" data-cg="5" data-em="🎞️" data-title="Log &amp; LUT" data-sub="Flach gedreht → fertiger Look" hidden>
+          <p class="lk-eyebrow">Video-Farbe · Log</p>
+          <h2>Log &amp; LUT</h2>
+          <p class="lk-hook">Erinnerst du dich an <b>Log</b> aus den Grundlagen? Wenn du flach gedreht hast, sieht das Rohmaterial grau und kontrastarm aus – Absicht, für mehr Spielraum. Bevor du gradest, wandelst du es in ein normales Bild um. Dafür gibt es <b>LUTs</b>.</p>
+          <figure>
+            <svg viewBox="0 0 360 108" role="img" aria-label="Von Log über technische LUT zum Look">
+              <g stroke="var(--line)"><rect x="8" y="18" width="96" height="58" rx="6" fill="#7d7d80"/><rect x="132" y="18" width="96" height="58" rx="6" fill="#8f8f8a"/><rect x="256" y="18" width="96" height="58" rx="6" fill="#b6864f"/></g>
+              <g fill="var(--muted)"><path d="M104 47 h28 M126 43 l6 4 -6 4z"/><path d="M228 47 h28 M250 43 l6 4 -6 4z"/></g>
+              <g class="s-lbl-s" text-anchor="middle"><text x="56" y="92">Log (flach)</text><text x="180" y="92">techn. LUT</text><text x="304" y="92">kreativer Look</text></g>
+            </svg>
+            <figcaption>Erst die <b>technische LUT</b> (Log → normal), dann korrigieren, dann der kreative Look.</figcaption>
+          </figure>
+          <h4 class="lk-sub">Zwei Arten von LUT</h4>
+          <p><b>Technische LUT (Input):</b> wandelt Log → normales Bild (Rec.709). Der erste Schritt, damit Farbe und Kontrast überhaupt stimmen.</p>
+          <p><b>Kreative LUT (Look):</b> legt einen fertigen Look darüber – erst <b>nach</b> der Korrektur, dezent und anpassbar.</p>
+          <h4 class="lk-sub">Reihenfolge &amp; kein Log?</h4>
+          <p>Mit Log: technische LUT zuerst, dann korrigieren (Belichtung/Weißabgleich), dann kreativer Look. 8-Bit verzeiht wenig, 10-Bit gibt Reserve. <b>Nicht Log gedreht?</b> Dann brauchst du keine technische LUT – du korrigierst und gradest direkt; kreative LUTs kannst du trotzdem als Startpunkt nutzen.</p>
+          <div class="lk-merke"><span class="h">Merke</span><p>Log = flach mit Reserve. Erst <b>technische LUT</b> (→ normal), dann korrigieren, dann <b>kreativer Look</b>. Eine LUT ist ein Startpunkt, kein Endpunkt.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Leg auf einen Log-Clip die technische LUT deiner Kamera – das Bild „wacht auf". Erst danach an Belichtung und Farbe feilen.</p></div>
+          <div class="row" style="gap:6px;flex-wrap:wrap"><button class="bv-lek" data-vg-jump="5">→ Grundlagen 5: Codec &amp; 10-Bit</button></div>
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-cgnext="6">Weiter: Hauttöne &amp; der Look →</button></div>
+        </article>
+
+        <!-- C6 -->
+        <article class="lk-lesson" data-cg="6" data-em="🧑" data-title="Hauttöne &amp; der Look" data-sub="Skin-Tone-Linie &amp; Teal-Orange" hidden>
+          <p class="lk-eyebrow">Video-Farbe · Hauttöne</p>
+          <h2>Hauttöne &amp; der Look</h2>
+          <p class="lk-hook">Es gibt eine Farbe, bei der jeder sofort sieht, ob es stimmt: <b>Hauttöne</b>. Zuerst müssen sie natürlich sein – erst danach der Look. Und der beliebteste Look der Welt baut genau darauf auf.</p>
+          <figure>
+            <svg viewBox="0 0 360 124" role="img" aria-label="Skin-Tone-Linie im Vektorskop und Teal-Orange">
+              <circle cx="86" cy="54" r="42" fill="var(--bg-elev)" stroke="var(--line)"/>
+              <line x1="86" y1="54" x2="116" y2="20" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="4 3"/>
+              <circle cx="86" cy="54" r="3.5" fill="var(--muted)"/>
+              <text class="s-lbl-s" x="86" y="112" text-anchor="middle" fill="var(--accent-2)">Skin-Tone-Linie</text>
+              <rect x="236" y="20" width="52" height="60" rx="6" fill="#c98a54"/><rect x="292" y="20" width="52" height="60" rx="6" fill="#3f7f88"/>
+              <text class="s-lbl-s" x="262" y="98" text-anchor="middle">Haut</text><text class="s-lbl-s" x="262" y="112" text-anchor="middle">warm</text>
+              <text class="s-lbl-s" x="318" y="98" text-anchor="middle">Schatten</text><text class="s-lbl-s" x="318" y="112" text-anchor="middle">teal</text>
+            </svg>
+            <figcaption>Gesunde Haut liegt auf der <b>Skin-Tone-Linie</b>. „Teal &amp; Orange" = warme Haut gegen kühle Schatten.</figcaption>
+          </figure>
+          <h4 class="lk-sub">Die Skin-Tone-Linie</h4>
+          <p>Im Vektorskop liegt gesunde Haut – egal welche Hautfarbe – auf einer bestimmten Linie (zwischen Rot und Gelb). Bring die Haut auf diese Linie, dann wirkt sie natürlich. Zeigt sie Richtung Grün oder Magenta, stimmt der Weißabgleich nicht.</p>
+          <h4 class="lk-sub">Teal &amp; Orange – warum es funktioniert</h4>
+          <p>Haut ist orange/warm. Die <b>Gegenfarbe</b> auf dem Farbkreis ist Blau/Teal. Legst du Schatten und Hintergrund Richtung Teal und hältst die Haut warm, entsteht der Kontrast, der die Person „herausploppen" lässt – der klassische Kino-Look. Dieselbe Gegenfarben-Idee wie in der Bild-Farblehre.</p>
+          <div class="lk-merke"><span class="h">Merke</span><p>Haut zuerst natürlich (Skin-Tone-Linie). Teal &amp; Orange = warme Haut gegen kühle Schatten. Die Haut dabei <b>warm halten</b>, nie mitkühlen.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Kühl die Schatten leicht Richtung Blau/Teal und lass die Haut warm. Sofort wirkt es „filmischer" – aber übertreib nicht.</p></div>
+          <details><summary>Für Fortgeschrittene: verschiedene Hauttöne <span class="chev">▶</span></summary><div class="lk-adv"><p>Die <span class="k">Skin-Tone-Linie</span> gilt für alle Hauttöne – nur die Länge (Sättigung) variiert. Ziel ist immer „gesund", nicht eine bestimmte Farbe.</p></div></details>
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-cgnext="7">Weiter: Clips angleichen →</button></div>
+        </article>
+
+        <!-- C7 -->
+        <article class="lk-lesson" data-cg="7" data-em="🔗" data-title="Clips angleichen" data-sub="Shot Matching – der Schlüssel" hidden>
+          <p class="lk-eyebrow">Video-Farbe · Konsistenz</p>
+          <h2>Clips angleichen (Shot Matching)</h2>
+          <p class="lk-hook">Das hier ist beim Video <b>wichtiger als jeder Look</b>: Alle Clips müssen zueinander passen. Sonst springt bei jedem Schnitt die Helligkeit oder Farbe – genau das macht Urlaubsvideos „unruhig".</p>
+          <figure>
+            <svg viewBox="0 0 360 108" role="img" aria-label="Ungleiche Clips werden an einen Referenz-Clip angeglichen">
+              <g stroke="var(--line)"><rect x="8" y="12" width="52" height="34" rx="5" fill="#9a8f7f"/><rect x="68" y="12" width="52" height="34" rx="5" fill="#6f7d86"/><rect x="128" y="12" width="52" height="34" rx="5" fill="#b0a07a"/></g>
+              <text class="s-lbl-s" x="94" y="60" text-anchor="middle">vorher: springt</text>
+              <g stroke="var(--line)"><rect x="200" y="12" width="46" height="34" rx="5" fill="#a6885f"/><rect x="252" y="12" width="46" height="34" rx="5" fill="#a6885f"/><rect x="304" y="12" width="46" height="34" rx="5" fill="#a6885f" stroke="var(--accent)" stroke-width="2"/></g>
+              <text class="s-lbl-s" x="275" y="60" text-anchor="middle" fill="var(--green)">nachher: angeglichen</text>
+              <text class="s-lbl-s" x="327" y="76" text-anchor="middle" fill="var(--accent-2)">Referenz</text>
+            </svg>
+            <figcaption>Einen <b>Referenz-Clip</b> sauber korrigieren, alle anderen daran angleichen – dann erst der Look.</figcaption>
+          </figure>
+          <h4 class="lk-sub">Der Weg</h4>
+          <p><b>1.</b> Wähl einen Referenz-Clip (den besten/typischsten einer Szene). <b>2.</b> Korrigiere ihn sauber (Belichtung, Weißabgleich, Scopes). <b>3.</b> Gleiche alle anderen daran an – mit den Scopes vergleichen (Waveform gleich hell, Parade gleiche Balance, Haut auf der Linie). <b>4.</b> Erst wenn alle zusammenpassen, kommt der gemeinsame Look drauf.</p>
+          <h4 class="lk-sub">Schon beim Dreh helfen</h4>
+          <p>Weißabgleich fest und gleiche Einstellungen je Szene (Grundlagen 6) machen das Angleichen halb so groß. Viele Programme haben „Farbe angleichen / Color Match" als Startpunkt – danach mit den Scopes prüfen.</p>
+          <div class="lk-merke"><span class="h">Merke</span><p>Ein Referenz-Clip, alle anderen daran angleichen (mit Scopes), <b>dann</b> der Look. Konsistenz schlägt jeden Effekt.</p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Nimm 3 Clips einer Szene. Korrigiere einen, dann bring die anderen zwei auf dieselbe Helligkeit/Balance (Waveform/Parade vergleichen). Hintereinander geschnitten – kein Sprung mehr.</p></div>
+          <div class="row" style="gap:6px;flex-wrap:wrap"><button class="bv-lek" data-vg-jump="6">→ Grundlagen 6: Weißabgleich fest</button></div>
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-cgnext="8">Weiter: Ein Look über alles →</button></div>
+        </article>
+
+        <!-- C8 -->
+        <article class="lk-lesson" data-cg="8" data-em="✨" data-title="Ein Look über das ganze Video" data-sub="Konsistenz &amp; Abschluss" hidden>
+          <p class="lk-eyebrow">Video-Farbe · Abschluss</p>
+          <h2>Ein Look über das ganze Video</h2>
+          <p class="lk-hook">Zum Schluss bekommt dein Projekt einen einheitlichen Look – aber richtig: <b>dezent, konsistent</b> und auf allen Clips gleich. So wirkt ein ganzes Urlaubsvideo „wie aus einem Guss".</p>
+          <figure>
+            <svg viewBox="0 0 360 96" role="img" aria-label="Ein Look-Layer über allen Clips der Zeitleiste">
+              <rect x="8" y="14" width="344" height="20" rx="5" fill="rgba(255,159,69,.25)" stroke="var(--accent)"/>
+              <text class="s-tick" x="180" y="28" text-anchor="middle">Look-Ebene (für alle)</text>
+              <g stroke="var(--line)" fill="var(--bg-card-2)"><rect x="8" y="44" width="80" height="26" rx="4"/><rect x="94" y="44" width="80" height="26" rx="4"/><rect x="180" y="44" width="80" height="26" rx="4"/><rect x="266" y="44" width="86" height="26" rx="4"/></g>
+              <text class="s-lbl-s" x="180" y="86" text-anchor="middle">angeglichene Clips auf der Zeitleiste</text>
+            </svg>
+            <figcaption>Der Look liegt als <b>eine Ebene über allen</b> (angeglichenen) Clips – überall gleich, in einem Regler änderbar.</figcaption>
+          </figure>
+          <h4 class="lk-sub">Ein Grade für alle</h4>
+          <p>Leg den kreativen Look auf eine Ebene <b>über</b> allen Clips (Adjustment Layer / eine gemeinsame Node). So ist er überall gleich und zentral änderbar. Voraussetzung: die Clips sind vorher angeglichen (Lektion 7).</p>
+          <h4 class="lk-sub">Dezent bleiben &amp; Check</h4>
+          <p>Der beste Grade fällt nicht auf – er unterstützt die Stimmung. Zieh den Look bewusst zurück (Intensität runter) und prüfe an Haut und Weiß, dass nichts unnatürlich kippt. Zum Schluss das ganze Video am Stück ansehen: Springt irgendwo Helligkeit/Farbe? Nachbessern. Beim Export den passenden Farbraum (Rec.709) behalten, damit es überall gleich aussieht.</p>
+          <div class="lk-merke"><span class="h">Merke</span><p>Erst alle Clips angleichen, dann <b>ein</b> Look für alle (Adjustment Layer), dezent. Am Ende einmal komplett durchschauen. <b>Konsistenz ist der Look.</b></p></div>
+          <div class="lk-probier"><span class="h">Probier's aus</span><p>Leg auf deine angeglichenen Clips einen dezenten warmen/kühlen Look als Ebene über alles, schau das Stück am Stück – und zieh den Look so weit zurück, bis er „selbstverständlich" wirkt.</p></div>
+          <details><summary>Wohin als Nächstes? <span class="chev">▶</span></summary><div class="lk-adv"><p>Damit beherrschst du die <span class="k">Farbe fürs Video</span>. Im Bereich <b>Rezepte</b> sammelst du deine Abläufe; Grundlagen und Berater bleiben dein Nachschlagewerk.</p></div></details>
+          <div class="lk-foot"><button class="lk-read">Als gelesen markieren</button><button class="lk-next" data-cgfinish>✓ Geschafft – zur Übersicht</button></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===================== VIDEO · BEREICH D: REZEPTE ===================== -->
+    <section id="tab-vextras" class="tab-panel">
+      <p class="lead">Dein praktisches <b>Rezeptbuch</b> für Video: fertige Dreh- und Story-Vorlagen zum Abarbeiten. <i>Hier kommt später auch die kompakte Zusammenfassung von A–C hin.</i></p>
+      <input class="search" id="searchVrez" placeholder="Video-Rezept suchen … (z. B. Story, Reel)" />
+      <div class="row" style="margin-bottom:14px">
+        <button class="btn" id="addVrezBtn">+ Eigenes Video-Rezept</button>
+      </div>
+      <div id="vrezList"></div>
+    </section>
+
   </main>
 
   <nav>
@@ -2715,6 +2939,8 @@
     <button data-tab="rezepte" data-navmode="foto"><span class="ic">🧪</span>Rezepte</button>
     <button data-tab="vgrund" data-navmode="video" hidden><span class="ic">🎬</span>Grundlagen</button>
     <button data-tab="vberater" data-navmode="video" hidden><span class="ic">🧭</span>Berater</button>
+    <button data-tab="vfarbe" data-navmode="video" hidden><span class="ic">🎨</span>Farbe</button>
+    <button data-tab="vextras" data-navmode="video" hidden><span class="ic">🧪</span>Rezepte</button>
   </nav>
 
   <dialog id="wisDialog">
@@ -4122,9 +4348,6 @@
   }
   function openRecipe(id) {
     goTab('rezepte');
-    REZ_KIND = 'bild';
-    document.querySelectorAll('#rezSeg .segbtn').forEach(x =>
-      x.classList.toggle('active', x.dataset.kind === 'bild'));
     searchRez.value = '';
     renderRecipes();
     requestAnimationFrame(() => {
@@ -4138,6 +4361,8 @@
   //=========================================================================
   const rezList = document.getElementById('rezList');
   const searchRez = document.getElementById('searchRez');
+  const vrezList = document.getElementById('vrezList');
+  const searchVrez = document.getElementById('searchVrez');
   function getHidden() {
     const h = LS.get('fw_hidden', {});
     return { rez: h.rez || [], vid: h.vid || [], wg: h.wg || [], wi: h.wi || [] };
@@ -4152,23 +4377,9 @@
     getWisOwn().forEach(w => { if (!names.includes(w.group)) names.push(w.group); });
     return names;
   }
-  let REZ_KIND = 'bild';
   function getUserRecipes() { return LS.get('fw_recipes', []); }
-  function allRecipes() {
-    const h = getHidden(), k = REZ_KIND === 'video' ? 'vid' : 'rez';
-    const own = getUserRecipes().filter(r => (r.kind || 'bild') === REZ_KIND);
-    const def = (REZ_KIND === 'video' ? DEFAULT_VIDEO : DEFAULT_RECIPES).filter(r => !h[k].includes(r.id));
-    return [...own, ...def];
-  }
-  function renderRecipes() {
-    const q = searchRez.value.trim().toLowerCase();
-    const items = allRecipes().filter(r => {
-      if (!q) return true;
-      return plain(r.name + ' ' + (r.mood||'') + ' ' + (r.tags||[]).join(' ') + ' ' +
-        r.steps.map(s => s.t + ' ' + s.s + ' ' + (s.w||'')).join(' ')).toLowerCase().includes(q);
-    });
-    if (!items.length) { rezList.innerHTML = `<div class="empty">${searchRez.value.trim() ? 'Nichts gefunden.' : 'Noch nichts hier. Leg mit dem Knopf oben dein erstes eigenes Rezept an.'}</div>`; return; }
-    rezList.innerHTML = items.map(r => `
+  function recipeCardHTML(r) {
+    return `
       <div class="card" data-id="${esc(r.id)}">
         <div class="card-head">
           <div class="txt">
@@ -4185,34 +4396,45 @@
           ${(r.tags && r.tags.length) ? `<div class="tags">${r.tags.map(t => `<span class="tag">${rich(t)}</span>`).join('')}</div>` : ''}
           <div class="card-foot"><button class="del" data-del="${esc(r.id)}">Löschen</button></div>
         </div>
-      </div>`).join('');
-    rezList.querySelectorAll('.card-head').forEach(h =>
-      h.addEventListener('click', () => h.parentElement.classList.toggle('open')));
-    rezList.querySelectorAll('[data-del]').forEach(b =>
+      </div>`;
+  }
+  // Rezepte-Liste rendern – getrennt nach Art (bild = Bild-Bereich, video = Video-Bereich D)
+  function renderRecipeList(kind, listEl, searchEl) {
+    const hk = kind === 'video' ? 'vid' : 'rez';
+    const q = searchEl.value.trim().toLowerCase();
+    const h = getHidden();
+    const own = getUserRecipes().filter(r => (r.kind || 'bild') === kind);
+    const def = (kind === 'video' ? DEFAULT_VIDEO : DEFAULT_RECIPES).filter(r => !h[hk].includes(r.id));
+    const items = [...own, ...def].filter(r => {
+      if (!q) return true;
+      return plain(r.name + ' ' + (r.mood||'') + ' ' + (r.tags||[]).join(' ') + ' ' +
+        r.steps.map(s => s.t + ' ' + s.s + ' ' + (s.w||'')).join(' ')).toLowerCase().includes(q);
+    });
+    if (!items.length) {
+      listEl.innerHTML = `<div class="empty">${searchEl.value.trim() ? 'Nichts gefunden.'
+        : (kind === 'video' ? 'Noch keine Video-Rezepte. Leg mit dem Knopf oben dein erstes an.'
+                            : 'Noch nichts hier. Leg mit dem Knopf oben dein erstes eigenes Rezept an.')}</div>`;
+      return;
+    }
+    listEl.innerHTML = items.map(recipeCardHTML).join('');
+    listEl.querySelectorAll('.card-head').forEach(hh =>
+      hh.addEventListener('click', () => hh.parentElement.classList.toggle('open')));
+    listEl.querySelectorAll('[data-del]').forEach(b =>
       b.addEventListener('click', e => {
         e.stopPropagation();
-        const id = b.dataset.del;
-        const eigen = id.startsWith('u-');
+        const id = b.dataset.del, eigen = id.startsWith('u-');
         if (!confirm(eigen ? 'Dieses eigene Rezept endgültig löschen?'
           : 'Diese Vorlage ausblenden? Du kannst sie unter Wissen → Vorlagen verwalten wiederherstellen.')) return;
         if (eigen) LS.set('fw_recipes', getUserRecipes().filter(x => x.id !== id));
-        else hide(REZ_KIND === 'video' ? 'vid' : 'rez', id);
-        renderRecipes(); updateVorlagenInfo();
+        else hide(hk, id);
+        renderAllRecipes(); updateVorlagenInfo();
       }));
   }
+  function renderRecipes() { renderRecipeList('bild', rezList, searchRez); }
+  function renderVideoRecipes() { renderRecipeList('video', vrezList, searchVrez); }
+  function renderAllRecipes() { renderRecipes(); renderVideoRecipes(); }
   searchRez.addEventListener('input', renderRecipes);
-  document.querySelectorAll('#rezSeg .segbtn').forEach(b =>
-    b.addEventListener('click', () => {
-      REZ_KIND = b.dataset.kind;
-      document.querySelectorAll('#rezSeg .segbtn').forEach(x =>
-        x.classList.toggle('active', x === b));
-      searchRez.value = '';
-      searchRez.placeholder = REZ_KIND === 'video'
-        ? 'Video-Rezept suchen … (z. B. Story, Reel)' : 'Look suchen … (z. B. 70er, Teal, Wald)';
-      document.getElementById('addRezBtn').textContent =
-        REZ_KIND === 'video' ? '+ Eigenes Video-Rezept' : '+ Eigenes Rezept';
-      renderRecipes();
-    }));
+  searchVrez.addEventListener('input', renderVideoRecipes);
 
 
   const rezDialog = document.getElementById('rezDialog');
@@ -4227,7 +4449,7 @@
   }
   let DIALOG_KIND = 'bild';
   function openRezDialog(kind) {
-    DIALOG_KIND = kind || REZ_KIND;
+    DIALOG_KIND = kind || 'bild';
     const vid = DIALOG_KIND === 'video';
     ['rezName','rezMood','rezMerke','rezTags'].forEach(id => document.getElementById(id).value = '');
     document.querySelector('#rezForm h3').textContent = vid ? 'Eigenes Video-Rezept' : 'Eigenes Rezept';
@@ -4240,7 +4462,8 @@
     addStepInput(); addStepInput(); addStepInput();
     rezDialog.showModal();
   }
-  document.getElementById('addRezBtn').addEventListener('click', () => openRezDialog());
+  document.getElementById('addRezBtn').addEventListener('click', () => openRezDialog('bild'));
+  document.getElementById('addVrezBtn').addEventListener('click', () => openRezDialog('video'));
   document.getElementById('cancelRez').addEventListener('click', () => rezDialog.close('cancel'));
   document.getElementById('addStepBtn').addEventListener('click', addStepInput);
   document.getElementById('rezForm').addEventListener('submit', e => {
@@ -4258,14 +4481,15 @@
         tags: document.getElementById('rezTags').value.split(',').map(t => t.trim()).filter(Boolean),
         desc: '', steps: steps.length ? steps : [{ t: 'Notiz', s: '—' }]
       }, ...getUserRecipes()]);
-      REZ_KIND = DIALOG_KIND;
-      document.querySelectorAll('#rezSeg .segbtn').forEach(x =>
-        x.classList.toggle('active', x.dataset.kind === REZ_KIND));
-      document.getElementById('addRezBtn').textContent =
-        REZ_KIND === 'video' ? '+ Eigenes Video-Rezept' : '+ Eigenes Rezept';
-      searchRez.value = '';
-      renderRecipes();
-      goTab('rezepte');
+      if (DIALOG_KIND === 'video') {
+        searchVrez.value = '';
+        renderVideoRecipes();
+        setMode('video', 'vextras');
+      } else {
+        searchRez.value = '';
+        renderRecipes();
+        setMode('foto', 'rezepte');
+      }
     }
   });
 
@@ -4672,12 +4896,12 @@
       wg: WISSEN.map(g => plain(g.group)),
       wi: []
     });
-    renderRecipes(); renderSpick();
+    renderAllRecipes(); renderSpick();
   });
   document.getElementById('restoreBtn').addEventListener('click', () => {
     if (!confirm('Alle ausgeblendeten Vorlagen wieder anzeigen?')) return;
     LS.set('fw_hidden', { rez: [], vid: [], wg: [], wi: [] });
-    renderRecipes(); renderSpick();
+    renderAllRecipes(); renderSpick();
   });
 
   //=========================================================================
@@ -4873,6 +5097,70 @@
   renderVbGrid();
 
   //=========================================================================
+  //  VIDEO · Bereich C: Farbe / Color Grading (gespiegeltes lk-Muster)
+  //=========================================================================
+  const cgListEl = el('cgList');
+  const cgArticles = [].slice.call(document.querySelectorAll('#cgLesson [data-cg]'));
+  const cgOrder = cgArticles.map(a => a.dataset.cg);
+  let curCg = null;
+  const cgRead = () => LS.get('fw_video_farbe', []);
+  const cgIsRead = id => cgRead().indexOf(id) > -1;
+  const cgById = id => cgArticles.filter(a => a.dataset.cg === id)[0];
+  function cgMark(id, on) {
+    const r = cgRead().filter(x => x !== id);
+    if (on) r.push(id);
+    LS.set('fw_video_farbe', r);
+  }
+  function renderCgList() {
+    const read = cgRead();
+    let firstUnread = null;
+    for (let i = 0; i < cgOrder.length; i++) {
+      if (read.indexOf(cgOrder[i]) < 0) { firstUnread = cgOrder[i]; break; }
+    }
+    cgListEl.innerHTML = cgArticles.map((a, i) => {
+      const id = a.dataset.cg, done = read.indexOf(id) > -1, cur = id === firstUnread;
+      const tag = done ? 'gelesen' : (cur ? 'weiter' : 'offen');
+      return `<button class="lk-item${done ? ' done' : ''}${cur ? ' current' : ''}" data-cgopen="${id}">
+        <span class="lk-num">${done ? '✓' : (i + 1)}</span>
+        <span class="lk-em">${a.dataset.em}</span>
+        <span class="lk-txt"><b>${esc(a.dataset.title)}</b><span>${esc(a.dataset.sub)}</span></span>
+        <span class="lk-tag">${tag}</span></button>`;
+    }).join('');
+    const doneCount = read.filter(id => cgOrder.indexOf(id) > -1).length;
+    el('cgProg').textContent = `${doneCount} von ${cgOrder.length} Lektionen gelesen`;
+  }
+  function openCg(id) {
+    if (cgOrder.indexOf(id) < 0) return;
+    curCg = id;
+    cgArticles.forEach(a => { a.hidden = a.dataset.cg !== id; });
+    paintRead(cgById(id).querySelector('.lk-read'), cgIsRead(id));
+    el('cgList_wrap').hidden = true;
+    el('cgLesson').hidden = false;
+    window.scrollTo({ top: 0 });
+  }
+  function closeCg() {
+    el('cgLesson').hidden = true;
+    el('cgList_wrap').hidden = false;
+    renderCgList();
+    window.scrollTo({ top: 0 });
+  }
+  el('tab-vfarbe').addEventListener('click', e => {
+    const open = e.target.closest('[data-cgopen]');
+    if (open) { openCg(open.dataset.cgopen); return; }
+    if (e.target.closest('#cgBack')) { closeCg(); return; }
+    const jump = e.target.closest('[data-vg-jump]');
+    if (jump) { gotoVgLesson(jump.dataset.vgJump); return; }
+    const rd = e.target.closest('.lk-read');
+    if (rd) { const on = !cgIsRead(curCg); cgMark(curCg, on); paintRead(rd, on); return; }
+    const nx = e.target.closest('.lk-next');
+    if (nx) {
+      cgMark(curCg, true);
+      if (nx.hasAttribute('data-cgfinish')) closeCg();
+      else if (nx.dataset.cgnext) openCg(nx.dataset.cgnext);
+    }
+  });
+
+  //=========================================================================
   //  FARBLEHRE – Lektionen im Farbe-Tab (Farblehre / Farbrad)
   //=========================================================================
   const flListEl = el('flListItems');
@@ -4965,10 +5253,12 @@
 
   renderMotifs();
   renderRecipes();
+  renderVideoRecipes();
   renderSpick();
   renderLkList();
   renderFlList();
   renderVgList();
+  renderCgList();
   updateVorlagenInfo();
   renderColor();
   // Zuletzt gewählten Modus (Bild/Video) und Tab wiederherstellen

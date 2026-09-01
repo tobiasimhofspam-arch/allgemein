@@ -19,7 +19,7 @@ Bearbeitung, Farbe und den eigenen Stil.
 
 ---
 
-## Aktueller Stand (Cache `v24`)
+## Aktueller Stand (Cache `v25`)
 
 Ganz oben schaltet ein **Kopf-Umschalter** zwischen zwei Welten: **📷 Bildbearbeitung**
 und **🎬 Videobearbeitung**. Die untere Navigation zeigt je Modus die passenden Bereiche;
@@ -29,7 +29,8 @@ der zuletzt gewählte Modus wird lokal gemerkt.
 - 📖 **Wissen** – Startseite, zwei Ebenen (Lernen + Nachschlagen), **12 Lektionen**.
 - 📷 **Berater** – 10 Motive, **drei Ebenen** je Motiv (Aufnehmen · Verstehen · Anwenden).
 - 🎨 **Farbe** – zwei Ebenen: **Farblehre** (8 Lektionen) + **Farbrad**.
-- 🧪 **Rezepte** – Bild + Video, eigene Rezepte speicherbar.
+- 🧪 **Rezepte** – **nur Bild-Looks** (17 Stück), eigene Rezepte speicherbar.
+  (Die Video-Rezepte sind in den Video-Bereich D umgezogen.)
 
 **Fertig – Video:**
 - 🎬 **Bereich A · Grundlagen** – **12 geführte Lektionen** in drei Phasen: *Das bewegte
@@ -45,12 +46,21 @@ der zuletzt gewählte Modus wird lokal gemerkt.
   Tutorial & How-to · Vlog & zur Kamera · Reel & Short · Reportage & Doku-Vlog ·
   Day-in-the-Life / GRWM · Sketch & POV.
 
-**Als Nächstes / offen (Video):**
-- 🎨 **Bereich C · Farbe** – eigenständiger Color-Grading-Bereich (einheitlicher Look,
-  z. B. fürs Urlaubsvideo). **Keine** Rezepte-Sammlung – Fokus nur auf Farbe/Grading.
-- ➕ **Bereich D** – Konzept noch offen.
-- Feinschliff Bereich A: einige SVG-Grafiken sauberer machen.
-- Struktur je Schritt zuerst abstimmen, dann bauen.
+- 🎨 **Bereich C · Farbe / Color Grading** – **8 geführte Lektionen** (gleiches Muster wie
+  A): Korrektur vs. Grading · Reihenfolge · Räder &amp; Kurven · Scopes lesen · Log &amp; LUT ·
+  Hauttöne &amp; Teal/Orange · Clips angleichen (Shot Matching) · ein Look über das ganze
+  Video. Fokus rein auf Farbe/Grading, mit Sprüngen in die Grundlagen.
+
+- 🧪 **Bereich D · Rezepte** – errichtet und mit den **Video-Rezepten** (Setup, Story-5-Shots,
+  B-Roll, Reel) aus dem Bild-Bereich befüllt; eigene Video-Rezepte speicherbar. Damit hat
+  Video wie Bild **vier Bereiche A–D**. *(Geplant: hier zusätzlich eine kompakte
+  Zusammenfassung von A–C.)*
+
+Damit sind **Video A–D** inhaltlich gefüllt.
+
+**Als Nächstes / offen:**
+- 📋 **Bereich D zur „Zusammenfassung" ausbauen** – A–C kurz & knapp auf einen Blick.
+- 🔧 **Feinschliff:** einige SVG-Grafiken sauberer machen und Kleinigkeiten, die auffallen.
 
 ---
 
@@ -88,10 +98,9 @@ Untere Navigation in dieser Reihenfolge (= die Lernreise): **Wissen → Berater 
     Feinsteuerung, Palette, Bedeutungen und sechs Richtungen – die Farblehre am
     eigenen Bild angewandt.
 
-- 🧪 **Rezepte** – zwei Reiter: **Bild** (17 Looks mit Kurvenarbeit, Begründung je
-  Schritt und Merksatz) und **Video** (Story-Gerüst, B-Roll, Reel-Aufbau, Kamera).
-  Eigene Rezepte in beiden. Gedacht als „Rezeptbuch", in dem man das Gelernte als
-  eigenen Stil speichert.
+- 🧪 **Rezepte** – **17 Bild-Looks** mit Kurvenarbeit, Begründung je Schritt und Merksatz;
+  eigene Rezepte speicherbar. Gedacht als „Rezeptbuch", in dem man das Gelernte als eigenen
+  Stil speichert. (Die früheren **Video-Rezepte** liegen jetzt im Video-Bereich unter **D**.)
 
 **Alles ist löschbar** und wiederherstellbar (Wissen → Vorlagen verwalten). Eigene
 Inhalte liegen lokal auf dem Gerät. Die Werkzeugnamen orientieren sich an gängigen
@@ -147,6 +156,7 @@ Konzept jederzeit zur Grundlage springen kann.
 
 | Version | Was |
 |---------|-----|
+| **v25** | Video-Bereich C „Farbe/Color Grading" (8 Lektionen) + Bereich D „Rezepte"; Video-Rezepte aus dem Bild-Bereich nach D verschoben (Bild-Rezepte jetzt nur Bild). Video hat damit A–D. |
 | **v24** | Video-Berater komplett (10 Situationen): + Reportage & Doku-Vlog, Day-in-the-Life/GRWM, Sketch & POV. |
 | **v23** | Video-Berater: Situationen Tutorial & How-to, Vlog & zur Kamera, Reel & Short. |
 | **v22** | Video-Berater: Situationen Reise & Orte, Event & Feier, Produkt & Unboxing. |
