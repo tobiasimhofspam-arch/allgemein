@@ -103,8 +103,11 @@ Untere Navigation in dieser Reihenfolge (= die Lernreise): **Wissen → Berater 
     eigenen Bild angewandt.
 
 - 🧪 **Rezepte** – **17 Bild-Looks** mit Kurvenarbeit, Begründung je Schritt und Merksatz;
-  eigene Rezepte speicherbar. Gedacht als „Rezeptbuch", in dem man das Gelernte als eigenen
-  Stil speichert. (Die früheren **Video-Rezepte** liegen jetzt im Video-Bereich unter **D**.)
+  eigene Rezepte speicherbar. Oben ein aufklappbarer **Look-Modell-Kopf** („Jeder Look = 3
+  Achsen": Farbverhältnis/Kontrast/Sättigung, mit Namen→Werte-Beispielen); jeder Bild-Look
+  zeigt beim Aufklappen ein **3-Achsen-Diagramm** mit Formel. Gedacht als „Rezeptbuch", in dem
+  man das Gelernte als eigenen Stil speichert. (Die früheren **Video-Rezepte** liegen jetzt im
+  Video-Bereich unter **D**.)
 
 **Alles ist löschbar** und wiederherstellbar (Wissen → Vorlagen verwalten). Eigene
 Inhalte liegen lokal auf dem Gerät. Die Werkzeugnamen orientieren sich an gängigen
@@ -160,6 +163,7 @@ Konzept jederzeit zur Grundlage springen kann.
 
 | Version | Was |
 |---------|-----|
+| **v27** | Look-Modell (Bild-Leitfaden, Etappe 2): Rezepte-Kopf „Jeder Look = 3 Achsen" (Farbverhältnis/Kontrast/Sättigung) mit Namen→Werte-Beispielen (Cinematic/Märchenhaft/Nordisch) + je Bild-Look ein 3-Achsen-Diagramm mit Formel; in der Farblehre (FL5) der Hinweis „warm/kühl ≠ Harmonie/Spannung" (zwei getrennte Achsen). |
 | **v26** | Berater bekommt den 0. Schritt: neue erste Ebene „🎯 Ziel" je Motiv – 3 Zielfragen (Wohin das Auge? · Warm/kühl? · Was lenkt ab?) + eine klare Empfehlung + die 3 Trennungs-Achsen (Helligkeit/Sättigung/Farbtemperatur), aus dem Bild-Leitfaden. |
 | **v25** | Video-Bereich C „Farbe/Color Grading" (8 Lektionen) + Bereich D „Rezepte"; Video-Rezepte aus dem Bild-Bereich nach D verschoben (Bild-Rezepte jetzt nur Bild). Video hat damit A–D. |
 | **v24** | Video-Berater komplett (10 Situationen): + Reportage & Doku-Vlog, Day-in-the-Life/GRWM, Sketch & POV. |

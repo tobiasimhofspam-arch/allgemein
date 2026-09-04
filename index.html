@@ -426,6 +426,45 @@
     .zv-ax .axh { display: block; font-size: 12px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
     .zv-ax p { margin: 0; font-size: 12.5px; line-height: 1.45; color: #dcdce0; }
 
+    /* Look-Modell: 3 Achsen pro Rezept */
+    .la { background: var(--bg-card-2); border: 1px solid var(--line); border-radius: 12px;
+      padding: 12px 13px; margin: 4px 0 13px; }
+    .la-h { font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+      font-weight: 700; color: var(--muted); margin-bottom: 10px; }
+    .la-row { margin: 11px 0; }
+    .la-lbl { display: block; font-size: 12px; font-weight: 650; color: var(--text); margin-bottom: 5px; }
+    .la-track { display: flex; align-items: center; gap: 8px; }
+    .la-lo, .la-hi { flex: none; font-size: 10.5px; color: var(--muted); width: 50px; }
+    .la-hi { text-align: right; }
+    .la-bar { position: relative; flex: 1; height: 4px; border-radius: 999px; min-width: 40px;
+      background: linear-gradient(90deg, var(--line), var(--accent)); }
+    .la-dot { position: absolute; top: 50%; width: 13px; height: 13px; border-radius: 999px;
+      background: var(--accent); border: 2px solid var(--bg-card); transform: translate(-50%,-50%);
+      box-shadow: 0 1px 3px rgba(0,0,0,.4); }
+    .la-formel { margin-top: 11px; padding-top: 10px; border-top: 1px solid var(--line);
+      font-size: 12.5px; line-height: 1.45; color: #dcdce0; }
+    .la-formel b { color: var(--accent-2); }
+
+    /* Look-Modell: Konzept-Kopf über der Rezepte-Liste */
+    .look-intro { background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 14px; }
+    .look-intro > summary { list-style: none; cursor: pointer; padding: 13px 15px; font-size: 14px; color: var(--text); }
+    .look-intro > summary::-webkit-details-marker { display: none; }
+    .look-intro > summary b { color: var(--accent-2); }
+    .look-intro[open] > summary { border-bottom: 1px solid var(--line); }
+    .li-body { padding: 13px 15px 15px; }
+    .li-body > p { margin: 0 0 12px; font-size: 13.5px; line-height: 1.5; color: #dcdce0; }
+    .li-axes { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
+    .li-ax { background: var(--bg-card-2); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; }
+    .li-ax b { color: var(--accent-2); font-size: 13px; }
+    .li-ax span { display: block; font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+    .li-h { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin: 4px 0 8px; }
+    .li-ex { margin: 0 0 13px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+    .li-ex li { font-size: 13px; line-height: 1.45; color: #dcdce0; }
+    .li-ex b { color: var(--accent-2); }
+    .li-note { background: rgba(255,159,69,.10); border: 1px solid rgba(255,159,69,.28);
+      border-radius: 10px; padding: 10px 12px; font-size: 12.5px; line-height: 1.5; color: #dcdce0; }
+    .li-note b { color: var(--accent-2); }
+
     /* Farblehre-Grafiken */
     .fl-mix { display: flex; gap: 12px; }
     .fl-mix > div { flex: 1; text-align: center; }
@@ -517,6 +556,24 @@
 
     <section id="tab-rezepte" class="tab-panel">
       <p class="lead">Fertige <b>Bild-Looks</b> mit Kurvenarbeit und Begründung je Schritt – als Startpunkt für deinen eigenen Stil. <i>Video-Rezepte sind jetzt drüben im Video-Bereich unter „Rezepte".</i></p>
+      <details class="look-intro" open>
+        <summary><b>Jeder Look = 3 Achsen</b> · so übersetzt du „wie soll es aussehen?" in Werte</summary>
+        <div class="li-body">
+          <p>Ein Look ist keine Zufallssache, sondern die Kombination aus drei Entscheidungen. Kennst du die drei, kannst du jeden Stil selbst bauen – und du erkennst bei jedem Rezept unten, warum es so wirkt.</p>
+          <div class="li-axes">
+            <div class="li-ax"><b>Farbverhältnis</b><span>Harmonie (Farben nah beieinander) ↔ Spannung (Komplementär, z. B. Orange ↔ Blau)</span></div>
+            <div class="li-ax"><b>Kontrast</b><span>flach ↔ knackig</span></div>
+            <div class="li-ax"><b>Sättigung</b><span>dezent ↔ kräftig</span></div>
+          </div>
+          <div class="li-h">Namen in Werte übersetzt</div>
+          <ul class="li-ex">
+            <li><b>Cinematic</b> = Komplementärspannung (Teal-Orange) + entsättigt + tiefe Schatten</li>
+            <li><b>Märchenhaft / Traum</b> = warme Harmonie + angehobene Schatten (nichts tiefschwarz) + leichte Überstrahlung</li>
+            <li><b>Nordisch / melancholisch</b> = kühle Harmonie + flacher Kontrast + entsättigt</li>
+          </ul>
+          <div class="li-note">⚠️ <b>Zwei getrennte Achsen:</b> warm/kühl (Grundstimmung) und Harmonie/Spannung (Farbverhältnis) sind <b>nicht</b> dasselbe. Ein Bild kann warm <i>und</i> spannungsvoll sein.</div>
+        </div>
+      </details>
       <input class="search" id="searchRez" placeholder="Look suchen … (z. B. 70er, Teal, Wald)" />
       <div class="row" style="margin-bottom:14px">
         <button class="btn" id="addRezBtn">+ Eigenes Rezept</button>
@@ -714,6 +771,7 @@
               <li><b>Monochrom:</b> eine Farbe in verschiedenen Helligkeiten – elegant und geschlossen.</li>
             </ol>
             <div class="lk-merke"><span class="h">Merke</span><p><b>Gegenüber = Spannung</b> (Komplementär), <b>nebeneinander = Harmonie</b> (Analog). Alles andere liegt dazwischen.</p></div>
+            <div class="li-note" style="margin:12px 0"><b>Zwei getrennte Achsen:</b> Harmonie/Spannung (das Farb<i>verhältnis</i>) ist <b>nicht</b> dasselbe wie warm/kühl (die Grund<i>stimmung</i> aus Lektion 4). Ein Bild kann warm <i>und</i> spannungsvoll sein – genau das ist Teal &amp; Orange.</div>
             <div class="lk-probier"><span class="h">Probier's aus</span><p>Wähl im Farbrad zwei gegenüberliegende Farben (Komplementär) für Schatten und Lichter – und danach zwei benachbarte (Analog). Spür den Unterschied: Spannung gegen Ruhe.</p></div>
             <button class="btn ghost small" data-goto-rad style="margin:2px 0 6px">🎡 Zum Farbrad</button>
             <button class="bv-lek" data-lek-jump="7">→ Wissen · Lektion 7: Stimmung machen</button>
@@ -4511,6 +4569,46 @@
     return names;
   }
   function getUserRecipes() { return LS.get('fw_recipes', []); }
+  // Jeder Bild-Look auf den 3 Achsen (0 = linker Pol, 100 = rechter Pol):
+  // farb = Farbverhältnis (Harmonie→Spannung), kontrast (flach→knackig),
+  // satt = Sättigung (dezent→kräftig). formel = Name in Werte übersetzt.
+  const LOOK_AXES = {
+    "r-polaroid":     { farb: 25, kontrast: 20, satt: 30, formel: "70er = warme Harmonie + flacher Kontrast (milchige Schwarztöne) + gedämpfte Farben + Korn." },
+    "r-wald":         { farb: 35, kontrast: 50, satt: 60, formel: "Wald = warm-erdige Harmonie (Grün/Braun) + mittlerer Kontrast + Grün in den Mitteltönen statt globaler Sättigung." },
+    "r-meer":         { farb: 70, kontrast: 55, satt: 65, formel: "Meer = Warm/Kühl-Spannung (Türkis ↔ warmer Sand) + klarer Kontrast + frische Sättigung." },
+    "r-regennacht":   { farb: 80, kontrast: 75, satt: 55, formel: "Regennacht = Neon-Spannung (eine Leitfarbe dominiert) + hoher Kontrast + der Rest entsättigt." },
+    "r-teal-orange":  { farb: 90, kontrast: 70, satt: 55, formel: "Teal &amp; Orange = Komplementärspannung + kräftiger Kontrast + Haut warm, Schatten kühl." },
+    "r-golden":       { farb: 15, kontrast: 45, satt: 70, formel: "Golden Hour = warme Harmonie (eine Farbfamilie) + weicher Kontrast + leuchtende Sättigung." },
+    "r-berge":        { farb: 65, kontrast: 65, satt: 55, formel: "Berge = Warm/Kühl-Spannung für Tiefe + kräftiger Kontrast + Ferne leicht entsättigt." },
+    "r-moody":        { farb: 30, kontrast: 65, satt: 50, formel: "Moody = kühle Harmonie + tiefe Schatten (hoher Kontrast) + gedämpfte, satte Farben." },
+    "r-street":       { farb: 45, kontrast: 70, satt: 25, formel: "Street = kühl-nüchtern (ein warmer Akzent) + harter Mitteltonkontrast + stark entsättigt." },
+    "r-portrait-warm":{ farb: 25, kontrast: 30, satt: 45, formel: "Porträt warm = warme Harmonie + weicher Kontrast + dezente Sättigung, Haut geschützt." },
+    "r-highkey":      { farb: 20, kontrast: 15, satt: 35, formel: "High-Key = harmonisch-hell + sehr flacher Kontrast (viel Luft) + zarte Sättigung." },
+    "r-blaue-stunde": { farb: 70, kontrast: 50, satt: 60, formel: "Blaue Stunde = Blau ↔ warme Lichtpunkte (Spannung) + mittlerer Kontrast + tiefes, sattes Blau." },
+    "r-herbst":       { farb: 20, kontrast: 50, satt: 70, formel: "Herbst = warme Harmonie (Rot/Orange/Gold) + mittlerer Kontrast + kräftige Sättigung." },
+    "r-schnee":       { farb: 40, kontrast: 40, satt: 25, formel: "Schnee = kühle Ruhe (optional ein warmer Akzent) + klarer Weißpunkt + entsättigt." },
+    "r-food":         { farb: 30, kontrast: 45, satt: 65, formel: "Food = warm-natürliche Harmonie (kein Grünstich) + mittlerer Kontrast + satte, frische Farben." },
+    "r-faded":        { farb: 30, kontrast: 20, satt: 20, formel: "Faded = ruhige Harmonie + flacher Kontrast (milchige Schwarztöne) + stark entsättigt." },
+    "r-noir":         { farb: 10, kontrast: 90, satt: 0,  formel: "Noir = keine Farbe (Schwarzweiß) + maximaler Kontrast + Korn." }
+  };
+  function axisRow(label, lo, hi, val) {
+    const p = Math.max(0, Math.min(100, val));
+    return `<div class="la-row"><span class="la-lbl">${label}</span>
+        <div class="la-track"><span class="la-lo">${lo}</span>
+          <div class="la-bar"><span class="la-dot" style="left:${p}%"></span></div>
+          <span class="la-hi">${hi}</span></div></div>`;
+  }
+  function looksAxes(r) {
+    const a = r.achsen || LOOK_AXES[r.id];
+    if (!a) return '';
+    return `<div class="la">
+        <div class="la-h">Die 3 Achsen dieses Looks</div>
+        ${axisRow('Farbverhältnis', 'Harmonie', 'Spannung', a.farb)}
+        ${axisRow('Kontrast', 'flach', 'knackig', a.kontrast)}
+        ${axisRow('Sättigung', 'dezent', 'kräftig', a.satt)}
+        ${a.formel ? `<div class="la-formel">${rich(a.formel)}</div>` : ''}
+      </div>`;
+  }
   function recipeCardHTML(r) {
     return `
       <div class="card" data-id="${esc(r.id)}">
@@ -4523,6 +4621,7 @@
         </div>
         <div class="card-body">
           ${r.desc ? `<p class="desc">${rich(r.desc)}</p>` : ''}
+          ${looksAxes(r)}
           ${r.steps.some(st => /^Kurven/.test(plain(st.t))) ? KURVEN_HINWEIS : ''}
           ${stepList(r.steps)}
           ${r.merke ? `<div class="merke"><b>Merke:</b> ${rich(r.merke)}</div>` : ''}
