@@ -465,6 +465,17 @@
       border-radius: 10px; padding: 10px 12px; font-size: 12.5px; line-height: 1.5; color: #dcdce0; }
     .li-note b { color: var(--accent-2); }
 
+    /* Einklappbare Alternativen (Berater-Grading, Farbrad-Nebenkanäle) */
+    .grade-alt, .opt-steps { margin: 6px 0 4px; }
+    .grade-alt > summary, .opt-steps > summary { cursor: pointer; list-style: none;
+      font-size: 12.5px; font-weight: 650; color: var(--blue);
+      background: rgba(122,184,245,.1); border: 1px solid rgba(122,184,245,.28);
+      border-radius: 999px; padding: 6px 12px; display: inline-block; }
+    .grade-alt > summary::-webkit-details-marker, .opt-steps > summary::-webkit-details-marker { display: none; }
+    .grade-alt[open] > summary, .opt-steps[open] > summary { margin-bottom: 8px; }
+    .curve-legend { margin-top: 9px; padding-top: 9px; border-top: 1px solid var(--line);
+      font-size: 12.5px; line-height: 1.5; color: #dcdce0; }
+
     /* Farblehre-Grafiken */
     .fl-mix { display: flex; gap: 12px; }
     .fl-mix > div { flex: 1; text-align: center; }
@@ -3163,7 +3174,7 @@
           w: "Gibt Struktur ins Blätterdach, ohne die Mitteltöne (= das Grün) zu verbiegen." },
         { t: "Kurven · Grün · Mitteltöne ↑", s: "Einen Punkt in der Mitte des Grün-Kanals minimal anheben",
           w: "Genau hier sitzt das Laub. Wirkt viel edler als globale Sättigung." },
-        { t: "Kurven · Blau · Schatten ↑", s: "Linkes Ende des Blau-Kanals leicht hoch",
+        { t: "Kurven · Blau · Schatten ↑", s: "¼-Punkt (untere Mitteltöne) des Blau-Kanals leicht hoch",
           w: "Kühle Tiefen unter den Bäumen – dadurch tritt das warme Braun hervor." },
         { t: "Selektiv", s: "Auf Braun/Rinde tippen → Struktur +; auf ein Grün → Sättigung leicht +",
           w: "Trennt die beiden Farbfamilien voneinander, statt alles gleich zu behandeln." },
@@ -3184,9 +3195,9 @@
           w: "Das Wasser bekommt Tiefe, Gischt und Schaum heben sich davon ab." },
         { t: "Kurven · RGB · Lichter ↑", s: "Rechtes Drittel sanft anheben",
           w: "Brillanz im Sand und in der Gischt, ohne das ganze Bild aufzuhellen." },
-        { t: "Kurven · Blau · Schatten ↑", s: "Linkes Ende des Blau-Kanals hoch",
+        { t: "Kurven · Blau · Schatten ↑", s: "¼-Punkt (untere Mitteltöne) des Blau-Kanals hoch",
           w: "Bringt Türkis genau dorthin, wo das Wasser dunkel ist." },
-        { t: "Kurven · Blau · Lichter ↓", s: "Rechtes Ende leicht senken",
+        { t: "Kurven · Blau · Lichter ↓", s: "¾-Punkt (obere Mitteltöne) leicht senken",
           w: "Gelbliche Lichter = warmer Sand und Haut. Das ist die Warm/Kühl-Teilung." },
         { t: "Selektiv", s: "Aufs Wasser tippen → Sättigung + und Helligkeit leicht +",
           w: "Nur zum Feinschliff, nachdem die Kurve die Grundstimmung gesetzt hat." },
@@ -3209,9 +3220,9 @@
           w: "Nacht braucht echtes Schwarz. Sonst wird das Bild milchig statt nächtlich." },
         { t: "Kurven · RGB · Lichter ↓", s: "Rechtes Ende leicht senken",
           w: "Zähmt die Lichtquellen und hält Zeichnung in den Reflexen." },
-        { t: "Kurven · Blau · Schatten ↑", s: "Linkes Ende des Blau-Kanals hoch",
+        { t: "Kurven · Blau · Schatten ↑", s: "¼-Punkt (untere Mitteltöne) des Blau-Kanals hoch",
           w: "Kühle, nächtliche Tiefen – der klassische Nachtblau-Ton." },
-        { t: "Kurven · Rot · Lichter ↑", s: "Rechtes Ende des Rot-Kanals leicht hoch",
+        { t: "Kurven · Rot · Lichter ↑", s: "¾-Punkt (obere Mitteltöne) des Rot-Kanals leicht hoch",
           w: "Neon und Laternen bleiben warm/magenta. Zusammen mit Schritt 5 ergibt das den Cyan/Magenta-Split." },
         { t: "Farbkontrast (Tonaler Kontrast)", s: "Mitteltöne +20, Lichter niedrig halten",
           w: "Betont die Textur der nassen Oberfläche – Regen wird sichtbar." },
@@ -3228,13 +3239,13 @@
       steps: [
         { t: "Feinabstimmung", s: "Kontrast +10, Sättigung −5, Glanzlichter −10, Tiefen +10",
           w: "Etwas Sättigung runter, damit das Grading danach nicht übersteuert." },
-        { t: "Kurven · Blau · Schatten ↑", s: "Linkes Ende anheben",
+        { t: "Kurven · Blau · Schatten ↑", s: "¼-Punkt (untere Mitteltöne) anheben",
           w: "Blau in den Tiefen ergibt das Teal (Blaugrün) in den dunklen Partien." },
-        { t: "Kurven · Blau · Lichter ↓", s: "Rechtes Ende senken",
+        { t: "Kurven · Blau · Lichter ↓", s: "¾-Punkt (obere Mitteltöne) senken",
           w: "Weniger Blau im Hellen heißt automatisch mehr Gelb/Orange – die warme Haut." },
         { t: "Kurven · Blau · Mitte fixieren", s: "Einen Punkt genau in der Mitte setzen und nicht bewegen",
           w: "Schützt die Hauttöne. Ohne diesen Punkt kippt das ganze Gesicht mit." },
-        { t: "Kurven · Rot · Lichter ↑ (optional)", s: "Rechtes Ende des Rot-Kanals minimal hoch",
+        { t: "Kurven · Rot · Lichter ↑ (optional)", s: "¾-Punkt (obere Mitteltöne) des Rot-Kanals minimal hoch",
           w: "Verstärkt den warmen Hautton, wenn das Orange noch zu blass wirkt." },
         { t: "Farbkontrast (Tonaler Kontrast)", s: "Mitteltöne +15",
           w: "Plastizität – das Gesicht bekommt Volumen." }
@@ -3251,9 +3262,9 @@
           w: "Magenta verhindert, dass warmes Licht ins Grünliche kippt." },
         { t: "Feinabstimmung", s: "Ambiente +20, Glanzlichter −15, Tiefen +10",
           w: "Hält Zeichnung in der Sonne und öffnet die Vordergründe." },
-        { t: "Kurven · Blau · Lichter ↓", s: "Rechtes Ende des Blau-Kanals senken",
+        { t: "Kurven · Blau · Lichter ↓", s: "¾-Punkt (obere Mitteltöne) des Blau-Kanals senken",
           w: "Der eigentliche Gold-Griff: weniger Blau im Hellen = goldene Sonne." },
-        { t: "Kurven · Blau · Schatten ↑ (dezent)", s: "Linkes Ende leicht anheben",
+        { t: "Kurven · Blau · Schatten ↑ (dezent)", s: "¼-Punkt (untere Mitteltöne) leicht anheben",
           w: "Ein Hauch kühler Schatten gibt Tiefe und verhindert den Orangebrei." },
         { t: "Selektiv", s: "Auf den Himmel tippen → Sättigung/Helligkeit gezielt +",
           w: "Der Himmel darf kräftiger sein als der Rest." },
@@ -3272,9 +3283,9 @@
           w: "Ambiente ist bei Landschaft der stärkste einzelne Regler." },
         { t: "Kurven · RGB · S-Kurve", s: "Schatten ↓, Lichter ↑, flach halten",
           w: "Gibt dem Fels Kontrast, ohne Details in Schnee oder Schatten zu verlieren." },
-        { t: "Kurven · Blau · Schatten ↑", s: "Linkes Ende hoch",
+        { t: "Kurven · Blau · Schatten ↑", s: "¼-Punkt (untere Mitteltöne) hoch",
           w: "Kühle Tiefen lassen die Ferne zurücktreten – Luftperspektive." },
-        { t: "Kurven · Rot · Lichter ↑", s: "Rechtes Ende leicht hoch",
+        { t: "Kurven · Rot · Lichter ↑", s: "¾-Punkt (obere Mitteltöne) leicht hoch",
           w: "Warmer Vordergrund. Der Kontrast warm/kühl erzeugt die Raumtiefe." },
         { t: "Selektiv", s: "Auf den Himmel tippen → Sättigung/Kontrast +, Helligkeit −",
           w: "Der Himmel verträgt mehr als der Boden." },
@@ -3333,9 +3344,9 @@
           w: "Wenig Struktur ist bei Haut die wichtigste Regel." },
         { t: "Kurven · Blau · Mitte fixieren", s: "Punkt in der Kurvenmitte setzen, nicht verschieben",
           w: "Ohne diesen Punkt kippt der Hautton beim Grading sofort." },
-        { t: "Kurven · Blau · Lichter ↓ (sanft)", s: "Rechtes Ende ein kleines Stück senken",
+        { t: "Kurven · Blau · Lichter ↓ (sanft)", s: "¾-Punkt (obere Mitteltöne) ein kleines Stück senken",
           w: "Warme Lichter auf der Haut – dezent, sonst wird sie orange." },
-        { t: "Kurven · Blau · Schatten ↑ (sanft)", s: "Linkes Ende leicht anheben",
+        { t: "Kurven · Blau · Schatten ↑ (sanft)", s: "¼-Punkt (untere Mitteltöne) leicht anheben",
           w: "Kühler Hintergrund, die Person tritt hervor. Teal &amp; Orange, aber sanft." },
         { t: "Porträt (Face Spotlight)", s: "Gesichtslicht leicht, Haut glätten niedrig, Augen aufhellen",
           w: "Immer zurückhaltend – sonst wirkt es plastikartig." },
@@ -3371,9 +3382,9 @@
       steps: [
         { t: "Feinabstimmung", s: "Glanzlichter −25, Tiefen +15, Ambiente +20",
           w: "Zähmt die Lampen und öffnet die dunklen Fassaden." },
-        { t: "Kurven · Blau · Schatten ↑", s: "Linkes Ende deutlich anheben",
+        { t: "Kurven · Blau · Schatten ↑", s: "¼-Punkt (untere Mitteltöne) deutlich anheben",
           w: "Das tiefe Dämmerungsblau entsteht genau hier." },
-        { t: "Kurven · Blau · Lichter ↓", s: "Rechtes Ende senken",
+        { t: "Kurven · Blau · Lichter ↓", s: "¾-Punkt (obere Mitteltöne) senken",
           w: "Fenster und Laternen bleiben warm – der Reiz des Motivs." },
         { t: "Selektiv", s: "Auf Lampen tippen → Helligkeit leicht −",
           w: "Nimmt den Lichtquellen die Härte." },
@@ -3394,7 +3405,7 @@
           w: "Ambiente bringt die Blattstruktur mit." },
         { t: "Selektiv", s: "Auf grüne Blätter tippen → Sättigung dort deutlich −",
           w: "Der eigentliche Herbst-Griff: Grün zurücknehmen, dann dominiert Rot/Orange." },
-        { t: "Kurven · Blau · Lichter ↓", s: "Rechtes Ende senken",
+        { t: "Kurven · Blau · Lichter ↓", s: "¾-Punkt (obere Mitteltöne) senken",
           w: "Goldenes Licht in den hellen Partien." },
         { t: "Details", s: "Struktur +15",
           w: "Blattadern und raue Rinde." }
@@ -3558,7 +3569,7 @@
       kurven: [
         { t: "RGB · flache S-Kurve", s: "Schatten leicht ↓, Lichter leicht ↑, Mitte unangetastet", w: "Kontrast im Blätterdach, ohne das Grün in den Mitteltönen zu verbiegen." },
         { t: "Grün · Mitteltöne ↑", s: "Punkt in der Mitte des Grün-Kanals minimal anheben", w: "Genau hier lebt das Laub – wirkt viel edler als globale Sättigung." },
-        { t: "Blau · Schatten ↑", s: "Linkes Ende des Blau-Kanals hoch", w: "Kühle Tiefen zwischen den Stämmen lassen das warme Braun hervortreten." }
+        { t: "Blau · Schatten ↑", s: "¼-Punkt (untere Mitteltöne) des Blau-Kanals hoch", w: "Kühle Tiefen zwischen den Stämmen lassen das warme Braun hervortreten." }
       ],
       lokal: [
         { t: "Selektiv · Braun", s: "Auf Rinde/Erde tippen → Struktur +", w: "Trennt Holz und Boden vom Blattwerk." },
@@ -3602,8 +3613,8 @@
       kurven: [
         { t: "RGB · untere Mitteltöne ↓", s: "Punkt bei etwa einem Viertel leicht senken", w: "Das Wasser bekommt Tiefe, Gischt und Schaum heben sich ab. Genau hier sitzt die Wasseroberfläche." },
         { t: "RGB · Lichter ↑", s: "Rechtes Drittel sanft anheben", w: "Brillanz in Sand und Gischt, ohne das ganze Bild aufzuhellen." },
-        { t: "Blau · Schatten ↑", s: "Linkes Ende hoch", w: "Türkis genau dort, wo das Wasser dunkel ist." },
-        { t: "Blau · Lichter ↓", s: "Rechtes Ende leicht senken", w: "Gelbliche Lichter = warmer Sand. Das ist die Warm/Kühl-Teilung." }
+        { t: "Blau · Schatten ↑", s: "¼-Punkt (untere Mitteltöne) hoch", w: "Türkis genau dort, wo das Wasser dunkel ist." },
+        { t: "Blau · Lichter ↓", s: "¾-Punkt (obere Mitteltöne) leicht senken", w: "Gelbliche Lichter = warmer Sand. Das ist die Warm/Kühl-Teilung." }
       ],
       lokal: [
         { t: "Selektiv · Wasser", s: "Sättigung + und Helligkeit leicht +", w: "Nur Feinschliff nach der Kurvenarbeit." }
@@ -3646,8 +3657,8 @@
         { t: "RGB · untere Mitteltöne ↑", s: "Punkt bei ca. einem Viertel setzen und anheben", w: "Der wichtigste Griff: nasser Asphalt und Pfützen kommen hervor, ohne dass der Nachthimmel mit aufhellt." },
         { t: "RGB · Fußpunkt unten lassen", s: "Linke Ecke NICHT anheben", w: "Nacht braucht echtes Schwarz – sonst wird das Bild milchig statt nächtlich." },
         { t: "RGB · Lichter ↓", s: "Rechtes Ende leicht senken", w: "Hält Zeichnung in den Lichtreflexen auf der Straße." },
-        { t: "Blau · Schatten ↑", s: "Linkes Ende hoch", w: "Kühle nächtliche Tiefen." },
-        { t: "Rot · Lichter ↑", s: "Rechtes Ende leicht hoch", w: "Neon bleibt warm/magenta – zusammen ergibt das den Cyan/Magenta-Split." }
+        { t: "Blau · Schatten ↑", s: "¼-Punkt (untere Mitteltöne) hoch", w: "Kühle nächtliche Tiefen." },
+        { t: "Rot · Lichter ↑", s: "¾-Punkt (obere Mitteltöne) leicht hoch", w: "Neon bleibt warm/magenta – zusammen ergibt das den Cyan/Magenta-Split." }
       ],
       lokal: [
         { t: "Selektiv · Pfütze", s: "Auf die Spiegelung tippen → Struktur + und Kontrast +", w: "Macht die Reflexion knackig und lesbar." },
@@ -3689,8 +3700,8 @@
         { t: "Feinabstimmung", s: "Ambiente +20, Glanzlichter −15, Tiefen +10", w: "Hält Zeichnung in der Sonne und öffnet die Vordergründe." }
       ],
       kurven: [
-        { t: "Blau · Lichter ↓", s: "Rechtes Ende des Blau-Kanals senken", w: "Der eigentliche Gold-Griff: weniger Blau im Hellen ergibt goldene Sonne." },
-        { t: "Blau · Schatten ↑ (dezent)", s: "Linkes Ende leicht anheben", w: "Ein Hauch kühler Schatten gibt Tiefe und verhindert den Orangebrei." },
+        { t: "Blau · Lichter ↓", s: "¾-Punkt (obere Mitteltöne) des Blau-Kanals senken", w: "Der eigentliche Gold-Griff: weniger Blau im Hellen ergibt goldene Sonne." },
+        { t: "Blau · Schatten ↑ (dezent)", s: "¼-Punkt (untere Mitteltöne) leicht anheben", w: "Ein Hauch kühler Schatten gibt Tiefe und verhindert den Orangebrei." },
         { t: "RGB · Mitteltöne halten", s: "Punkt in der Mitte setzen", w: "Schützt Fels und Haut vor dem Mitkippen." }
       ],
       lokal: [
@@ -3732,8 +3743,8 @@
       ],
       kurven: [
         { t: "Blau · Mitte fixieren", s: "Punkt in der Kurvenmitte setzen und nicht bewegen", w: "Ohne diesen Punkt kippt der Hautton beim Grading sofort mit." },
-        { t: "Blau · Lichter ↓ (sanft)", s: "Rechtes Ende ein kleines Stück senken", w: "Warme Lichter auf der Haut – dezent, sonst wird sie orange." },
-        { t: "Blau · Schatten ↑ (sanft)", s: "Linkes Ende leicht anheben", w: "Kühler Hintergrund, die Person tritt hervor. Teal &amp; Orange, aber sanft." },
+        { t: "Blau · Lichter ↓ (sanft)", s: "¾-Punkt (obere Mitteltöne) ein kleines Stück senken", w: "Warme Lichter auf der Haut – dezent, sonst wird sie orange." },
+        { t: "Blau · Schatten ↑ (sanft)", s: "¼-Punkt (untere Mitteltöne) leicht anheben", w: "Kühler Hintergrund, die Person tritt hervor. Teal &amp; Orange, aber sanft." },
         { t: "RGB · Fußpunkt leicht ↑", s: "Linke Ecke ein Stück hoch", w: "Weiche, offene Schatten – schmeichelt dem Gesicht." }
       ],
       lokal: [
@@ -3776,8 +3787,8 @@
       ],
       kurven: [
         { t: "RGB · S-Kurve", s: "Schatten ↓, Lichter ↑, flach halten", w: "Kontrast im Fels, ohne Details in Schnee oder Schatten zu verlieren." },
-        { t: "Blau · Schatten ↑", s: "Linkes Ende hoch", w: "Kühle Tiefen lassen die Ferne zurücktreten – Luftperspektive." },
-        { t: "Rot · Lichter ↑", s: "Rechtes Ende leicht hoch", w: "Warmer Vordergrund. Der Warm/Kühl-Kontrast erzeugt die Raumtiefe." }
+        { t: "Blau · Schatten ↑", s: "¼-Punkt (untere Mitteltöne) hoch", w: "Kühle Tiefen lassen die Ferne zurücktreten – Luftperspektive." },
+        { t: "Rot · Lichter ↑", s: "¾-Punkt (obere Mitteltöne) leicht hoch", w: "Warmer Vordergrund. Der Warm/Kühl-Kontrast erzeugt die Raumtiefe." }
       ],
       lokal: [
         { t: "Selektiv · Himmel", s: "Sättigung/Kontrast +, Helligkeit −", w: "Der Himmel verträgt mehr als der Boden." }
@@ -4258,7 +4269,7 @@
       }));
   }
   function movesHtml(h, zone) {
-    const zoneWord = zone === 'sh' ? 'linkes Ende (Schatten)' : 'rechtes Ende (Lichter)';
+    const zoneWord = zone === 'sh' ? '¼-Punkt (Schatten)' : '¾-Punkt (Lichter)';
     const mv = channelMoves(h);
     if (!mv.length) return '<div class="move"><span>Neutral – hier ist keine Farbkorrektur nötig.</span></div>';
     return mv.map(m =>
@@ -4364,17 +4375,18 @@
 
   const KURVEN_HINWEIS = `<div class="hintbox"><b>Kurven ist ein Werkzeug – du bleibst drin.</b>
     Einmal öffnen und oben zwischen RGB und den Farbkanälen umschalten. Arbeite Kanal für Kanal ab:
-    erst RGB komplett, dann jeden Farbkanal in einem Durchgang. Erst ganz am Ende übernehmen.</div>`;
+    erst RGB komplett, dann jeden Farbkanal in einem Durchgang. Erst ganz am Ende übernehmen.
+    <div class="curve-legend"><b>Wo anfassen?</b> Zum <b>Einfärben</b> die Mitteltöne greifen – Schatten am <b>¼-Punkt</b>, Lichter am <b>¾-Punkt</b>, nicht die Ecken (das wird hart). Die <b>Ecke/den Fußpunkt</b> nur für milchige „Faded“-Schatten, das <b>Ende</b> nur zum Setzen von Schwarz-/Weißpunkt.</div></div>`;
 
   // Klartext: was bewirkt diese Kanalbewegung?
   const GEGEN = { 'Rot': 'Cyan', 'Grün': 'Magenta', 'Blau': 'Gelb' };
   function moveSentence(m, zone) {
-    const ende = zone === 'sh' ? 'linkes Ende' : 'rechtes Ende';
+    const punkt = zone === 'sh' ? '¼-Punkt (untere Mitteltöne)' : '¾-Punkt (obere Mitteltöne)';
     const bereich = zone === 'sh' ? 'Schatten' : 'Lichter';
     const farbe = m.dir === '↑' ? m.ch : GEGEN[m.ch];
-    return { t: `${m.ch}-Kanal · ${ende} ${m.dir === '↑' ? 'hoch' : 'runter'}`,
-             s: `<span style="color:var(--muted)">(${m.strength} – flach halten)</span>`,
-             w: `⟶ bringt <b style="color:var(--accent-2)">${farbe}</b> in die ${bereich}.` };
+    return { t: `${m.ch}-Kanal · ${punkt} ${m.dir === '↑' ? 'hoch' : 'runter'}`,
+             s: `<span style="color:var(--muted)">(nur ein kleines Stück – ${m.strength})</span>`,
+             w: `⟶ bringt <b style="color:var(--accent-2)">${farbe}</b> in die ${bereich}. Nicht die Ecke ziehen – das wird zu hart.` };
   }
   function gradeBox(kind, g) {
     const label = kind === 'tension' ? 'Spannung' : 'Harmonie';
@@ -4508,8 +4520,10 @@
         <h5 class="sec key"><span class="n">2</span> Kurven – der Kern</h5>${KURVEN_HINWEIS}${zoneDiagram()}${kurvenGrouped(m.kurven)}
         <h5 class="sec"><span class="n">3</span> Lokal verfeinern</h5>${stepList(m.lokal)}
         <h5 class="sec"><span class="n">4</span> Finish</h5>${stepList(m.finish)}
-        <h5 class="sec">Color Grading – zwei Wege</h5>
-        ${gradeBox('tension', m.tension)}${gradeBox('harmony', m.harmony)}
+        <h5 class="sec">Color Grading – die Richtung</h5>
+        <p class="info" style="margin:0 0 10px">Starte mit <b>Spannung</b> – das hebt das Motiv ab. Für eine ruhigere Stimmung klapp unten die Harmonie auf.</p>
+        ${gradeBox('tension', m.tension)}
+        <details class="grade-alt"><summary>oder ruhiger: Harmonie statt Spannung</summary>${gradeBox('harmony', m.harmony)}</details>
         <h5 class="sec">Passende Looks (antippen)</h5>
         <div class="look-chips">${m.looks.map(x =>
           `<button class="look-chip" data-look="${x}">${rich(recipeName(x))}</button>`).join('')}</div>`;
@@ -4951,49 +4965,29 @@
   //=========================================================================
   //  RICHTUNGEN – wohin die gewaehlten Farben fuehren koennen
   //=========================================================================
+  // Drei Looks – dieselben Namen wie im Rezepte-Kopf, damit die ganze App eine Sprache spricht.
   const DIRECTIONS = [
-    { id: 'saftig', em: '🌿', n: 'Saftig &amp; lebendig',
-      goal: 'Verstärkt, was ohnehin im Bild ist. Die Farben werden voller, das Motiv bleibt natürlich.',
-      when: 'Passt, wenn dir das Bild so gefällt, wie es ist, und nur Kraft fehlt.',
-      calc: () => ({ hi: { h: norm(HI.h - 8), s: Math.min(100, HI.s + 12) }, sh: { h: SH.h, s: Math.min(100, SH.s + 8) } }),
-      extra: ['Ambiente +25 statt die Sättigung hochzudrehen – das hält die Farben echt.',
-              'Kurven · Farbkanal deiner Hauptfarbe · Mitteltöne leicht ↑ – dort sitzt die große Fläche.',
-              'Selektiv auf die Hauptfarbe tippen und nur dort die Sättigung anheben.'] },
-    { id: 'maerchen', em: '🧚', n: 'Märchenhaft &amp; verträumt',
-      goal: 'Goldenes Licht, violette Tiefen und ein Hauch Dunst. Die Szene wirkt eine Spur unwirklich.',
-      when: 'Ideal, wenn Licht durch Blätter fällt, Nebel liegt oder du eine Geschichte erzählen willst.',
-      calc: () => ({ hi: { h: 42, s: 58, l: 66 }, sh: { h: 268, s: 38, l: 34 } }),
-      extra: ['Kurven · RGB · Fußpunkt ↑ – milchige Tiefen wie leichter Dunst. Das ist der Schlüsselgriff.',
-              'Feinabstimmung: Kontrast −15, Sättigung −8 – Weichheit statt Knall.',
-              'Glanz (Glamour Glow) ~25 % für das Leuchten in den Lichtern.'] },
-    { id: 'mystisch', em: '🌫️', n: 'Mystisch &amp; düster',
-      goal: 'Kühle, schwere Tiefen und zurückgenommene Mitteltöne. Es wird still und ein bisschen unheimlich.',
-      when: 'Für dichten Wald, Regenwetter, frühen Morgen – überall, wo Stimmung wichtiger ist als Farbe.',
-      calc: () => ({ hi: { h: norm(SH.h + 15), s: 30, l: 58 }, sh: { h: 196, s: 45, l: 26 } }),
-      extra: ['Kurven · RGB · Mitteltöne ↓ – der Kern: das Bild wird schwer, ohne dass die Tiefen zulaufen.',
-              'Feinabstimmung: Sättigung −12, Glanzlichter −25.',
-              'Vignette −30, damit sich die Szene schließt.'] },
-    { id: 'nostalgie', em: '🎞️', n: 'Warm &amp; nostalgisch',
-      goal: 'Alles wandert ins Gelbliche, die Schwarztöne werden milchig. Wirkt wie ein Fund aus der Schublade.',
-      when: 'Wenn das Bild eine Erinnerung sein soll statt einer Dokumentation.',
-      calc: () => ({ hi: { h: 45, s: 52, l: 64 }, sh: { h: 40, s: 26, l: 38 } }),
-      extra: ['Kurven · Blau · ganze Kurve ↓ – nimmt Blau raus, das ganze Bild wird gelblich.',
-              'Kurven · RGB · Fußpunkt ↑ – der Faded-Griff, Schwarz wird Grau.',
-              'Grobkörniger Film mit zurückgenommener Stärke, damit nur das Korn bleibt.'] },
-    { id: 'kino', em: '🎬', n: 'Kino &amp; maximale Spannung',
-      goal: 'Deine Hauptfarbe bleibt, die Schatten gehen in die Gegenfarbe. Das Motiv springt aus dem Bild.',
+    { id: 'cinematic', em: '🎬', n: 'Cinematic (Teal &amp; Orange)',
+      goal: 'Deine Hauptfarbe bleibt in den Lichtern, die Schatten gehen in die Gegenfarbe. Das Motiv springt aus dem Bild – der Kino-Klassiker.',
       when: 'Wenn eine Person, ein Tier oder ein Objekt klar im Mittelpunkt stehen soll.',
       calc: () => ({ hi: { h: HI.h, s: Math.max(50, HI.s) }, sh: { h: norm(HI.h + 180), s: 50, l: 30 } }),
-      extra: ['Ein einziger Farbkanal genügt: links hoch, rechts runter – gegenläufig.',
-              'Kurven · Mitte fixieren, sonst kippen Haut und Hauptmotiv mit.',
-              'Farbkontrast · Mitteltöne +15 für Plastizität.'] },
-    { id: 'modern', em: '🧊', n: 'Klar &amp; modern',
-      goal: 'Entsättigt und kühl. Formen, Linien und Licht übernehmen die Hauptrolle.',
-      when: 'Für Architektur, Street und alles, was nüchtern und aufgeräumt wirken soll.',
-      calc: () => ({ hi: { h: 202, s: 22, l: 62 }, sh: { h: 216, s: 32, l: 30 } }),
-      extra: ['Feinabstimmung: Sättigung −15, Kontrast +15.',
-              'Kurven · RGB · Fußpunkt leicht ↑ für den matten, modernen Ton.',
-              'Farbkontrast · Mitteltöne +20 – hier entsteht der Biss.'] }
+      extra: ['Ein einziger Farbkanal genügt: Schatten am ¼-Punkt in die eine Richtung, Lichter am ¾-Punkt gegenläufig – das ist der ganze Trick.',
+              'Mitte fixieren: einen Punkt genau in die Kurvenmitte setzen, sonst kippen Haut und Hauptmotiv mit.',
+              'Vorher Sättigung −8, damit das Grading nicht übersteuert. Kurve flach halten.'] },
+    { id: 'maerchen', em: '🧚', n: 'Märchenhaft &amp; verträumt',
+      goal: 'Warmes, goldenes Licht und weiche, angehobene Tiefen (nichts tiefschwarz). Die Szene wirkt eine Spur unwirklich.',
+      when: 'Ideal, wenn Licht durch Blätter fällt, Nebel liegt oder du eine Geschichte erzählen willst.',
+      calc: () => ({ hi: { h: 42, s: 52, l: 66 }, sh: { h: 40, s: 30, l: 40 } }),
+      extra: ['Schatten anheben: den ¼-Punkt (untere Mitteltöne) ein kleines Stück hoch – milchige, weiche Tiefen wie leichter Dunst. Das ist der Schlüsselgriff.',
+              'Wärme in die Lichter: ¾-Punkt Richtung Gelb/Orange, damit es golden leuchtet.',
+              'Feinabstimmung: Kontrast −15, Sättigung −8 – Weichheit statt Knall.'] },
+    { id: 'nordisch', em: '🧊', n: 'Nordisch &amp; melancholisch',
+      goal: 'Kühl, entsättigt und flach – eine ruhige, geschlossene Stimmung. Formen und Licht übernehmen die Hauptrolle.',
+      when: 'Für Winter, Nebel, Architektur, Street – alles, was nüchtern und aufgeräumt wirken soll.',
+      calc: () => ({ hi: { h: 205, s: 20, l: 60 }, sh: { h: 220, s: 26, l: 32 } }),
+      extra: ['Beide Töne kühl und nah beieinander halten (Harmonie, keine Gegenfarbe) – Schatten am ¼-Punkt, Lichter am ¾-Punkt in dieselbe blaue Richtung.',
+              'Kontrast flach halten: die Kurve nur ganz sanft biegen, die Tiefen nicht zulaufen lassen.',
+              'Sättigung −15 für die nordische Zurückhaltung.'] }
   ];
 
   let OPEN_DIR = null;
@@ -5109,18 +5103,23 @@
         <div class="g"><b style="color:var(--blue)">Blau ↑</b> = Blau</div>
         <div class="g"><b style="color:var(--blue)">Blau ↓</b> = Gelb</div>
       </div></div>`;
-    el('zoneBox').innerHTML = zoneDiagram('Links wirkt auf die Schatten, rechts auf die Lichter. Der Punkt in der Mitte bleibt liegen.');
+    el('zoneBox').innerHTML = zoneDiagram('Schatten am ¼-Punkt (untere Mitteltöne) tönen, Lichter am ¾-Punkt (obere Mitteltöne) – nicht an den Ecken ziehen, das wird zu hart. Der Punkt in der Mitte bleibt liegen.');
     const shMv = shChs.map(m => moveSentence(m, 'sh'));
     const hiMv = hiChs.map(m => moveSentence(m, 'hi'));
     const liOf = m => `<li><b>${m.t}:</b> ${m.s}<span class="why">${m.w}</span></li>`;
+    const shMain = shMv.slice(0, 1), hiMain = hiMv.slice(0, 1);
+    const rest = [...shMv.slice(1), ...hiMv.slice(1)];
+    const restHtml = rest.length
+      ? `<details class="opt-steps"><summary>Feinschliff: Nebenkanäle (optional) – erst, wenn der Hauptkanal sitzt</summary><ol class="steps">${rest.map(liOf).join('')}</ol></details>`
+      : '';
     el('recipeOut').innerHTML = `<ol class="steps">
       <li><b>Vorbereiten:</b> Feinabstimmung → Sättigung −5 bis −10<span class="why">Etwas Farbe rausnehmen, damit das Grading danach nicht übersteuert.</span></li>
       <li><b>Kurven öffnen:</b> oben von RGB auf einen Farbkanal umschalten<span class="why">Du bleibst im Werkzeug und schaltest nur den Kanal um – nicht raus und wieder rein.</span></li>
-      ${shMv.length ? shMv.map(liOf).join('') : '<li><b>Schatten:</b> neutral lassen<span class="why">Deine Schattenfarbe ist fast grau – hier ist nichts zu tun.</span></li>'}
-      ${hiMv.length ? hiMv.map(liOf).join('') : '<li><b>Lichter:</b> neutral lassen<span class="why">Deine Lichterfarbe ist fast grau – hier ist nichts zu tun.</span></li>'}
+      ${shMain.length ? shMain.map(liOf).join('') : '<li><b>Schatten:</b> neutral lassen<span class="why">Deine Schattenfarbe ist fast grau – hier ist nichts zu tun.</span></li>'}
+      ${hiMain.length ? hiMain.map(liOf).join('') : '<li><b>Lichter:</b> neutral lassen<span class="why">Deine Lichterfarbe ist fast grau – hier ist nichts zu tun.</span></li>'}
       <li><b>Mitte sichern:</b> einen Punkt genau in der Kurvenmitte setzen und nicht bewegen<span class="why">Schützt die Hauttöne – ohne diesen Punkt kippt das ganze Gesicht mit.</span></li>
       <li><b>Kontrolle:</b> Kurven flach halten, im Zweifel halbe Stärke<span class="why">Grading soll man spüren, nicht sehen.</span></li>
-    </ol>`;
+    </ol>${restHtml}`;
   }
 
   el('pickHi').addEventListener('input', e => { Object.assign(HI, hexToHsl(e.target.value)); renderColor(); });
