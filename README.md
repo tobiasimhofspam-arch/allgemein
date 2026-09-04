@@ -27,7 +27,7 @@ der zuletzt gewählte Modus wird lokal gemerkt.
 
 **Fertig – Bild:**
 - 📖 **Wissen** – Startseite, zwei Ebenen (Lernen + Nachschlagen), **12 Lektionen**.
-- 📷 **Berater** – 10 Motive, **drei Ebenen** je Motiv (Aufnehmen · Verstehen · Anwenden).
+- 📷 **Berater** – 10 Motive, **vier Ebenen** je Motiv (Ziel · Aufnehmen · Verstehen · Anwenden).
 - 🎨 **Farbe** – zwei Ebenen: **Farblehre** (8 Lektionen) + **Farbrad**.
 - 🧪 **Rezepte** – **nur Bild-Looks** (17 Stück), eigene Rezepte speicherbar.
   (Die Video-Rezepte sind in den Video-Bereich D umgezogen.)
@@ -79,7 +79,11 @@ Untere Navigation in dieser Reihenfolge (= die Lernreise): **Wissen → Berater 
     Video-Gruppen). Eigene Einträge und Gruppen ergänzbar, Vorlagen ausblendbar.
 
 - 📷 **Berater** – Motiv antippen (Wald, Meer, Regennacht, Sonnenuntergang, Porträt,
-  Berge, Stadt, Blumen, Food, Schnee), **drei Ebenen** je Motiv:
+  Berge, Stadt, Blumen, Food, Schnee), **vier Ebenen** je Motiv:
+  - **🎯 Ziel:** der 0. Schritt vor dem ersten Regler – die drei Zielfragen (Wohin
+    zuerst das Auge? · Warm oder kühl? · Was lenkt ab?), *eine* klare Empfehlung mit
+    kurzer Begründung und die drei Trennungs-Achsen (Helligkeit, Sättigung,
+    Farbtemperatur), mit denen sich das Motiv vom Hintergrund löst.
   - **📸 Aufnehmen:** wie du dieses Motiv am besten fotografierst (Licht, Perspektive,
     Bildaufbau, Technik), mit Sprung zur Lektion „Bildaufbau".
   - **🧩 Verstehen:** das Bearbeitungs-Konzept aufgeschlüsselt – Kernidee, eine Grafik
@@ -156,6 +160,7 @@ Konzept jederzeit zur Grundlage springen kann.
 
 | Version | Was |
 |---------|-----|
+| **v26** | Berater bekommt den 0. Schritt: neue erste Ebene „🎯 Ziel" je Motiv – 3 Zielfragen (Wohin das Auge? · Warm/kühl? · Was lenkt ab?) + eine klare Empfehlung + die 3 Trennungs-Achsen (Helligkeit/Sättigung/Farbtemperatur), aus dem Bild-Leitfaden. |
 | **v25** | Video-Bereich C „Farbe/Color Grading" (8 Lektionen) + Bereich D „Rezepte"; Video-Rezepte aus dem Bild-Bereich nach D verschoben (Bild-Rezepte jetzt nur Bild). Video hat damit A–D. |
 | **v24** | Video-Berater komplett (10 Situationen): + Reportage & Doku-Vlog, Day-in-the-Life/GRWM, Sketch & POV. |
 | **v23** | Video-Berater: Situationen Tutorial & How-to, Vlog & zur Kamera, Reel & Short. |

@@ -403,6 +403,29 @@
       border-radius: 999px; padding: 4px 10px; cursor: pointer; }
     .bv-lek:active { transform: scale(.98); }
 
+    /* Ziel-Ansicht (Berater · 0. Schritt: 3 Fragen → eine Empfehlung) */
+    .zv { display: flex; flex-direction: column; gap: 14px; }
+    .zv-kern { background: rgba(255,159,69,.12); border: 1px solid rgba(255,159,69,.34);
+      border-left: 3px solid var(--accent); border-radius: 12px; padding: 14px 15px; }
+    .zv-kern .eyebrow { display: block; font-size: 11px; letter-spacing: .07em;
+      text-transform: uppercase; font-weight: 700; color: var(--accent-2); margin-bottom: 6px; }
+    .zv-kern p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--text); }
+    .zv-kern b { color: var(--accent-2); }
+    .zv-fragen { display: flex; flex-direction: column; gap: 8px; }
+    .zv-q { display: flex; gap: 11px; background: var(--bg-card); border: 1px solid var(--line);
+      border-radius: 12px; padding: 11px 13px; }
+    .zv-q .qn { flex: none; width: 22px; height: 22px; border-radius: 999px; font-size: 12px;
+      font-weight: 700; color: var(--accent-2); background: var(--bg-card-2); border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center; }
+    .zv-q .qb { flex: 1; min-width: 0; font-size: 13.5px; color: #dcdce0; }
+    .zv-q .qb b { display: block; color: var(--text); font-size: 12.5px; margin-bottom: 2px; }
+    .zv-trenn-h { font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+      font-weight: 700; color: var(--muted); margin: 2px 0 -4px; }
+    .zv-trenn { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+    .zv-ax { background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; padding: 11px 12px; }
+    .zv-ax .axh { display: block; font-size: 12px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+    .zv-ax p { margin: 0; font-size: 12.5px; line-height: 1.45; color: #dcdce0; }
+
     /* Farblehre-Grafiken */
     .fl-mix { display: flex; gap: 12px; }
     .fl-mix > div { flex: 1; text-align: center; }
@@ -4255,6 +4278,112 @@
     motifGrid.querySelectorAll('.motif').forEach(b =>
       b.addEventListener('click', () => showAdvice(b.dataset.id)));
   }
+  // ── Ziel: die 3 Fragen → eine bewusste Empfehlung (0. Schritt) ────────
+  // Kern der Leitfaden-Idee: nicht ein Regler-Menü öffnen, sondern pro
+  // Motiv eine klare Richtung vorgeben. Drei Zielfragen + die drei
+  // Trennungs-Achsen, mit denen sich das Motiv vom Hintergrund löst.
+  const ZIEL = {
+    "m-wald": { stimmung: "warm",
+      kern: "Einen warmen <b>Anker</b> (Baum, Pfad, Lichtstrahl) vor kühle Tiefe setzen und das Grün gezielt in den Mitteltönen halten – nicht global sättigen.",
+      auge: "Der Anker – ein Baum, Pfad oder Lichtstrahl. Der wird am hellsten und schärfsten.",
+      stimmungTxt: "Erdig-warm: das Braun trägt die Stimmung, die Tiefen zwischen den Stämmen bleiben kühl als Gegenpol.",
+      ablenkung: "Helle Himmelslöcher zwischen den Blättern ziehen das Auge nach oben raus – runterdimmen.",
+      hell: "Anker heller, das Dickicht ringsum leicht abdunkeln.",
+      satt: "Grün des Ankers halten, das übrige Laub etwas entsättigen – sonst Neon-Wald.",
+      temp: "Anker warm, die Tiefen zwischen den Stämmen kühl – das trennt von selbst." },
+    "m-meer": { stimmung: "kühl",
+      kern: "Türkise Tiefen über die <b>Kurve</b> aufbauen und einen warmen Licht-Akzent als Gegenpol setzen – nicht global blau sättigen.",
+      auge: "Die Lichtkante auf dem Wasser oder der Horizont – dort am hellsten.",
+      stimmungTxt: "Kühle Grundstimmung, ein warmer Licht-Akzent (Sonne, Haut) als Kontrast.",
+      ablenkung: "Ausgebrannter Himmel und Strandkram am Rand – Lichter runter, Ränder beschneiden.",
+      hell: "Gischt und Reflexe hell halten, die Wasserfläche darunter leicht absenken.",
+      satt: "Das Türkis der Brandung halten, den diesigen Himmel entsättigen.",
+      temp: "Warme Lichter gegen türkis-kühles Wasser – der Küsten-Look." },
+    "m-regennacht": { stimmung: "kühl",
+      kern: "Eine <b>Neonfarbe dominieren</b> lassen und den Rest kühl entsättigen – die Spiegelungen in den unteren Mitteltönen tragen alles.",
+      auge: "Die hellste Neon-Spiegelung auf dem nassen Asphalt – dorthin führt der Blick.",
+      stimmungTxt: "Kühle, nächtliche Basis mit einer klaren Leitfarbe.",
+      ablenkung: "Tote graue Flächen und Streulichter am Rand – abdunkeln oder entsättigen.",
+      hell: "Spiegelungen und Lichtquellen hell, den nassen Asphalt drumherum tief halten.",
+      satt: "Die Leitfarbe satt, alle anderen Lichter zurücknehmen.",
+      temp: "Kühle Schatten gegen eine warme/magenta Lichtfarbe – der Split macht die Nacht." },
+    "m-sonnenuntergang": { stimmung: "warm",
+      kern: "Die <b>Wärme verstärken</b>, aber die Schatten kühl halten, damit nicht alles zu Orangebrei verschmilzt.",
+      auge: "Die Sonne bzw. das hellste Glühen – der wärmste, hellste Punkt.",
+      stimmungTxt: "Ganz in Bernstein baden – oder kühle Schatten als Teal-Gegenpol für mehr Tiefe.",
+      ablenkung: "Fremdfarben, die aus dem Bernstein ausbrechen – gezielt entsättigen, nicht die ganze Szene.",
+      hell: "Den Himmel ums Licht hell, den Vordergrund als dunkle Silhouette/Kontur.",
+      satt: "Das Glühen satt, farbige Ablenkungen ringsum zurücknehmen.",
+      temp: "Warme Lichter gegen kühl gehaltene (teal) Schatten – Tiefe statt Einheitsbrei." },
+    "m-portrait": { stimmung: "warm",
+      kern: "<b>Warme Haut, kühle Schatten, Hintergrund entsättigen</b> – und die Mitteltöne (Haut) beim Grading unangetastet lassen.",
+      auge: "Die Augen und das Gesicht – hell, weich, warm (aber keine harte Struktur auf der Haut).",
+      stimmungTxt: "Warme, weiche Haut; die Szene darf warm oder kühl sein, die Haut bleibt gesund.",
+      ablenkung: "Heller oder bunter Hintergrund, der mit dem Gesicht konkurriert – abdunkeln und entsättigen.",
+      hell: "Gesicht heller als die Umgebung – der klassische Blickfang.",
+      satt: "Hautfarbe halten, den Hintergrund entsättigen, damit die Person vorne steht.",
+      temp: "Warme Person vor kühlerem Hintergrund – trennt selbst bei gleicher Helligkeit." },
+    "m-berge": { stimmung: "kühl",
+      kern: "Warmen <b>Vordergrund</b> gegen kühle, leicht entsättigte Ferne – räumliche Tiefe kommt aus der Farbe, nicht aus der Schärfe.",
+      auge: "Der Hauptgipfel oder der beleuchtete Vordergrund – der klarste, wärmste Punkt.",
+      stimmungTxt: "Kühle Ferne, warmer Vordergrund – die Warm/Kühl-Spannung macht die Tiefe.",
+      ablenkung: "Fahler Dunst und ein leerer Himmel – Kontrast und Entsättigung dosiert setzen.",
+      hell: "Vordergrund heller und kräftiger, die Ferne heller-flauer verblassen lassen (Luftperspektive).",
+      satt: "Vordergrund satt, die Ferne entsättigen – so rückt sie optisch weg.",
+      temp: "Warmer naher Grund gegen kühl-bläuliche Ferne – der Tiefen-Trick." },
+    "m-stadt": { stimmung: "kühl",
+      kern: "Alles kühl und <b>entsättigt</b> halten, damit Formen und Linien wirken – ein warmer Akzent zieht den Blick.",
+      auge: "Der eine warme Farbtupfer (Person, Schild, Auto) im nüchternen Grau.",
+      stimmungTxt: "Kühl-nüchterner Grundton, Farbe stark reduziert.",
+      ablenkung: "Bunte Werbe- und Straßenfarben, die zerstreuen – global entsättigen.",
+      hell: "Den Akzent heller, die Betonflächen im Mittelton-Kontrast halten.",
+      satt: "Ein Farbtupfer bleibt satt, der Rest wird grau – Reduktion ist der Look.",
+      temp: "Warmer Tupfer gegen kühlen Grundton – der einzige Farbkontrast im Bild." },
+    "m-blumen": { stimmung: "warm",
+      kern: "Die <b>Blüte farblich freistellen</b>, nicht über die Schärfe – Motivfarbe halten, Hintergrund entsättigen.",
+      auge: "Die Blüte – genauer ihr schärfster Punkt (Staubgefäße, vordere Kante).",
+      stimmungTxt: "Blüte warm und satt, Hintergrund als kühle oder entsättigte Fläche.",
+      ablenkung: "Unruhiger, bunter Hintergrund – kühlen, entsättigen, abdunkeln.",
+      hell: "Blüte heller als der Hintergrund, Ränder leicht abdunkeln (Vignette).",
+      satt: "Blütenfarbe satt halten, den Hintergrund deutlich entsättigen.",
+      temp: "Warme Blüte vor kühl/violett gehaltenem Hintergrund – trennt sauber." },
+    "m-food": { stimmung: "warm",
+      kern: "Weißabgleich sauber <b>neutral</b> setzen (kein Grünstich), das Gericht warm und den Untergrund kühl/neutral.",
+      auge: "Der Held auf dem Teller – die frischeste, hellste Stelle des Gerichts.",
+      stimmungTxt: "Warm und natürlich wirkt appetitlich; jeder Grünstich killt den Appetit.",
+      ablenkung: "Unruhiger Untergrund, Besteck, Ränder – abdunkeln, entsättigen oder beschneiden.",
+      hell: "Das Gericht heller als Teller-Rand und Untergrund.",
+      satt: "Die Speisenfarben halten, den Untergrund entsättigen.",
+      temp: "Warmer Teller vor kühlem/neutralem Untergrund – der Food-Klassiker." },
+    "m-schnee": { stimmung: "kühl",
+      kern: "Den Schnee aktiv <b>aufhellen</b> und den Weißpunkt setzen, das Motiv als wärmeren, dunkleren Kontrast davor.",
+      auge: "Das Motiv im Schnee (Person, Baum, Spur) – der Schnee ist Bühne, nicht Star.",
+      stimmungTxt: "Klare, kühle Winterruhe; ein warmer Licht-Akzent setzt den Kontrast.",
+      ablenkung: "Grau abgesoffener Schnee wirkt schmutzig – Weißpunkt setzen und aufhellen.",
+      hell: "Motiv kräftiger/dunkler als die helle Schneefläche – Kontrast statt Verschmelzen.",
+      satt: "Schnee fast neutral halten, die Motivfarbe als einzige satte Fläche.",
+      temp: "Warmer Akzent (Haut, Licht) gegen die blau-kühle Schneefläche." }
+  };
+  function zielView(m) {
+    const z = ZIEL[m.id];
+    if (!z) return '';
+    const stimmIc = z.stimmung === 'warm' ? '🔥 warm' : '❄️ kühl';
+    return `<div class="zv">
+        <div class="zv-kern"><span class="eyebrow">Empfehlung für dieses Motiv</span><p>${rich(z.kern)}</p></div>
+        <div class="zv-fragen">
+          <div class="zv-q"><span class="qn">1</span><span class="qb"><b>Wohin zuerst das Auge?</b>${rich(z.auge)}</span></div>
+          <div class="zv-q"><span class="qn">2</span><span class="qb"><b>Warm oder kühl?</b>${stimmIc} · ${rich(z.stimmungTxt)}</span></div>
+          <div class="zv-q"><span class="qn">3</span><span class="qb"><b>Was lenkt ab?</b>${rich(z.ablenkung)}</span></div>
+        </div>
+        <div class="zv-trenn-h">Motiv abheben · 3 Trennungs-Achsen</div>
+        <div class="zv-trenn">
+          <div class="zv-ax"><span class="axh">☀️ Helligkeit</span><p>${rich(z.hell)}</p></div>
+          <div class="zv-ax"><span class="axh">🎨 Sättigung</span><p>${rich(z.satt)}</p></div>
+          <div class="zv-ax"><span class="axh">🌡️ Farbtemperatur</span><p>${rich(z.temp)}</p></div>
+        </div>
+        <button class="btn ghost small" data-goto-anwenden style="margin-top:2px">📋 Zum fertigen Ablauf</button>
+      </div>`;
+  }
   // ── Anwenden: der fertige Ablauf (wie bisher) ─────────────────────────
   function adviceApply(m) {
     return `<p class="sum">${rich(m.sum)}</p>
@@ -4312,6 +4441,7 @@
   function switchBView(v) {
     const seg = document.getElementById('bSeg'); if (!seg) return;
     [].forEach.call(seg.querySelectorAll('.segbtn'), x => x.classList.toggle('active', x.dataset.bview === v));
+    const bz = el('bz-view'); if (bz) bz.hidden = v !== 'ziel';
     const bs = el('bs-view'); if (bs) bs.hidden = v !== 'aufnehmen';
     el('bv-view').hidden = v !== 'verstehen';
     el('ba-view').hidden = v !== 'anwenden';
@@ -4331,13 +4461,16 @@
       b.classList.toggle('active', b.dataset.id === id));
     const head = `<h3><span>${m.em}</span> ${rich(m.name)}</h3>`;
     if (m.learn) {
+      const hasZiel = !!ZIEL[m.id];
       adviceBox.innerHTML = `<div class="advice">${head}
         <div class="seg" id="bSeg" role="tablist">
-          <button class="segbtn active" data-bview="aufnehmen" role="tab">📸 Aufnehmen</button>
+          ${hasZiel ? `<button class="segbtn active" data-bview="ziel" role="tab">🎯 Ziel</button>` : ''}
+          <button class="segbtn${hasZiel ? '' : ' active'}" data-bview="aufnehmen" role="tab">📸 Aufnehmen</button>
           <button class="segbtn" data-bview="verstehen" role="tab">🧩 Verstehen</button>
           <button class="segbtn" data-bview="anwenden" role="tab">📋 Anwenden</button>
         </div>
-        <div id="bs-view">${shootView(m)}</div>
+        ${hasZiel ? `<div id="bz-view">${zielView(m)}</div>` : ''}
+        <div id="bs-view"${hasZiel ? ' hidden' : ''}>${shootView(m)}</div>
         <div id="bv-view" hidden>${learnView(m)}</div>
         <div id="ba-view" hidden>${adviceApply(m)}</div>
       </div>`;
