@@ -26,7 +26,7 @@ und **🎬 Videobearbeitung**. Die untere Navigation zeigt je Modus die passende
 der zuletzt gewählte Modus wird lokal gemerkt.
 
 **Fertig – Bild:**
-- 📖 **Wissen** – Startseite, zwei Ebenen (Lernen + Nachschlagen), **12 Lektionen**.
+- 📖 **Wissen** – Startseite, zwei Ebenen (Lernen + Nachschlagen), **13 Lektionen**.
 - 📷 **Berater** – 10 Motive, **vier Ebenen** je Motiv (Ziel · Aufnehmen · Verstehen · Anwenden).
 - 🎨 **Farbe** – zwei Ebenen: **Farblehre** (8 Lektionen) + **Farbrad**.
 - 🧪 **Rezepte** – **nur Bild-Looks** (17 Stück), eigene Rezepte speicherbar.
@@ -69,11 +69,12 @@ Damit sind **Video A–D** inhaltlich gefüllt.
 Untere Navigation in dieser Reihenfolge (= die Lernreise): **Wissen → Berater → Farbe → Rezepte**.
 
 - 📖 **Wissen** – der Einstieg, zwei Ebenen über einen Umschalter.
-  - **Lernen:** geführter Pfad aus **12 Grundlagen-Lektionen** (Drill-in, Fortschritt
+  - **Lernen:** geführter Pfad aus **13 Grundlagen-Lektionen** (Drill-in, Fortschritt
     wird lokal abgehakt): Was ist Bildbearbeitung? · Die drei Zonen · Licht steuern ·
     Die Kurve verstehen · Weißabgleich · Farbe & Sättigung · Stimmung machen ·
     Details & Finish · Ebenen & Masken · Auswählen & Freistellen · Retuschieren ·
-    Bildaufbau. Jede Lektion: Hook → Grafik → einfache Erklärung → „Merke" →
+    Bildaufbau · Die Reihenfolge (fester Ablauf + harte Regeln: RAW, Dosierung,
+    Licht, Rand-Check). Jede Lektion: Hook → Grafik → einfache Erklärung → „Merke" →
     „Probier's" → ausklappbare Vertiefung „für Fortgeschrittene".
   - **Nachschlagen:** der durchsuchbare Spickzettel in 19 Gruppen (inkl. zwei
     Video-Gruppen). Eigene Einträge und Gruppen ergänzbar, Vorlagen ausblendbar.
@@ -163,6 +164,7 @@ Konzept jederzeit zur Grundlage springen kann.
 
 | Version | Was |
 |---------|-----|
+| **v28** | Wissen (Bild-Leitfaden, Etappe 3): neue Lektion 13 „Die Reihenfolge" (fester Ablauf global→Look→lokal→Feinschliff als Grafik, „lokal vor global" + die harten Regeln: RAW statt JPEG, Dosierung, Licht beim Fotografieren, Rand-Check) + die Regel „Gesicht ≠ Rest der Person" (keine Struktur auf Haut, zweite engere Maske) in Lektion 11. |
 | **v27** | Look-Modell (Bild-Leitfaden, Etappe 2): Rezepte-Kopf „Jeder Look = 3 Achsen" (Farbverhältnis/Kontrast/Sättigung) mit Namen→Werte-Beispielen (Cinematic/Märchenhaft/Nordisch) + je Bild-Look ein 3-Achsen-Diagramm mit Formel; in der Farblehre (FL5) der Hinweis „warm/kühl ≠ Harmonie/Spannung" (zwei getrennte Achsen). |
 | **v26** | Berater bekommt den 0. Schritt: neue erste Ebene „🎯 Ziel" je Motiv – 3 Zielfragen (Wohin das Auge? · Warm/kühl? · Was lenkt ab?) + eine klare Empfehlung + die 3 Trennungs-Achsen (Helligkeit/Sättigung/Farbtemperatur), aus dem Bild-Leitfaden. |
 | **v25** | Video-Bereich C „Farbe/Color Grading" (8 Lektionen) + Bereich D „Rezepte"; Video-Rezepte aus dem Bild-Bereich nach D verschoben (Bild-Rezepte jetzt nur Bild). Video hat damit A–D. |
