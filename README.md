@@ -164,6 +164,7 @@ Konzept jederzeit zur Grundlage springen kann.
 
 | Version | Was |
 |---------|-----|
+| **v29** | Service-Worker: App-Seite jetzt **network-first** (online immer die neueste Fassung, offline weiter aus dem Cache) statt cache-first – behebt, dass neue Deployments auf installierten Geräten hängen blieben. Icons/Manifest bleiben cache-first. |
 | **v28** | Wissen (Bild-Leitfaden, Etappe 3): neue Lektion 13 „Die Reihenfolge" (fester Ablauf global→Look→lokal→Feinschliff als Grafik, „lokal vor global" + die harten Regeln: RAW statt JPEG, Dosierung, Licht beim Fotografieren, Rand-Check) + die Regel „Gesicht ≠ Rest der Person" (keine Struktur auf Haut, zweite engere Maske) in Lektion 11. |
 | **v27** | Look-Modell (Bild-Leitfaden, Etappe 2): Rezepte-Kopf „Jeder Look = 3 Achsen" (Farbverhältnis/Kontrast/Sättigung) mit Namen→Werte-Beispielen (Cinematic/Märchenhaft/Nordisch) + je Bild-Look ein 3-Achsen-Diagramm mit Formel; in der Farblehre (FL5) der Hinweis „warm/kühl ≠ Harmonie/Spannung" (zwei getrennte Achsen). |
 | **v26** | Berater bekommt den 0. Schritt: neue erste Ebene „🎯 Ziel" je Motiv – 3 Zielfragen (Wohin das Auge? · Warm/kühl? · Was lenkt ab?) + eine klare Empfehlung + die 3 Trennungs-Achsen (Helligkeit/Sättigung/Farbtemperatur), aus dem Bild-Leitfaden. |
