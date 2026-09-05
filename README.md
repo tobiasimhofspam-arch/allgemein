@@ -99,11 +99,13 @@ Untere Navigation in dieser Reihenfolge (= die Lernreise): **Wissen → Berater 
     ausdrücken · Farbe im Bild einsetzen), mit Sprüngen ins Farbrad und ins Wissen.
     Ausgerichtet auf das **Licht-/RGB-Modell** (Gegenfarbe von Blau = Gelb), passend
     zum Grading; der Malkasten (RYB) nur als Fortgeschrittenen-Randnotiz.
-  - **Farbrad:** das interaktive Rad mit zwei ziehbaren Punkten (Lichter/Schatten),
-    Feinsteuerung, Palette, Bedeutungen und **drei Looks** (Cinematic · Märchenhaft ·
-    Nordisch, gleiche Namen wie im Rezepte-Kopf) – die Farblehre am eigenen Bild
-    angewandt. Kurven-Anweisungen zielen auf den **¼-/¾-Punkt** (Mitteltöne), nicht
-    auf die Ecken.
+  - **Farbrad:** ein **Farb-Finder** in drei Bereichen. ① Hauptfarbe des Bildes auf dem
+    Rad wählen + eine **Harmonie-Regel** (Monochrom · Analog · Komplementär · Split ·
+    Triade) → daraus eine **5-Farben-Palette** („welche Farben passen zu meinem Bild").
+    ② **Klassische Look-Kombis** (Teal & Orange, 70er, Blaue Stunde, Golden Hour, Wald,
+    Beere) setzen Hauptfarbe + Regel. ③ **Die 3 Looks nachbauen** (Cinematic · Märchenhaft ·
+    Nordisch) mit Grading-Anleitung als kanal-gruppierte S-Kurven (¼-/¾-Punkt, nicht die
+    Ecken). Rad-Zeichnung/Palette: `harmonyPalette` + `renderPalette`.
 
 - 🧪 **Rezepte** – **17 Bild-Looks** mit Kurvenarbeit, Begründung je Schritt und Merksatz;
   eigene Rezepte speicherbar. Oben ein aufklappbarer **Look-Modell-Kopf** („Jeder Look = 3
@@ -166,6 +168,7 @@ Konzept jederzeit zur Grundlage springen kann.
 
 | Version | Was |
 |---------|-----|
+| **v32** | **Farbrad neu gedacht** als Farb-Finder (Nutzer-Feedback), drei Bereiche: ① Hauptfarbe wählen + Harmonie-Regel (Monochrom/Analog/Komplementär/Split/Triade) → abgeleitete **Palette** (Adobe-Logik, ein Basispunkt + Regeln); ② klassische Look-Kombis (Teal&Orange, 70er, Blaue Stunde …) setzen Hauptfarbe + Regel; ③ die 3 Looks mit Grading-Anleitung (kanal-gruppierte S-Kurven). Entfernt: „Bedeutung der Farben", langer Social-Media-Palettentext, generischer „So setzt du um"-Block. |
 | **v31** | Kurven-Moves jetzt **nach Kanal gruppiert** (Nutzer-Feedback): pro Kanal beide Punkte zusammen (¼ Schatten + ¾ Lichter = kleine S-Kurve), Reihenfolge Blau → Rot → Grün, statt zwischen den Kanälen zu springen. Gilt im Farbrad (Looks) und im Berater-Grading (`movesByChannel`). |
 | **v30** | Grading klarer & weniger überladen (Nutzer-Feedback): Kurven-Sprache app-weit auf **¼-Punkt (Schatten) / ¾-Punkt (Lichter)** statt „linkes/rechtes Ende (Ecke)" umgestellt – die auto-generierten Moves (`moveSentence`/`movesHtml`) **und** die Farbkanal-Tönungs-Schritte in allen Motiven & Rezepten; RGB-Fades/Weißpunkt bleiben bewusst „Ecke/Ende". Neu eine „Wo anfassen?"-Legende am Kurven-Hinweis. Farbrad-„Wohin diese Farben führen" von 6 auf **3 Looks** (Cinematic · Märchenhaft · Nordisch, gleiche Namen wie im Rezepte-Kopf); Farbrad-Umsetzung zeigt nur noch den **Hauptkanal**, Nebenkanäle einklappbar; Berater → Anwenden zeigt **eine** empfohlene Richtung (Spannung), Harmonie einklappbar. |
 | **v29** | Service-Worker: App-Seite jetzt **network-first** (online immer die neueste Fassung, offline weiter aus dem Cache) statt cache-first – behebt, dass neue Deployments auf installierten Geräten hängen blieben. Icons/Manifest bleiben cache-first. |

@@ -206,6 +206,18 @@
     .qbtn { font-size: 12.5px; font-weight: 600; background: var(--bg-card); color: var(--text);
       border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
     .qbtn:active { transform: scale(.97); }
+    .harmrow { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .harmbtn { font-size: 13px; background: var(--bg-card); color: var(--text);
+      border: 1px solid var(--line); border-radius: 999px; padding: 7px 13px; cursor: pointer; }
+    .harmbtn.active { background: rgba(255,159,69,.16); border-color: var(--accent);
+      color: var(--accent-2); font-weight: 650; }
+    .harmbtn:active { transform: scale(.97); }
+    .palrow { display: flex; gap: 6px; margin: 8px 0 10px; }
+    .palchip { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0; }
+    .palchip .sw { width: 100%; height: 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,.12); }
+    .palchip .hx { font-size: 9.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .lookh { margin: 12px 0 6px; font-size: 11px; text-transform: uppercase;
+      letter-spacing: .05em; color: var(--muted); }
     .relbox { border: 1px solid var(--line); border-radius: 14px; padding: 14px;
       background: var(--bg-card); margin-bottom: 14px; }
     .relbox .top { display: flex; align-items: baseline; justify-content: space-between;
@@ -875,45 +887,39 @@
         </div>
       </div>
 
-      <!-- ============ FARBRAD (anwenden) ============ -->
+      <!-- ============ FARBRAD (Farb-Finder) ============ -->
       <div id="fview-rad" hidden>
-      <p class="lead">Zieh die zwei Punkte über das Rad: <b>oben die Lichter-Farbe</b>, <b>unten die Schatten-Farbe</b>. Darunter stellst du jeden Ton exakt ein – und erfährst, was er bewirkt.</p>
-      <div id="wheelWrap"><canvas id="wheel" width="600" height="600" tabindex="0" aria-label="Farbrad mit zwei ziehbaren Punkten"></canvas></div>
+
+      <!-- ① Bildfarbe → passende Palette -->
+      <p class="lead"><b>① Welche Hauptfarbe hat dein Bild?</b> Wähl sie auf dem Rad – die Harmonie-Regel darunter zeigt dir, welche Farben dazu passen.</p>
+      <div id="wheelWrap"><canvas id="wheel" width="600" height="600" tabindex="0" aria-label="Farbrad – Hauptfarbe wählen"></canvas></div>
       <p class="wheelhint">Ziehen: Winkel = Farbton · nach außen = kräftiger</p>
       <div class="colcards">
-        <div class="colcard hi">
-          <div class="role">☀️ Lichter</div>
-          <div class="prev" id="prevHi"></div>
-          <div class="hexrow"><input type="color" id="pickHi" /><span class="hex" id="hexHi"></span></div>
-          <div class="sl"><label>Sättigung <span id="satHiV"></span></label><input type="range" id="satHi" min="0" max="100" /></div>
-          <div class="sl"><label>Helligkeit <span id="ligHiV"></span></label><input type="range" id="ligHi" min="10" max="90" /></div>
-        </div>
-        <div class="colcard sh">
-          <div class="role">🌑 Schatten</div>
-          <div class="prev" id="prevSh"></div>
-          <div class="hexrow"><input type="color" id="pickSh" /><span class="hex" id="hexSh"></span></div>
-          <div class="sl"><label>Sättigung <span id="satShV"></span></label><input type="range" id="satSh" min="0" max="100" /></div>
-          <div class="sl"><label>Helligkeit <span id="ligShV"></span></label><input type="range" id="ligSh" min="10" max="90" /></div>
+        <div class="colcard">
+          <div class="role">🎯 Deine Hauptfarbe</div>
+          <div class="prev" id="prevBase"></div>
+          <div class="hexrow"><input type="color" id="pickBase" /><span class="hex" id="hexBase"></span></div>
+          <div class="sl"><label>Sättigung <span id="satBaseV"></span></label><input type="range" id="satBase" min="0" max="100" /></div>
+          <div class="sl"><label>Helligkeit <span id="ligBaseV"></span></label><input type="range" id="ligBase" min="10" max="90" /></div>
         </div>
       </div>
-      <h5 class="sec">Startpunkte</h5>
-      <p class="info">Diese Knöpfe setzen nur die zwei Punkte auf dem Rad an typische Positionen – sie verändern kein Foto und sind kein Filter. Sie sind ein Sprungbrett, damit du nicht bei null anfängst; danach ziehst du selbst weiter.</p>
-      <div class="quickrow" id="quickRow"></div>
-      <div id="relBox"></div>
-      <h5 class="sec">Deine Palette</h5>
+      <h5 class="sec">Harmonie-Regel</h5>
+      <div class="harmrow" id="harmRow"></div>
+      <div id="harmExplain"></div>
+      <h5 class="sec">Passende Palette</h5>
       <div class="strip" id="paletteStrip"></div>
-      <div class="striplbl"><span>Schatten</span><span>Mitteltöne (neutral)</span><span>Lichter</span></div>
-      <div class="tipbox" id="paletteWhat"></div>
-      <h5 class="sec">Was diese Farben ausdrücken</h5>
-      <div id="meanings"></div>
-      <h5 class="sec key">Wohin diese Farben führen können</h5>
-      <p class="info">Dieselben zwei Farben ergeben je nach Grading eine ganz andere Geschichte.
-      Tippe eine Richtung an – und übernimm sie mit einem Tipp aufs Rad, wenn sie dir gefällt.</p>
+      <div class="palrow" id="paletteHex"></div>
+      <p class="info" id="paletteWhat"></p>
+
+      <!-- ② Klassische Look-Kombis -->
+      <h5 class="sec key">② Klassische Look-Kombis</h5>
+      <p class="info">Antippen – das Rad springt auf die typischen Farben dieses Looks.</p>
+      <div class="quickrow" id="quickRow"></div>
+
+      <!-- ③ Einen Look nachbauen -->
+      <h5 class="sec key">③ Einen Look nachbauen</h5>
+      <p class="info">Welchen Look willst du erreichen? Antippen für die Kurven-Anleitung.</p>
       <div id="richtungen"></div>
-      <h5 class="sec key" id="umsetzTitle">So setzt du die Palette um</h5>
-      <div id="gegenBox"></div>
-      <div id="zoneBox"></div>
-      <div id="recipeOut"></div>
       </div>
     </section>
 
@@ -4896,20 +4902,40 @@
   //=========================================================================
   //  FARB-HELFER – zwei ziehbare Punkte auf dem Rad + Feinsteuerung
   //=========================================================================
-  const HI = { h: 32, s: 70, l: 58 };   // Lichter-Farbe
-  const SH = { h: 198, s: 55, l: 34 };  // Schatten-Farbe
+  const BASE = { h: 32, s: 70, l: 55 };   // Hauptfarbe des Bildes
+  let HARMONY = 'komplementaer';
+  const HARM_RULES = [
+    { id: 'mono',          n: 'Monochrom',    ex: 'Ein Farbton in mehreren Helligkeiten – maximale Ruhe, sehr elegant.' },
+    { id: 'analog',        n: 'Analog',       ex: 'Benachbarte Töne, eine Farbfamilie – natürlich und harmonisch.' },
+    { id: 'komplementaer', n: 'Komplementär', ex: 'Die Gegenfarbe – maximaler Kontrast, das Motiv hebt sich ab.' },
+    { id: 'split',         n: 'Split-Kompl.', ex: 'Die zwei Nachbarn der Gegenfarbe – Spannung, aber weicher.' },
+    { id: 'triade',        n: 'Triade',       ex: 'Drei gleich verteilte Töne – lebendig und ausgewogen.' }
+  ];
+  const clampS = s => Math.max(0, Math.min(100, s));
+  const clampL = l => Math.max(8, Math.min(92, l));
+  // Aus einer Hauptfarbe + Regel eine 5-Farben-Palette ableiten (wie Adobe Color).
+  function harmonyPalette(b, rule) {
+    const H = b.h, S = b.s, L = b.l;
+    const c = (h, s, l) => ({ h: norm(h), s: clampS(s), l: clampL(l) });
+    switch (rule) {
+      case 'mono':          return [c(H,S,L+22), c(H,S,L+11), c(H,S,L), c(H,S-8,L-13), c(H,S-16,L-24)];
+      case 'analog':        return [c(H-40,S,L), c(H-20,S,L), c(H,S,L), c(H+20,S,L), c(H+40,S,L)];
+      case 'komplementaer': return [c(H,S,L+13), c(H,S,L), c(H,S,L-13), c(H+180,S,L), c(H+180,S,L-13)];
+      case 'split':         return [c(H,S,L), c(H,S,L-13), c(H+150,S,L), c(H+210,S,L), c(H+180,S-18,L-8)];
+      case 'triade':        return [c(H,S,L), c(H,S,L-12), c(H+120,S,L), c(H+240,S,L), c(H+120,S,L-12)];
+      default:              return [c(H,S,L)];
+    }
+  }
 
   const wheel = document.getElementById('wheel');
   const wctx = wheel.getContext('2d');
   const SIZE = wheel.width, CX = SIZE/2, CY = SIZE/2;
   const R_OUT = SIZE/2 - 12, R_IN = R_OUT * 0.42;
-
-  const satRadius = s => R_IN + (R_OUT - R_IN) * (Math.max(0, Math.min(100, s)) / 100);
+  const satRadius = s => R_IN + (R_OUT - R_IN) * (clampS(s) / 100);
   function markerXY(c) {
     const a = (c.h - 90) * Math.PI / 180, r = satRadius(c.s);
     return { x: CX + Math.cos(a) * r, y: CY + Math.sin(a) * r };
   }
-
   function drawWheel() {
     wctx.clearRect(0, 0, SIZE, SIZE);
     for (let a = 0; a < 360; a++) {
@@ -4921,45 +4947,47 @@
       wctx.arc(CX, CY, R_OUT, st, en); wctx.arc(CX, CY, R_IN, en, st, true);
       wctx.closePath(); wctx.fillStyle = grad; wctx.fill();
     }
-    const p1 = markerXY(HI), p2 = markerXY(SH);
-    wctx.beginPath(); wctx.moveTo(p1.x, p1.y); wctx.lineTo(p2.x, p2.y);
-    wctx.strokeStyle = 'rgba(255,255,255,.4)'; wctx.lineWidth = 4; wctx.stroke();
-    [[HI, 'L', p1], [SH, 'S', p2]].forEach(([c, lbl, p]) => {
-      wctx.beginPath(); wctx.arc(p.x, p.y, 34, 0, 2*Math.PI);
-      wctx.fillStyle = hslToHex(c.h, c.s, c.l); wctx.fill();
-      wctx.lineWidth = 7; wctx.strokeStyle = '#fff'; wctx.stroke();
-      wctx.fillStyle = c.l > 55 ? 'rgba(0,0,0,.7)' : 'rgba(255,255,255,.95)';
-      wctx.font = 'bold 30px -apple-system, system-ui, sans-serif';
-      wctx.textAlign = 'center'; wctx.textBaseline = 'middle';
-      wctx.fillText(lbl, p.x, p.y + 1);
+    const pal = harmonyPalette(BASE, HARMONY);
+    const pb = markerXY(BASE);
+    pal.forEach(c => {
+      const p = markerXY(c);
+      wctx.beginPath(); wctx.moveTo(pb.x, pb.y); wctx.lineTo(p.x, p.y);
+      wctx.strokeStyle = 'rgba(255,255,255,.22)'; wctx.lineWidth = 3; wctx.stroke();
     });
+    pal.forEach(c => {
+      const p = markerXY(c);
+      wctx.beginPath(); wctx.arc(p.x, p.y, 20, 0, 2*Math.PI);
+      wctx.fillStyle = hslToHex(c.h, c.s, c.l); wctx.fill();
+      wctx.lineWidth = 4; wctx.strokeStyle = 'rgba(255,255,255,.85)'; wctx.stroke();
+    });
+    wctx.beginPath(); wctx.arc(pb.x, pb.y, 34, 0, 2*Math.PI);
+    wctx.fillStyle = hslToHex(BASE.h, BASE.s, BASE.l); wctx.fill();
+    wctx.lineWidth = 7; wctx.strokeStyle = '#fff'; wctx.stroke();
   }
 
-  let dragging = null;
+  let dragging = false;
   function evtPos(ev) {
     const r = wheel.getBoundingClientRect();
     return { x: (ev.clientX - r.left) * (SIZE / r.width),
              y: (ev.clientY - r.top) * (SIZE / r.height) };
   }
-  function applyPos(c, p) {
+  function applyPos(p) {
     const dx = p.x - CX, dy = p.y - CY;
-    c.h = norm(Math.atan2(dy, dx) * 180 / Math.PI + 90);
+    BASE.h = norm(Math.atan2(dy, dx) * 180 / Math.PI + 90);
     const dist = Math.hypot(dx, dy);
-    c.s = Math.round(Math.max(0, Math.min(100, (dist - R_IN) / (R_OUT - R_IN) * 100)));
-    renderColor();
+    BASE.s = Math.round(clampS((dist - R_IN) / (R_OUT - R_IN) * 100));
+    renderPalette();
   }
   wheel.addEventListener('pointerdown', ev => {
-    const p = evtPos(ev), a = markerXY(HI), b = markerXY(SH);
-    dragging = Math.hypot(p.x-a.x, p.y-a.y) <= Math.hypot(p.x-b.x, p.y-b.y) ? HI : SH;
-    wheel.setPointerCapture(ev.pointerId);
-    applyPos(dragging, p); ev.preventDefault();
+    dragging = true; wheel.setPointerCapture(ev.pointerId);
+    applyPos(evtPos(ev)); ev.preventDefault();
   });
   wheel.addEventListener('pointermove', ev => {
     if (!dragging) return;
-    applyPos(dragging, evtPos(ev)); ev.preventDefault();
+    applyPos(evtPos(ev)); ev.preventDefault();
   });
   ['pointerup','pointercancel'].forEach(t =>
-    wheel.addEventListener(t, () => { dragging = null; }));
+    wheel.addEventListener(t, () => { dragging = false; }));
 
   // Beziehung der beiden Toene zueinander
   function relation(d) {
@@ -4985,54 +5013,53 @@
   //  RICHTUNGEN – wohin die gewaehlten Farben fuehren koennen
   //=========================================================================
   // Drei Looks – dieselben Namen wie im Rezepte-Kopf, damit die ganze App eine Sprache spricht.
+  // Die 3 Looks als Grading-Ziele: feste Schatten-/Lichter-Farbe + Kurven-Anleitung.
   const DIRECTIONS = [
     { id: 'cinematic', em: '🎬', n: 'Cinematic (Teal &amp; Orange)',
-      goal: 'Deine Hauptfarbe bleibt in den Lichtern, die Schatten gehen in die Gegenfarbe. Das Motiv springt aus dem Bild – der Kino-Klassiker.',
+      goal: 'Warme Lichter, kühle (türkise) Schatten – die Gegenfarben trennen das Motiv vom Hintergrund. Der Kino-Klassiker.',
       when: 'Wenn eine Person, ein Tier oder ein Objekt klar im Mittelpunkt stehen soll.',
-      calc: () => ({ hi: { h: HI.h, s: Math.max(50, HI.s) }, sh: { h: norm(HI.h + 180), s: 50, l: 30 } }),
-      extra: ['Ein einziger Farbkanal genügt: Schatten am ¼-Punkt in die eine Richtung, Lichter am ¾-Punkt gegenläufig – das ist der ganze Trick.',
-              'Mitte fixieren: einen Punkt genau in die Kurvenmitte setzen, sonst kippen Haut und Hauptmotiv mit.',
+      grade: { sh: { h: 195, s: 50, l: 30 }, hi: { h: 32, s: 62, l: 60 } },
+      extra: ['Mitte fixieren: einen Punkt genau in die Kurvenmitte setzen, sonst kippen Haut und Hauptmotiv mit.',
               'Vorher Sättigung −8, damit das Grading nicht übersteuert. Kurve flach halten.'] },
     { id: 'maerchen', em: '🧚', n: 'Märchenhaft &amp; verträumt',
       goal: 'Warmes, goldenes Licht und weiche, angehobene Tiefen (nichts tiefschwarz). Die Szene wirkt eine Spur unwirklich.',
       when: 'Ideal, wenn Licht durch Blätter fällt, Nebel liegt oder du eine Geschichte erzählen willst.',
-      calc: () => ({ hi: { h: 42, s: 52, l: 66 }, sh: { h: 40, s: 30, l: 40 } }),
-      extra: ['Schatten anheben: den ¼-Punkt (untere Mitteltöne) ein kleines Stück hoch – milchige, weiche Tiefen wie leichter Dunst. Das ist der Schlüsselgriff.',
-              'Wärme in die Lichter: ¾-Punkt Richtung Gelb/Orange, damit es golden leuchtet.',
-              'Feinabstimmung: Kontrast −15, Sättigung −8 – Weichheit statt Knall.'] },
+      grade: { sh: { h: 40, s: 26, l: 42 }, hi: { h: 44, s: 52, l: 66 } },
+      extra: ['Der Schlüsselgriff für den Dunst: den RGB-Fußpunkt (linke untere Ecke) ein kleines Stück anheben – milchige, weiche Tiefen.',
+              'Feinabstimmung: Kontrast −15, Sättigung −8 – Weichheit statt Knall. Ein Hauch Glow für das Leuchten.'] },
     { id: 'nordisch', em: '🧊', n: 'Nordisch &amp; melancholisch',
       goal: 'Kühl, entsättigt und flach – eine ruhige, geschlossene Stimmung. Formen und Licht übernehmen die Hauptrolle.',
       when: 'Für Winter, Nebel, Architektur, Street – alles, was nüchtern und aufgeräumt wirken soll.',
-      calc: () => ({ hi: { h: 205, s: 20, l: 60 }, sh: { h: 220, s: 26, l: 32 } }),
-      extra: ['Beide Töne kühl und nah beieinander halten (Harmonie, keine Gegenfarbe) – Schatten am ¼-Punkt, Lichter am ¾-Punkt in dieselbe blaue Richtung.',
-              'Kontrast flach halten: die Kurve nur ganz sanft biegen, die Tiefen nicht zulaufen lassen.',
-              'Sättigung −15 für die nordische Zurückhaltung.'] }
+      grade: { sh: { h: 220, s: 26, l: 32 }, hi: { h: 205, s: 20, l: 60 } },
+      extra: ['Beide Töne kühl und nah beieinander halten (Harmonie, keine Gegenfarbe).',
+              'Kontrast flach halten: die Kurve nur ganz sanft biegen, die Tiefen nicht zulaufen lassen. Sättigung −15.'] }
   ];
 
   let OPEN_DIR = null;
   function renderDirections() {
     el('richtungen').innerHTML = DIRECTIONS.map(d => {
-      const t = d.calc();
-      const shH = t.sh.h, hiH = t.hi.h;
-      const shHex = hslToHex(shH, t.sh.s != null ? t.sh.s : SH.s, t.sh.l != null ? t.sh.l : SH.l);
-      const hiHex = hslToHex(hiH, t.hi.s != null ? t.hi.s : HI.s, t.hi.l != null ? t.hi.l : HI.l);
+      const g = d.grade;
+      const shHex = hslToHex(g.sh.h, g.sh.s, g.sh.l);
+      const hiHex = hslToHex(g.hi.h, g.hi.s, g.hi.l);
       return `<div class="card dir ${OPEN_DIR === d.id ? 'open' : ''}" data-dir="${d.id}">
         <div class="card-head">
           <span style="font-size:20px">${d.em}</span>
           <div class="txt"><h3>${rich(d.n)}</h3>
-            <p class="mood">${toneName({h:shH, s:(t.sh.s!=null?t.sh.s:SH.s), l:(t.sh.l!=null?t.sh.l:SH.l)})} in den Schatten · ${toneName({h:hiH, s:(t.hi.s!=null?t.hi.s:HI.s), l:(t.hi.l!=null?t.hi.l:HI.l)})} in den Lichtern</p></div>
+            <p class="mood">${toneName(g.sh)} in den Schatten · ${toneName(g.hi)} in den Lichtern</p></div>
           <span class="chev">▶</span>
         </div>
         <div class="card-body">
           <p class="goal">${rich(d.goal)}</p>
           <div class="duo">
-            <div class="d" style="background:${shHex};color:#fff">Schatten</div>
-            <div class="d" style="background:${hiHex}">Lichter</div>
+            <div class="d" style="background:${shHex};color:#fff">Schatten ${hueName(g.sh.h)}</div>
+            <div class="d" style="background:${hiHex}">Lichter ${hueName(g.hi.h)}</div>
           </div>
-          <div class="moves" style="margin-top:10px"><p class="movehint">Arbeite Kanal für Kanal: erst einen komplett (beide Punkte = kleine S-Kurve), dann den nächsten.</p>${movesByChannel(shH, hiH)}</div>
+          <h6 class="lookh">So gradest du hin</h6>
+          <div class="moves"><p class="movehint">Arbeite Kanal für Kanal: erst einen komplett (beide Punkte = kleine S-Kurve), dann den nächsten.</p>${movesByChannel(g.sh.h, g.hi.h)}
+            <div class="move"><span class="ch">Mitte</span><span>Punkt in der Kurvenmitte setzen und nicht bewegen <span style="color:var(--muted)">(schützt Hauttöne)</span></span></div>
+          </div>
           <ul class="extra">${d.extra.map(x => `<li>${rich(x)}</li>`).join('')}</ul>
           <p class="when">✓ ${rich(d.when)}</p>
-          <button class="btn applybtn" data-apply="${d.id}">Diese Richtung aufs Rad übernehmen</button>
         </div></div>`;
     }).join('');
     el('richtungen').querySelectorAll('.card-head').forEach(h =>
@@ -5041,124 +5068,58 @@
         OPEN_DIR = card.classList.contains('open') ? null : card.dataset.dir;
         renderDirections();
       }));
-    el('richtungen').querySelectorAll('[data-apply]').forEach(b =>
-      b.addEventListener('click', () => {
-        const d = DIRECTIONS.find(x => x.id === b.dataset.apply);
-        const t = d.calc();
-        HI.h = t.hi.h; if (t.hi.s != null) HI.s = t.hi.s; if (t.hi.l != null) HI.l = t.hi.l;
-        SH.h = t.sh.h; if (t.sh.s != null) SH.s = t.sh.s; if (t.sh.l != null) SH.l = t.sh.l;
-        renderColor();
-        document.getElementById('wheelWrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }));
   }
 
-  function renderColor() {
+  function renderPalette() {
     drawWheel();
-    const hiHex = hslToHex(HI.h, HI.s, HI.l), shHex = hslToHex(SH.h, SH.s, SH.l);
-    el('prevHi').style.background = hiHex; el('prevSh').style.background = shHex;
-    el('hexHi').textContent = hiHex.toUpperCase(); el('hexSh').textContent = shHex.toUpperCase();
-    el('pickHi').value = hiHex; el('pickSh').value = shHex;
-    el('satHi').value = Math.round(HI.s); el('ligHi').value = Math.round(HI.l);
-    el('satSh').value = Math.round(SH.s); el('ligSh').value = Math.round(SH.l);
-    el('satHiV').textContent = Math.round(HI.s) + ' %'; el('ligHiV').textContent = Math.round(HI.l) + ' %';
-    el('satShV').textContent = Math.round(SH.s) + ' %'; el('ligShV').textContent = Math.round(SH.l) + ' %';
+    const baseHex = hslToHex(BASE.h, BASE.s, BASE.l);
+    el('prevBase').style.background = baseHex;
+    el('hexBase').textContent = baseHex.toUpperCase();
+    el('pickBase').value = baseHex;
+    el('satBase').value = Math.round(BASE.s); el('ligBase').value = Math.round(BASE.l);
+    el('satBaseV').textContent = Math.round(BASE.s) + ' %'; el('ligBaseV').textContent = Math.round(BASE.l) + ' %';
 
-    let d = Math.abs(norm(HI.h) - norm(SH.h)); if (d > 180) d = 360 - d;
-    const rel = relation(d);
-    const hiN = toneName(HI), shN = toneName(SH);
-    let wk = '';
-    if (isWarm(HI.h) && isCool(SH.h)) wk = '✓ Warm/Kühl-Teilung: warme Lichter, kühle Schatten – der emotionale Grundpfeiler und die verlässlichste Kombination.';
-    else if (isCool(HI.h) && isWarm(SH.h)) wk = '↔ Umgekehrte Teilung: kühle Lichter, warme Schatten. Ungewöhnlich, wirkt nächtlich oder künstlich – bewusst einsetzbar.';
-    else if (isWarm(HI.h) && isWarm(SH.h)) wk = '🔥 Durchgehend warm. Sehr stimmig, aber ohne Gegenpol schnell flach – dann über Kontrast Tiefe schaffen.';
-    else if (isCool(HI.h) && isCool(SH.h)) wk = '❄️ Durchgehend kühl. Ruhig und modern, wirkt aber leicht distanziert.';
-    el('relBox').innerHTML = `<div class="relbox">
-      <div class="top"><h4>${shN} → ${hiN}<span class="kindbadge ${rel.kind}">${rel.kind === 'spannung' ? 'Spannung' : 'Harmonie'}</span></h4>
-      <span class="deg">${Math.round(d)}° · ${rel.name}</span></div>
-      <p>${rel.txt}</p>${wk ? `<div class="wk">${wk}</div>` : ''}</div>`;
+    el('harmRow').innerHTML = HARM_RULES.map(r =>
+      `<button class="harmbtn ${r.id === HARMONY ? 'active' : ''}" data-harm="${r.id}">${r.n}</button>`).join('');
+    const rule = HARM_RULES.find(r => r.id === HARMONY) || HARM_RULES[0];
+    el('harmExplain').innerHTML = `<p class="info"><b>${rule.n}:</b> ${rule.ex}</p>`;
 
-    const midHex = hslToHex((HI.h + SH.h) / 2, 6, 50);
-    el('paletteStrip').style.background = `linear-gradient(90deg, ${shHex} 0%, ${midHex} 50%, ${hiHex} 100%)`;
-    el('paletteWhat').innerHTML = `
-      <b>Was ist eine Palette?</b> Jedes Foto hat helle und dunkle Stellen. Du kannst diesen beiden
-      Bereichen <b>getrennt eine Farbe geben</b> – genau das, und nichts anderes, ist eine Palette:
-      welche Farbe im Dunklen liegt und welche im Hellen.
-      <br><br>Deine hier lautet: <b>${shN}</b> in den Schatten, neutrale Mitte, <b>${hiN}</b> in den Lichtern.
-      <br><br><b>Und was bringt dir das?</b> Die Presets, die du auf Social Media siehst, sind zum
-      größten Teil genau diese eine Entscheidung – plus etwas Kontrast und Korn. Ein Preset kann dein
-      Foto nicht kennen; es färbt einfach Schatten und Lichter ein. Wenn du also bei einem Bild
-      erkennst, dass die Schatten blau und die Lichter orange sind, kannst du das in deinem
-      Bearbeitungsprogramm in zwei Minuten selbst nachbauen – ohne Kauf und ohne Zusatz-App.`;
-
-    const iHi = hueInfo(HI.h), iSh = hueInfo(SH.h);
-    el('meanings').innerHTML = `
-      <div class="meaning">
-        <div class="hd"><span class="sw" style="background:${hiHex}"></span><h4>${hiN}</h4><span class="role">☀️ Lichter · ${iHi.n}</span></div>
-        <div class="ln"><b>Wirkung:</b> ${rich(iHi.feel)}</div>
-        <div class="ln"><b>Hier als Lichterfarbe:</b> ${rich(iHi.hi)}</div>
-        <div class="ln"><b>Wenn du weiterdrehst:</b> ${rich(iHi.dir)}</div>
-      </div>
-      <div class="meaning">
-        <div class="hd"><span class="sw" style="background:${shHex}"></span><h4>${shN}</h4><span class="role">🌑 Schatten · ${iSh.n}</span></div>
-        <div class="ln"><b>Wirkung:</b> ${rich(iSh.feel)}</div>
-        <div class="ln"><b>Hier als Schattenfarbe:</b> ${rich(iSh.sh)}</div>
-        <div class="ln"><b>Wenn du weiterdrehst:</b> ${rich(iSh.dir)}</div>
-      </div>`;
+    const pal = harmonyPalette(BASE, HARMONY);
+    const stops = pal.map((c, i) => `${hslToHex(c.h, c.s, c.l)} ${Math.round(i / (pal.length - 1) * 100)}%`).join(', ');
+    el('paletteStrip').style.background = `linear-gradient(90deg, ${stops})`;
+    el('paletteHex').innerHTML = pal.map(c => {
+      const hex = hslToHex(c.h, c.s, c.l);
+      return `<div class="palchip"><span class="sw" style="background:${hex}"></span><span class="hx">${hex.toUpperCase()}</span></div>`;
+    }).join('');
+    el('paletteWhat').innerHTML = `<b>${toneName(BASE)}</b> als Hauptfarbe ergibt mit der Regel <b>${rule.n}</b> diese Palette. Farben daraus fügen sich ins Bild ein – der sichere Rahmen, in dem du färben kannst, ohne die Harmonie zu brechen.`;
 
     renderDirections();
-    el('umsetzTitle').textContent = `So setzt du ${shN} → ${hiN} um`;
-    const shChs = channelMoves(SH.h), hiChs = channelMoves(HI.h);
-    const haupt = shChs.find(a => hiChs.some(b2 => b2.ch === a.ch && b2.dir !== a.dir));
-    const hauptSatz = haupt
-      ? `Bei deiner Palette ist der <b>${haupt.ch}-Kanal</b> der Hauptkanal: ein Punkt links, einer rechts, gegenläufig gezogen – mehr braucht es im Kern nicht.`
-      : `Deine beiden Töne liegen nah beieinander, deshalb arbeitest du hier mit mehreren Kanälen in dieselbe Richtung statt gegenläufig.`;
-    el('gegenBox').innerHTML = `<div class="hintbox">
-      <b>Der ganze Zauber in einem Satz:</b> Ein Kanal hoch = diese Farbe rein. Ein Kanal runter =
-      automatisch die <b>Gegenfarbe</b> rein. ${hauptSatz}
-      <div class="gegen">
-        <div class="g"><b style="color:#ff8b7a">Rot ↑</b> = Rot</div>
-        <div class="g"><b style="color:#ff8b7a">Rot ↓</b> = Cyan</div>
-        <div class="g"><b style="color:var(--green)">Grün ↑</b> = Grün</div>
-        <div class="g"><b style="color:var(--green)">Grün ↓</b> = Magenta</div>
-        <div class="g"><b style="color:var(--blue)">Blau ↑</b> = Blau</div>
-        <div class="g"><b style="color:var(--blue)">Blau ↓</b> = Gelb</div>
-      </div></div>`;
-    el('zoneBox').innerHTML = zoneDiagram('Schatten am ¼-Punkt (untere Mitteltöne) tönen, Lichter am ¾-Punkt (obere Mitteltöne) – nicht an den Ecken ziehen, das wird zu hart. Der Punkt in der Mitte bleibt liegen.');
-    const shMv = shChs.map(m => moveSentence(m, 'sh'));
-    const hiMv = hiChs.map(m => moveSentence(m, 'hi'));
-    const liOf = m => `<li><b>${m.t}:</b> ${m.s}<span class="why">${m.w}</span></li>`;
-    const shMain = shMv.slice(0, 1), hiMain = hiMv.slice(0, 1);
-    const rest = [...shMv.slice(1), ...hiMv.slice(1)];
-    const restHtml = rest.length
-      ? `<details class="opt-steps"><summary>Feinschliff: Nebenkanäle (optional) – erst, wenn der Hauptkanal sitzt</summary><ol class="steps">${rest.map(liOf).join('')}</ol></details>`
-      : '';
-    el('recipeOut').innerHTML = `<ol class="steps">
-      <li><b>Vorbereiten:</b> Feinabstimmung → Sättigung −5 bis −10<span class="why">Etwas Farbe rausnehmen, damit das Grading danach nicht übersteuert.</span></li>
-      <li><b>Kurven öffnen:</b> oben von RGB auf einen Farbkanal umschalten<span class="why">Du bleibst im Werkzeug und schaltest nur den Kanal um – nicht raus und wieder rein.</span></li>
-      ${shMain.length ? shMain.map(liOf).join('') : '<li><b>Schatten:</b> neutral lassen<span class="why">Deine Schattenfarbe ist fast grau – hier ist nichts zu tun.</span></li>'}
-      ${hiMain.length ? hiMain.map(liOf).join('') : '<li><b>Lichter:</b> neutral lassen<span class="why">Deine Lichterfarbe ist fast grau – hier ist nichts zu tun.</span></li>'}
-      <li><b>Mitte sichern:</b> einen Punkt genau in der Kurvenmitte setzen und nicht bewegen<span class="why">Schützt die Hauttöne – ohne diesen Punkt kippt das ganze Gesicht mit.</span></li>
-      <li><b>Kontrolle:</b> Kurven flach halten, im Zweifel halbe Stärke<span class="why">Grading soll man spüren, nicht sehen.</span></li>
-    </ol>${restHtml}`;
   }
 
-  el('pickHi').addEventListener('input', e => { Object.assign(HI, hexToHsl(e.target.value)); renderColor(); });
-  el('pickSh').addEventListener('input', e => { Object.assign(SH, hexToHsl(e.target.value)); renderColor(); });
-  el('satHi').addEventListener('input', e => { HI.s = +e.target.value; renderColor(); });
-  el('ligHi').addEventListener('input', e => { HI.l = +e.target.value; renderColor(); });
-  el('satSh').addEventListener('input', e => { SH.s = +e.target.value; renderColor(); });
-  el('ligSh').addEventListener('input', e => { SH.l = +e.target.value; renderColor(); });
+  el('pickBase').addEventListener('input', e => { Object.assign(BASE, hexToHsl(e.target.value)); renderPalette(); });
+  el('satBase').addEventListener('input', e => { BASE.s = +e.target.value; renderPalette(); });
+  el('ligBase').addEventListener('input', e => { BASE.l = +e.target.value; renderPalette(); });
+  el('harmRow').addEventListener('click', e => {
+    const b = e.target.closest('[data-harm]'); if (!b) return;
+    HARMONY = b.dataset.harm; renderPalette();
+  });
 
+  // Klassische Look-Kombis: setzen Hauptfarbe + Harmonie-Regel.
   const QUICKS = [
-    { n: 'Teal &amp; Orange', f: () => { Object.assign(HI, {h:32,s:70,l:58}); Object.assign(SH, {h:195,s:55,l:32}); } },
-    { n: 'Komplementär', f: () => { SH.h = norm(HI.h + 180); } },
-    { n: 'Split-Komplementär', f: () => { SH.h = norm(HI.h + 150); } },
-    { n: 'Analog', f: () => { SH.h = norm(HI.h + 30); } },
-    { n: 'Monochrom', f: () => { SH.h = HI.h; } },
-    { n: '70er (Gelb/Faded)', f: () => { Object.assign(HI, {h:48,s:62,l:64}); Object.assign(SH, {h:45,s:28,l:40}); } }
+    { n: 'Teal &amp; Orange', base: { h: 32, s: 72, l: 56 }, rule: 'komplementaer' },
+    { n: '70er / Faded',      base: { h: 44, s: 55, l: 56 }, rule: 'analog' },
+    { n: 'Blaue Stunde',      base: { h: 212, s: 55, l: 44 }, rule: 'analog' },
+    { n: 'Golden Hour',       base: { h: 36, s: 78, l: 58 }, rule: 'mono' },
+    { n: 'Wald / Grün',       base: { h: 120, s: 45, l: 42 }, rule: 'analog' },
+    { n: 'Beere / Violett',   base: { h: 320, s: 52, l: 50 }, rule: 'split' }
   ];
   el('quickRow').innerHTML = QUICKS.map((q, i) => `<button class="qbtn" data-q="${i}">${q.n}</button>`).join('');
-  el('quickRow').querySelectorAll('[data-q]').forEach(b =>
-    b.addEventListener('click', () => { QUICKS[+b.dataset.q].f(); renderColor(); }));
+  el('quickRow').addEventListener('click', e => {
+    const b = e.target.closest('[data-q]'); if (!b) return;
+    const q = QUICKS[+b.dataset.q];
+    Object.assign(BASE, q.base); HARMONY = q.rule; renderPalette();
+    document.getElementById('wheelWrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
 
   //=========================================================================
   //  EIGENES WISSEN + VORLAGEN-VERWALTUNG
@@ -5523,7 +5484,7 @@
     const lehre = v === 'lehre';
     el('fview-lehre').hidden = !lehre;
     el('fview-rad').hidden = lehre;
-    if (lehre) closeFl(); else renderColor();
+    if (lehre) closeFl(); else renderPalette();
   }
   el('tab-farbe').addEventListener('click', e => {
     const seg = e.target.closest('#farbSeg .segbtn');
@@ -5569,7 +5530,7 @@
   renderVgList();
   renderCgList();
   updateVorlagenInfo();
-  renderColor();
+  renderPalette();
   // Zuletzt gewählten Modus (Bild/Video) und Tab wiederherstellen
   setMode(LS.get('fw_mode', 'foto'));
 
