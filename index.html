@@ -132,6 +132,7 @@
     .gradebox.harmony .lbl { color: var(--green); }
     .gradebox .txt { font-size: 13px; margin-bottom: 8px; }
     .moves { display: flex; flex-direction: column; gap: 5px; }
+    .movehint { margin: 0 0 4px; font-size: 11.5px; color: var(--muted); font-style: italic; }
     .move { font-size: 12.5px; color: var(--text); display: flex; gap: 7px; align-items: baseline; }
     .move .ch { font-weight: 700; min-width: 38px; }
     .move .ch.rot { color: #ff8b7a; } .move .ch.gruen { color: var(--green); }
@@ -4276,6 +4277,24 @@
       `<div class="move"><span class="ch ${m.klass}">${m.ch}</span><span>${zoneWord} ${m.dir} <span style="color:var(--muted)">(${m.strength})</span></span></div>`
     ).join('');
   }
+  // Nach KANAL gruppiert: pro Kanal beide Punkte (¼ Schatten + ¾ Lichter) zusammen
+  // = eine kleine S-Kurve. So fasst man jeden Kanal nur einmal an, statt zwischen
+  // den Kanälen hin- und herzuspringen. Reihenfolge: Blau, dann Rot, dann Grün.
+  function movesByChannel(shH, hiH) {
+    const sh = channelMoves(shH), hi = channelMoves(hiH);
+    const order = ['Blau', 'Rot', 'Grün'];
+    const present = order.filter(c => sh.some(m => m.ch === c) || hi.some(m => m.ch === c));
+    if (!present.length) return '<div class="move"><span>Neutral – hier ist keine Farbkorrektur nötig.</span></div>';
+    return present.map(c => {
+      const s = sh.find(m => m.ch === c), h = hi.find(m => m.ch === c);
+      const klass = (s || h).klass;
+      const parts = [];
+      if (s) parts.push(`¼-Punkt (Schatten) ${s.dir}`);
+      if (h) parts.push(`¾-Punkt (Lichter) ${h.dir}`);
+      const scurve = (s && h) ? ' <span style="color:var(--muted)">(kleine S-Kurve)</span>' : '';
+      return `<div class="move"><span class="ch ${klass}">${c}</span><span>${parts.join(' und ')}${scurve}</span></div>`;
+    }).join('');
+  }
 
   //=========================================================================
   //  Tabs
@@ -4393,7 +4412,7 @@
     return `<div class="gradebox ${kind}">
       <div class="lbl">${label}</div>
       <div class="txt">${rich(g.txt)}</div>
-      <div class="moves">${movesHtml(g.sh, 'sh')}${movesHtml(g.hi, 'hi')}
+      <div class="moves"><p class="movehint">Arbeite Kanal für Kanal: erst einen komplett (beide Punkte = kleine S-Kurve), dann den nächsten.</p>${movesByChannel(g.sh, g.hi)}
         <div class="move"><span class="ch">Mitte</span><span>Punkt in der Kurvenmitte setzen und nicht bewegen <span style="color:var(--muted)">(schützt Hauttöne)</span></span></div>
       </div>
       <div class="duo">
@@ -5010,7 +5029,7 @@
             <div class="d" style="background:${shHex};color:#fff">Schatten</div>
             <div class="d" style="background:${hiHex}">Lichter</div>
           </div>
-          <div class="moves" style="margin-top:10px">${movesHtml(shH, 'sh')}${movesHtml(hiH, 'hi')}</div>
+          <div class="moves" style="margin-top:10px"><p class="movehint">Arbeite Kanal für Kanal: erst einen komplett (beide Punkte = kleine S-Kurve), dann den nächsten.</p>${movesByChannel(shH, hiH)}</div>
           <ul class="extra">${d.extra.map(x => `<li>${rich(x)}</li>`).join('')}</ul>
           <p class="when">✓ ${rich(d.when)}</p>
           <button class="btn applybtn" data-apply="${d.id}">Diese Richtung aufs Rad übernehmen</button>
